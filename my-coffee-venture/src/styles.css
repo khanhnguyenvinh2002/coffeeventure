@@ -11,6 +11,12 @@
     box-sizing: inherit;
 }
 
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
 html {
     font-size: 62.5%;
     line-height: 1.6rem;
@@ -43,4 +49,19 @@ html {
     to {
         opacity: 1;
     }
+}
+
+[data-stuck] {
+    position: sticky;
+    top: 0;
+    transition: ease-in 0.5s;
+}
+
+[data-stuck="false"] {
+    background: black;
+    color: white;
+    -webkit-transition: ease-in 0.5s;
+    -moz-transition: ease-in 0.5s;
+    -o-transition: ease-in 0.5s;
+    transition: ease-in 0.5s;
 }
