@@ -20,60 +20,117 @@
 </section>
 <section id="services">
     <div class="container">
-        <h1 style="text-align: center; margin-top:0.5rem;">Start you search now!</h1>
+        <header>
+            <h1 style="text-align: center; margin-top:0.5rem;">Start you search now!</h1>
+        </header>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" style="padding: 20px;">
                 <div class="hi">
-                    <p-card header=" Advanced Card " subheader="Card Subheader " [style]="{width: '360px'} " styleClass="p-card-shadow ">
+                    <p-card header="Every good coffee house have good reviews" subheader="" styleClass="p-card-shadow ">
                         <ng-template pTemplate="header ">
                             <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
                         </ng-template>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-                            quas!
+                        <p style="height: 20vh">See our list of reviews now!
                         </p>
                         <ng-template pTemplate="footer ">
-                            <p-button label="Save " icon="pi pi-check "></p-button>
-                            <p-button label="Cancel " icon="pi pi-times " styleClass="p-button-secondary " [style]=" { 'margin-left' : '.5em' } "></p-button>
+                            <div>
+                                <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
+                                        style="font-size: 0.5rem"></i></a>
+                            </div>
                         </ng-template>
                     </p-card>
                 </div>
             </div>
-            <div class="col-md-4 ">
-                <p-card header="Advanced Card " subheader="Card Subheader " [style]="{width: '360px'} " styleClass="p-card-shadow ">
-                    <ng-template pTemplate="header ">
-                        <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                    </ng-template>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-                    </p>
-                    <ng-template pTemplate="footer ">
-                        <p-button label="Save " icon="pi pi-check "></p-button>
-                        <p-button label="Cancel " icon="pi pi-times " styleClass="p-button-secondary " [style]=" { 'margin-left' : '.5em' } "></p-button>
-                    </ng-template>
-                </p-card>
+            <div class="col-md-4" style="padding: 20px;">
+                <div class="hi">
+                    <p-card header="Every good coffee house have good reviews" subheader="" styleClass="p-card-shadow ">
+                        <ng-template pTemplate="header ">
+                            <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
+                        </ng-template>
+                        <p style="height: 20vh">See our list of reviews now!
+                        </p>
+                        <ng-template pTemplate="footer ">
+                            <div>
+                                <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
+                                        style="font-size: 0.5rem"></i></a>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
             </div>
-            <div class="col-md-4 ">
-                <p-card header="Advanced Card " subheader="Card Subheader " [style]="{width: '360px'} " styleClass="p-card-shadow ">
-                    <ng-template pTemplate="header ">
-                        <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                    </ng-template>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-                    </p>
-                    <ng-template pTemplate="footer ">
-                        <p-button label="Save " icon="pi pi-check "></p-button>
-                        <p-button label="Cancel " icon="pi pi-times " styleClass="p-button-secondary " [style]=" { 'margin-left' : '.5em' } "></p-button>
-                    </ng-template>
-                </p-card>
+            <div class="col-md-4" style="padding: 20px;">
+                <div class="hi">
+                    <p-card header="Every good coffee house have good reviews" subheader="" styleClass="p-card-shadow ">
+                        <ng-template pTemplate="header ">
+                            <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
+                        </ng-template>
+                        <p style="height: 20vh">See our list of reviews now!
+                        </p>
+                        <ng-template pTemplate="footer ">
+                            <div>
+                                <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
+                                        style="font-size: 0.5rem"></i></a>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <section>
-    <div class="container ">
-        <h1>Here is some more content</h1>
+    <div class="bg_carousel">
+        <div class="container-fluid">
+            <p-carousel [value]="headerJournal" styleClass="carousel-container" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
+                <!-- [responsiveOptions]="responsiveOptions" -->
+                <ng-template pTemplate="header">
+                    <h5 class="bg_carousel-header">
+                        Highlighted coffee journal</h5>
+                </ng-template>
+                <ng-template let-product pTemplate="item">
+                    <div class="product-item">
+                        <div class="row">
+                            <div class="p-md-6" style="padding: 1rem;">
+                                <img src="assets/img/{{product.image}}" [alt]="product.name" class="product-image" />
+                            </div>
+                            <div class="p-md-6" style="padding: 1rem;">
+                                <h4 style="color: white;">{{product.name}}</h4>
+                                <span style="color: white;">{{product.journal}}</span>
+                                <div class="car-buttons">
+                                    <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search">
+                                    </p-button>
+                                    <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star">
+                                    </p-button>
+                                    <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog">
+                                    </p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
     </div>
 </section>
 <section>
-    <div class="container ">
-        <h1>Here is some more content</h1>
+    <header>
+        <h1 style="text-align: center; margin-top:0.5rem;">Highlighted journal</h1>
+    </header>
+    <div class="bg_carousel">
+        <div class="container">
+            <ngb-carousel [interval]="4000" [pauseOnHover]="true" [pauseOnFocus]="true">
+                <ng-template ngbSlide *ngFor="let journal of headerJournal; index as i">
+                    <div class="carousel-caption">
+                        <h3>My slide {{i + 1}} title</h3>
+                        <div>
+                            <h3>User: {{journal.name}}</h3>
+                        </div>
+                    </div>
+                    <div class="picsum-img-wrapper">
+                        <img src="assets/img/{{journal.image}}" alt="My image {{i + 1}} description">
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
     </div>
 </section>

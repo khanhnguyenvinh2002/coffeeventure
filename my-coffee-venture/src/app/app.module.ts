@@ -10,7 +10,8 @@ import { BaseScreenComponent } from './view/base/base-screen/base-screen.compone
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { Configuration } from './module/sticky/common/utility/app-configuration.service';
-
+import { CarouselModule } from 'primeng/carousel';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,7 @@ import { Configuration } from './module/sticky/common/utility/app-configuration.
     AppRoutingModule,
     StickyModule,
     CardModule,
-    ButtonModule
+    ButtonModule, CarouselModule, NgbModule
   ],
   providers: [WINDOW_PROVIDERS,
     Configuration],
