@@ -1,12 +1,31 @@
 <div class="first">
 
 </div>
-<div class="container" style="margin-top:30px;width:100%;">
+<div class="container-fluid" style="margin-top:30px;width:100%;">
     <div class="row">
         <div class="col-xl-4">
+
             <h2>About Me</h2>
             <h5>Photo of me:</h5>
-            <div class="fakeimg">Fake Image</div>
+            <div>
+                <!-- [formGroup]="addBlogForm" -->
+                <!-- <form #form (ngSubmit)="OnSubmit()">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" #Caption ngModel name="Caption" id="Caption" required>
+                                        <label for="Caption">Caption</label>
+                                    </div>
+                                </div>
+                                <img [src]="imageUrl" style="width:250px;height:200px">
+                                <input type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)">
+                                <button type="submit" class="btn-large btn-submit" [disabled]="image.value=='' || !form.valid">Submit</button>
+                            </form> -->
+                <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover;">
+                <button type="button" (click)="image.click()">Pick File</button>
+                <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image>
+                <button type='button' (click)="onUpload()">Submit</button>
+            </div>
+            <div class=" fakeimg ">Fake Image</div>
             <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
             <h3>Some Links</h3>
             <p>Lorem ipsum dolor sit ame.</p>
@@ -26,7 +45,8 @@
             </ul>
             <hr class="d-sm-none">
         </div>
-        <div class="col-xl-8">
+
+        <div class="col-xl-4">
             <h2>TITLE HEADING</h2>
             <h5>Title description, Dec 7, 2017</h5>
             <div class="fakeimg">Fake Image</div>
@@ -40,6 +60,13 @@
             <p>Some text..</p>
             <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
             </p>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+        <div class="col-xl-4">
+            <ngb-datepicker [(ngModel)]="allDatesModel" ngbDatepicker [displayMonths]="1" [navigation]="'select'">
+            </ngb-datepicker>
+            {{allDatesModel | json}}
         </div>
     </div>
 </div>
+<!-- [minDate]="pickerMinDate" [maxDate]="pickerMaxDate" [dayTemplate]="customDay"-->

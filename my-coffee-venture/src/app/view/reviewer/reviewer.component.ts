@@ -8,14 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewerComponent implements OnInit {
   selectedFile: File = null;
-  public imageUrl = 'src/assets/img/cf_bg1.jpg';
+  public imageUrl = 'assets/img/cf_bg1.jpg';
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-  }
-  OnSubmit() {
-    // const formData = new FormData();
-    // formData.append('image', this.addBlogForm.get('image').value)
   }
   // handleFileInput(file: FileList) {
   //   this.fileUpload = file.item(0);

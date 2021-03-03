@@ -12,11 +12,13 @@ import { ButtonModule } from 'primeng/button';
 import { Configuration } from './module/sticky/common/utility/app-configuration.service';
 import { CarouselModule } from 'primeng/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BaseFooterComponent } from './view/base/base-footer/base-footer.component';
 @NgModule({
   declarations: [
     AppComponent,
     BaseComponent,
-    BaseScreenComponent
+    BaseScreenComponent,
+    BaseFooterComponent
   ],
   imports: [
     BrowserModule,

@@ -75,12 +75,20 @@ nav {
     padding: 8px 16px;
 }
 
+.pad {
+    margin-top: 2rem;
+    animation: fadeIn ease-in 1s;
+}
+
 .affix {
+    margin-top: 0;
+    padding-top: 0.5rem;
     background-color: black;
-    -webkit-transition: padding 0.2s ease-out;
-    -moz-transition: padding 0.2s ease-out;
-    -o-transition: padding 0.2s ease-out;
-    transition: padding 0.2s ease-out;
+    animation: fadeIn ease-in 1s;
+    -webkit-transition: padding 1s ease-out;
+    -moz-transition: padding 1s ease-out;
+    -o-transition: padding 1s ease-out;
+    transition: padding 1s ease-out;
 }
 
 @media (min-width:768px) {
