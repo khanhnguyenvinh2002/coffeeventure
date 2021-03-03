@@ -1,3 +1,4 @@
+import { NotificationModule } from './module/sticky/common/notification/notification.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,6 +14,7 @@ import { Configuration } from './module/sticky/common/utility/app-configuration.
 import { CarouselModule } from 'primeng/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseFooterComponent } from './view/base/base-footer/base-footer.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,7 @@ import { BaseFooterComponent } from './view/base/base-footer/base-footer.compone
     AppRoutingModule,
     StickyModule,
     CardModule,
-    ButtonModule, CarouselModule, NgbModule
+    ButtonModule, CarouselModule, NgbModule, NotificationModule
   ],
   providers: [WINDOW_PROVIDERS,
     Configuration],

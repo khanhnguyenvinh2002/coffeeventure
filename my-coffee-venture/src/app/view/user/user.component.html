@@ -47,12 +47,18 @@
         </div>
 
         <div class="col-xl-4">
-            <h2>TITLE HEADING</h2>
+            <h2>Share your coffee journal now</h2>
             <h5>Title description, Dec 7, 2017</h5>
             <div class="fakeimg">Fake Image</div>
-            <p>Some text..</p>
-            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
+            <h5>AutoResize</h5>
+            <div>
+                <button class="btn btn-primary" (click)="onBtnSaveJournal()">Add Journal</button>
+            </div>
+            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [ngModel]="journalContent"></textarea>
+            <div>
+                <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="journalStatus"></p-toggleButton>
+            </div>
+
             <br>
             <h2>TITLE HEADING</h2>
             <h5>Title description, Sep 2, 2017</h5>
@@ -70,3 +76,6 @@
     </div>
 </div>
 <!-- [minDate]="pickerMinDate" [maxDate]="pickerMaxDate" [dayTemplate]="customDay"-->
+<!-- <p-dialog [(visible)]="display" [breakpoint]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+    Content
+</p-dialog> -->

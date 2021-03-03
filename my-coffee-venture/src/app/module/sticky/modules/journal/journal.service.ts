@@ -10,10 +10,10 @@ import { HttpService } from '../../common/http/basic-http.service';
     providedIn: 'root'
 })
 
-export class UserService extends HttpService {
+export class JournalService extends HttpService {
     constructor() {
         super();
-        this.url = this.origin + 'user';
+        this.url = this.origin + 'journal';
     }
 
 }
