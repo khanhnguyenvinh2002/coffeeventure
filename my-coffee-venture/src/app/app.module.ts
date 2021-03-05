@@ -1,5 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NotificationModule } from './module/sticky/common/notification/notification.module';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseFooterComponent } from './view/base/base-footer/base-footer.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ServiceLocator } from './module/sticky/common/utility/service-locator.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,10 +29,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AppRoutingModule,
     StickyModule,
     CardModule,
-    ButtonModule, CarouselModule, NgbModule, NotificationModule
+    ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule
   ],
-  providers: [WINDOW_PROVIDERS,
+  providers: [WINDOW_PROVIDERS, HttpClientModule,
     Configuration],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {    // Create global Service Injector.
+    ServiceLocator.injector = this.injector;
+  }
+}

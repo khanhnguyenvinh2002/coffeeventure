@@ -54,7 +54,8 @@
             <div>
                 <button class="btn btn-primary" (click)="onBtnSaveJournal()">Add Journal</button>
             </div>
-            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [ngModel]="journalContent"></textarea>
+            {{journalContent | json}}
+            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="journalContent"></textarea>
             <div>
                 <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="journalStatus"></p-toggleButton>
             </div>

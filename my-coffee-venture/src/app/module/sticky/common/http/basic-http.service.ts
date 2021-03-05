@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, tap, finalize, catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
@@ -12,27 +12,14 @@ import { Configuration } from '../utility/app-configuration.service';
 @Injectable()
 export class HttpService<T = any> {
     // protected notification = ServiceLocator.injector.get(NotificationService);
-    protected httpClient = ServiceLocator.injector.get(HttpClient);
+    protected httpClient: HttpClient;
     public origin = 'https://localhost:44341/';
     public url = '';
 
     constructor() {
+        this.httpClient = ServiceLocator.injector.get(HttpClient);
     }
-
-    public select(requestPayload?: RequestPayload, isSpinner?: boolean): Observable<T[]> {
-        requestPayload = !requestPayload ? new RequestPayload() : requestPayload;
-        return this.httpClient.get<T[]>(this.url,
-            { observe: 'response', headers: this.getHeaders(), params: requestPayload.toParams() })
-            .pipe(map(r => r.body));
-    }
-
-    public count(requestPayload?: RequestPayload, isSpinner?: boolean): Observable<number> {
-        requestPayload = !requestPayload ? new RequestPayload() : requestPayload;
-        return this.httpClient.get<number>(this.url + '/count',
-            { observe: 'response', headers: this.getHeaders(), params: requestPayload.toParams() })
-            .pipe(map(r => r.body));
-    }
-
+    /////////////////////////////crud  methods
     public getAll(isSpinner?: boolean): Observable<T> {
         return this.httpClient.get<T>(this.url,
             { observe: 'response', headers: this.getHeaders() })
@@ -44,15 +31,35 @@ export class HttpService<T = any> {
             .pipe(map(r => r.body));
     }
 
-    public insert(body: BaseResponse, isSpinner?: boolean): Observable<T> {
+    public insert(body: BaseResponse, isSpinner?: boolean, params?: any): Observable<T> {
         return this.httpClient.post<T>(this.url, JSON.stringify(body),
-            { observe: 'response', headers: this.getHeaders() })
+            { observe: 'response', headers: this.getHeaders(), params: this.toParams(params) })
             .pipe(map(r => r.body));
     }
 
     public update(body: BaseResponse, isSpinner?: boolean): Observable<T> {
         return this.httpClient.put<T>(`${this.url}/${body.id}`,
             JSON.stringify(body), { observe: 'response', headers: this.getHeaders() })
+            .pipe(map(r => r.body));
+    }
+
+    public delete(id: string, isSpinner?: boolean): Observable<boolean> {
+        return this.httpClient.delete<boolean>(`${this.url}/${id}`,
+            { observe: 'response', headers: this.getHeaders() })
+            .pipe(map(r => r.body));
+    }
+    ////////////////////////////////////////
+    public select(requestPayload?: RequestPayload, isSpinner?: boolean): Observable<T[]> {
+        requestPayload = !requestPayload ? new RequestPayload() : requestPayload;
+        return this.httpClient.get<T[]>(this.url,
+            { observe: 'response', headers: this.getHeaders(), params: requestPayload.toParams() })
+            .pipe(map(r => r.body));
+    }
+
+    public count(requestPayload?: RequestPayload, isSpinner?: boolean): Observable<number> {
+        requestPayload = !requestPayload ? new RequestPayload() : requestPayload;
+        return this.httpClient.get<number>(this.url + '/count',
+            { observe: 'response', headers: this.getHeaders(), params: requestPayload.toParams() })
             .pipe(map(r => r.body));
     }
 
@@ -80,11 +87,6 @@ export class HttpService<T = any> {
             .pipe(map(r => r.body));
     }
 
-    public delete(id: string, isSpinner?: boolean): Observable<boolean> {
-        return this.httpClient.delete<boolean>(`${this.url}/${id}`,
-            { observe: 'response', headers: this.getHeaders() })
-            .pipe(map(r => r.body));
-    }
 
     // protected exportFile(url: string, body: RequestPayload, fileName: string, isSpinner?: boolean): Observable<void> {
     //     if (isSpinner == null || isSpinner === undefined) { isSpinner = true; }
