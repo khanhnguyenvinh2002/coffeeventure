@@ -1,0 +1,22 @@
+<div class="row">
+    <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover; border-radius: 50%;">
+    <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image style="display:none;">
+</div>
+
+
+<div class="row" style="margin-bottom:15px;">
+    <div class="col-md-6">
+        <!-- <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;"> -->
+
+        <button type="button" class="btn btn-submit" (click)="image.click()">Pick File</button>
+        <button type='button' class="btn btn-success" [disabled]="image.value==''" (click)="uploadFile(image.files)">Submit</button>
+    </div>
+    <div class="col-md-4">
+        <span class="upload" *ngIf="progress > 0">
+            {{progress}}%
+        </span>
+        <span class="upload" *ngIf="message">
+            {{message}}
+        </span>
+    </div>
+</div>

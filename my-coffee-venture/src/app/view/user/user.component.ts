@@ -34,12 +34,19 @@ export class UserComponent implements OnInit {
   // }
   public onBtnSaveJournal() {
     this.journalAdd.content = this.journalContent;
-    this.journalAdd.status = this.journalStatus;
+    if (this.journalStatus == true) {
+      this.journalAdd.status = 1;
+    }
+    if (this.journalStatus == false) {
+      this.journalAdd.status = 0;
+    }
+    this.journalAdd.created = new Date();
     this.journalService.insert(this.journalAdd).subscribe(res => {
       this.journalContent = "";
       this.journalStatus = false;
     })
   }
+
   handleFileInput(event) {
     if (event.target.files) {
       var reader = new FileReader();

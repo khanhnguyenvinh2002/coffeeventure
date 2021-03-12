@@ -1,0 +1,19 @@
+<div class="row" style="margin-bottom:15px;">
+    <div class="col-md-3">
+        <!-- <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;"> -->
+        <input accept="image/*" type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple>
+        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+        <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover; border-radius: 50%;">
+        <button type="button" (click)="image.click()">Pick File</button>
+        <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image>
+        <!-- <button type='button' (click)="onUpload()">Submit</button> -->-->
+    </div>
+    <div class="col-md-4">
+        <span class="upload" *ngIf="progress > 0">
+            {{progress}}%
+        </span>
+        <span class="upload" *ngIf="message">
+            {{message}}
+        </span>
+    </div>
+</div>

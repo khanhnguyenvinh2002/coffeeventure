@@ -33,7 +33,7 @@ export class HttpService<T = any> {
 
     public insert(body: BaseResponse, isSpinner?: boolean, params?: any): Observable<T> {
         return this.httpClient.post<T>(this.url, JSON.stringify(body),
-            { observe: 'response', headers: this.getHeaders(), params: this.toParams(params) })
+            { observe: 'response', headers: this.getHeaders() })
             .pipe(map(r => r.body));
     }
 
@@ -139,7 +139,7 @@ export class HttpService<T = any> {
     public getHeaders(): HttpHeaders {
         const headers = new HttpHeaders({
             'content-type': 'application/json; charset=utf-8',
-            'id-token': this.getCookie('id-token')
+            // 'id-token': this.getCookie('id-token')
         });
         return headers;
     }

@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationModule } from './module/sticky/common/notification/notification.module';
 import { Injector, NgModule } from '@angular/core';
@@ -17,12 +18,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseFooterComponent } from './view/base/base-footer/base-footer.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ServiceLocator } from './module/sticky/common/utility/service-locator.service';
+import { UploadComponent } from './view/base/upload/upload.component';
+import { UploadMultipleComponent } from './view/base/upload-multiple/upload-multiple.component';
 @NgModule({
   declarations: [
     AppComponent,
     BaseComponent,
     BaseScreenComponent,
-    BaseFooterComponent
+    BaseFooterComponent,
+    UploadMultipleComponent
   ],
   imports: [
     BrowserModule,
