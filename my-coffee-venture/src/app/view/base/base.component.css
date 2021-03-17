@@ -83,7 +83,7 @@ nav {
 .affix {
     margin-top: 0;
     padding-top: 0.5rem;
-    background-color: black;
+    background-color: deeppink;
     animation: fadeIn ease-in 1s;
     -webkit-transition: padding 1s ease-out;
     -moz-transition: padding 1s ease-out;

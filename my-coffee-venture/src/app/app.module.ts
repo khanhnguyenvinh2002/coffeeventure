@@ -20,6 +20,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ServiceLocator } from './module/sticky/common/utility/service-locator.service';
 import { UploadComponent } from './view/base/upload/upload.component';
 import { UploadMultipleComponent } from './view/base/upload-multiple/upload-multiple.component';
+import { AuthModule } from './view/auth/auth.module';
+import { httpInterceptorProviders } from './module/sticky/common/utility';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +35,9 @@ import { UploadMultipleComponent } from './view/base/upload-multiple/upload-mult
     AppRoutingModule,
     StickyModule,
     CardModule,
-    ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule
+    ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule, AuthModule
   ],
-  providers: [WINDOW_PROVIDERS, HttpClientModule,
+  providers: [WINDOW_PROVIDERS, HttpClientModule, httpInterceptorProviders,
     Configuration],
   bootstrap: [AppComponent]
 })

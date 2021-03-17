@@ -113,11 +113,11 @@
     </div>
 </section>
 <section>
-    <div class="container">
+    <div class="container-fluid">
         <h2>Vertical Nav</h2>
         <p>Use the .flex-column class to create a vertical nav:</p>
         <div class="row">
-            <div class="col-lg-3" style="padding-top: 0.5rem;">
+            <div class="col-lg-2" style="padding-top: 0.5rem;">
                 <ul class="nav flex-column sticky-top" style="top: 4rem;">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -135,7 +135,37 @@
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-md-4" style="padding: 20px;">
+                    <div class="col-md-3" style="padding: 20px;" *ngFor="let shop of shops">
+                        <div class="hi">
+                            <div class="card-deck">
+                                <div class="card">
+                                    <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{shop.header}}</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </div>
+                                </div>
+                                <!-- <p-card header="{{shop.header}}" subheader="" styleClass="p-card-shadow ">
+                                <ng-template pTemplate="header ">
+                                    <img src="assets/img/{{shop.image}}" [alt]="shop.header" class="{{shop.class}}" />
+                                </ng-template>
+                                <p style="height: 20vh">Categories: </p>
+                                <p style="height: 20vh">See our list of reviews now!
+                                </p>
+                                <ng-template pTemplate="footer ">
+                                    <div>
+                                        <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
+                                                style="font-size: 0.5rem"></i></a>
+                                    </div>
+                                </ng-template>
+                            </p-card> -->
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4" style="padding: 20px;">
                         <div class="hi">
                             <p-card header="Every good coffee house have good reviews" subheader="" styleClass="p-card-shadow ">
                                 <ng-template pTemplate="header ">
@@ -168,29 +198,12 @@
                                 </ng-template>
                             </p-card>
                         </div>
-                    </div>
-                    <div class="col-md-4" style="padding: 20px;">
-                        <div class="hi">
-                            <p-card header="Every good coffee house have good reviews" subheader="" styleClass="p-card-shadow ">
-                                <ng-template pTemplate="header ">
-                                    <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                                </ng-template>
-                                <p style="height: 20vh">See our list of reviews now!
-                                </p>
-                                <ng-template pTemplate="footer ">
-                                    <div>
-                                        <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
-                                                style="font-size: 0.5rem"></i></a>
-                                    </div>
-                                </ng-template>
-                            </p-card>
-                        </div>
+                    </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 <section>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

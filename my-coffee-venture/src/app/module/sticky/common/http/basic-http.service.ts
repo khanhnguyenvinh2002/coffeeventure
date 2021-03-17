@@ -10,7 +10,7 @@ import { Configuration } from '../utility/app-configuration.service';
 // import * as FileSaver from 'file-saver';
 
 @Injectable()
-export class HttpService<T = any> {
+export class BasicHttpService<T = any> {
     // protected notification = ServiceLocator.injector.get(NotificationService);
     protected httpClient: HttpClient;
     public origin = 'https://localhost:44341/';

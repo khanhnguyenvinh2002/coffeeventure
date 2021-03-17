@@ -49,8 +49,21 @@
 </div>
 
 hi -->
-<div class="first">
-
+<div>
+    <div class="bg"></div>
+    <div class="bg_text">
+        <div class="bg_text-deco">
+            <div>
+                <div style="color: whitesmoke; font-size: 3.2rem;
+                line-height: 4.6rem;
+                font-weight: 700;">Happy 14/3 em bíu hay cáu</div>
+            </div>
+            <div style="color: whitesmoke;    font-size: 3.2rem;
+    line-height: 4.6rem;
+    font-weight: 700;">Tặng em bíu 1 bộ sưu tập ảnh bíu</div>
+        </div>
+    </div>
+    <div class="bg_overlay"></div>
 </div>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -83,16 +96,22 @@ hi -->
             </div>
         </div>
     </nav> -->
-    <div class="row">
-        <div class="col-lg-4">
+    <div class="row sticky-top">
+        <div class="col-md-2 navbar" style="padding-top: 5rem; padding-left: 2rem;
+            position: absolute; z-index: 2;">
+            <ul class="nav nav-pills flex-column " style="top: 4rem;" *ngFor="let product of pics">
+                <li class="nav-link nav-pills"><a class="nav-link" href="#{{product.id}}" style="  pointer-events: none;
+  cursor: default;">I lov u</a>
+            </ul>
+        </div>
+        <!-- <div class="col-lg-4">
             <nav id="navbar-example3" class="navbar navbar-light bg-light sticky-top">
-                <a class="navbar-brand" href="#">Navbar</a>
                 <nav class="nav nav-pills flex-column">
                     <a class="nav-link" href="#section1">Item 1</a>
-                    <!-- <nav class="nav nav-pills flex-column">
+                    <nav class="nav nav-pills flex-column">
                         <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
                         <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
-                    </nav> -->
+                    </nav>
                     <a class="nav-link" href="#section2">Item 2</a>
                     <a class="nav-link" href="#section3">Item 3</a><a class="nav-link" href="#section4">Item 4</a>
                     <a class="nav-link" href="#section4">Item 5</a><a class="nav-link" href="#section4">Item 6</a>
@@ -100,22 +119,88 @@ hi -->
                         <a class="nav-link ms-3 my-1" href="#section41">Item 4.1</a>
                         <a class="nav-link ms-3 my-1" href="#section42">Item 4-2</a>
                     </nav>
-                </nav>
-            </nav>
+                    </nav>
+                    </nav>
+        </div> -->
+    </div>
+    <div id="position" class="sunflower">
+        <div class="head">
+            <div id="eye-1" class="eye"></div>
+            <div id="eye-2" class="eye"></div>
+            <div class="mouth"></div>
         </div>
-        <div class="col-lg-8">
-            <div *ngFor="let product of pics">
-                <div id="{{product.id}}" class="container-fluid" style="padding-left: 0;">
-                    <div class="row">
-                        <div class="col-md-4"><img src="assets/img/{{product.image}}" style="width: 200px;" [alt]="product.content" class="product-image" /></div>
-                        <div class="col-md-8">
-                            <h1>{{product.id | uppercase}}</h1>
+        <div class="petals"></div>
+        <div class="trunk">
+            <div class="left-branch"></div>
+            <div class="right-branch"></div>
+        </div>
+        <div class="vase"></div>
+    </div>
+    <div id="position_2" class="sunflower">
+        <div class="head">
+            <div id="eye-1" class="eye"></div>
+            <div id="eye-2" class="eye"></div>
+            <div class="mouth"></div>
+        </div>
+        <div class="petals"></div>
+        <div class="trunk">
+            <div class="left-branch"></div>
+            <div class="right-branch"></div>
+        </div>
+        <div class="vase"></div>
+    </div>
+    <div id="position_3" class="sunflower">
+        <div class="head">
+            <div id="eye-1" class="eye"></div>
+            <div id="eye-2" class="eye"></div>
+            <div class="mouth"></div>
+        </div>
+        <div class="petals"></div>
+        <div class="trunk">
+            <div class="left-branch"></div>
+            <div class="right-branch"></div>
+        </div>
+        <div class="vase"></div>
+    </div>
+    <div id="position_4" class="sunflower">
+        <div class="head">
+            <div id="eye-1" class="eye"></div>
+            <div id="eye-2" class="eye"></div>
+            <div class="mouth"></div>
+        </div>
+        <div class="petals"></div>
+        <div class="trunk">
+            <div class="left-branch"></div>
+            <div class="right-branch"></div>
+        </div>
+        <div class="vase"></div>
+    </div>
+    <div style="z-index: 1;">
+        <div *ngFor="let product of pics">
+            <div id="{{product.id}}" class="container-fluid" style="padding-left: 0; height: 500px;">
+                <div class="row" style=" height: 100%;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                        <img src="assets/img/{{product.image}}" [alt]="product.header" class="{{product.class}}" />
+                    </div>
+                    <div class="col-md-8">
+                        <div style=" height: 60%;
+    color: black;
+    margin: 100px 70px;
+    padding: 85px 70px;
+    font-weight: bold;
+    text-align: center;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;">
+
+                            <h1>{{product.header | uppercase}}</h1>
                             <p>{{product.content}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div id="section2" class="container-fluid">
+        </div>
+        <!-- <div id="section2" class="container-fluid">
                 <h1>Section 2</h1>
                 <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
                 <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
@@ -135,6 +220,47 @@ hi -->
                 <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
                 <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
             </div> -->
-        </div>
     </div>
 </body>
+<footer>
+    <div>
+        <div style="
+            height: 500px;
+            color: #fff;
+            background-color: lightpink;">
+            <div class="row" style=" height: 100%;">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <img src="assets/img/khanh_birthday.jpeg" [alt]="'hello'" class="img-hor" />
+                </div>
+                <div class="col-md-8">
+                    <div style=" height: 60%;
+                color: black;
+                margin: 100px 70px;
+                padding: 85px 70px;
+                font-weight: bold;
+                text-align: center;
+                border-top: 3px solid #f1f1f1;
+                border-bottom: 3px solid #f1f1f1;">
+
+                        <h1>{{"Anh iu em bíu" | uppercase}}</h1>
+                        <p>Hết ròi chúc em bíu iu nhanh nhìu hơn nhá</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg_text">
+            <div class="bg_text-deco">
+                <div>
+                    <div style="color: whitesmoke; font-size: 3.2rem;
+                    line-height: 4.6rem;
+                    font-weight: 700;">Happy 14/3 em bíu hay cáu</div>
+                </div>
+                <div style="color: whitesmoke;    font-size: 3.2rem;
+        line-height: 4.6rem;
+        font-weight: 700;">Tặng em bíu 1 bộ sưu tập ảnh bíu</div>
+            </div>
+        </div>
+        <div class="bg_overlay"></div>
+    </div>
+</footer>
