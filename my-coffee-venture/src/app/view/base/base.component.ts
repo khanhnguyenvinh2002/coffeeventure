@@ -1,5 +1,8 @@
+// import { BaseListComponent } from './../../module/sticky/component/base-list.component';
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
 import { WINDOW } from 'src/app/module/sticky/services/window.service';
 
 @Component({
@@ -11,7 +14,9 @@ export class BaseComponent implements OnInit {
   public id: number;
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window: Window) {
+    @Inject(WINDOW) private window: Window,
+    public authService: AuthService, private router: Router
+  ) {
     // window.addEventListener('scroll', this.scroll, true);
   }
 
@@ -29,6 +34,15 @@ export class BaseComponent implements OnInit {
     else {
       this.id = 2;
     }
+  }
+  onBtnRegister() {
+    this.router.navigate(['login']);
+  }
+  onBtnLogin() {
+    this.router.navigate(['login']);
+  }
+  onBtnLogout() {
+    this.authService.logout();
   }
 }
   // scroll = (event) => {

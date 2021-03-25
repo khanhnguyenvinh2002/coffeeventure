@@ -9,7 +9,7 @@ export class CustomConfirmation implements Confirmation {
 
     constructor(content: string) {
         const msg = content;
-        const title = 'COMMON_MSG.CONFIRM_TITLE';
+        const title = 'Warning';
         this.message = msg;
         this.header = title;
         this.icon = 'pi pi-exclamation-triangle';

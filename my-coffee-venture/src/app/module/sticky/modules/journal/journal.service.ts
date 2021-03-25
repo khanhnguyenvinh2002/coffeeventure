@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { RequestPayload } from '../../common/http/request-payload.model';
 import { TreeNode } from 'primeng/api';
 import { BaseResponse } from '../../common/http/base-response.model';
-import { HttpService } from '../../common/http/basic-http.service';
+import { HttpService } from '../../common/http/http.service';
 
 @Injectable({
     providedIn: 'root'

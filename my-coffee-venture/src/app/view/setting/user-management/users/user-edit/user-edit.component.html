@@ -1,0 +1,101 @@
+<form-dynamic [formData]="formData" [form]="form" (save)="onBtnSaveClick()" (cancel)="onBtnCancelClick()">
+    <div>
+        <div class="row">
+            <div class="col-lg-7">
+                <form autocomplete="off" #form="ngForm" id="{{formData.formId}}">
+                    <h5>{{ 'USER.USER_INFO' }}</h5>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.TITLE' }}</label>
+                            <validate-message [form]="form" controlName="title"></validate-message>
+                            <!-- <ng-select [items]="titles"
+									   bindLabel="name"
+									   bindValue="name"
+									   name="title"
+									   placeholder="{{ 'USER.TITLE'  }}"
+									   [(ngModel)]="userData.title"
+									   required
+									   autofocus>
+							</ng-select> -->
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.FIRST_NAME' }}</label>
+                            <input type="text" class="form-control" name="firstName" placeholder="{{ 'USER.FIRST_NAME'  }}" [(ngModel)]="userData.firstName">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.MID_NAME' }}</label>
+                            <input type="text" class="form-control" name="midname" placeholder="{{ 'USER.MID_NAME'  }}" [(ngModel)]="userData.midName">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.LAST_NAME' }}</label>
+                            <input type="text" class="form-control" name="lastname" placeholder="{{ 'USER.LAST_NAME'  }}" [(ngModel)]="userData.lastName">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.EMAIL' }}</label>
+                            <input type="text" class="form-control" name="email" placeholder="{{ 'USER.EMAIL'  }}" [(ngModel)]="userData.email">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.MOBILE' }}</label>
+                            <input type="text" class="form-control" name="mobile" placeholder="{{ 'USER.MOBILE'  }}" [(ngModel)]="userData.mobile">
+                        </div>
+                    </div>
+                    <br>
+                    <h5>{{ 'USER.USER_LOGIN' }}</h5>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.USER_NAME' }}</label>
+                            <input type="text" class="form-control" name="username" placeholder="{{ 'USER.USER_NAME'  }}" [(ngModel)]="userData.userName">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.BUYER_NAME_CONTROL' }}</label>
+                            <!-- <ng-select-async-list name="userName" header="{{'USER.BUYER_NAME_CONTROL' }}" [width]="'50vw'" placeholder="{{'USER.BUYER_NAME_CONTROL' }}" [columns]="buyerHeader" bindLabel="userName" [service]="buyerService" [requestPayload]="buyerRequestPayload"
+                                (change)="onChangeBuyer($event)" [(ngModel)]="userData.buyerNameDto">
+                            </ng-select-async-list> -->
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.LAST_LOGIN' }}</label>
+                            <span class="form-control disabled">
+								{{ userData.lastLoginAt | date}}</span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.TEL' }}</label>
+                            <input type="text" class="form-control" name="tel" placeholder="{{ 'USER.TEL'  }}" [(ngModel)]="userData.tel">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.ROLE' }}</label>
+                            <ng-select-async name="role" bindLabel="name" placeholder="{{ 'USER.ROLE'  }}" [multiple]="true" [closeOnSelect]="true" [service]="roleService" [(ngModel)]="userData.userRole">
+                            </ng-select-async>
+                            <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.GROUP' }}</label>
+                            <ng-select-async name="groupId" bindLabel="orgCode" suffixLabel="orgName" placeholder="{{ 'USER.GROUP' }}" [multiple]="false" [closeOnSelect]="true" [service]="orgService" (change)="userData.groupId = userData.groupDto?.id" [(ngModel)]="userData.groupDto">
+                            </ng-select-async>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ 'USER.ACTIVE' }}</label>
+                            <div>
+                                <p-inputSwitch name="status" [ngModel]="userData.status" (ngModelChange)="userData.status = $event ? 1 : 0"></p-inputSwitch>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-5">
+                <h5>{{ 'USER.USER_ORG' }}</h5>
+                <label>{{ 'USER.SELECT_USER_ORG' }}</label>
+                <app-user-org #userOrg (change)="markFormTouched()" (afterTreeInit)="onAfterTreeInit()"></app-user-org>
+            </div>
+        </div>
+    </div>
+</form-dynamic>

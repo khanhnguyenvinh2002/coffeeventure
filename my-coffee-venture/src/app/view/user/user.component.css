@@ -2,10 +2,15 @@
     height: 50vh;
     min-height: 200px;
     background-size: cover;
-    background-image: url('https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb');
+    background-image: linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef), linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef);
     background-position: center;
 }
 
-img {
-    border-radius: 50%;
+.mat-calendar-body-cell.selected {
+    background-color: black!important;
+    border-radius: 50%
+}
+
+.drop-calendar {
+    width: 100%;
 }

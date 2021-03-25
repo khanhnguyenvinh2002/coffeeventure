@@ -7,19 +7,20 @@ import { catchError } from 'rxjs/operators';
 
 import { throwError } from 'rxjs';
 import { AuthService } from '../../modules/auth/auth.service';
+import { ServiceLocator } from './service-locator.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-    constructor(private inj: Injector) { }
+    constructor(private authService: AuthService) { }
     //HttpEvent<any>
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
 
-        let authService: AuthService = this.inj.get(AuthService); //authservice is an angular service
+        // let authService: AuthService = ServiceLocator.injector.get(AuthService); //authservice is an angular service
 
         console.log("intercepted request ... ");
 
-        const authToken: string = authService.getToken();
+        const authToken: string = this.authService.getToken();
 
         // cloned headers, updated with the authorization header.
         const authReq = req.clone({ setHeaders: { 'Authorization': `Bearer ${authToken}` } });
@@ -28,12 +29,12 @@ export class TokenInterceptor implements HttpInterceptor {
         return next.handle(authReq)
             .pipe(
                 catchError((error: HttpErrorResponse) => {
-                    let router = this.inj.get(Router);
+                    let router = ServiceLocator.injector.get(Router);
                     console.log("Interceptor error ... " + JSON.stringify(error));
                     if (error.status === 401) {
                         console.log("Interceptor code 401 ... ");
                         //logout users, redirect to login page
-                        authService.logout();
+                        this.authService.logout();
                         //redirect to the signin page or show login modal here
                         router.navigate(['account/login']);
                         return throwError(error);
@@ -45,3 +46,27 @@ export class TokenInterceptor implements HttpInterceptor {
             );
     }
 }
+// import { Injectable } from '@angular/core';
+// import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+
+// @Injectable()
+// export class httpInterceptor implements HttpInterceptor {
+//     intercept(request: HttpRequest<any>, newRequest: HttpHandler): Observable<HttpEvent<any>> {
+//         // add authorization header to request
+
+//         //Get Token data from local storage
+//         let tokenInfo = JSON.parse(localStorage.getItem('TokenInfo'));
+
+//         if (tokenInfo && tokenInfo.token) {
+//             request = request.clone({
+//                 setHeaders: {
+//                     Authorization: `Bearer ${tokenInfo.token}`,
+//                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+//                 }
+//             });
+//         }
+
+//         return newRequest.handle(request);
+//     }
+// }

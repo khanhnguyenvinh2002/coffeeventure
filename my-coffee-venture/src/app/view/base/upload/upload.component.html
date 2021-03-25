@@ -5,18 +5,18 @@
 
 
 <div class="row" style="margin-bottom:15px;">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <!-- <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;"> -->
 
         <button type="button" class="btn btn-submit" (click)="image.click()">Pick File</button>
         <button type='button' class="btn btn-success" [disabled]="image.value==''" (click)="uploadFile(image.files)">Submit</button>
-    </div>
-    <div class="col-md-4">
-        <span class="upload" *ngIf="progress > 0">
+        <!-- <span class="upload" *ngIf="progress > 0">
             {{progress}}%
-        </span>
+        </span> -->
+    </div>
+    <!-- <div class="col-md-12">
         <span class="upload" *ngIf="message">
             {{message}}
         </span>
-    </div>
+    </div> -->
 </div>

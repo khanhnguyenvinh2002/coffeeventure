@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component, HostListener, Inject, ElementRef } from '@angular/core';
 import { WINDOW } from './module/sticky/services/window.service';
 import { PrimeNGConfig } from 'primeng/api';
 @Component({
@@ -9,15 +9,16 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent {
   title = 'my-coffee-venture';
-  constructor(private primengConfig: PrimeNGConfig) { }
-
+  constructor(private primengConfig: PrimeNGConfig, private elementRef: ElementRef) { }
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'rgb(168,186,169)';
+  }
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
   onActivate(event) {
     let scrollToTop = window.setInterval(() => {
       let pos = window.pageYOffset;
-
       if (pos > 0) {
         window.scrollTo(0, pos - 20); // how far to scroll on each step
       } else {

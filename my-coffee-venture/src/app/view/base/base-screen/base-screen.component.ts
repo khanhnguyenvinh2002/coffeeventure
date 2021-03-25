@@ -2,6 +2,7 @@ import { JournalService } from './../../../module/sticky/modules/journal/journal
 import { Component, OnInit } from '@angular/core';
 import * as main from "./base-screen.config";
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-base-screen',
@@ -30,7 +31,7 @@ export class BaseScreenComponent implements OnInit {
     { id: "Jan21", image: "Jan_16_2021.jpeg", header: "Jan 16 2021", class: "img-ver", content: "Đưa em hâm đi ngắm mũ" },
     { id: "Feb21", image: "Feb_9_2021.jpeg", header: "Feb 9 2021", class: "img-ver", content: "Đưa em hâm đi làm cứt" },
     { id: "Mar21", image: "Mar_6_2021.jpeg", header: "Mar 6 2021", class: "img-ver", content: "Đưa bữa tối đi ăn bữa trưa" },];
-  constructor(private journalService: JournalService) { }
+  constructor(private journalService: JournalService, private router: Router) { }
 
   ngOnInit(): void {
     this.journalService.getAll().subscribe(res => {
@@ -40,7 +41,9 @@ export class BaseScreenComponent implements OnInit {
       }
     });
   }
-
+  goToShopItem(id: string) {
+    this.router.navigate(['/app/shop/shop-item', id]);
+  }
   // public formatDate(date): string {
   //   if (date) {
   //     return date.getFullYear()

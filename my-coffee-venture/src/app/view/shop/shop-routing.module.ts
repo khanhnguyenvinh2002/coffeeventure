@@ -1,8 +1,24 @@
+import { ShopItemAddComponent } from './shop-item-add/shop-item-add.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ShopItemComponent } from './shop-item/shop-item.component';
 import { ShopComponent } from './shop.component';
 
-const routes: Routes = [{ path: '', component: ShopComponent }];
+const routes: Routes = [{ path: '', component: ShopComponent },
+{ path: 'shop-item/:id', component: ShopItemComponent },
+{ path: 'shop-item-add', component: ShopItemAddComponent }
+  // {
+  //   path: 'heroes',
+  //   component: HeroListComponent,
+  //   data: { title: 'Heroes List' }
+  // },
+  // {
+  //   path: '',
+  //   redirectTo: '/heroes',
+  //   pathMatch: 'full'
+  // },
+  // { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

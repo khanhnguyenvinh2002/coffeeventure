@@ -1,6 +1,12 @@
+import { Component } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
+@Component({
+    // tslint:disable-next-line:component-selector
+    selector: 'base',
+    template: "<div></div>"
+})
 export class BaseComponent implements OnDestroy {
     public subscriptions: Subscription[] = [];
     ngOnDestroy() {

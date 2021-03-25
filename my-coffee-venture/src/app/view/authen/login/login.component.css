@@ -1,0 +1,76 @@
+.bg_text-deco {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.nav-link {
+    color: deeppink;
+}
+
+.nav-link.active {
+    background-color: white;
+    color: black !important;
+}
+
+.bg_overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .6);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.7;
+    height: 100%;
+}
+
+.bg_text {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    height: 17rem;
+}
+
+img {
+    border-radius: 10%;
+}
+
+.img-hor {
+    display: block;
+    object-fit: cover;
+    width: 400px;
+    height: 300px;
+    margin: 4.5rem 0;
+}
+
+.img-ver {
+    display: block;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 300px;
+    height: 400px;
+    margin: 2rem;
+}
+
+.bg {
+    position: relative;
+    background-image: url("src\assets\img\couple.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 98vh;
+}

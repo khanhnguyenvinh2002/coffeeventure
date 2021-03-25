@@ -1,8 +1,14 @@
 import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import * as globalConfig from './../../_config/main.config';
+import * as globalConfig from './../_config/main.config';
+import { Component } from '@angular/core';
 
+@Component({
+    // tslint:disable-next-line:component-selector
+    selector: 'base-form',
+    template: "<div></div>"
+})
 export class BaseFormComponent implements OnDestroy {
     public formTitle: string;
     public subscriptions: Subscription[] = [];

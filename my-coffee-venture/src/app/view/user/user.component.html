@@ -70,9 +70,35 @@
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
         <div class="col-xl-4">
-            <ngb-datepicker [(ngModel)]="allDatesModel" ngbDatepicker [displayMonths]="1" [navigation]="'select'">
-            </ngb-datepicker>
-            {{allDatesModel | json}}
+            <!-- <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-icon>calendar_today</mat-icon>
+            </button> -->
+            <!-- <mat-menu #appMenu="matMenu"> -->
+            <mat-card>
+                <mat-card-title>
+                    My coffee journal
+                </mat-card-title>
+                <div (click)="$event.stopPropagation()" style="">
+                    <mat-calendar #calendar (selectedChange)="select($event,calendar)" [dateClass]="isSelected">
+                    </mat-calendar>
+                </div>
+            </mat-card>
+            <!-- </mat-menu> -->
+            {{daysSelected | json}}
+            <!-- [(selectedDate)]
+This will emit your selected date change as well as take
+an input of a date like a 2-way data bind.
+
+[showWeek]
+Simply highlights the selected week instead of the day.
+Value "selectedDate" will still return date picked not the whole week.
+
+[mainColor]
+Set default color for calendar. Defaults to #03a9f4.
+
+[secondaryColor]
+Set default color for selected dates color. Defaults to #ff5. -->
+
         </div>
     </div>
 </div>

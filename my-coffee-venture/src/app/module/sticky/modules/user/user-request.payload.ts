@@ -1,14 +1,10 @@
-import { RequestPayload } from "../../common/http/request-payload.model";
+import { RequestPayload } from '../../common/http/request-payload.model';
 
-export class OperationRequestPayload extends RequestPayload {
-    headerId: string;
-    parentMenu: string;
-    type: number;
-    method: string;
+export class UserRequestPayload extends RequestPayload {
+    // orgId: string;
+    email: string;
+    roleId: string;
     excludeIds: string[];
+    ids: string[];
     id: string;
-    excludeOperationId: string;
-    includeOperationId: string;
-    routePath: string;
-    tag: string;
 }

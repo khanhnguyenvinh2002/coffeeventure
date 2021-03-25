@@ -13,7 +13,7 @@ import { Configuration } from '../utility/app-configuration.service';
 export class HttpService<T = any> {
     protected notification = ServiceLocator.injector.get(NotificationService);
     protected httpClient = ServiceLocator.injector.get(HttpClient);
-    protected configuration = ServiceLocator.injector.get(Configuration).configuration;
+    // protected configuration = ServiceLocator.injector.get(Configuration).configuration;
 
     public origin = 'https://localhost:44341/';
     public url = '';
@@ -36,6 +36,11 @@ export class HttpService<T = any> {
             .pipe(map(r => r.body));
     }
 
+    public selectById(id: string, isSpinner?: boolean): Observable<T> {
+        return this.intercept(this.httpClient.get<T>(`${this.url}/${id}`,
+            { observe: 'response', headers: this.getHeaders() }), isSpinner)
+            .pipe(map(r => r.body));
+    }
     public count(requestPayload?: RequestPayload, isSpinner?: boolean): Observable<number> {
         requestPayload = !requestPayload ? new RequestPayload() : requestPayload;
         return this.intercept(this.httpClient.get<number>(this.url + '/count',
@@ -96,6 +101,7 @@ export class HttpService<T = any> {
             .pipe(map(r => r.body));
     }
 
+
     // protected exportFile(url: string, body: RequestPayload, fileName: string, isSpinner?: boolean): Observable<void> {
     //     if (isSpinner == null || isSpinner === undefined) { isSpinner = true; }
     //     if (isSpinner) { this.showSpinner(); }
@@ -149,9 +155,15 @@ export class HttpService<T = any> {
     public getHeaders(): HttpHeaders {
         const headers = new HttpHeaders({
             'content-type': 'application/json; charset=utf-8',
-            'id-token': this.getCookie('id-token')
+            Authorization: 'Bearer ' + this.getCookie("AccessToken"),
+            'AccessToken': this.getToken()
         });
         return headers;
+    }
+    getToken(): string {
+        let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+        let token = loggedUser && loggedUser.accessToken;
+        return token ? token : "";
     }
 
     // protected showSpinner() {

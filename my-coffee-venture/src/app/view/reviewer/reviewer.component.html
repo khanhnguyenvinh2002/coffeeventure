@@ -2,40 +2,44 @@
 
 </div>
 <div class="container-fluid" style="margin-top:30px;width:100%;">
+    <div class="d-flex align-items-center justify-content-center" style="flex-direction: column;
+">
+        <h2>About Me</h2>
+        <h5>Photo of me:</h5>
+        <!-- <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td><img [src]="createImgPath(user.imgPath)" alt="profile picture" style="width:60px; height:60px;"></td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.address}}</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+        <div style="flex-direction: row;">
+            <app-upload></app-upload>
+            <!-- <div class="row">
+                        <div class="offset-md-5 col-md-2">
+                            <button type="button" class="btn btn-primary" (click)="onCreate()">Create </button>
+                        </div>
+                    </div> -->
+            <!-- <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover;">
+                    <button type="button" (click)="image.click()">Pick File</button>
+                    <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image>
+                    <button type='button' (click)="onUpload()">Submit</button> -->
+        </div>
+        <div class=" fakeimg ">Fake Image</div>
+        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
     <div class="row">
         <div class="col-xl-4">
-            <h2>About Me</h2>
-            <h5>Photo of me:</h5>
-            <!-- <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Address</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let user of users">
-                        <td><img [src]="createImgPath(user.imgPath)" alt="profile picture" style="width:60px; height:60px;"></td>
-                        <td>{{user.name}}</td>
-                        <td>{{user.address}}</td>
-                    </tr>
-                </tbody>
-            </table> -->
-            <div>
-                <app-upload></app-upload>
-                <!-- <div class="row">
-                    <div class="offset-md-5 col-md-2">
-                        <button type="button" class="btn btn-primary" (click)="onCreate()">Create </button>
-                    </div>
-                </div> -->
-                <!-- <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover;">
-                <button type="button" (click)="image.click()">Pick File</button>
-                <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image>
-                <button type='button' (click)="onUpload()">Submit</button> -->
-            </div>
-            <div class=" fakeimg ">Fake Image</div>
-            <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+
             <h3>Some Links</h3>
             <p>Lorem ipsum dolor sit ame.</p>
             <ul class="nav nav-pills flex-column">

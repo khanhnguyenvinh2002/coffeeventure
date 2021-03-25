@@ -1,5 +1,4 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Confirmation } from 'primeng/api';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
@@ -11,49 +10,48 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 export class NotificationService {
     constructor(
         private toastr: ToastrService,
-        private translate: TranslateService,
         private componentFactoryResolver: ComponentFactoryResolver,
         private appRef: ApplicationRef,
         private injector: Injector) {
     }
 
     public showSuccess(): void {
-        const msg = this.translate.instant('COMMON_MSG.SUCCESS');
-        const title = this.translate.instant('COMMON_MSG.SUCCESS_TITLE');
+        const msg = "Success";
+        const title = "Action success";
         this.toastr.success(msg, title,
             { timeOut: 4000 });
     }
 
     public showDeteleSuccess(): void {
-        const msg = this.translate.instant('COMMON_MSG.DELETE');
-        const title = this.translate.instant('COMMON_MSG.DELETE_TITLE');
+        const msg = "Delete";
+        const title = "Delete success";
         this.toastr.success(msg, title,
             { timeOut: 4000 });
     }
 
     public showError(message?: string): void {
-        const msg = message ? message : this.translate.instant('COMMON_MSG.ERROR');
-        const title = this.translate.instant('COMMON_MSG.ERROR_TITLE');
+        const msg = message ? message : "Error";
+        const title = "Error occured";
         this.toastr.error(msg, title,
             { timeOut: 4000 });
     }
 
     public showWarning(message?: string): void {
-        const msg = this.translate.instant(message ? message : 'COMMON_MSG.WARNING');
-        const title = this.translate.instant('COMMON_MSG.WARNING_TITLE');
+        const msg = message ? message : "Warning";
+        const title = "Warning";
         this.toastr.warning(msg, title,
             { timeOut: 4000 });
     }
 
     public showInfo(): void {
-        const msg = this.translate.instant('COMMON_MSG.INFO');
-        const title = this.translate.instant('COMMON_MSG.INFO_TITLE');
+        const msg = "This is info";
+        const title = "Info";
         this.toastr.info(msg, title,
             { timeOut: 4000 });
     }
 
     public showMessage(message: string): void {
-        const msg = this.translate.instant(message);
+        const msg = message;
         this.toastr.info(msg, '',
             { timeOut: 4000 });
     }
@@ -70,8 +68,8 @@ export class NotificationService {
         // Create new private confirmation
         const _confirmation: Confirmation = { ...confirmation };
         _confirmation.key = 'f9de6625-3e71-4160-a8ec-aaf95767b500';
-        _confirmation.message = this.translate.instant(confirmation.message);
-        _confirmation.header = this.translate.instant(confirmation.header);
+        _confirmation.message = confirmation.message;
+        _confirmation.header = confirmation.header;
         _confirmation.accept = () => {
             if (confirmation.accept) { confirmation.accept(); }
             // Destroy component after close

@@ -1,11 +1,17 @@
 import { ChangeDetectorRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
 import { forkJoin, Subscription } from 'rxjs';
 import { merge } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { HttpService } from '../../../services/common';
+import { HttpService } from '../common/http/http.service';
 import { BaseFormComponent } from './base-form.component';
+import { Component } from '@angular/core';
 
+@Component({
+    // tslint:disable-next-line:component-selector
+    selector: 'base-list',
+    template: "<div></div>"
+})
 export class BaseListComponent extends BaseFormComponent implements OnInit, OnDestroy {
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     public headers = [];
@@ -50,10 +56,10 @@ export class BaseListComponent extends BaseFormComponent implements OnInit, OnDe
 
         if (this.paginator) {
             this.request.pageIndex = isPaging ? this.paginator.pageIndex : 0;
-            this.request.pageSize = (isPaging && this.paginator.pageSize) ? this.paginator.pageSize : 10;
+            this.request.pageSize = (isPaging && this.paginator.pageSize) ? this.paginator.pageSize : 5;
 
             this.paginator.pageIndex = isPaging ? this.paginator.pageIndex : 0;
-            this.paginator.pageSize = isPaging ? this.paginator.pageSize : 10;
+            this.paginator.pageSize = isPaging ? this.paginator.pageSize : 5;
         }
         const requests = [
             this.baseService[this.fnSelectName](this.request),
