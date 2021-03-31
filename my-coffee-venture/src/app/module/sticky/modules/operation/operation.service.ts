@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RequestPayload } from '../../common/http/request-payload.model';
-import { TreeNode } from 'primeng/api';
+import { MenuItem, TreeNode } from 'primeng/api';
 import { BaseResponse } from '../../common/http/base-response.model';
 import { HttpService } from '../../common/http/http.service';
 
@@ -14,6 +14,82 @@ export class OperationService extends HttpService {
     constructor() {
         super();
         this.url = this.origin + 'operation';
+    }
+
+
+    /**
+    * Get tree data from flat data
+    */
+    public getNavBarViewMenu(isShowOnlyMenu: boolean): Observable<MenuItem[]> {
+        return this.getMenuByUser().pipe(map(response => {
+            if (isShowOnlyMenu) {
+                response = response.filter(x => x.method === 'MENU');
+            }
+            const treeData = [];
+            for (const item of response) {
+                if (!item.parentMenu) {
+                    const parentNode: MenuItem = {
+                        label: item.name,
+                        id: item.id,
+                        routerLink: item.link,
+                        icon: item.menuIcon,
+                        expanded: false
+                    };
+                    treeData.push(parentNode);
+                }
+            }
+            this.getSubNavBar(response, treeData);
+            return treeData;
+        }));
+    }
+
+    /**
+     * Get tree data from flat data
+     */
+    public getNavBarMenuSelected(source: any[]): MenuItem[] {
+        const treeData = [];
+        for (const item of source) {
+            if (!item.parentMenu) {
+                const parentNode: MenuItem = {
+                    label: item.name,
+                    id: item.id,
+                    routerLink: item.link,
+                    icon: item.menuIcon,
+                    expanded: true,
+                };
+                treeData.push(parentNode);
+            }
+        }
+        this.getSubNavBar(source, treeData);
+        return treeData;
+    }
+
+    /**
+     * Get subsidiary item
+     */
+    private getSubNavBar(source: any[], parentNodes: MenuItem[]): void {
+        for (const parentNode of parentNodes) {
+            const childData = source.filter(x => x.parentMenu === parentNode.id);
+            if (childData.length > 0) {
+                const childNodeData: MenuItem[] = [];
+                for (const item of childData) {
+                    const childNode: MenuItem = {};
+                    childNode.label = item.name;
+                    childNode.routerLink = item.link;
+                    childNode.id = item.id;
+                    childNode.icon = item.menuIcon;
+                    childNode.expanded = true;
+                    // this.setIconForNode(childNode);
+                    childNodeData.push(childNode);
+                }
+
+                parentNode.routerLink = null;
+                parentNode.items = childNodeData;
+                this.getSubNavBar(source, parentNode.items);
+            } else {
+                // this.setIconForNode(parentNode, true);
+            }
+        }
     }
 
     /**
@@ -90,7 +166,22 @@ export class OperationService extends HttpService {
             }
         }
     }
+    // public setIconForNav(node: any, isChild?: boolean) {
+    //     if (node && !isChild) {
+    //         node.expandedIcon = 'fas fa-md fa-folder-open folder-explorer';
+    //         node.collapsedIcon = 'fas fa-md fa-folder folder-explorer';
+    //     }
 
+    //     if (node && isChild) {
+    //         node.expandedIcon = 'fal fa-md fa-desktop';
+    //         node.collapsedIcon = 'fal fa-md fa-desktop';
+    //     }
+
+    //     if (node && node.data.method === 'VIEW') {
+    //         node.expandedIcon = 'fal fa-md fa-receipt';
+    //         node.collapsedIcon = 'fal fa-md fa-receipt';
+    //     }
+    // }
     public setIconForNode(node: any, isChild?: boolean) {
         if (node && !isChild) {
             node.expandedIcon = 'fas fa-md fa-folder-open folder-explorer';

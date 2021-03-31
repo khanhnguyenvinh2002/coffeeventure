@@ -1,4 +1,5 @@
-import { UploadComponent } from './../base/upload/upload.component';
+import { PartialsModule } from './../../module/sticky/partials.module';
+import { UploadComponent } from '../../module/sticky/upload/upload.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,12 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ReviewerComponent, UploadComponent],
+  declarations: [ReviewerComponent],
   imports: [
     CommonModule,
     ReviewerRoutingModule,
     HttpClientModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule, PartialsModule
   ]
 })
 export class ReviewerModule { }

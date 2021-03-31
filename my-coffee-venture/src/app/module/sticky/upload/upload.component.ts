@@ -1,4 +1,4 @@
-import { NotificationService } from './../../../module/sticky/common/notification/notification.service';
+import { NotificationService } from '../common/notification/notification.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpEventType, HttpClient } from '@angular/common/http';
 import { ImageService } from 'src/app/module/sticky/modules/image/image.service';
@@ -47,7 +47,7 @@ export class UploadComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event: any) => {
-        // this.imageUrl = event.target.result;
+        this.imageUrl = event.target.result;
       }
     }
   }

@@ -8,15 +8,8 @@
                         <div class="col-md-6 mb-3">
                             <label>{{ 'USER.TITLE' }}</label>
                             <validate-message [form]="form" controlName="title"></validate-message>
-                            <!-- <ng-select [items]="titles"
-									   bindLabel="name"
-									   bindValue="name"
-									   name="title"
-									   placeholder="{{ 'USER.TITLE'  }}"
-									   [(ngModel)]="userData.title"
-									   required
-									   autofocus>
-							</ng-select> -->
+                            <ng-select [items]="titles" bindLabel="name" bindValue="name" name="title" placeholder="{{ 'USER.TITLE'  }}" [(ngModel)]="userData.title" required autofocus>
+                            </ng-select>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>{{ 'USER.FIRST_NAME' }}</label>
@@ -51,17 +44,15 @@
                             <input type="text" class="form-control" name="username" placeholder="{{ 'USER.USER_NAME'  }}" [(ngModel)]="userData.userName">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label>{{ 'USER.BUYER_NAME_CONTROL' }}</label>
-                            <!-- <ng-select-async-list name="userName" header="{{'USER.BUYER_NAME_CONTROL' }}" [width]="'50vw'" placeholder="{{'USER.BUYER_NAME_CONTROL' }}" [columns]="buyerHeader" bindLabel="userName" [service]="buyerService" [requestPayload]="buyerRequestPayload"
-                                (change)="onChangeBuyer($event)" [(ngModel)]="userData.buyerNameDto">
-                            </ng-select-async-list> -->
+                            <label>{{ 'USER.USER_NAME' }}</label>
+                            <input type="text" class="form-control" name="username" placeholder="{{ 'USER.PASSWORD'  }}" [(ngModel)]="userData.password">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label>{{ 'USER.LAST_LOGIN' }}</label>
                             <span class="form-control disabled">
-								{{ userData.lastLoginAt | date}}</span>
+                                {{ userData.lastLoginAt | date}}</span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>{{ 'USER.TEL' }}</label>
@@ -71,14 +62,14 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label>{{ 'USER.ROLE' }}</label>
-                            <ng-select-async name="role" bindLabel="name" placeholder="{{ 'USER.ROLE'  }}" [multiple]="true" [closeOnSelect]="true" [service]="roleService" [(ngModel)]="userData.userRole">
-                            </ng-select-async>
+                            <async-select name="role" bindLabel="name" placeholder="{{ 'USER.ROLE'  }}" [multiple]="true" [closeOnSelect]="true" [service]="roleService" [(ngModel)]="userData.userRole">
+                            </async-select>
                             <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>{{ 'USER.GROUP' }}</label>
-                            <ng-select-async name="groupId" bindLabel="orgCode" suffixLabel="orgName" placeholder="{{ 'USER.GROUP' }}" [multiple]="false" [closeOnSelect]="true" [service]="orgService" (change)="userData.groupId = userData.groupDto?.id" [(ngModel)]="userData.groupDto">
-                            </ng-select-async>
+                            <async-select name="groupId" bindLabel="orgCode" suffixLabel="orgName" placeholder="{{ 'USER.GROUP' }}" [multiple]="false" [closeOnSelect]="true" [service]="orgService" (change)="userData.groupId = userData.groupDto?.id" [(ngModel)]="userData.groupDto">
+                            </async-select>
                         </div>
                     </div>
                     <div class="form-row">

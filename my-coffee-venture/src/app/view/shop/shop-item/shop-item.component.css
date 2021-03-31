@@ -10,6 +10,17 @@ body {
     background-position: center;
 }
 
+.nav-link {
+    color: deeppink;
+}
+
+.nav-link.active {
+    background-color: white;
+    color: black !important;
+}
+
+
+/* 
 .shop-profile {
     padding: 3%;
     margin-top: 3%;
@@ -119,4 +130,4 @@ body {
 .profile-tab p {
     font-weight: 600;
     color: #0062cc;
-}
+} */

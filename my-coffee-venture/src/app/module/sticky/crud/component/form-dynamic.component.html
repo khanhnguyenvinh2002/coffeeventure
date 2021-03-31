@@ -2,13 +2,13 @@
 	<kt-portlet-header *ngIf="!formData.hideHeader"
 	[class]="'kt-portlet__head--lg'"
 					   [icon]="formData.icon"
-					   [title]="formData.title | translate"
+					   [title]="formData.title "
 					   [viewLoading$]="viewLoading$">
 		<ng-container ktPortletTools> -->
 <header>
     <a (click)="cancel.emit()" class="btn btn-secondary kt-margin-r-10" mat-raised-button *ngIf="formData.isCancel">
         <i class="la la-arrow-left"></i>
-        <span class="kt-hidden-mobile">{{ 'COMMON.BACK' | translate }}</span>
+        <span class="kt-hidden-mobile">{{ 'COMMON.BACK' }}</span>
     </a>
 </header>
 <!-- </ng-container>
@@ -16,18 +16,19 @@
 	<kt-portlet-body> -->
 <ng-content></ng-content>
 <div *ngIf="!formData.hideHeader && !formData.isHideFooter">
-    <button class="btn btn-sm btn-warning float-left mr-2" title="{{ 'COMMON.DELETE' | translate }}(Ctrl + Delete)" *ngIf="formData.isDelete" (click)="onBtnDeleteClick()">{{ 'COMMON.DELETE' | translate }}</button>
-    <button class="btn btn-sm btn-success mr-2" title="{{ 'COMMON.SAVE' | translate }}(Ctrl + S)" (click)="onBtnSaveClick()">{{ 'COMMON.SAVE' | translate }}</button>
-    <button class="btn btn-sm btn-secondary mr-2" title="{{ 'COMMON.CANCEL' | translate }}(Esc)" *ngIf="formData.isCancel" (click)="onBtnCancelClick()">{{ 'COMMON.CANCEL' | translate }}</button>
+    <button class="btn btn-sm btn-warning float-left mr-2" title="{{ 'COMMON.DELETE'  }}(Ctrl + Delete)" *ngIf="formData.isDelete" (click)="onBtnDeleteClick()">{{ 'COMMON.DELETE' }}</button>
+    <button class="btn btn-sm btn-success mr-2" title="{{ 'COMMON.SAVE'  }}(Ctrl + S)" (click)="onBtnSaveClick()">{{
+		'COMMON.SAVE' }}</button>
+    <button class="btn btn-sm btn-secondary mr-2" title="{{ 'COMMON.CANCEL'  }}(Esc)" *ngIf="formData.isCancel" (click)="onBtnCancelClick()">{{ 'COMMON.CANCEL' }}</button>
 </div>
 <div class="kt-margin-t-30" *ngIf="formData.hideHeader">
-    <button class="btn btn-secondary kt-margin-r-15" title="{{ 'COMMON.CANCEL' | translate }}(Esc)" (click)="onBtnCancelClick()" mat-raised-button>
+    <button class="btn btn-secondary kt-margin-r-15" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancelClick()" mat-raised-button>
 		<i class="la la-arrow-left"></i>
-		<span class="kt-hidden-mobile">{{ 'COMMON.PREVIOUS' | translate }}</span>
+		<span class="kt-hidden-mobile">{{ 'COMMON.PREVIOUS' }}</span>
 	</button>
-    <button class="btn btn-primary kt-margin-r-15" title="{{ 'COMMON.SAVE' | translate }}(Ctrl + S)" (click)="onBtnSaveClick()" mat-raised-button color="primary">
+    <button class="btn btn-primary kt-margin-r-15" title="{{ 'COMMON.SAVE'  }}(Ctrl + S)" (click)="onBtnSaveClick()" mat-raised-button color="primary">
 		<i class="la la-arrow-right"></i>
-		<span class="kt-hidden-mobile">{{ 'COMMON.NEXT' | translate }}</span>
+		<span class="kt-hidden-mobile">{{ 'COMMON.NEXT' }}</span>
 	</button>
 </div>
 <!-- </kt-portlet-body>

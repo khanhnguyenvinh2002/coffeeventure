@@ -1,7 +1,9 @@
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PartialsModule } from './module/sticky/partials.module';
 import { DialogModule } from 'primeng/dialog';
 import { SettingModule } from './view/setting/setting.module';
 import { ConfirmationService } from 'primeng/api';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationModule } from './module/sticky/common/notification/notification.module';
 import { Injector, NgModule } from '@angular/core';
@@ -11,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WINDOW_PROVIDERS } from './module/sticky/services/window.service';
 import { StickyModule } from './module/sticky/sticky/sticky.module';
-import { BaseComponent } from './view/base/base.component';
+import { BaseHeaderComponent } from './view/base/base.component';
 import { BaseScreenComponent } from './view/base/base-screen/base-screen.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -21,8 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseFooterComponent } from './view/base/base-footer/base-footer.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ServiceLocator } from './module/sticky/common/utility/service-locator.service';
-import { UploadComponent } from './view/base/upload/upload.component';
-import { UploadMultipleComponent } from './view/base/upload-multiple/upload-multiple.component';
+import { UploadComponent } from './module/sticky/upload/upload.component';
+import { UploadMultipleComponent } from './module/sticky/upload-multiple/upload-multiple.component';
 import { httpInterceptorProviders } from './module/sticky/common/utility';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './module/sticky/modules/auth/auth.guard';
@@ -31,24 +33,28 @@ import { NotificationService } from './module/sticky/common/notification/notific
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HomeComponent } from './view/home/home.component';
+import { MenubarModule } from 'primeng/menubar'; import { PanelMenuModule } from 'primeng/panelmenu';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { MenuItem } from 'primeng/api';
+import { FormDynamicComponent } from './module/sticky/crud/component/form-dynamic.component';
+import { ValidateMessageComponent } from './module/sticky/crud/validate-message/validate-message.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BaseComponent,
+    BaseHeaderComponent,
     BaseScreenComponent,
     BaseFooterComponent,
-    UploadMultipleComponent,
     HomeComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule, BrowserAnimationsModule,
+    ReactiveFormsModule, BrowserAnimationsModule, FormsModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
-    StickyModule,
+    StickyModule, MultiSelectModule,
     CardModule, DialogModule,
-    ConfirmDialogModule,
-    ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule, ToastrModule.forRoot(), NgSelectModule, SettingModule
+    ConfirmDialogModule, MenubarModule, PartialsModule, PanelMenuModule,
+    ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule, ToastrModule.forRoot(), NgSelectModule, SettingModule, MatPaginatorModule
   ],
   providers: [WINDOW_PROVIDERS, HttpClientModule, httpInterceptorProviders, ConfirmationService, ToastrService,
     Configuration, AuthService, AuthGuard, NotificationService],

@@ -1,25 +1,17 @@
 <div class="row">
-    <div class="col-lg-4">
-        <!-- <kt-portlet>
-            <kt-portlet-header [title]="'Cây tổ chức' | translate"
-                               [class]="'kt-portlet__head--lg'"
-                               [viewLoading$]="orgChartService.isLoading$">
-            </kt-portlet-header>
-
-            <kt-portlet-body> -->
+    <!-- <div class="col-lg-4">
+      
         <p-tree [value]="orgChartService.treeData" (onNodeSelect)="onNodeSelect($event)" (onNodeUnselect)="onNodeUnselect()" [(selection)]="selectedOrg" selectionMode="single" [metaKeySelection]="false"></p-tree>
-        <!-- </kt-portlet-body>
-        </kt-portlet> -->
-    </div>
-    <div class="col-lg-8">
+    </div> -->
+    <div class="col-lg-12">
         <!-- <kt-portlet>
-            <kt-portlet-header [title]="formTitle | translate"
+            <kt-portlet-header [title]="formTitle "
                                [class]="'kt-portlet__head--lg'"
                                [viewLoading$]="userService.isLoading$">
                 <ng-container ktPortletTools>
                     <button [routerLink]="[currentPathName()  + '/add']"
                             mat-raised-button
-                            color="primary">{{ 'COMMON.CRUD.ADD' | translate }}</button>
+                            color="primary">{{ 'COMMON.CRUD.ADD'  }}</button>
                 </ng-container>
             </kt-portlet-header>
             <kt-portlet-body> -->
@@ -39,14 +31,14 @@
             </div>
         </div>
         <div class="mat-table__wrapper">
-            <table class="table">
-                <thead>
+            <p-table [value]="dataSource.items" [columns] [autoLayout]="true">
+                <ng-template pTemplate="header">
                     <tr>
-                        <th *ngFor="let header of headers" [width]="header.width">{{ header.title | translate }}</th>
+                        <th *ngFor="let header of headers" [width]="header.width">{{ header.title }}</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let rowData of dataSource.items; index as i;">
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
                         <td>{{ i + 1 }}</td>
                         <td class="header-link">
                             <a [routerLink]="[currentPathName()  + '/edit', rowData.id]">{{ rowData.email }}</a>
@@ -57,10 +49,10 @@
                         <td>
                             <p-inputSwitch [(ngModel)]="rowData.status" disabled></p-inputSwitch>
                         </td>
-                        <td>{{ rowData.lastLoginAt | date: mainConfig.formatFullDate }}</td>
+                        <td>{{ rowData.lastLoginAt | date }}</td>
                     </tr>
-                </tbody>
-            </table>
+                </ng-template>
+            </p-table>
         </div>
         <!-- </kt-portlet-body>
         </kt-portlet> -->

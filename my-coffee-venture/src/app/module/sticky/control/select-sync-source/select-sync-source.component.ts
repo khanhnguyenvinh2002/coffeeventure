@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { NgForm, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+// import { TranslateService } from '@ngx-translate/core';
 import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
 export const SELECT_SYNC_SOURCE_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -39,7 +39,7 @@ export class SelectSyncSourceComponent implements OnInit {
   public isShowDialog = false;
   constructor(
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    // private translate: TranslateService
   ) { }
 
   private privateValue: any = null;
@@ -106,7 +106,7 @@ export class SelectSyncSourceComponent implements OnInit {
       baseZIndex: 10000,
       draggable: true,
       maximizable: true,
-      title: this.translate.instant('COMMON.CRUD.ADD') + ' ' + this.translate.instant(this.placeholder),
+      title: 'COMMON.CRUD.ADD' + ' ' + this.placeholder,
       btnTitle: 'COMMON.SAVE'
     };
     this.dialogRefAdd.show();

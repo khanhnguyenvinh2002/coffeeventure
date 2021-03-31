@@ -2,10 +2,10 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10">
-            <h1>User name</h1>
+            <h1>shop name</h1>
         </div>
         <div class="col-sm-2">
-            <a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
+            <a href="/shops" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
         </div>
     </div>
     <div class="row">
@@ -53,284 +53,92 @@
 
 
             <div class="tab-content">
-                <div class="tab-pane active" id="home">
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
+                <form-dynamic [formData]="formData" [form]="form" (save)="onBtnSaveClick()" (cancel)="onBtnCancelClick()">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <form autocomplete="off" #form="ngForm" id="{{formData.formId}}">
+                                    <h5>{{ 'shop.shop_INFO' }}</h5>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'Min Price'}}</label>
+                                            <input type="number" class="form-control" name="minprice" placeholder="{{ 'Min Price' }}" [(ngModel)]="shopData.minPrice">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'Max Price' }}</label>
+                                            <input type="number" class="form-control" name="maxPrice" placeholder="{{ 'Max Price' }}" [(ngModel)]="shopData.maxPrice">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'Description' }}</label>
+                                            <input type="text" class="form-control" name="description" placeholder="{{ 'Description'  }}" [(ngModel)]="shopData.description">
+                                        </div>
+                                        <!--To Do add category-->
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'name' }}</label>
+                                            <input type="text" class="form-control" name="name" placeholder="{{ 'name'  }}" [(ngModel)]="shopData.name">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'address' }}</label>
+                                            <input type="text" class="form-control" name="address" placeholder="{{ 'address'  }}" [(ngModel)]="shopData.address">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'district' }}</label>
+                                            <input type="text" class="form-control" name="district" placeholder="{{ 'district'  }}" [(ngModel)]="shopData.district">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'city' }}</label>
+                                            <input type="text" class="form-control" name="city" placeholder="{{ 'city'  }}" [(ngModel)]="shopData.city">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'shop.TEL' }}</label>
+                                            <input type="street" class="form-control" name="street" placeholder="{{ 'street'  }}" [(ngModel)]="shopData.street">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'shop.LAST_LOGIN' }}</label>
+                                            <span class="form-control disabled">
+                                                {{ shopData.lastLoginAt | date}}</span>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'shop.TEL' }}</label>
+                                            <input type="text" class="form-control" name="tel" placeholder="{{ 'shop.TEL'  }}" [(ngModel)]="shopData.tel">
+                                        </div>
+                                    </div> -->
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>{{ 'shop.ROLE' }}</label>
+                                            <async-select [actionGet]="'getShopCategory'" [actionCount]="'countShopCategory'" name="name" bindLabel="name" placeholder="{{ 'Shop Category'  }}" [multiple]="true" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="shopData.shopCategory">
+                                            </async-select>
+                                            <!-- <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation> -->
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="shopData.status">
+                                            </p-toggleButton>
+                                        </div>
+                                    </div>
+                                    <app-upload-multiple (onFileLoad)="upload($event)">
+                                    </app-upload-multiple>
 
-                            <div class="col-xs-6">
-                                <label for="first_name">
-                                    <h4>First name</h4>
-                                </label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                                </form>
+                                {{formDataAdd |json}}
+                            </div>
+
+                            <div class="col-lg-5">
+                                <h5>{{ 'shop.shop_ORG' }}</h5>
+                                <label>{{ 'shop.SELECT_shop_ORG' }}</label>
+                                <!-- <app-shop-org #shopOrg (change)="markFormTouched()" (afterTreeInit)="onAfterTreeInit()"></app-shop-org> -->
                             </div>
                         </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="last_name">
-                                    <h4>Last name</h4>
-                                </label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone">
-                                    <h4>Phone</h4>
-                                </label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile">
-                                    <h4>Mobile</h4>
-                                </label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Email</h4>
-                                </label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Location</h4>
-                                </label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password">
-                                    <h4>Password</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password2">
-                                    <h4>Verify</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
-                                    Reset</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <hr>
-
-                </div>
+                    </div>
+                </form-dynamic>
                 <!--/tab-pane-->
-                <div class="tab-pane" id="messages">
-
-                    <h2></h2>
-
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="first_name">
-                                    <h4>First name</h4>
-                                </label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="last_name">
-                                    <h4>Last name</h4>
-                                </label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone">
-                                    <h4>Phone</h4>
-                                </label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile">
-                                    <h4>Mobile</h4>
-                                </label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Email</h4>
-                                </label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Location</h4>
-                                </label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password">
-                                    <h4>Password</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password2">
-                                    <h4>Verify</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
-                                    Reset</button>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-                <!--/tab-pane-->
-                <div class="tab-pane" id="settings">
-
-
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="first_name">
-                                    <h4>First name</h4>
-                                </label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="last_name">
-                                    <h4>Last name</h4>
-                                </label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone">
-                                    <h4>Phone</h4>
-                                </label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile">
-                                    <h4>Mobile</h4>
-                                </label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Email</h4>
-                                </label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Location</h4>
-                                </label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password">
-                                    <h4>Password</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password2">
-                                    <h4>Verify</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success pull-right" type="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                            </div>
-                        </div>
-                    </form>
-                </div>
 
             </div>
-            <!--/tab-pane-->
-        </div>
-        <!--/tab-content-->
-
-    </div>
-    <!--/col-9-->
-</div>
-<!--/row-->
+            <!--/row-->

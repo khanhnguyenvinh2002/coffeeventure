@@ -5,33 +5,52 @@
             <div class="col-md-4">
                 <div class="profile-img">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file" />
-                    </div>
+
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
+                    <!-- public virtual ICollection<ShopImage> ShopImage { get; set; }
+        public string Id { get; set; }
+        public string Price { get; set; }
+        public int MinPrice { get; set; }
+        public int MaxPrice { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
+        public short? Status { get; set; }
+        public string Address { get; set; }
+        public string District { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+    
+        //public virtual ICollection<UserOrganization> UserOrganization { get; set; }
+            public virtual ICollection<ShopCategory> ShopCategory { get; set; } -->
                     <h5>
-                        Kshiti Ghelani
+                        {{shopItem.name}}
                     </h5>
                     <h6>
-                        Web Developer and Designer
+                        {{shopItem.description}}
                     </h6>
-                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <p class="proile-rating">{{shopItem.shopCategory}}</p>
+                    <p>{{shopItem.address}}{{shopItem.street}}{{shopItem.district}}{{shopItem.city}}</p>
+
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" /> -->
             </div>
         </div>
         <div class="row">

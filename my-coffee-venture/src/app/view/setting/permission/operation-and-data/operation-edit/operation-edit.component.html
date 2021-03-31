@@ -1,163 +1,95 @@
-<crud-dialog [dialogRef]="dialogRef"
-             [form]="form"
-             (save)="onBtnSaveFormClick()"
-             (delete)="onBtnDeleteClick()"
-             (show)="onShowDialog()">
-    <form autocomplete="off"
-          #form="ngForm"
-          id="role-edit">
+<crud-dialog [dialogRef]="dialogRef" [form]="form" (save)="onBtnSaveFormClick()" (delete)="onBtnDeleteClick()" (show)="onShowDialog()">
+    <form autocomplete="off" #form="ngForm" id="role-edit">
         <div class="form-row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>{{ 'OPERATION.PARENT' | translate }}</label>
-                    <ng-select-async name="parentOperation"
-                                     bindLabel="name"
-                                     placeholder="{{ 'OPERATION.PARENT' | translate }}"
-                                     [service]="operationService"
-                                     [requestPayload]="request"
-                                     (change)="dialogRef.input.parentMenu = $event?.id"
-                                     [(ngModel)]="dialogRef.input.parentOperation">
-                    </ng-select-async>
+                    <label>{{ 'OPERATION.PARENT' }}</label>
+                    <async-select name="parentOperation" bindLabel="name" placeholder="{{ 'OPERATION.PARENT'  }}" [service]="operationService" [requestPayload]="request" (change)="dialogRef.input.parentMenu = $event?.id" [(ngModel)]="dialogRef.input.parentOperation">
+                    </async-select>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group ">
-                    <label class=" lbl-required">{{ 'COMMON.NAME' | translate }}</label>
-                    <validate-message [form]="form"
-                                      controlName="name"></validate-message>
-                    <input type="text"
-                           class=" form-control "
-                           name="name"
-                           [(ngModel)]="dialogRef.input.name"
-                           placeholder="{{ 'COMMON.NAME' | translate }}"
-                           required
-                           autofocus>
+                    <label class=" lbl-required">{{ 'COMMON.NAME' }}</label>
+                    <validate-message [form]="form" controlName="name"></validate-message>
+                    <input type="text" class=" form-control " name="name" [(ngModel)]="dialogRef.input.name" placeholder="{{ 'COMMON.NAME'  }}" required autofocus>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group ">
-                    <label class=" lbl-required">{{ 'COMMON.LINK' | translate }}</label>
-                    <validate-message [form]="form"
-                                      controlName="link"></validate-message>
-                    <input type="text"
-                           class="form-control"
-                           name="link"
-                           [(ngModel)]="dialogRef.input.link"
-                           placeholder="{{ 'COMMON.LINK' | translate }}"
-                           required>
+                    <label class=" lbl-required">{{ 'COMMON.LINK' }}</label>
+                    <validate-message [form]="form" controlName="link"></validate-message>
+                    <input type="text" class="form-control" name="link" [(ngModel)]="dialogRef.input.link" placeholder="{{ 'COMMON.LINK'  }}" required>
                 </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-6 form-group"
-                 *ngIf="dialogRef.input.type === 1">
-                <label>{{'COMMON.METHOD' | translate}}</label>
-                <div *ngFor="let m of feMethod"
-                     class="p-field-checkbox">
-                    <validate-message [form]="form"
-                                      controlName="type"></validate-message>
-                    <p-radioButton name="m"
-                                   class="p-field-checkbox"
-                                   [inputId]="m.value"
-                                   [value]="m.value"
-                                   [(ngModel)]="dialogRef.input.method"
-                                   (onClick)="onChangeMethod()"
-                                   required>
+            <div class="col-md-6 form-group" *ngIf="dialogRef.input.type === 1">
+                <label>{{'COMMON.METHOD' }}</label>
+                <div *ngFor="let m of feMethod" class="p-field-checkbox">
+                    <validate-message [form]="form" controlName="type"></validate-message>
+                    <p-radioButton name="m" class="p-field-checkbox" [inputId]="m.value" [value]="m.value" [(ngModel)]="dialogRef.input.method" (onClick)="onChangeMethod()" required>
                     </p-radioButton>
-                    <label [for]="m.value"
-                           style="margin: 10px 0px 0px 5px">{{ m.label }}</label>
+                    <label [for]="m.value" style="margin: 10px 0px 0px 5px">{{ m.label }}</label>
                 </div>
             </div>
-            <div class="col-md-6 form-group"
-                 *ngIf="dialogRef.input.method == 'MENU'">
+            <div class="col-md-6 form-group" *ngIf="dialogRef.input.method == 'MENU'">
                 <div class="form-row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class=" lbl-required">{{ 'COMMON.INDEX' | translate }}</label>
-                            <validate-message [form]="form"
-                                              controlName="menuOrder"></validate-message>
-                            <input type="number"
-                                   class="form-control "
-                                   name="menuOrder"
-                                   required
-                                   [(ngModel)]="dialogRef.input.menuOrder"
-                                   placeholder="{{ 'COMMON.INDEX' | translate }}">
+                            <label class=" lbl-required">{{ 'COMMON.INDEX' }}</label>
+                            <validate-message [form]="form" controlName="menuOrder"></validate-message>
+                            <input type="number" class="form-control " name="menuOrder" required [(ngModel)]="dialogRef.input.menuOrder" placeholder="{{ 'COMMON.INDEX'  }}">
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>{{ 'COMMON.ICON' | translate }}</label>
-                            <validate-message [form]="form"
-                                              controlName="menuIcon"></validate-message>
-                            <input type="text"
-                                   class="form-control"
-                                   name="menuIcon"
-                                   [(ngModel)]="dialogRef.input.menuIcon"
-                                   placeholder="{{ 'COMMON.ICON' | translate }}">
+                            <label>{{ 'COMMON.ICON' }}</label>
+                            <validate-message [form]="form" controlName="menuIcon"></validate-message>
+                            <input type="text" class="form-control" name="menuIcon" [(ngModel)]="dialogRef.input.menuIcon" placeholder="{{ 'COMMON.ICON'  }}">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    <button class="btn btn-secondary"
-            style="background-color: #2196f3; color: whitesmoke;"
-            (click)="onBtnShow()">
-        <i class="fal fa-sort"></i> {{"OPERATION.REORDER_REQUEST" | translate}}</button>
+    <button class="btn btn-secondary" style="background-color: #2196f3; color: whitesmoke;" (click)="onBtnShow()">
+        <i class="fal fa-sort"></i> {{"OPERATION.REORDER_REQUEST" }}</button>
 
 
 </crud-dialog>
 
-<p-dialog [(visible)]="isDisplay"
-          [modal]="true"
-          [baseZIndex]="10000"
-          appendTo="body"
-          [style]=" {width: '70%'} "
-          [draggable]="true"
-          [maximizable]="true"
-          [closable]="false">
+<p-dialog [(visible)]="isDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%'} " [draggable]="true" [maximizable]="true" [closable]="false">
     <p-header>
-        <i class="fal fa-sort-amount-up-alt"></i> {{"OPERATION.REORDER" | translate}}{{ parentName | translate }}
+        <i class="fal fa-sort-amount-up-alt"></i> {{"OPERATION.REORDER" }}{{ parentName }}
     </p-header>
     <form>
         <div class="mat-table__wrapper">
-            <p-table [value]="menuData"
-                     #contractComp
-                     [reorderableColumns]="true"
-                     [columns]="header"
-                     [resizableColumns]="true"
-                     [autoLayout]="true"
-                     (onRowReorder)="ChangeIndex($event)">
-                <ng-template pTemplate="header"
-                             let-columns>
+            <p-table [value]="menuData" #contractComp [reorderableColumns]="true" [columns]="header" [resizableColumns]="true" [autoLayout]="true" (onRowReorder)="ChangeIndex($event)">
+                <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th style="width:3rem"></th>
-                        <th>{{"OPERATION.INDEX" | translate}}</th>
-                        <th>{{"OPERATION.PREV_INDEX" | translate}}</th>
-                        <th>{{"EXCHANGE_RATE_CURRENCY.NAME" | translate}}</th>
-                        <th *ngFor="let col of columns"
-                            pReorderableColumn>{{ col.title | translate }}</th>
-                        <th>{{"OPERATION.PREVIEW" | translate}}</th>
-                        <th>{{"OPERATION.TYPE" | translate}}</th>
+                        <th>{{"OPERATION.INDEX" }}</th>
+                        <th>{{"OPERATION.PREV_INDEX" }}</th>
+                        <th>{{"EXCHANGE_RATE_CURRENCY.NAME" }}</th>
+                        <th *ngFor="let col of columns" pReorderableColumn>{{ col.title }}</th>
+                        <th>{{"OPERATION.PREVIEW" }}</th>
+                        <th>{{"OPERATION.TYPE" }}</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body"
-                             let-rowData
-                             let-columns="columns"
-                             let-index="rowIndex">
+                <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
                     <tr [pReorderableRow]="index">
                         <td>
-                            <span class="pi pi-bars"
-                                  pReorderableRowHandle></span>
+                            <span class="pi pi-bars" pReorderableRowHandle></span>
                         </td>
                         <td>{{index + 1}}</td>
                         <td [ngStyle]="rowData['menuOrder'] == (index + 1)  ? '' : {'background-color': '#DCDCDC'}">
                             {{rowData["menuOrder"] }}</td>
-                        <td>{{rowData["name"] | translate}}</td>
+                        <td>{{rowData["name"] }}</td>
                         <td *ngFor="let col of columns">
                             {{rowData[col.field] }}
                         </td>
@@ -171,13 +103,10 @@
     </form>
 
     <ng-template pTemplate="footer">
-        <button class="btn btn-primary"
-                title="{{ ('COMMON.SAVE') | translate }}(Enter)"
-                (click)="onReorderBtnSaveClick()">
-            {{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE') | translate }}
+        <button class="btn btn-primary" title="{{ ('COMMON.SAVE')  }}(Enter)" (click)="onReorderBtnSaveClick()">
+            {{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE') }}
         </button>
-        <button class="btn btn-secondary"
-                title="{{ 'COMMON.CANCEL' | translate }}(Esc)"
-                (click)="onReorderBtnCancelClick()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button class="btn btn-secondary" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onReorderBtnCancelClick()">{{
+            'COMMON.CANCEL' }}</button>
     </ng-template>
 </p-dialog>

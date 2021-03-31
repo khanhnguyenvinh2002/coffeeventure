@@ -354,7 +354,7 @@ export class OperationAndDataComponent extends BaseFormComponent implements OnIn
   public onSuccess(event: boolean) {
     if (event) {
       this.reloadOperationData();
-      if (this.selectedItem.data && this.selectedItem.data.id !== null) {
+      if (this.selectedItem && this.selectedItem.data && this.selectedItem.data.id !== null) {
         this.initActionData();
       }
       this.onNodeUnselect();

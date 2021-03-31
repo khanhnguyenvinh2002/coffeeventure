@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { concatMap } from 'rxjs/operators';
@@ -21,7 +20,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
     // tslint:disable-next-line:component-selector
-    selector: 'ng-select-async',
+    selector: 'async-select',
     templateUrl: './ng-select-async.component.html',
     styleUrls: ['./ng-select-async.component.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
@@ -94,7 +93,6 @@ export class NgSelectAsyncComponent implements OnInit, ControlValueAccessor {
 
     constructor(
         public toastr: ToastrService,
-        public translateService: TranslateService,
         public cd: ChangeDetectorRef) {
     }
 
@@ -251,7 +249,7 @@ export class NgSelectAsyncComponent implements OnInit, ControlValueAccessor {
             item = item[l];
         });
 
-        return item ? this.translateService.instant(item) : item;
+        return item;
     }
 
     public onBtnSelectAll(): void {
@@ -274,11 +272,11 @@ export class NgSelectAsyncComponent implements OnInit, ControlValueAccessor {
             if (Array.isArray(value)) {
                 value.forEach(x => {
                     strValue = strValue + `${strValue ? ('\n' + x[this.bindLabel]) : x[this.bindLabel]}`
-                        + `${this.suffixValue ? ('\t' + this.translateService.instant(x[this.suffixValue])) : ''}`;
+                        + `${this.suffixValue ? ('\t' + x[this.suffixValue]) : ''}`;
                 });
             } else {
                 strValue = `${strValue ? ('\n' + value[this.bindLabel]) : value[this.bindLabel]}`
-                    + `${this.suffixValue ? ('\t' + this.translateService.instant(value[this.suffixValue])) : ''}`;
+                    + `${this.suffixValue ? ('\t' + value[this.suffixValue]) : ''}`;
             }
         } else {
             strValue = value.toString();

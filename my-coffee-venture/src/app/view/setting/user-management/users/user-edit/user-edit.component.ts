@@ -79,14 +79,14 @@ export class UserEditComponent extends BaseComponent implements OnInit {
     }
 
     public onBtnSaveClick(): void {
-        const query = {
-            orgIds: this.userOrg.selectedOrgs
-                .map((x) => x.data)
-                .map((x) => x.id),
-            isUpdUserOrg: !this.userOrg.isPristine,
-        };
+        // const query = {
+        //     orgIds: this.userOrg.selectedOrgs
+        //         .map((x) => x.data)
+        //         .map((x) => x.id),
+        //     isUpdUserOrg: !this.userOrg.isPristine,
+        // };
 
-        this.userService.merge(this.userData, true, query).subscribe(() => {
+        this.userService.merge(this.userData).subscribe(() => {
             this.notice.showSuccess();
             this.onBtnCancelClick();
         });

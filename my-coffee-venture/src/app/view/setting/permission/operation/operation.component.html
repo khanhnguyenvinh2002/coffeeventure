@@ -1,10 +1,10 @@
 <!-- <kt-portlet>
-    <kt-portlet-header [title]="'COMMON.OPERATION' | translate"
+    <kt-portlet-header [title]="'COMMON.OPERATION' "
                        [class]="'kt-portlet__head--lg'"
                        [viewLoading$]="operationService.isLoading$">
         <ng-container ktPortletTools> -->
 <button class="btn btn-primary" color="primary" (click)="onBtnEditClick()" matTooltip="Create new User">{{
-    'COMMON.CRUD.ADD' | translate }}</button>
+    'COMMON.CRUD.ADD' }}</button>
 <!-- </ng-container>
     </kt-portlet-header> -->
 
@@ -26,13 +26,13 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th *ngFor="let header of headers" [width]="header.width">{{ header.title | translate }}</th>
+                <th *ngFor="let header of headers" [width]="header.width">{{ header.title }}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let rowData of dataSource.items; index as i;">
                 <td>{{ i + 1 }}</td>
-                <td class="header-link" (click)="onBtnEditClick(rowData)">{{ rowData.name | translate }}</td>
+                <td class="header-link" (click)="onBtnEditClick(rowData)">{{ rowData.name }}</td>
                 <td>{{ rowData.code }}</td>
             </tr>
         </tbody>

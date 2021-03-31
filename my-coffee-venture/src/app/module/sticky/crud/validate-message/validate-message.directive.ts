@@ -1,7 +1,6 @@
 import { HostListener, OnDestroy } from '@angular/core';
 import { AfterContentInit, Directive, ElementRef, HostBinding, Input, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { Tooltip } from 'primeng/tooltip';
 
 @Directive({
@@ -41,7 +40,7 @@ export class ValidateTooltipDirective implements AfterContentInit, OnDestroy {
         }
     }
 
-    constructor(el: ElementRef, zone: NgZone, public translate: TranslateService) {
+    constructor(el: ElementRef, zone: NgZone) {
         this.pTooltip = new Tooltip(el, zone);
         this._el = el;
         // tslint:disable-next-line:no-unused-expression
@@ -87,9 +86,9 @@ export class ValidateTooltipDirective implements AfterContentInit, OnDestroy {
             let message = '';
             if (this.getShowError()[0]) {
                 const messKey = 'VALIDATION.' + this.getShowError()[0].toUpperCase();
-                message = this.translate.instant(messKey);
+                message = messKey;
             } else {
-                message = this.translate.instant('VALIDATION.ERROR_OCCURRED');
+                message = 'VALIDATION.ERROR_OCCURRED';
             }
 
             this.pTooltip.text = message;

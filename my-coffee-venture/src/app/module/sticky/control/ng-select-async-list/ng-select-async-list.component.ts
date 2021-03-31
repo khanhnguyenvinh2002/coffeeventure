@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+// import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { concatMap } from 'rxjs/operators';
@@ -20,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpService } from 'src/app/module/sticky/common/http/http.service';
 import { RequestPayload } from 'src/app/module/sticky/common/http/request-payload.model';
 import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
+import { SelectSyncSourceComponent } from '../select-sync-source/select-sync-source.component';
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -113,7 +114,7 @@ export class NgSelectAsyncListComponent implements OnInit, ControlValueAccessor 
 
     constructor(
         public toastr: ToastrService,
-        public translateService: TranslateService,
+        // public translateService: TranslateService,
         public cd: ChangeDetectorRef) {
     }
 
@@ -270,7 +271,7 @@ export class NgSelectAsyncListComponent implements OnInit, ControlValueAccessor 
             item = item[l];
         });
 
-        return item ? this.translateService.instant(item) : item;
+        return item;
     }
 
     public onBtnSelectAll(): void {
@@ -293,11 +294,11 @@ export class NgSelectAsyncListComponent implements OnInit, ControlValueAccessor 
             if (Array.isArray(value)) {
                 value.forEach(x => {
                     strValue = strValue + `${strValue ? ('\n' + x[this.bindLabel]) : x[this.bindLabel]}`
-                        + `${this.suffixValue ? ('\t' + this.translateService.instant(x[this.suffixValue])) : ''}`;
+                        + `${this.suffixValue ? ('\t' + x[this.suffixValue]) : ''}`;
                 });
             } else {
                 strValue = `${strValue ? ('\n' + value[this.bindLabel]) : value[this.bindLabel]}`
-                    + `${this.suffixValue ? ('\t' + this.translateService.instant(value[this.suffixValue])) : ''}`;
+                    + `${this.suffixValue ? ('\t' + value[this.suffixValue]) : ''}`;
             }
         } else {
             strValue = value.toString();
@@ -325,7 +326,7 @@ export class NgSelectAsyncListComponent implements OnInit, ControlValueAccessor 
             baseZIndex: 10000,
             draggable: true,
             maximizable: true,
-            title: this.translateService.instant('COMMON.CRUD.ADD') + ' ' + this.translateService.instant(this.placeholder),
+            title: 'COMMON.CRUD.ADD' + ' ' + this.placeholder,
             btnTitle: 'COMMON.SAVE'
         };
         this.dialogRefAdd.show();
@@ -365,14 +366,14 @@ export class NgSelectAsyncListComponent implements OnInit, ControlValueAccessor 
 
 @NgModule({
     declarations: [
-        NgSelectAsyncListComponent,
+        NgSelectAsyncListComponent, SelectSyncSourceComponent,
         SelectSyncSourceListComponent,
         SelectSyncSourceAddComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
-        TranslateModule,
+        // TranslateModule,
         NgSelectModule,
         NgbTooltipModule,
         DialogModule,

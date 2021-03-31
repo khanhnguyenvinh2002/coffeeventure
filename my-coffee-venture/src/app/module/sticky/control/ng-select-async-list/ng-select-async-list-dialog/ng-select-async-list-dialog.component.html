@@ -1,17 +1,17 @@
-<p-dialog header="Tìm kiếm {{dialogRef.input.header | translate}}" [(visible)]="dialogRef.isDisplay" styleClass="p-dialog-md" [maximizable]="true" [baseZIndex]="10000" [style]="{width: dialogRef.input.width}" [modal]="true" appendTo="body">
+<p-dialog header="Tìm kiếm {{dialogRef.input.header }}" [(visible)]="dialogRef.isDisplay" styleClass="p-dialog-md" [maximizable]="true" [baseZIndex]="10000" [style]="{width: dialogRef.input.width}" [modal]="true" appendTo="body">
     <mat-form-field>
         <input matInput #searchInput (keyup)="initData()" [(ngModel)]="request.generalFilter" placeholder="Search ..." class="mat-form-field mat-form-field-fluid">
         <mat-hint align="start">
-            <!-- <strong>Search in {{ 'Loại hóa đơn' | translate }}</strong> -->
+            <!-- <strong>Search in {{ 'Loại hóa đơn'  }}</strong> -->
         </mat-hint>
     </mat-form-field>
     <form autocomplete="off" #form="ngForm" *ngIf="dialogRef.input.name === 'exchangeRateType'" id="search-contract">
         <div class="row">
             <!-- <div class="col-md-3 mb-3">
-                <label>{{ 'EXCHANGE_RATE_CURRENCY.TYPE' | translate }}</label>
+                <label>{{ 'EXCHANGE_RATE_CURRENCY.TYPE'  }}</label>
                 <ng-select-async name="currency"
                                  bindLabel="name"
-                                 placeholder="{{ 'EXCHANGE_RATE_CURRENCY.TYPE' | translate }}"
+                                 placeholder="{{ 'EXCHANGE_RATE_CURRENCY.TYPE'  }}"
                                  [multiple]="false"
                                  [closeOnSelect]="true"
                                  [service]="exchangeRateTypeService"
@@ -20,7 +20,7 @@
                 </ng-select-async>
             </div> -->
             <div class="col-md-3 mb-3">
-                <label>{{ 'EXCHANGE_RATE_CURRENCY.DATE' | translate }}</label>
+                <label>{{ 'EXCHANGE_RATE_CURRENCY.DATE' }}</label>
                 <input-date name="date" [(ngModel)]="request.date">
                 </input-date>
             </div>
@@ -28,7 +28,7 @@
                 <br>
                 <button class="btn btn-sm btn-primary mt-3" (click)="initData()">
                     <i class="fal fa-file-search"></i>
-                    {{ 'COMMON.SEARCH' | translate }}</button>
+                    {{ 'COMMON.SEARCH' }}</button>
             </div>
         </div>
     </form>
@@ -36,7 +36,7 @@
         <p-table [value]="dataSource.items" selectionMode="single" [(selection)]="selectedRow" dataKey="id" tableStyleClass="table-no-wrap" [columns]="dialogRef.input.columns">
             <ng-template pTemplate="header">
                 <tr>
-                    <th *ngFor="let col of dialogRef.input.columns" [width]="col.width">{{ col.title | translate }}</th>
+                    <th *ngFor="let col of dialogRef.input.columns" [width]="col.width">{{ col.title }}</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
@@ -56,9 +56,9 @@
         <mat-paginator [pageSize]="5" [length]="dataSource.paginatorTotal" [hidePageSize]="true" [showFirstLastButtons]="true"></mat-paginator>
     </div>
     <ng-template pTemplate="footer">
-        <button class="btn btn-sm btn-label-brand mt-3" (click)="onSelectRow()">{{ 'COMMON.SELECT' | translate
+        <button class="btn btn-sm btn-label-brand mt-3" (click)="onSelectRow()">{{ 'COMMON.SELECT'
             }}</button>
-        <button class="btn btn-sm btn-label-dark mt-3" (click)="dialogRef.hide()">{{ 'COMMON.CLOSE' | translate
+        <button class="btn btn-sm btn-label-dark mt-3" (click)="dialogRef.hide()">{{ 'COMMON.CLOSE'
             }}</button>
     </ng-template>
 </p-dialog>

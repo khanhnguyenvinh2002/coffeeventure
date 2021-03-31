@@ -1,5 +1,37 @@
-<div id="nav" class="navbar fixed-top navbar-expand-sm pad" [ngClass]="{'affix': id ===1}">
-    <a class="navbar-brand" style="color: white; font-weight: 700;" [routerLink]="['/app/home']">Happy 14/3 <i
+<div id="nav" class="navbar fixed-top navbar-expand-sm pad" style="padding: 0;
+        animation-duration: 0.7s;
+        animation-timing-function: ease-in-out;
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: none;
+        animation-play-state: running;
+        animation-name: NavBar_menuSticky__2ifLQ;
+        transition-property: all;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0s;" [ngClass]="{'affix': id ===1}">
+    <p-menubar [model]="items" [style]="{'width':'100%','height':'100%','background':'transparent','padding':'0','border':'none'}">
+        <ng-template pTemplate="start">
+            <!-- <img src="assets/showcase/images/primeng.svg" height="40" class="p-mr-2"> -->
+            <div>
+                Coffee venture
+            </div>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div>
+                <div class="form-inline my-2 my-lg-0" *ngIf="!authService.isAuthenticated()">
+                    <button class="btn btn-primary my-2 my-sm-0" (click)="onBtnRegister()">Register</button>
+                    <button class="btn btn-secondary my-2 my-sm-0" (click)="onBtnLogin()">Login</button>
+                </div>
+                <div class="form-inline my-2 my-lg-0" *ngIf="authService.isAuthenticated()">
+                    <button type="button" pButton label="Logout" icon="pi pi-power-off" (click)="onBtnLogout()" style="margin-left:.25em"></button>
+                </div>
+            </div>
+        </ng-template>
+
+    </p-menubar>
+    <!-- <a class="navbar-brand" style="color: white; font-weight: 700;" [routerLink]="['/app/home']">Happy 14/3 <i
             class="far fa-coffee-togo"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" style="color: white;"></span>
@@ -20,15 +52,19 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" [routerLink]="['/app/shop']">Shop</a><a class="dropdown-item" [routerLink]="['/app/setting']">Setting</a>
-                    <!-- [routerLink]="['/hero', hero.id]" -->
+                    [routerLink]="['/hero', hero.id]" 
                     <a class="dropdown-item" [routerLink]="['/app/user']">User</a>
+
+                    <a class="dropdown-item" [routerLink]="['/app/setting/system/permission']">permission</a>
+                    <a class="dropdown-item" [routerLink]="['/app/setting/permission/operation-and-data']">operation and
+                        data</a>
+                    <a class="dropdown-item" [routerLink]="['/app/setting/system/users']">user</a>
+                    <a class="dropdown-item" [routerLink]="['/app/setting/system/users/add']">add user</a><a class="dropdown-item" [routerLink]="['/app/shop']">Shop</a><a class="dropdown-item" [routerLink]="['/app/setting']">Setting</a>
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" [routerLink]="['/app/secret']">>Secret for my babibu</a>
                 </div>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li> -->
         </ul>
         <form class="form-inline my-2 my-lg-0" *ngIf="!authService.isAuthenticated()">
             <button class="btn btn-primary my-2 my-sm-0" (click)="onBtnRegister()">Register</button>
@@ -37,5 +73,12 @@
         <form class="form-inline my-2 my-lg-0" *ngIf="authService.isAuthenticated()">
             <button class="btn btn-primary my-2 my-sm-0" (click)="onBtnLogout()">Log out</button>
         </form>
-    </div>
+    </div> -->
+</div>
+<div style="   height: 50vh;
+    min-height: 200px;
+    background-size: cover;
+    background-image: linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef), linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef);
+    background-position: center;">
+
 </div>

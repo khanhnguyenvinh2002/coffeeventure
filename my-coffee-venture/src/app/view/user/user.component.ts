@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
 
   selectedFile: File = null;
   public imageUrl = 'assets/img/cf_bg1.jpg';
-  constructor(private http: HttpClient, private calendar: NgbCalendar, private journalService: JournalService) { }
+  constructor(private http: HttpClient, private calendar: NgbCalendar, private journalService: JournalService, private noti: NotificationService) { }
 
   ngOnInit(): void {
   }
@@ -67,6 +67,7 @@ export class UserComponent implements OnInit {
     }
     this.journalAdd.created = new Date();
     this.journalService.insert(this.journalAdd).subscribe(res => {
+      this.noti.showSuccess();
       this.journalContent = "";
       this.journalStatus = false;
     })

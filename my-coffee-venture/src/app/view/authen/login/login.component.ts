@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
 
 @Component({
@@ -12,8 +12,8 @@ import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastrService: ToastrService) {
+  navigateUrl: string;
+  constructor(private router: Router, private fb: FormBuilder, private route: ActivatedRoute, private authService: AuthService, private toastrService: ToastrService) {
     this.createLoginForm();
   }
 
@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
       if (res.canAccess && res.accessToken != null) {
         this.authService.setCookie("AccessToken", res.accessToken, 7);
         localStorage.setItem('loggedUser', JSON.stringify({ accessToken: res.accessToken }));
-        this.authService.setCookie("UserInfo", JSON.stringify(res.userInfo), 7);
-        this.router.navigate(['/app/secret']);
+        this.authService.setCookie("UserInfo", JSON.stringify(res.userInfo), 7)
+        this.router.navigate([this.route.snapshot.queryParams.returnUrl]);
       } else {
         this.toastrService.error("Error", 'Error');
       }
