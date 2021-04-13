@@ -1,3 +1,4 @@
+import { PostComponent } from './post/post.component';
 // Angular
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -39,18 +40,19 @@ import { TreeTableModule } from 'primeng/treetable';
 import { NgSelectAsyncListModule } from 'src/app/module/sticky/control/ng-select-async-list/ng-select-async-list.component';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 import { UploadComponent } from './upload/upload.component';
+import { BaseWaitingComponent } from './base/base-waiting.component';
 
 @NgModule({
     declarations: [
         DialogComponent,
-        FormDynamicComponent,
+        FormDynamicComponent, BaseWaitingComponent, PostComponent,
         ValidateMessageComponent,
         ValidateTooltipDirective, UploadComponent, UploadMultipleComponent],
     exports: [
         DialogComponent,
         ValidateMessageComponent,
-        FormDynamicComponent,
-        ValidateTooltipDirective, UploadComponent, UploadMultipleComponent,
+        FormDynamicComponent, BaseWaitingComponent, PostComponent,
+        ValidateTooltipDirective, UploadComponent, UploadMultipleComponent
     ],
     imports: [
         CommonModule,
@@ -89,4 +91,5 @@ import { UploadComponent } from './upload/upload.component';
     providers: [ConfirmationService]
 })
 export class PartialsModule {
+
 }

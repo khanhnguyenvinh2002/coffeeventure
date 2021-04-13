@@ -16,7 +16,6 @@ import { UsersListComponent } from './user-management/users-list.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { OperationEditComponent } from './permission/operation/operation-edit/operation-edit.component';
-import { UserOrgComponent } from './user-management/users/user-edit/user-org/user-org.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +27,6 @@ import { OperationDataEditComponent } from './permission/operation-and-data/oper
 import { OperationActionAddComponent } from './permission/operation-and-data/operation-action-add/operation-action-add.component';
 import { RoleOperationComponent } from './permission/role/role-operation/role-operation.component';
 import { ActionViewComponent } from './permission/operation-and-data/action/action-view/action-view.component';
-import { CustomizeResourceComponent } from './permission/role/customize-resource/customize-resource.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { RoleDetailsComponent } from './permission/role/role-details/role-details.component';
 import { AuthGuard } from 'src/app/module/sticky/modules/auth/auth.guard';
@@ -50,27 +48,37 @@ const routes: Routes = [
     {
         path: 'system/permission',
         component: PermissionComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard], data: {
+            expectedRole: 'admin'
+        }
     },
     {
         path: 'permission/operation-and-data',
         component: OperationAndDataComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard], data: {
+            expectedRole: 'admin'
+        }
     },
     {
         path: 'system/users',
         component: UsersListComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard], data: {
+            expectedRole: 'admin'
+        }
     },
     {
         path: 'system/users/add',
         component: UserEditComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard], data: {
+            expectedRole: 'admin'
+        }
     },
     {
         path: 'system/users/edit/:id',
         component: UserEditComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard], data: {
+            expectedRole: 'admin'
+        }
     },
 ];
 
@@ -84,14 +92,12 @@ const routes: Routes = [
         RoleEditComponent,
         UsersListComponent,
         UserEditComponent,
-        UserOrgComponent,
         OperationAndDataComponent,
         ActionComponent,
         OperationDataEditComponent,
         OperationActionAddComponent,
         RoleOperationComponent, RoleComponent,
         ActionViewComponent,
-        CustomizeResourceComponent,
         RoleDetailsComponent
     ],
     exports: [],

@@ -6,29 +6,19 @@
 
 </div>
 <div class="container-fluid" style="margin-top:30px;width:100%;">
+    <div class="d-flex align-items-center justify-content-center" style="flex-direction: column;
+    ">
+        <h2>About Me</h2>
+        <h5>Photo of me:</h5>
+        <div style="flex-direction: row;">
+            <app-upload></app-upload>
+        </div>
+        <div class=" fakeimg ">Fake Image</div>
+        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
     <div class="row">
-        <div class="col-xl-4">
+        <div class="col-xl-4 col-md-4">
 
-            <h2>About Me</h2>
-            <h5>Photo of me:</h5>
-            <div>
-                <!-- [formGroup]="addBlogForm" -->
-                <!-- <form #form (ngSubmit)="OnSubmit()">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input type="text" #Caption ngModel name="Caption" id="Caption" required>
-                                        <label for="Caption">Caption</label>
-                                    </div>
-                                </div>
-                                <img [src]="imageUrl" style="width:250px;height:200px">
-                                <input type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)">
-                                <button type="submit" class="btn-large btn-submit" [disabled]="image.value=='' || !form.valid">Submit</button>
-                            </form> -->
-                <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover;">
-                <button type="button" (click)="image.click()">Pick File</button>
-                <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image>
-                <button type='button' (click)="onUpload()">Submit</button>
-            </div>
             <div class=" fakeimg ">Fake Image</div>
             <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
             <h3>Some Links</h3>
@@ -50,8 +40,36 @@
             <hr class="d-sm-none">
         </div>
 
-        <div class="col-xl-4">
+        <div class="col-xl-4 col-md-8">
             <h2>Share your coffee journal now</h2>
+            <div class="card">
+                <h5>Advanced</h5>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="firstname6">Firstname</label>
+                        <input id="firstname6" type="text" pInputText>
+                    </div>
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="lastname6">Lastname</label>
+                        <input id="lastname6" type="text" pInputText>
+                    </div>
+                    <div class="p-field p-col-12">
+                        <label for="address">Address</label>
+                        <textarea id="address" type="text" rows="4" pInputTextarea></textarea>
+                    </div>
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="city">City</label>
+                        <input id="city" type="text" pInputText>
+                    </div>
+                    <div class="p-field p-col-12 p-md-3">
+                        <label for="state">State</label>
+                    </div>
+                    <div class="p-field p-col-12 p-md-3">
+                        <label for="zip">Zip</label>
+                        <input id="zip" type="text" pInputText>
+                    </div>
+                </div>
+            </div>
             <h5>Title description, Dec 7, 2017</h5>
             <div class="fakeimg">Fake Image</div>
             <h5>AutoResize</h5>
@@ -63,17 +81,20 @@
             <div>
                 <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="journalStatus"></p-toggleButton>
             </div>
-
+            <app-upload-multiple (onFileLoad)="upload($event)">
+            </app-upload-multiple>
             <br>
-            <h2>TITLE HEADING</h2>
-            <h5>Title description, Sep 2, 2017</h5>
-            <div class="fakeimg">Fake Image</div>
-            <p>Some text..</p>
-            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+            <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
+                <div *ngFor="let i of dataSource.items">
+                    <app-post [id]="i.id" [status]="i.status" [feeling]="i.feeling" [createdAt]="i.createdAt" [content]="i.content" [name]="'Testing user'" [image]="imageUrl" [service]="journalService" [userName]="i.name">
+                    </app-post>
+                </div>
+            </div>
+            <app-waiting *ngIf="isLoaded == false"></app-waiting>
+
         </div>
-        <div class="col-xl-4">
+        <div class="col-xl-4 col-md-12">
             <!-- <button mat-icon-button [matMenuTriggerFor]="appMenu">
                 <mat-icon>calendar_today</mat-icon>
             </button> -->
@@ -89,6 +110,14 @@
             </mat-card>
             <!-- </mat-menu> -->
             {{daysSelected | json}}
+            <!-- <div class="p-field p-col-12 p-md-4">
+                <label for="multiple">Multiple</label>
+                <p-calendar [inline]="true" (onSelect)="update($event)" [(ngModel)]="dates" selectionMode="multiple" [readonlyInput]="true" inputId="multiple">
+                    <ng-template pTemplate="date" let-date>
+                        <span ngbTooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">{{date.day}}</span>
+                    </ng-template>
+                </p-calendar>
+            </div> -->
             <!-- [(selectedDate)]
 This will emit your selected date change as well as take
 an input of a date like a 2-way data bind.

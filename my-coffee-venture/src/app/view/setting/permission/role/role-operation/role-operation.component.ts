@@ -59,7 +59,7 @@ export class RoleOperationComponent implements OnInit {
 
   public onBtnNextClick(): void {
     if (this.isSelectedChanged) {
-      const operationIds = this.selectedItems.filter(x => !x.children).map(x => x.data).map(x => x.id);
+      const operationIds = this.selectedItems.map(x => x.data).map(x => x.id);
       const roleId = this.dialogRef.input.roleId;
       this.roleService.bulkMergeRoleOperation(operationIds, roleId).subscribe(res => {
         this.notification.showSuccess();

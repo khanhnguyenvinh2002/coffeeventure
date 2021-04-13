@@ -42,7 +42,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), CardModule, ButtonModule],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }), CardModule, ButtonModule],
   exports: [RouterModule, CardModule, ButtonModule]
 })
 export class AppRoutingModule { }

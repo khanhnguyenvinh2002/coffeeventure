@@ -1,3 +1,4 @@
+import { InputTextModule } from 'primeng/inputtext';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PartialsModule } from './module/sticky/partials.module';
 import { DialogModule } from 'primeng/dialog';
@@ -52,7 +53,7 @@ import { ValidateMessageComponent } from './module/sticky/crud/validate-message/
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
     StickyModule, MultiSelectModule,
-    CardModule, DialogModule,
+    CardModule, DialogModule, InputTextModule,
     ConfirmDialogModule, MenubarModule, PartialsModule, PanelMenuModule,
     ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule, ToastrModule.forRoot(), NgSelectModule, SettingModule, MatPaginatorModule
   ],

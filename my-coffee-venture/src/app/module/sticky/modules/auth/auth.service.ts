@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpService } from './../../common/http/http.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -6,9 +7,24 @@ import { map, catchError } from 'rxjs/operators';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, throwError } from 'rxjs';
+import { BaseModel } from '../../crud';
 
 const jwtHelper = new JwtHelperService();
 
+export class Role extends BaseModel {
+  id: number;
+  title: string;
+  name?: string;
+  permissions: number[];
+  isCoreRole = false;
+
+  clear(): void {
+    this.id = undefined;
+    this.title = '';
+    this.permissions = [];
+    this.isCoreRole = false;
+  }
+}
 export class Account {
   isAuthenticated: boolean;
   canAccess: boolean;
@@ -21,7 +37,7 @@ export class AccountInfo {
   fullName: string;
   avatar: string;
   language: string;
-  // roles?: Role[];
+  roles?: Role[];
 
 }
 export class AccountChild {
@@ -33,14 +49,22 @@ export class AccountChild {
 export class AuthService extends HttpService {
 
   private loginUrl: string;
-  constructor() {
+  private logoutUrl: string;
+  constructor(private route: Router) {
     super();
     this.url = this.origin + 'account';
     this.loginUrl = this.url + "/login";
+    this.logoutUrl = this.url + "/logout";
   }
   login(username: string, password: string): Observable<AccountChild> {
 
     return this.httpClient.post<AccountChild>(this.loginUrl, { username: username, password: password }, { headers: this.getHeaders(), observe: 'response' })
+      .pipe(
+        map(r => r.body));
+  }
+  register(username: string, password: string): Observable<AccountChild> {
+
+    return this.httpClient.post<AccountChild>(this.url + "/register", { username: username, password: password }, { headers: this.getHeaders(), observe: 'response' })
       .pipe(
         map(r => r.body));
   }
@@ -85,7 +109,13 @@ export class AuthService extends HttpService {
 
   logout(): void {
     // clear token remove user from local storage to log user out
-    localStorage.removeItem('loggedUser');
+    // this.setCookie("AccessToken", "", 0);
+    this.httpClient.post<string>(this.logoutUrl, "", { headers: this.getHeaders(), observe: 'response' }).subscribe(res => {
+
+      localStorage.removeItem('loggedUser');
+      localStorage.clear();
+      this.route.navigate(['login']);
+    });
   }
 
   getToken(): string {
@@ -94,6 +124,17 @@ export class AuthService extends HttpService {
     return token ? token : "";
   }
 
+  getUser(): string {
+    let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    if (this.isAuthenticated()) {
+      return loggedUser.userName;
+    }
+    else {
+      this.logout();
+      return '';
+    }
+
+  }
   isAuthenticated(): boolean {
     const token = this.getToken();
     // Check whether the token is expired or not

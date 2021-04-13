@@ -1,167 +1,150 @@
 <div class="first"></div>
-<div class="container-fluid shop-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
+<div class="container-fluid shop-profile" style="margin: 0.5rem">
+    <div class="row">
+        <div class="col-md-4">
+            <app-waiting *ngIf="loaded == false"></app-waiting>
+
+            <div class="profile-head" *ngIf="loaded == true">
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+                    <img class="img-profile img-fluid" [src]="profileImage" alt="image here" />
 
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <!-- public virtual ICollection<ShopImage> ShopImage { get; set; }
-        public string Id { get; set; }
-        public string Price { get; set; }
-        public int MinPrice { get; set; }
-        public int MaxPrice { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Category { get; set; }
-        public short? Status { get; set; }
-        public string Address { get; set; }
-        public string District { get; set; }
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? CreatedAt { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime? ModifiedAt { get; set; }
-    
-        //public virtual ICollection<UserOrganization> UserOrganization { get; set; }
-            public virtual ICollection<ShopCategory> ShopCategory { get; set; } -->
-                    <h5>
-                        {{shopItem.name}}
-                    </h5>
-                    <h6>
-                        {{shopItem.description}}
-                    </h6>
-                    <p class="proile-rating">{{shopItem.shopCategory}}</p>
-                    <p>{{shopItem.address}}{{shopItem.street}}{{shopItem.district}}{{shopItem.city}}</p>
+        </div>
+        <div class="col-md-8" style="word-wrap: break-word; padding-bottom: 5px; border-bottom: 1px black solid;">
 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
-                        </li>
-                    </ul>
+            <app-waiting *ngIf="loaded == false"></app-waiting>
+
+            <div class="profile-head" *ngIf="loaded == true">
+                <div *ngIf="authService.isAuthenticated()">
+                    <p-toggleButton onLabel="Unsave" offLabel="Save" offIcon="pi pi-check" onIcon="pi pi-times" iconPos="right" (onChange)="saveShop($event.checked)"></p-toggleButton>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" /> -->
+                <h5>
+                    {{shopItem.name}}
+                </h5>
+                <h6>
+                    {{shopItem.description}}
+                </h6>
+                <p class="proile-rating">
+                    <span *ngFor="let item of shopItem.shopCategory">{{item.name }} </span>
+                </p>
+                <p>{{shopItem.address}}{{shopItem.street}}{{shopItem.district}}{{shopItem.city}}</p>
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>WORK LINK</p>
-                    <a href="">Website Link</a><br />
-                    <a href="">Bootsnipp Profile</a><br />
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br />
-                    <a href="">Web Developer</a><br />
-                    <a href="">WordPress</a><br />
-                    <a href="">WooCommerce</a><br />
-                    <a href="">PHP, .Net</a><br />
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>User Id</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Kshiti123</p>
-                            </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-8">
+            <div class="tab-content profile-tab" id="myTabContent" *ngIf="loaded == true" style="word-wrap: break-word;">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Shop Id</label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Kshiti Ghelani</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>kshitighelani@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>123 456 7890</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Profession</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Web Developer and Designer</p>
-                            </div>
+                        <div class="col-md-8">
+                            <p>{{shopItem.id}}</p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Experience</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Shop Name</label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Hourly Rate</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>10$/hr</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Total Projects</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>230</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>English Level</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Availability</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>6 months</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br />
-                                <p>Your detail description</p>
-                            </div>
+                        <div class="col-md-8">
+                            <p>{{shopItem.name}}</p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Shop Description</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{shopItem.description}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Telphone</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{shopItem.telephone}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{shopItem.address}} {{shopItem.street}} {{shopItem.district}} {{shopItem.city}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Price Range</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{shopItem.minPrice}} - {{shopItem.maxPrice}}</p>
+                        </div>
+                    </div>
+
                 </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row " style="display: flex;
+  justify-content: center;
+  align-items: center;">
+                        <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5" [circular]="true" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true" [showItemNavigatorsOnHover]="true"
+                            [changeItemOnIndicatorHover]="true">
+                            <ng-template pTemplate="item" let-item>
+                                <img [src]="item" [alt]="'There is a picture here'" style="width: 100%;
+    object-fit: cover;
+    height: 15rem; display: block;" />
+                            </ng-template>
+                        </p-galleria>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </form>
+    </div>
+    <h5>Similar shops with category {{category}} </h5>
+    <app-waiting *ngIf="loadedShop == false"></app-waiting>
+    <div *ngIf="loadedShop == true">
+        <p-carousel [value]="similarCategory" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions2">
+            <ng-template pTemplate="header">
+
+            </ng-template>
+            <ng-template let-shop pTemplate="item">
+                <div class="card-deck" style="
+        margin: .3rem;
+        padding: 2rem 0;">
+                    <div class="card">
+                        <img class=" img-shop" [src]="shop.image" alt="Card image cap">
+                        <!-- <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap"> -->
+                        <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
+                            <div class="card-body">
+                                <h5 class="card-title">{{shop.header}}</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </p>
+                            </div>
+                        </a>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
 </div>

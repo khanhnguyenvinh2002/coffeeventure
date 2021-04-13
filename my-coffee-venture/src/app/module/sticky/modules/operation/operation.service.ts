@@ -22,6 +22,7 @@ export class OperationService extends HttpService {
     */
     public getNavBarViewMenu(isShowOnlyMenu: boolean): Observable<MenuItem[]> {
         return this.getMenuByUser().pipe(map(response => {
+            console.log(response);
             if (isShowOnlyMenu) {
                 response = response.filter(x => x.method === 'MENU');
             }

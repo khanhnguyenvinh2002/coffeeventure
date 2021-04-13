@@ -7,4 +7,5 @@ export class UserRequestPayload extends RequestPayload {
     excludeIds: string[];
     ids: string[];
     id: string;
+    userName: string;
 }

@@ -44,12 +44,25 @@ export class ShopService extends HttpService {
             { observe: 'response', headers: this.getHeaders() }), isSpinner)
             .pipe(map(r => r.body));
     }
-    public mergeShopWithImage(body: BaseResponse, formData: FormData, isSpinner?: boolean, params?: any): Observable<any> {
-        return this.intercept(this.httpClient.post<any>(`${this.url}/merge`, formData, {
+
+
+    public uploadShopImages(id: string, formData: FormData, isSpinner?: boolean, params?: any): Observable<any> {
+        return this.intercept(this.httpClient.post<any>(`${this.url}/upload-images/${id}`, formData, {
             observe: 'response', headers: new HttpHeaders({
                 Authorization: 'Bearer ' + this.getCookie("AccessToken"),
                 'AccessToken': this.getToken(),
-                "body": JSON.stringify(body)
+            }), params: this.toParams(params), reportProgress: true
+        }), isSpinner)
+            .pipe(map(r => r.body));
+    }
+
+    public mergeShopWithImage(body: BaseResponse, formData: FormData, isSpinner?: boolean, params?: any): Observable<any> {
+        return this.intercept(this.httpClient.post<any>(`${this.url}/merge`, formData, {
+            observe: 'response', headers: new HttpHeaders({
+                'content-type': 'multipart/form-data; charset=utf-8',
+                Authorization: 'Bearer ' + this.getCookie("AccessToken"),
+                'AccessToken': this.getToken(),
+                // "body": JSON.stringify(body)
             }), params: this.toParams(params), reportProgress: true
         }), isSpinner)
             .pipe(map(r => r.body));

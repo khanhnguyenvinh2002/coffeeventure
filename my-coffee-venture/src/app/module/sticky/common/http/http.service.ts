@@ -49,7 +49,12 @@ export class HttpService<T = any> {
     }
 
     public getAll(isSpinner?: boolean): Observable<T> {
-        return this.intercept(this.httpClient.get<T>(this.url,
+        return this.intercept(this.httpClient.get<T>(this.url + "/get-all",
+            { observe: 'response', headers: this.getHeaders() }), isSpinner)
+            .pipe(map(r => r.body));
+    }
+    public getAllById(isSpinner?: boolean): Observable<T> {
+        return this.intercept(this.httpClient.get<T>(this.url + "/get-all-by-id",
             { observe: 'response', headers: this.getHeaders() }), isSpinner)
             .pipe(map(r => r.body));
     }
@@ -119,7 +124,7 @@ export class HttpService<T = any> {
 
     public intercept(observable: Observable<HttpResponse<any>>, isSpinner?: boolean): Observable<HttpResponse<any>> {
         if (isSpinner == null || isSpinner === undefined) { isSpinner = true; }
-        // if (isSpinner) { this.showSpinner(); }
+        if (isSpinner) { this.showSpinner(); }
         return observable
             .pipe(tap(() => {
                 if (window.window.name === 'epo-windowlogin') {
@@ -130,7 +135,7 @@ export class HttpService<T = any> {
                 this.throwException(err);
             }), finalize(() => {
                 if (isSpinner) {
-                    // this.hideSpinner();
+                    this.hideSpinner();
                 }
             }));
     }
@@ -166,23 +171,23 @@ export class HttpService<T = any> {
         return token ? token : "";
     }
 
-    // protected showSpinner() {
-    //     HttpService._pendingRequest++;
-    //     if (!document.body.classList.contains('m-page--loading-non-block')) {
-    //         document.body.classList.add('m-page--loading-non-block');
-    //     }
-    //     this.isLoading = true;
-    //     this.isLoadingSubject.next(true);
-    // }
+    protected showSpinner() {
+        HttpService._pendingRequest++;
+        if (!document.body.classList.contains('m-page--loading-non-block')) {
+            document.body.classList.add('m-page--loading-non-block');
+        }
+        this.isLoading = true;
+        this.isLoadingSubject.next(true);
+    }
 
-    // protected hideSpinner() {
-    //     HttpService._pendingRequest--;
-    //     if (HttpService._pendingRequest === 0 && document.body.classList.contains('m-page--loading-non-block')) {
-    //         document.body.classList.remove('m-page--loading-non-block');
-    //     }
-    //     this.isLoading = false;
-    //     this.isLoadingSubject.next(false);
-    // }
+    protected hideSpinner() {
+        HttpService._pendingRequest--;
+        if (HttpService._pendingRequest === 0 && document.body.classList.contains('m-page--loading-non-block')) {
+            document.body.classList.remove('m-page--loading-non-block');
+        }
+        this.isLoading = false;
+        this.isLoadingSubject.next(false);
+    }
 
     protected toParams(objParams: any): HttpParams {
         let params = new HttpParams();

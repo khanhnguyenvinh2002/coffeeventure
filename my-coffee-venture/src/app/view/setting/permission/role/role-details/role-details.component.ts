@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { merge } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import * as config from './role-details.config';
-import { UserOrgComponent } from '../../../user-management/users/user-edit/user-org/user-org.component';
 import { TreeNode } from 'primeng/api/treenode';
 import { MatPaginator } from '@angular/material/paginator';
 import { SaveConfirmation, CancelConfirmation, DeleteConfirmation } from 'src/app/module/sticky/common/confirmation';
@@ -23,7 +22,6 @@ export class RoleDetailsComponent extends BaseFormComponent implements OnInit {
   @ViewChild('popupForm', { static: true }) popupForm: NgForm;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('form', { static: true }) form: NgForm;
-  @ViewChild("userOrg", { static: true }) userOrg: UserOrgComponent;
   @Input() dialogRef: DialogRef;
   @Input() userDialogRef: DialogRef;
   @Output() success: EventEmitter<any> = new EventEmitter();

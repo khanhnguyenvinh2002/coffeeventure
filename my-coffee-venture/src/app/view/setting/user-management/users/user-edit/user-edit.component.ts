@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as config from './user-edit.config';
 import { NgForm } from '@angular/forms';
-import { UserOrgComponent } from './user-org/user-org.component';
 import { TreeNode } from 'primeng/api';
 import { BaseComponent } from 'src/app/module/sticky/component/base-component';
 import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
@@ -20,7 +19,6 @@ import { UserService } from 'src/app/module/sticky/modules/user/user.service';
 })
 export class UserEditComponent extends BaseComponent implements OnInit {
     @ViewChild('form', { static: true }) form: NgForm;
-    @ViewChild('userOrg', { static: true }) userOrg: UserOrgComponent;
 
     public formData: FormDynamicData = new FormDynamicData();
     public userData: any = {};
@@ -92,25 +90,6 @@ export class UserEditComponent extends BaseComponent implements OnInit {
         });
     }
 
-    public onAfterTreeInit(): void {
-        this.setTreeSelection(this.userOrg.orgChartService.treeData);
-    }
-
-    public setTreeSelection(treeNode: TreeNode[]): void {
-        for (const item of treeNode) {
-            if (
-                this.userData.userOrganization &&
-                (this.userData.userOrganization as any[]).some(
-                    (x) => x.id === item.data.id
-                )
-            ) {
-                this.userOrg.selectedOrgs.push(item);
-            }
-            if (item.children && item.children.length > 0) {
-                this.setTreeSelection(item.children);
-            }
-        }
-    }
 
     public markFormTouched(): void {
         setTimeout(() => {

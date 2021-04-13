@@ -23,7 +23,7 @@ export const TITLE = [
 })
 export class ShopItemAddComponent extends BaseComponent implements OnInit {
   @ViewChild('form', { static: true }) form: NgForm;
-
+  public status = false;
   public formData: FormDynamicData = new FormDynamicData();
   public shopData: any = {};
   public titles = TITLE;
@@ -87,9 +87,31 @@ export class ShopItemAddComponent extends BaseComponent implements OnInit {
     //         .map((x) => x.id),
     //     isUpdshopOrg: !this.shopOrg.isPristine,
     // };
-    this.shopService.mergeShopWithImage(this.shopData, this.formDataAdd).subscribe(event => {
-      this.notice.showSuccess();
-      this.onBtnCancelClick();
+    // this.formDataAdd.append("minPrice", this.shopData.minPrice);
+    // this.formDataAdd.append("maxPrice", this.shopData.maxPrice);
+    // this.formDataAdd.append("description", this.shopData.description);
+    // this.formDataAdd.append("name", this.shopData.name);
+    // this.formDataAdd.append("telephone", this.shopData.telephone);
+    // this.formDataAdd.append("alternativeTelephone", this.shopData.alternativeTelephone);
+    // this.formDataAdd.append("address", this.shopData.address);
+    // this.formDataAdd.append("district", this.shopData.district);
+    // this.formDataAdd.append("city", this.shopData.city);
+    // this.formDataAdd.append("street", this.shopData.street);
+    // this.formDataAdd.append("shopCategory", this.shopData.shopCategory);
+    // this.formDataAdd.append("status", this.shopData.status);
+    if (this.status == false) {
+      this.shopData.status = 0;
+    }
+    else {
+      this.shopData.status = 1;
+    }
+    this.shopService.merge(this.shopData).subscribe(event => {
+      this.shopService.uploadShopImages(event.id, this.formDataAdd).subscribe(
+        res => {
+          this.notice.showSuccess();
+          this.onBtnCancelClick();
+        }
+      )
     });
   }
 

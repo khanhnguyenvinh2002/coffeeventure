@@ -10,20 +10,68 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService, private noti: NotificationService) { }
+  // canActivate(route: ActivatedRouteSnapshot): boolean {
 
+  //   // this will be passed from the route config
+  //   // on the data property
+  //   const expectedRole = route.data.expectedRole;
+
+  //   const token = localStorage.getItem('token');
+
+  //   // decode the token to get its payload
+  //   const tokenPayload = decode(token);
+
+  //   if (
+  //     !this.auth.isAuthenticated() ||
+  //     tokenPayload.role !== expectedRole
+  //   ) {
+  //     this.router.navigate(['login']);
+  //     return false;
+  //   }
+  //   return true;
+  // }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.isAuthenticated()) {
-      // logged in so return true
+
+    const expectedRole = route.data.expectedRole;
+
+    let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    const roles = loggedUser.roles;
+    if (this.authService.isAuthenticated() && roles.some(x => x == expectedRole)) {
       return true;
     }
-    const confirmation = new CustomConfirmation("You will be redirected to login page. Do you want to proceed?");
-    confirmation.accept = () => {
+    else if (!this.authService.isAuthenticated()) {
+      const confirmation = new CustomConfirmation("You will be redirected to login page. Do you want to proceed?");
+      confirmation.accept = () => {
 
-      // otherwise redirect to login page with the return url
-      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+        // otherwise redirect to login page with the return url
+        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      }
+      this.noti.confirm(confirmation);
+      return false;
     }
-    this.noti.confirm(confirmation);
-    return false;
+    else {
+      this.noti.showWarning("You do not have access to this page, please contact developer for access!");
+      return false;
+    }
+    //   // decode the token to get its payload
+    //   const tokenPayload = decode(token);
+
+    //   if (
+    //     !this.auth.isAuthenticated() ||
+    //     tokenPayload.role !== expectedRole
+    //   ) {
+    //     this.router.navigate(['login']);
+    //     return false;
+    //   }
+    //   return true;
+    // const confirmation = new CustomConfirmation("You will be redirected to login page. Do you want to proceed?");
+    // confirmation.accept = () => {
+
+    //   // otherwise redirect to login page with the return url
+    //   this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    // }
+    // this.noti.confirm(confirmation);
+    // return false;
   }
 
   /**

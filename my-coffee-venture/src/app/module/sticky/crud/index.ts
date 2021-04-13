@@ -8,4 +8,3 @@ export { HttpExtenstionsModel } from './models/http-extentsions-model';
 export { HttpUtilsService } from './utils/http-utils.service';
 export { TypesUtilsService } from './utils/types-utils.service';
 export { InterceptService } from './utils/intercept.service';
-export { LayoutUtilsService, MessageType } from './utils/layout-utils.service';

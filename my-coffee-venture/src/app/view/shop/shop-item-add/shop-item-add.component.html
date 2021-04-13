@@ -1,144 +1,81 @@
-<hr>
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-sm-10">
-            <h1>shop name</h1>
-        </div>
-        <div class="col-sm-2">
-            <a href="/shops" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">
-            <!--left col-->
-
-
-            <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block file-upload">
-            </div>
-            <br>
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-                <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-            </div>
-
-
-            <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-            </ul>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Social Media</div>
-                <div class="panel-body">
-                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-                </div>
-            </div>
-
-        </div>
-        <!--/col-3-->
-        <div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-            </ul>
-
-
-            <div class="tab-content">
-                <form-dynamic [formData]="formData" [form]="form" (save)="onBtnSaveClick()" (cancel)="onBtnCancelClick()">
-                    <div>
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <form autocomplete="off" #form="ngForm" id="{{formData.formId}}">
-                                    <h5>{{ 'shop.shop_INFO' }}</h5>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'Min Price'}}</label>
-                                            <input type="number" class="form-control" name="minprice" placeholder="{{ 'Min Price' }}" [(ngModel)]="shopData.minPrice">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'Max Price' }}</label>
-                                            <input type="number" class="form-control" name="maxPrice" placeholder="{{ 'Max Price' }}" [(ngModel)]="shopData.maxPrice">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'Description' }}</label>
-                                            <input type="text" class="form-control" name="description" placeholder="{{ 'Description'  }}" [(ngModel)]="shopData.description">
-                                        </div>
-                                        <!--To Do add category-->
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'name' }}</label>
-                                            <input type="text" class="form-control" name="name" placeholder="{{ 'name'  }}" [(ngModel)]="shopData.name">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'address' }}</label>
-                                            <input type="text" class="form-control" name="address" placeholder="{{ 'address'  }}" [(ngModel)]="shopData.address">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'district' }}</label>
-                                            <input type="text" class="form-control" name="district" placeholder="{{ 'district'  }}" [(ngModel)]="shopData.district">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'city' }}</label>
-                                            <input type="text" class="form-control" name="city" placeholder="{{ 'city'  }}" [(ngModel)]="shopData.city">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'shop.TEL' }}</label>
-                                            <input type="street" class="form-control" name="street" placeholder="{{ 'street'  }}" [(ngModel)]="shopData.street">
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'shop.LAST_LOGIN' }}</label>
-                                            <span class="form-control disabled">
-                                                {{ shopData.lastLoginAt | date}}</span>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'shop.TEL' }}</label>
-                                            <input type="text" class="form-control" name="tel" placeholder="{{ 'shop.TEL'  }}" [(ngModel)]="shopData.tel">
-                                        </div>
-                                    </div> -->
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>{{ 'shop.ROLE' }}</label>
-                                            <async-select [actionGet]="'getShopCategory'" [actionCount]="'countShopCategory'" name="name" bindLabel="name" placeholder="{{ 'Shop Category'  }}" [multiple]="true" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="shopData.shopCategory">
-                                            </async-select>
-                                            <!-- <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation> -->
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="shopData.status">
-                                            </p-toggleButton>
-                                        </div>
-                                    </div>
-                                    <app-upload-multiple (onFileLoad)="upload($event)">
-                                    </app-upload-multiple>
-
-                                </form>
-                                {{formDataAdd |json}}
+<div class="container">
+    <form-dynamic [formData]="formData" [form]="form" (save)="onBtnSaveClick()" (cancel)="onBtnCancelClick()">
+        <div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form autocomplete="off" #form="ngForm" id="{{formData.formId}}">
+                        <h5>{{ 'shop.shop_INFO' }}</h5>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Min Price'}}</label>
+                                <input type="number" class="form-control" name="minprice" placeholder="{{ 'Min Price' }}" [(ngModel)]="shopData.minPrice">
                             </div>
-
-                            <div class="col-lg-5">
-                                <h5>{{ 'shop.shop_ORG' }}</h5>
-                                <label>{{ 'shop.SELECT_shop_ORG' }}</label>
-                                <!-- <app-shop-org #shopOrg (change)="markFormTouched()" (afterTreeInit)="onAfterTreeInit()"></app-shop-org> -->
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Max Price' }}</label>
+                                <input type="number" class="form-control" name="maxPrice" placeholder="{{ 'Max Price' }}" [(ngModel)]="shopData.maxPrice">
                             </div>
                         </div>
-                    </div>
-                </form-dynamic>
-                <!--/tab-pane-->
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Description' }}</label>
+                                <input type="text" class="form-control" name="description" placeholder="{{ 'Description'  }}" [(ngModel)]="shopData.description">
+                            </div>
+                            <!--To Do add category-->
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Name' }}</label>
+                                <input type="text" class="form-control" name="name" placeholder="{{ 'name'  }}" [(ngModel)]="shopData.name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Telephone' }}</label>
+                                <input type="text" class="form-control" name="telephone" placeholder="{{ 'Telephone'  }}" [(ngModel)]="shopData.telephone">
+                            </div>
+                            <!--To Do add category-->
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Alternative Telephone' }}</label>
+                                <input type="text" class="form-control" name="alternativeTelephone" placeholder="{{ 'Alternative Telephone'  }}" [(ngModel)]="shopData.alternativeTelephone">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Address' }}</label>
+                                <input type="text" class="form-control" name="address" placeholder="{{ 'Address'  }}" [(ngModel)]="shopData.address">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'District' }}</label>
+                                <input type="text" class="form-control" name="district" placeholder="{{ 'District'  }}" [(ngModel)]="shopData.district">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'City' }}</label>
+                                <input type="text" class="form-control" name="city" placeholder="{{ 'City'  }}" [(ngModel)]="shopData.city">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Street' }}</label>
+                                <input type="street" class="form-control" name="street" placeholder="{{ 'street'  }}" [(ngModel)]="shopData.street">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>{{ 'Category' }}</label>
+                                <async-select [actionGet]="'getShopCategory'" [actionCount]="'countShopCategory'" name="name" bindLabel="name" placeholder="{{ 'Shop Category'  }}" [multiple]="true" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="shopData.shopCategory">
+                                </async-select>
+                                <!-- <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation> -->
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="status">
+                                </p-toggleButton>
+                            </div>
+                        </div>
+                        <app-upload-multiple (onFileLoad)="upload($event)">
+                        </app-upload-multiple>
+
+                    </form>
+                </div>
 
             </div>
-            <!--/row-->
+        </div>
+    </form-dynamic>
+</div>

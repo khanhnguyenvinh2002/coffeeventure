@@ -1,9 +1,0 @@
-<p-tree #tree
-        [value]="orgChartService.treeData"
-        [(selection)]="selectedOrgs"
-        selectionMode="checkbox"
-        styleClass="p-treenode-non-highlighted"
-        (onNodeSelect)="onSelectionChange($event)"
-        (onNodeUnselect)="onSelectionChange($event)"
-        key="id">
-</p-tree>

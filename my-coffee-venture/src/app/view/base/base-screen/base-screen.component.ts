@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
 import { BaseListComponent } from './../../../module/sticky/component/base-list.component';
 import { BaseFormComponent } from './../../../module/sticky/component/base-form.component';
 import { ShopRequestPayload } from './../../../module/sticky/modules/shop/shop-request.payload';
@@ -25,13 +26,13 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
   public items: MenuItem[];
   selectedCities1: any[];
   public districts: any;
+  public streets: any;
   public cities: any;
   public categories: any;
-  selectedCities2: any[];
-
-  selectedCities3: any[];
-
-  selectedCities4: any[];
+  public userName: any;
+  public filteredDistricts: any;
+  public filteredStreets: any;
+  public loaded = false;
   // public cities = [
   //   { name: 'New York', code: 'NY' },
   //   { name: 'Rome', code: 'RM' },
@@ -102,9 +103,10 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
   //   { id: "Jan21", image: "Jan_16_2021.jpeg", header: "Jan 16 2021", class: "img-ver", content: "Đưa em hâm đi ngắm mũ" },
   //   { id: "Feb21", image: "Feb_9_2021.jpeg", header: "Feb 9 2021", class: "img-ver", content: "Đưa em hâm đi làm cứt" },
   //   { id: "Mar21", image: "Mar_6_2021.jpeg", header: "Mar 6 2021", class: "img-ver", content: "Đưa bữa tối đi ăn bữa trưa" },];
-  constructor(private journalService: JournalService, private router: Router, private shopService: ShopService, private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer) { super(); }
+  constructor(private journalService: JournalService, private router: Router, private shopService: ShopService, private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, private authService: AuthService) { super(); }
 
   ngOnInit(): void {
+    this.userName = this.authService.getUser();
     this.journalService.getAll().subscribe(res => {
       for (let i = 0; i < 4; i++) {
         console.log(res);
@@ -116,9 +118,11 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
     this.shopRequest.pageSize = 10;
     this.initShop();
     this.shopService.selectShopSearch().subscribe(res => {
-      console.log(res);
       this.cities = res.cities;
       this.districts = res.districts;
+      this.streets = res.streets;
+      this.filteredStreets = res.streets;
+      this.filteredDistricts = res.districts;
       this.categories = res.categories;
     })
     this.shopService.getShopCategory().pipe(map(response => {
@@ -150,13 +154,19 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
   //       + ':' + this.leftpad(date.getSeconds(), 2);
   //   }
   // }
+  public checkAuth() {
+    if (this.authService.isAuthenticated()) {
+      return true;
+    }
+    return false
+  }
   public initShop(): void {
+    this.loaded = false;
     const $selectAndCount = [
       this.shopService.select(this.shopRequest),
       this.shopService.count(this.shopRequest),
 
     ];
-
     const sub = forkJoin($selectAndCount).subscribe(
       (response: any[]) => {
         this.dataSource.items = response[0];
@@ -169,6 +179,7 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
           // reader.readAsDataURL(new Blob(e.imagePath]));
         });
         this.dataSource.paginatorTotal = response[1];
+        this.loaded = true;
         if (this.cd && !this.cd['destroyed']) {
           this.cdr.detectChanges();
         }
@@ -183,19 +194,25 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
     this.shopRequest.pageSize = event.pageSize;
     this.initShop();
   }
-  // public onBtnDelActions(): void {
-  //   const cancel = new CancelConfirmation();
-  //   cancel.accept = () => {
-  //     this.actionInput.actionId = this.selectedActions.map(x => x.id);
-  //     this.operationService.bulkDeleteByIds(this.actionInput).subscribe(res => {
-  //       this.initActionData();
-  //     });
-  //   }
-  //   this.notification.confirm(cancel);
-  // }
-
-  // private leftpad(val, resultLength = 2, leftpadChar = '0'): string {
-  //   return (String(leftpadChar).repeat(resultLength)
-  //     + String(val)).slice(String(val).length);
-  // }
+  changeCities() {
+    this.shopRequest.districts = null;
+    this.shopRequest.streets = null;
+    if (this.shopRequest.cities[0]) {
+      this.filteredDistricts = this.districts.filter(x => x.city == this.shopRequest.cities[0]);
+      this.filteredStreets = this.districts.filter(x => x.city == this.shopRequest.cities[0]);
+    }
+    else {
+      this.filteredDistricts = this.districts;
+      this.filteredStreets = this.streets;
+    }
+  }
+  changeStreets() {
+    this.shopRequest.streets = null;
+    if (this.shopRequest.districts[0]) {
+      this.filteredStreets = this.streets.filter(x => x.city == this.shopRequest.districts[0]);
+    }
+    else {
+      this.filteredStreets = this.streets;
+    }
+  }
 }
