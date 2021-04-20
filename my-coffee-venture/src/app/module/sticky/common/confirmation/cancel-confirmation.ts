@@ -8,8 +8,8 @@ export class CancelConfirmation implements Confirmation {
     reject?: () => void;
 
     constructor(content?: string) {
-        const msg = content ? 'COMMON_MSG.CONFIRM_CANCEL' : 'COMMON_MSG.CONFIRM_CANCEL_CHANGE';
-        const title = 'COMMON_MSG.CONFIRM_TITLE';
+        const msg = content ? 'Cancel' : 'Cancel change';
+        const title = 'Confirm';
         this.message = msg;
         this.header = title;
         this.icon = 'pi pi-exclamation-triangle';

@@ -6,6 +6,8 @@
     --black-color: #000;
     --text-color: #333;
     --dark-color: rgb(28, 27, 34);
+    --black: rgb(10, 10, 10);
+    --hue-color-0: rgb(196, 161, 125);
     --hue-color-1: rgb(168, 186, 169);
     --hue-color-2: rgb(255, 245, 207);
     --hue-color-3: rgb(219, 205, 173);
@@ -13,7 +15,11 @@
     --hue-color-5: rgb(128, 104, 84);
 }
 
-// spinner bar
+.form-required::after {
+    content: "*";
+    color: red;
+}
+
 #SpinnerBar {
     display: none;
 }

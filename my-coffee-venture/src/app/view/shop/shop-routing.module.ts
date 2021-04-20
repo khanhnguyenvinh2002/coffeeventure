@@ -10,7 +10,7 @@ const routes: Routes = [{ path: '', component: ShopComponent },
 {
   path: 'shop-item-add', component: ShopItemAddComponent,
   canActivate: [AuthGuard], data: {
-    expectedRole: 'admin'
+    expectedRole: 'ADMIN'
   }
 }
   // {

@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
+const jwtHelper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
@@ -33,14 +35,14 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     const expectedRole = route.data.expectedRole;
-
     let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
-    const roles = loggedUser.roles;
-    if (this.authService.isAuthenticated() && roles.some(x => x == expectedRole)) {
+    const token = jwtHelper.decodeToken(loggedUser ? loggedUser.accessToken : "");
+    const roles = (loggedUser && loggedUser.roles) ? token.roles : "";
+    if (this.authService.isAuthenticated() && (!expectedRole || (roles.indexOf(expectedRole) != -1))) {
       return true;
     }
     else if (!this.authService.isAuthenticated()) {
-      const confirmation = new CustomConfirmation("You will be redirected to login page. Do you want to proceed?");
+      const confirmation = new CustomConfirmation("This function requires you to log in. Do you want to proceed?");
       confirmation.accept = () => {
 
         // otherwise redirect to login page with the return url

@@ -7,13 +7,13 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label>{{"Title"}}</label>
-                            <validate-message [form]="form" controlName="title"></validate-message>
+                            <validate-form [form]="form" controlName="title"></validate-form>
                             <ng-select [items]="titles" bindLabel="name" bindValue="name" name="title" placeholder="{{ 'Title'  }}" [(ngModel)]="userData.title" required autofocus>
                             </ng-select>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>{{ "First Name" }}</label>
-                            <input type="text" class="form-control" name="firstName" placeholder="{{ 'First name'  }}" [(ngModel)]="userData.firstName">
+                            <input type="text" class="form-control" name="firstName" placeholder="{{ 'First name'  }}" [(ngModel)]="userData.firstName" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -23,13 +23,14 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>{{ 'Last name' }}</label>
-                            <input type="text" class="form-control" name="lastname" placeholder="{{ 'Last name'  }}" [(ngModel)]="userData.lastName">
+                            <input type="text" class="form-control" name="lastname" placeholder="{{ 'Last name'  }}" [(ngModel)]="userData.lastName" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label>{{ 'Email' }}</label>
-                            <input type="text" class="form-control" name="email" placeholder="{{ 'Email'  }}" [(ngModel)]="userData.email">
+                            <validate-form [form]="form" controlName="email"></validate-form>
+                            <input type="text" class="form-control" name="email" placeholder="{{ 'Email'  }}" [(ngModel)]="userData.email" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>{{ 'Mobile' }}</label>
@@ -41,11 +42,13 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label>{{ 'User Name' }}</label>
-                            <input type="text" class="form-control" name="username" placeholder="{{ 'User Name'  }}" [(ngModel)]="userData.userName">
+                            <validate-form [form]="form" controlName="usernam"></validate-form>
+                            <input type="text" class="form-control" name="username" placeholder="{{ 'User Name'  }}" [(ngModel)]="userData.userName" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>{{ "Password" }}</label>
-                            <input type="text" class="form-control" name="username" placeholder="{{ 'Password'  }}" [(ngModel)]="userData.password">
+                            <validate-form [form]="form" controlName="password"></validate-form>
+                            <input type="text" class="form-control" name="password" placeholder="{{ 'Password'  }}" [(ngModel)]="userData.password" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -62,7 +65,8 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label>{{ 'Roles' }}</label>
-                            <async-select name="role" bindLabel="name" placeholder="{{ 'Roles'  }}" [multiple]="true" [closeOnSelect]="true" [service]="roleService" [(ngModel)]="userData.userRole">
+                            <validate-form [form]="form" controlName="role"></validate-form>
+                            <async-select name="role" bindLabel="name" placeholder="{{ 'Roles'  }}" [multiple]="true" [closeOnSelect]="true" [service]="roleService" [(ngModel)]="userData.userRole" required>
                             </async-select>
                             <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation>
                         </div>

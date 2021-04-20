@@ -8,7 +8,7 @@
 <header>
     <a (click)="cancel.emit()" class="btn btn-secondary kt-margin-r-10" mat-raised-button *ngIf="formData.isCancel">
         <i class="la la-arrow-left"></i>
-        <span class="kt-hidden-mobile">{{ 'COMMON.BACK' }}</span>
+        <span class="kt-hidden-mobile">{{ 'BACK' }}</span>
     </a>
 </header>
 <!-- </ng-container>
@@ -16,19 +16,19 @@
 	<kt-portlet-body> -->
 <ng-content></ng-content>
 <div *ngIf="!formData.hideHeader && !formData.isHideFooter">
-    <button class="btn btn-sm btn-warning float-left mr-2" title="{{ 'COMMON.DELETE'  }}(Ctrl + Delete)" *ngIf="formData.isDelete" (click)="onBtnDeleteClick()">{{ 'COMMON.DELETE' }}</button>
-    <button class="btn btn-sm btn-success mr-2" title="{{ 'COMMON.SAVE'  }}(Ctrl + S)" (click)="onBtnSaveClick()">{{
-		'COMMON.SAVE' }}</button>
-    <button class="btn btn-sm btn-secondary mr-2" title="{{ 'COMMON.CANCEL'  }}(Esc)" *ngIf="formData.isCancel" (click)="onBtnCancelClick()">{{ 'COMMON.CANCEL' }}</button>
+    <button class="btn btn-sm btn-warning float-left mr-2" title="{{ 'DELETE'  }}(Ctrl + Delete)" *ngIf="formData.isDelete" (click)="onBtnDeleteClick()">{{ 'DELETE' }}</button>
+    <button class="btn btn-sm btn-success mr-2" title="{{ 'SAVE'  }}(Ctrl + S)" (click)="onBtnSaveClick()">{{
+		'SAVE' }}</button>
+    <button class="btn btn-sm btn-secondary mr-2" title="{{ 'CANCEL'  }}(Esc)" *ngIf="formData.isCancel" (click)="onBtnCancelClick()">{{ 'CANCEL' }}</button>
 </div>
 <div class="kt-margin-t-30" *ngIf="formData.hideHeader">
-    <button class="btn btn-secondary kt-margin-r-15" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancelClick()" mat-raised-button>
+    <button class="btn btn-secondary kt-margin-r-15" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancelClick()" mat-raised-button>
 		<i class="la la-arrow-left"></i>
-		<span class="kt-hidden-mobile">{{ 'COMMON.PREVIOUS' }}</span>
+		<span class="kt-hidden-mobile">{{ 'PREVIOUS' }}</span>
 	</button>
-    <button class="btn btn-primary kt-margin-r-15" title="{{ 'COMMON.SAVE'  }}(Ctrl + S)" (click)="onBtnSaveClick()" mat-raised-button color="primary">
+    <button class="btn btn-primary kt-margin-r-15" title="{{ 'SAVE'  }}(Ctrl + S)" (click)="onBtnSaveClick()" mat-raised-button color="primary">
 		<i class="la la-arrow-right"></i>
-		<span class="kt-hidden-mobile">{{ 'COMMON.NEXT' }}</span>
+		<span class="kt-hidden-mobile">{{ 'NEXT' }}</span>
 	</button>
 </div>
 <!-- </kt-portlet-body>

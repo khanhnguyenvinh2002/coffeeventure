@@ -4,6 +4,7 @@ export class ShopRequestPayload extends RequestPayload {
     // orgId: string;
     categoryIds: string[];
     districts: string[];
+    excludeIds: string[];
     streets: string[];
     cities: string[];
     minPrice: number;

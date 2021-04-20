@@ -1,5 +1,4 @@
-<div class="first"></div>
-<div class="container-fluid shop-profile" style="margin: 0.5rem">
+<div class="container-fluid shop-profile">
     <div class="row">
         <div class="col-md-4">
             <app-waiting *ngIf="loaded == false"></app-waiting>
@@ -19,14 +18,20 @@
                 <div *ngIf="authService.isAuthenticated()">
                     <p-toggleButton onLabel="Unsave" offLabel="Save" offIcon="pi pi-check" onIcon="pi pi-times" iconPos="right" (onChange)="saveShop($event.checked)"></p-toggleButton>
                 </div>
+                <p-messages severity="info" *ngIf="!authService.isAuthenticated()">
+                    <ng-template pTemplate>
+                        <div class="p-ml-2"><a [routerLink]="['/login']">Login</a> {{" to save this shop!"}}</div>
+                    </ng-template>
+                </p-messages>
+                <h3>General information</h3>
                 <h5>
-                    {{shopItem.name}}
+                    {{"Name: "+shopItem.name}}
                 </h5>
                 <h6>
-                    {{shopItem.description}}
+                    {{"Description: "+shopItem.description}}
                 </h6>
                 <p class="proile-rating">
-                    <span *ngFor="let item of shopItem.shopCategory">{{item.name }} </span>
+                    {{"Categories:"}} <span *ngFor="let item of shopItem.shopCategory">{{item.name+" " }} </span>
                 </p>
                 <p>{{shopItem.address}}{{shopItem.street}}{{shopItem.district}}{{shopItem.city}}</p>
 
@@ -35,14 +40,17 @@
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#image" role="tab" aria-controls="profile" aria-selected="false">Images</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
                     </li>
                 </ul>
             </div>
         </div>
 
     </div>
-    <div class="row">
+    <div class="row" style="margin-top:10px">
         <div class="col-md-4">
 
         </div>
@@ -100,51 +108,113 @@
                     </div>
 
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="row " style="display: flex;
-  justify-content: center;
-  align-items: center;">
+                <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="profile-tab">
+                    <p-messages severity="info" *ngIf="!images  || images.length == 0">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">No data to display</div>
+                        </ng-template>
+                    </p-messages>
+                    <div class="row " style="display: flex;justify-content: center;align-items: center;">
                         <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5" [circular]="true" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true" [showItemNavigatorsOnHover]="true"
                             [changeItemOnIndicatorHover]="true">
                             <ng-template pTemplate="item" let-item>
-                                <img [src]="item" [alt]="'There is a picture here'" style="width: 100%;
-    object-fit: cover;
-    height: 15rem; display: block;" />
+                                <img [src]="item" [alt]="'There is a picture here'" style="width: 100%;object-fit: cover;height: 15rem; display: block;" />
                             </ng-template>
                         </p-galleria>
                     </div>
                 </div>
-
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="profile-tab">
+                    <p-messages severity="info">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">Start a <a [routerLink]="['/app/reviewer']">review </a>now!
+                            </div>
+                        </ng-template>
+                    </p-messages>
+                    <p-messages severity="info" *ngIf="!data || data.length == 0">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">No data to display
+                            </div>
+                        </ng-template>
+                    </p-messages>
+                    <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
+                        <div *ngFor="let i of data">
+                            <app-review [id]="i.id" [service]="reviewService" [userName]="i.name " (event)="initData() ">
+                            </app-review>
+                        </div>
+                    </div>
+                    <app-waiting *ngIf="isLoaded==false "></app-waiting>
+                </div>
             </div>
         </div>
     </div>
-    <h5>Similar shops with category {{category}} </h5>
-    <app-waiting *ngIf="loadedShop == false"></app-waiting>
-    <div *ngIf="loadedShop == true">
-        <p-carousel [value]="similarCategory" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions2">
-            <ng-template pTemplate="header">
+    <div *ngIf="similarCategory && similarCategory.length > 0">
+        <h5>Similar shops with category {{category}} </h5>
+        <app-waiting *ngIf="loadedCategory == false"></app-waiting>
+        <div *ngIf="loadedCategory == true">
+            <p-carousel [value]="similarCategory" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions2">
+                <ng-template pTemplate="header">
 
-            </ng-template>
-            <ng-template let-shop pTemplate="item">
-                <div class="card-deck" style="
+                </ng-template>
+                <ng-template let-shop pTemplate="item">
+                    <div class="card-deck" style="
         margin: .3rem;
         padding: 2rem 0;">
-                    <div class="card">
-                        <img class=" img-shop" [src]="shop.image" alt="Card image cap">
-                        <!-- <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap"> -->
-                        <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
-                            <div class="card-body">
-                                <h5 class="card-title">{{shop.header}}</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </p>
+                        <div class="card">
+                            <img class=" img-shop" [src]="shop.image" alt="Card image cap">
+                            <!-- <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap"> -->
+                            <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{shop.header}}</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <small class="text-muted" *ngIf="shop.openingHour || shop.endingHour">Opening
+                                    hours:{{" "+shop.openingHour}}-{{shop.endingHour}}</small>
+                                <small class="text-muted" *ngIf="!(shop.openingHour || shop.endingHour)">This
+                                    shop has no opening hours data</small>
                             </div>
-                        </a>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
                         </div>
                     </div>
-                </div>
-            </ng-template>
-        </p-carousel>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+    <div *ngIf="similarDistrict && similarDistrict.length > 0">
+        <h5>Shops near {{district}} </h5>
+        <app-waiting *ngIf="loadedDistrict == false"></app-waiting>
+        <div *ngIf="loadedDistrict == true">
+            <p-carousel [value]="similarDistrict" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions2">
+                <ng-template pTemplate="header">
+
+                </ng-template>
+                <ng-template let-shop pTemplate="item">
+                    <div class="card-deck" style="
+            margin: .3rem;
+            padding: 2rem 0;">
+                        <div class="card">
+                            <img class=" img-shop" [src]="shop.image" alt="Card image cap">
+                            <!-- <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap"> -->
+                            <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{shop.header}}</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <small class="text-muted" *ngIf="shop.openingHour || shop.endingHour">Opening
+                                    hours:{{" "+shop.openingHour}}-{{shop.endingHour}}</small>
+                                <small class="text-muted" *ngIf="!(shop.openingHour || shop.endingHour)">This
+                                    shop has no opening hours data</small>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
     </div>
 </div>
+<app-review-add [formDisplay]="formDisplay" [input]="input" (event)="onUploadEvent($event)" [viewMode]="true">
+</app-review-add>

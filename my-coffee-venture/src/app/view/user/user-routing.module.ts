@@ -1,3 +1,4 @@
+import { ForumComponent } from './forum/forum.component';
 import { ShopSavedComponent } from './shop-saved/shop-saved.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,7 +11,9 @@ const routes: Routes = [{
 }, {
   path: 'saved-shops', component: ShopSavedComponent,
   canActivate: [AuthGuard]
-}];
+}, {
+  path: 'forum', component: ForumComponent,
+},];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

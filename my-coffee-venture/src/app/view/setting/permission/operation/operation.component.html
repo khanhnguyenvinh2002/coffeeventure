@@ -1,14 +1,5 @@
-<!-- <kt-portlet>
-    <kt-portlet-header [title]="'COMMON.OPERATION' "
-                       [class]="'kt-portlet__head--lg'"
-                       [viewLoading$]="operationService.isLoading$">
-        <ng-container ktPortletTools> -->
 <button class="btn btn-primary" color="primary" (click)="onBtnEditClick()" matTooltip="Create new User">{{
-    'COMMON.CRUD.ADD' }}</button>
-<!-- </ng-container>
-    </kt-portlet-header> -->
-
-<!-- <kt-portlet-body> -->
+    'Add' }}</button>
 <div class="row">
     <div class="col-md-4">
         <mat-form-field>
@@ -38,7 +29,5 @@
         </tbody>
     </table>
 </div>
-<!-- </kt-portlet-body>
-</kt-portlet> -->
 
 <app-operation-edit #dlgEdit [dialogRef]="dialogRef" (success)="onSuccess($event)"></app-operation-edit>

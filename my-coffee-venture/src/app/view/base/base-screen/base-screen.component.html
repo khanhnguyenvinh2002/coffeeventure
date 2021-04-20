@@ -6,96 +6,99 @@
                     <div class="row" style="word-wrap: break-word;">
                         <div style="width: 100%;
                         max-width: 1224px;
-                        margin: 0 auto;">
+                        margin: 0 auto; text-align: center;">
                             <div class="text-deco-small">Welcome to Coffee Venture</div>
-                            <div class="text-deco">Are you ready for your next coffee?</div>
+                            <div class="text-deco" style="margin-bottom: 4rem;">Are you ready for your next coffee?
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"><a [routerLink]="['/app/shop']"><button class="btn btn-primary"> See
-                                    shops</button> <i class="pi pi-arrow-right transform"
-                                    style="font-size: 0.5rem"></i></a></div>
-                        <div class="col-md-4"><a [routerLink]="['/login']"><button class="btn btn-primary">Login now to
-                                    start a journal </button><i class="pi pi-arrow-right transform"
-                                    style="font-size: 0.5rem"></i></a></div>
-                        <div class="col-md-4"><a [routerLink]="['/app/review']"><button class="btn btn-primary">See what
-                                    reviewers are reviewing </button><i class="pi pi-arrow-right transform"
-                                    style="font-size: 0.5rem"></i></a></div>
+                    <div class="row justify-content-between"><a [routerLink]="['/app/shop']"><button
+                                class="btn btn-primary"> See
+                                shops</button> </a><a [routerLink]="['/login']"><button class="btn btn-primary">Login
+                                now to
+                                start a journal </button></a><a [routerLink]="['/app/review']"><button
+                                class="btn btn-primary">See what
+                                reviewers are reviewing </button></a>
                     </div>
                 </div>
                 <div *ngIf="checkAuth() == true">
                     <div class="row" style="word-wrap: break-word;">
                         <div style="width: 100%;
                                                 max-width: 1224px;
-                                                margin: 0 auto;">
+                                                margin: 0 auto; text-align: center;">
                             <div class="text-deco">Welcome {{userName}}
                             </div>
+                            <div class="text-deco" style="margin-bottom: 4rem;">What are you up today?</div>
                         </div>
 
+                    </div>
+                    <div class="row justify-content-between"><a [routerLink]="[ '/app/shop'] "><button
+                                class="btn btn-primary "> See
+                                shops</button> </a><a [routerLink]="[ '/login'] "><button class="btn btn-primary ">Start
+                                a journal </button></a><a [routerLink]="[ '/login'] "><button
+                                class="btn btn-primary ">Start reviewing </button></a><a [routerLink]="[ '/app/review'] "><button class="btn btn-primary ">See what
+                                reviewers are reviewing </button></a>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="bg_overlay"></div>
+    <div class="bg_overlay "></div>
 </div>
 
-<section class="first">
-    <div class="container"></div>
-</section>
-<section id="services">
-    <div class="container">
+<section id="services ">
+    <div class="container ">
         <header>
-            <h1 style="text-align: center; margin-top:0.5rem;">Start you search now!</h1>
+            <h2 style="text-align: center; margin-top:0.5rem; ">Start you search now!</h2>
         </header>
-        <div class="row">
-            <div class="col-md-4" style="padding: 20px;">
-                <div class="hi">
-                    <p-card header="Every shop is unique, have you tried them all?" subheader="" styleClass="p-card-shadow ">
+        <div class="row ">
+            <div class="col-md-4 " style="padding: 20px; ">
+                <div class="hi ">
+                    <p-card header="Every shop is unique, have you tried them all? " subheader=" " styleClass="p-card-shadow ">
                         <ng-template pTemplate="header ">
                             <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
                         </ng-template>
-                        <p style="height: 20vh">See our list of shops now!
+                        <p style="height: 20vh ">See our list of shops now!
                         </p>
                         <ng-template pTemplate="footer ">
                             <div>
-                                <a [routerLink]="['/app/shop']">See shops <i class="pi pi-arrow-right transform"
-                                        style="font-size: 0.5rem"></i></a>
+                                <a [routerLink]="[ '/app/shop'] ">See shops <i class="pi pi-arrow-right transform "
+                                        style="font-size: 0.5rem "></i></a>
                             </div>
                         </ng-template>
                     </p-card>
                 </div>
             </div>
-            <div class="col-md-4" style="padding: 20px;">
-                <div class="hi">
-                    <p-card header="Good coffee houses have good reviews" subheader="" styleClass="p-card-shadow ">
+            <div class="col-md-4 " style="padding: 20px; ">
+                <div class="hi ">
+                    <p-card header="Good coffee houses have good reviews " subheader=" " styleClass="p-card-shadow ">
                         <ng-template pTemplate="header ">
                             <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
                         </ng-template>
-                        <p style="height: 20vh">See our list of reviews now!
+                        <p style="height: 20vh ">See our list of reviews now!
                         </p>
                         <ng-template pTemplate="footer ">
                             <div>
-                                <a [routerLink]="['/app/reviewer']">See reviews <i class="pi pi-arrow-right transform"
-                                        style="font-size: 0.5rem"></i></a>
+                                <a [routerLink]="[ '/app/reviewer'] ">See reviews <i
+                                        class="pi pi-arrow-right transform " style="font-size: 0.5rem "></i></a>
                             </div>
                         </ng-template>
                     </p-card>
                 </div>
             </div>
-            <div class="col-md-4" style="padding: 20px;">
-                <div class="hi">
-                    <p-card header="Journals make coffee venture memorable" subheader="" styleClass="p-card-shadow ">
+            <div class="col-md-4 " style="padding: 20px; ">
+                <div class="hi ">
+                    <p-card header="Journals make coffee venture memorable " subheader=" " styleClass="p-card-shadow ">
                         <ng-template pTemplate="header ">
                             <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
                         </ng-template>
-                        <p style="height: 20vh">Write some journals now!
+                        <p style="height: 20vh ">Write some journals now!
                         </p>
                         <ng-template pTemplate="footer ">
                             <div>
-                                <a [routerLink]="['/app/reviewer']">Start writing <i class="pi pi-arrow-right transform"
-                                        style="font-size: 0.5rem"></i></a>
+                                <a [routerLink]="[ '/app/reviewer'] ">Start writing <i
+                                        class="pi pi-arrow-right transform " style="font-size: 0.5rem "></i></a>
                             </div>
                         </ng-template>
                     </p-card>
@@ -105,29 +108,29 @@
     </div>
 </section>
 <section>
-    <div class="bg_carousel">
-        <div class="container-fluid">
-            <p-carousel [value]="headerJournal" styleClass="carousel-container" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
-                <!-- [responsiveOptions]="responsiveOptions" -->
-                <ng-template pTemplate="header">
-                    <h5 class="bg_carousel-header">
+    <div class="bg_carousel ">
+        <div class="container-fluid ">
+            <p-carousel [value]="headerJournal" styleClass="carousel-container " [numVisible]="1 " [numScroll]="1 " [circular]="true " [autoplayInterval]="3000 ">
+                <!-- [responsiveOptions]="responsiveOptions " -->
+                <ng-template pTemplate="header ">
+                    <h5 class="bg_carousel-header ">
                         Highlighted coffee journal</h5>
                 </ng-template>
-                <ng-template let-product pTemplate="item">
-                    <div class="product-item">
-                        <div class="row">
-                            <div class="p-md-6" style="padding: 1rem;">
-                                <img src="assets/img/{{product.image}}" [alt]="product.name" class="product-image" />
+                <ng-template let-product pTemplate="item ">
+                    <div class="product-item ">
+                        <div class="row ">
+                            <div class="p-md-6 " style="padding: 1rem; ">
+                                <img src="assets/img/{{product.image}}" alt="This journal have no image" class="product-image " />
                             </div>
-                            <div class="p-md-6" style="padding: 1rem;">
-                                <h4 style="color: white;">{{product.date | date:'yyyy-MM-dd HH:mm:ss'}}</h4>
-                                <span style="color: white;">{{product.content}}</span>
-                                <div class="car-buttons">
-                                    <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search">
+                            <div class="p-md-6 " style="padding: 1rem; ">
+                                <h4 style="color: white; ">{{product.date | date:'yyyy-MM-dd'}}</h4>
+                                <span style="color: white; ">{{product.content}}</span>
+                                <div class="car-buttons ">
+                                    <p-button type="button " styleClass="p-button p-button-rounded p-mr-2 " icon="pi pi-search ">
                                     </p-button>
-                                    <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star">
+                                    <p-button type="button " styleClass="p-button-success p-button-rounded p-mr-2 " icon="pi pi-star ">
                                     </p-button>
-                                    <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog">
+                                    <p-button type="button " styleClass="p-button-help p-button-rounded " icon="pi pi-cog ">
                                     </p-button>
                                 </div>
                             </div>
@@ -138,129 +141,138 @@
         </div>
     </div>
 </section>
-<section>
-    <div class="container-fluid">
-        <h2 style="text-align: center; margin-top:0.5rem;">See our list of shops</h2>
-        <p style="text-align: center; ">For viewing all shops, please visit our lists of <a [routerLink]="['/app/shop']">available shops</a></p>
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-xl-3" style="padding-top: 0.5rem;">
-                <div class="nav flex-column sticky-top" style="top: 4rem; width:100%">
-                    <h5>Search by name</h5><br>
-                    <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText [(ngModel)]="shopRequest.name"
-                            style="width: 100%;max-width: 100%;">
-                        <label for="float-input">Shop name</label>
-                    </span>
-                    <br>
-                    <h5>Cities</h5>
-                    <p-multiSelect [options]="cities" optionLabel="name" optionValue="city" [(ngModel)]="shopRequest.cities" defaultLabel="Select a city" selectedItemsLabel="{0} items selected" [selectionLimit]="1" (onChange)="changeCities()">
-                    </p-multiSelect><br>
+<section #shop>
+    <div class="container-fluid ">
+        <h2 style="text-align: center; margin-top:2rem ">See our list of shops</h2>
+        <p style="text-align: center; margin-bottom: 2rem; ">For viewing all shops, please visit our lists of <a [routerLink]="[ '/app/shop'] ">available shops</a></p>
+        <div class="nav flex-row " style="top: 4rem; width:100% ">
+            <button pButton class="float-right " label="filter " icon="pi pi-search " (click)="op.toggle($event) "></button>
 
-                    <h5>Districts</h5>
-                    <p-multiSelect [options]="filteredDistricts" [(ngModel)]="shopRequest.districts" optionLabel="name" [selectionLimit]="1" optionValue="a district" defaultLabel="Select districts" [selectedItemsLabel]="'{0} items selected'">
-                    </p-multiSelect>
-                    <br>
-                    <h5>Streets</h5>
-                    <p-multiSelect [options]="filteredStreets" [(ngModel)]="shopRequest.streets" optionLabel="name" optionValue="street" defaultLabel="Select streets" [selectedItemsLabel]="'{0} items selected'">
-                    </p-multiSelect>
-                    <br>
-                    <h5>Categories</h5>
-                    <p-multiSelect [options]="categories" [(ngModel)]="shopRequest.categoryIds" defaultLabel="Select categories" optionLabel="name" optionValue="categoryId" selectedItemsLabel="{0} items selected">
-                    </p-multiSelect><br>
-                    <button type="button" pButton label="Filter" icon="pi pi-power-off" (click)="initShop()" style="margin-left:.25em"></button>
-                    <!-- <h5>Grouped</h5> -->
-                    <!-- <p-multiSelect [maxSelectedLabels]="1" [options]="groupedCities" [group]="true" [style]="{'width':'100%'}" [(ngModel)]="selectedCities4" defaultLabel="Select a City" scrollHeight="250px" display="chip">
-                        <ng-template let-group pTemplate="group">
-                            <div class="p-d-flex p-ai-center">
+            <p-overlayPanel appendTo="body" [baseZIndex]="9999" #op [showCloseIcon]="true" [style]="{width: '90%'}">
+                <ng-template pTemplate>
+                    <div class="row ">
+                        <div class="col-md-3 ">
+                            <h5>Search by name</h5>
+                            <span class="p-float-label ">
+                                <input id="float-input " type="text " pInputText [(ngModel)]="shopRequest.name "
+                                    style="width: 100%;max-width: 100%; ">
+                                <label for="float-input ">Shop name</label>
+                            </span>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Cities</h5>
+                            <p-multiSelect [options]="cities " optionLabel="name " optionValue="city " [(ngModel)]="shopRequest.cities " defaultLabel="Select a city " selectedItemsLabel="{0} items selected " [selectionLimit]="1 " (onChange)="changeCities() " [style]="{width: '100%'} ">
+                            </p-multiSelect><br>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Districts</h5>
+                            <p-multiSelect [options]="filteredDistricts " [(ngModel)]="shopRequest.districts " optionLabel="name " [selectionLimit]="1 " optionValue="district " defaultLabel="Select districts " [selectedItemsLabel]=" '{0} items selected' " [style]="{width: '100%'} ">
+                            </p-multiSelect>
+                            <br>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Streets</h5>
+                            <p-multiSelect [options]="filteredStreets " [(ngModel)]="shopRequest.streets " optionLabel="name " optionValue="street " defaultLabel="Select streets " [selectedItemsLabel]=" '{0} items selected' " [style]="{width: '100%'} ">
+                            </p-multiSelect>
+                            <br>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Categories</h5>
+                            <p-multiSelect [options]="categories " [(ngModel)]="shopRequest.categoryIds " defaultLabel="Select categories " optionLabel="name " optionValue="categoryId " selectedItemsLabel="{0} items selected " [style]="{width: '100%'} ">
+                            </p-multiSelect><br>
+                        </div>
+                        <div class="col-md-1 ">
+                            <button type="button " pButton label=" " icon="pi pi-search " (click)="initShop(); " style="margin-left:.25em "></button>
+                        </div>
+                        <!-- <h5>Grouped</h5> -->
+                        <!-- <p-multiSelect [maxSelectedLabels]="1 " [options]="groupedCities " [group]="true " [style]="{ 'width': '100%'} " [(ngModel)]="selectedCities4 " defaultLabel="Select a City " scrollHeight="250px " display="chip ">
+                                                                <ng-template let-group pTemplate="group ">
+                                                                    <div class="p-d-flex p-ai-center ">
+                                        
+                                                                        <span>{{group.label}}</span>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </p-multiSelect> -->
+                    </div>
+                </ng-template>
+            </p-overlayPanel>
 
-                                <span>{{group.label}}</span>
-                            </div>
-                        </ng-template>
-                    </p-multiSelect> -->
-                </div>
 
-
-            </div>
-            <div class="col-lg-9 col-md-8 col-xl-9">
-                <app-waiting *ngIf="loaded == false"></app-waiting>
-                <div class="row" *ngIf="loaded == true">
-                    <div class="col-md-6 col-xl-4" style="padding: 20px;" *ngFor="let shop of dataSource.items">
-                        <div class="hi">
-                            <div class="card-deck">
-                                <div class="card">
-
-                                    <img class=" img-shop" [src]="shop.image" alt="Card image cap">
-
-                                    <a class="carousel-control-prev" href="#{{shop.id}}" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#{{shop.id}}" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                    <!-- <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap"> -->
-                                    <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
-                                        <div class="card-body">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{shop.name}}</h5>
-                                                <h6 class="card-text">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
-                                                </h6>
-                                                <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
-                                                <p>Telephone: {{shop.telephone}}</p>
-                                                <p>{{shop.description}}</p>
-                                            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-1 col-md-1 col-xl-1 "></div>
+            <div class="col-lg-10 col-md-10 col-xl-10 ">
+                <mat-paginator [pageSize]="12 " [pageSizeOptions]="[12, 24, 36] " [length]="dataSource.paginatorTotal " [showFirstLastButtons]="true " (page)="onPageChange($event) "></mat-paginator>
+                <app-waiting *ngIf="loaded==false "></app-waiting>
+                <div class="row " *ngIf="loaded==true ">
+                    <div class="col-md-6 col-xl-4 " style="padding: 20px; " *ngFor="let shop of dataSource.items ">
+                        <div class="hi ">
+                            <div class="card-deck ">
+                                <div class="card ">
+                                    <!-- <img class="card-img-top img-shop " src="assets/img/{{shop.image}} " alt="Card image cap "> -->
+                                    <a [routerLink]="[ '/app/shop/shop-item', shop.id] " class="shop-item " data-toggle="tooltip " data-placement="bottom " title="Go to shop " trigger="hover focus ">
+                                        <img class=" img-shop " [src]="shop.image " alt="Card image cap ">
+                                        <div class="card-body ">
+                                            <h5 class="card-title ">{{shop.name}}</h5>
+                                            <h6 class="card-text ">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
+                                            </h6>
+                                            <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
+                                            <p>Telephone: {{shop.telephone}}</p>
+                                            <p>{{shop.description}}</p>
                                         </div>
                                     </a>
-                                    <div class="card-footer">
-                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    <div class="card-footer ">
+                                        <small class="text-muted " *ngIf="shop.openingHour || shop.endingHour ">Opening
+                                            hours:{{" "+shop.openingHour}}-{{shop.endingHour}}</small>
+                                        <small class="text-muted " *ngIf="!(shop.openingHour || shop.endingHour) ">This
+                                            shop has no opening hours data</small>
                                     </div>
                                 </div>
-                                <!-- <p-card header="{{shop.header}}" subheader="" styleClass="p-card-shadow ">
+                                <!-- <p-card header="{{shop.header}} " subheader=" " styleClass="p-card-shadow ">
                                 <ng-template pTemplate="header ">
-                                    <img src="assets/img/{{shop.image}}" [alt]="shop.header" class="{{shop.class}}" />
+                                    <img src="assets/img/{{shop.image}} " [alt]="shop.header " class="{{shop.class}} " />
                                 </ng-template>
-                                <p style="height: 20vh">Categories: </p>
-                                <p style="height: 20vh">See our list of reviews now!
+                                <p style="height: 20vh ">Categories: </p>
+                                <p style="height: 20vh ">See our list of reviews now!
                                 </p>
                                 <ng-template pTemplate="footer ">
                                     <div>
-                                        <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
-                                                style="font-size: 0.5rem"></i></a>
+                                        <a routerLink="/reviewer ">See reviews <i class="pi pi-arrow-right transform "
+                                                style="font-size: 0.5rem "></i></a>
                                     </div>
                                 </ng-template>
                             </p-card> -->
                             </div>
                         </div>
-                        <!-- <div class="col-md-4" style="padding: 20px;">
-                        <div class="hi">
-                            <p-card header="Every good coffee house have good reviews" subheader="" styleClass="p-card-shadow ">
+                        <!-- <div class="col-md-4 " style="padding: 20px; ">
+                        <div class="hi ">
+                            <p-card header="Every good coffee house have good reviews " subheader=" " styleClass="p-card-shadow ">
                                 <ng-template pTemplate="header ">
                                     <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
                                 </ng-template>
-                                <p style="height: 20vh">See our list of reviews now!
+                                <p style="height: 20vh ">See our list of reviews now!
                                 </p>
                                 <ng-template pTemplate="footer ">
                                     <div>
-                                        <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
-                                                style="font-size: 0.5rem"></i></a>
+                                        <a routerLink="/reviewer ">See reviews <i class="pi pi-arrow-right transform "
+                                                style="font-size: 0.5rem "></i></a>
                                     </div>
                                 </ng-template>
                             </p-card>
                         </div>
                     </div>
-                    <div class="col-md-4" style="padding: 20px;">
-                        <div class="hi">
-                            <p-card header="Every good coffee house have good reviews" subheader="" styleClass="p-card-shadow ">
+                    <div class="col-md-4 " style="padding: 20px; ">
+                        <div class="hi ">
+                            <p-card header="Every good coffee house have good reviews " subheader=" " styleClass="p-card-shadow ">
                                 <ng-template pTemplate="header ">
                                     <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
                                 </ng-template>
-                                <p style="height: 20vh">See our list of reviews now!
+                                <p style="height: 20vh ">See our list of reviews now!
                                 </p>
                                 <ng-template pTemplate="footer ">
                                     <div>
-                                        <a routerLink="/reviewer">See reviews <i class="pi pi-arrow-right transform"
-                                                style="font-size: 0.5rem"></i></a>
+                                        <a routerLink="/reviewer ">See reviews <i class="pi pi-arrow-right transform "
+                                                style="font-size: 0.5rem "></i></a>
                                     </div>
                                 </ng-template>
                             </p-card>
@@ -268,33 +280,84 @@
                     </div> -->
                     </div>
                 </div>
-                <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 30, 50]" [length]="dataSource.paginatorTotal" [showFirstLastButtons]="true" (page)="onPageChange($event)"></mat-paginator>
+
             </div>
+            <div class="col-lg-1 col-md-1 col-xl-1 "></div>
         </div>
     </div>
 </section>
-<section>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-</section>
+
 <!-- <section>
     <header>
-        <h1 style="text-align: center; margin-top:0.5rem;">Highlighted journal</h1>
+        <h1 style="text-align: center; margin-top:0.5rem; ">Highlighted journal</h1>
     </header>
-    <div class="bg_carousel">
-        <div class="container">
-            <ngb-carousel [interval]="4000" [pauseOnHover]="true" [pauseOnFocus]="true">
-                <ng-template ngbSlide *ngFor="let journal of headerJournal; index as i">
-                    <div class="carousel-caption">
+    <div class="bg_carousel ">
+        <div class="container ">
+            <ngb-carousel [interval]="4000 " [pauseOnHover]="true " [pauseOnFocus]="true ">
+                <ng-template ngbSlide *ngFor="let journal of headerJournal; index as i ">
+                    <div class="carousel-caption ">
                         <h3>My slide {{i + 1}} title</h3>
                         <div>
                             <h3>User: {{journal.name}}</h3>
                         </div>
                     </div>
-                    <div class="picsum-img-wrapper">
-                        <img src="assets/img/{{journal.image}}" alt="My image {{i + 1}} description">
+                    <div class="picsum-img-wrapper ">
+                        <img src="assets/img/{{journal.image}} " alt="My image {{i + 1}} description ">
                     </div>
                 </ng-template>
             </ngb-carousel>
         </div>
     </div>
 </section> -->
+<!--   <p-overlayPanel appendTo="body " [baseZIndex]="9999 " #op [showCloseIcon]="true " [style]="{width: '90%'} ">
+                <ng-template pTemplate>
+                    <div class="row ">
+                        <div class="col-md-3 ">
+                            <h5>Search by name</h5>
+                            <span>
+                                <input id="float-input " type="text " pInputText [(ngModel)]="shopRequest.name "
+                                    style="width: 100%;max-width: 100%; " placeholder="Shop name ">
+                            </span>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Cities</h5>
+                            {{shopRequest.cities}}
+                            <p-dropdown [options]="cities " optionLabel="name " optionValue="city " [(ngModel)]="shopRequest.cities " (onChange)="changeCities() " [showClear]="true " [style]="{width: '100%'} ">
+                            </p-dropdown>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Districts</h5>
+                            <p-dropdown [options]="filteredDistricts " [(ngModel)]="shopRequest.districts " optionLabel="name " optionValue="district " (onChange)="changeCities() " [showClear]="true " [style]="{width: '100%'} ">
+                            </p-dropdown>
+                            <br>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Streets</h5>
+                            {{shopRequest.streets}}
+                            <p-dropdown [options]="filteredStreets " [(ngModel)]="shopRequest.streets " optionLabel="name " optionValue="street " placeholder="Select a street " (onChange)="changeCities() " [showClear]="true " [style]="{width: '100%'} ">
+                            </p-dropdown>
+                            <br>
+                        </div>
+                        <div class="col-md-2 ">
+                            <h5>Categories</h5>
+                            <p-multiSelect [options]="categories " [(ngModel)]="shopRequest.categoryIds " defaultLabel="Select categories " optionLabel="name " optionValue="categoryId " selectedItemsLabel="{0} items selected " [style]="{width:
+                        '100%'} ">
+                            </p-multiSelect><br>
+                        </div>
+                        <div class="col-md-1 ">
+                            <h5>Find</h5>
+                            <button type="button " pButton label=" " icon="pi pi-search " (click)="initShop() " style="margin-left:.25em "></button>
+                        </div>
+                         <h5>Grouped</h5> -->
+<!-- <p-multiSelect [maxSelectedLabels]="1 " [options]="groupedCities " [group]="true " [style]="{ 'width': '100%'} " [(ngModel)]="selectedCities4 " defaultLabel="Select a City " scrollHeight="250px " display="chip ">
+                                                                <ng-template let-group pTemplate="group ">
+                                                                    <div class="p-d-flex p-ai-center ">
+                                        
+                                                                        <span>{{group.label}}</span>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </p-multiSelect> 
+                    </div>
+                </ng-template>
+            </p-overlayPanel>
+ -->

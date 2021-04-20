@@ -5,11 +5,11 @@
     </p-header>
     
     <ng-template pTemplate="footer">
-        <button class="btn btn-primary" title="{{ ('COMMON.SAVE')  }}(Enter)" (click)="onBtnSave()">
-            {{ 'COMMON.SAVE'  }}
+        <button class="btn btn-primary" title="{{ ('SAVE')  }}(Enter)" (click)="onBtnSave()">
+            {{ 'SAVE'  }}
         </button>
-        <button class="btn btn-secondary" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancel()">{{
-            'COMMON.CANCEL'  }}</button>
+        <button class="btn btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancel()">{{
+            'CANCEL'  }}</button>
     </ng-template>
 </p-dialog> -->
 <p-dialog [(visible)]="dialogRef.isDisplay" (onShow)="onShow()" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '60%'} " [draggable]="true" [maximizable]="true" [closable]="false">
@@ -55,10 +55,10 @@
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 30, 50]" [length]="dataSource.paginatorTotal" [showFirstLastButtons]="true" (page)="onPageChange($event)"></mat-paginator>
 
     <ng-template pTemplate="footer">
-        <button class="btn btn-primary" title="{{ ('COMMON.SAVE')  }}(Enter)" (click)="onBtnSave()">
-            {{ 'COMMON.SAVE' }}
+        <button class="btn btn-primary" title="{{ ('SAVE')  }}(Enter)" (click)="onBtnSave()">
+            {{ 'SAVE' }}
         </button>
-        <button class="btn btn-secondary" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancel()">{{
-            'COMMON.CANCEL' }}</button>
+        <button class="btn btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancel()">{{
+            'CANCEL' }}</button>
     </ng-template>
 </p-dialog>

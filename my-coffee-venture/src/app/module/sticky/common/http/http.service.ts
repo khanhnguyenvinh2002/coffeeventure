@@ -47,8 +47,13 @@ export class HttpService<T = any> {
             { observe: 'response', headers: this.getHeaders(), params: requestPayload.toParams() }), isSpinner)
             .pipe(map(r => r.body));
     }
-
-    public getAll(isSpinner?: boolean): Observable<T> {
+    public getAll(requestPayload?: RequestPayload, isSpinner?: boolean): Observable<T[]> {
+        requestPayload = !requestPayload ? new RequestPayload() : requestPayload;
+        return this.intercept(this.httpClient.get<T[]>(this.url + "/get-all",
+            { observe: 'response', headers: this.getHeaders(), params: requestPayload.toParams() }), isSpinner)
+            .pipe(map(r => r.body));
+    }
+    public getAlls(isSpinner?: boolean): Observable<T> {
         return this.intercept(this.httpClient.get<T>(this.url + "/get-all",
             { observe: 'response', headers: this.getHeaders() }), isSpinner)
             .pipe(map(r => r.body));

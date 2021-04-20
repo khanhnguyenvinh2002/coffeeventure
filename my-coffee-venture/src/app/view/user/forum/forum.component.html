@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-lg-2 align-items-center">
+            <ul class="nav nav-tabs flex-row align-items-center sticky-top" id="myTab" style="top:5rem; justify-content: center;" role="tablist ">
+                <li class="nav-item ">
+                    <a class="nav-link active " id="home-tab " data-toggle="tab" href="#journal" role="tab " aria-controls="home " aria-selected="true ">Details</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " id="profile-tab " data-toggle="tab" href="#review" role="tab " aria-controls="profile " aria-selected="false ">Reviews</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 col-lg-8">
+            <div class="tab-content profile-tab" id="myTabContent" style="word-wrap: break-word;">
+                <div class="tab-pane fade show active" id="journal" role="tabpanel" aria-labelledby="home-tab">
+                    <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%; word-wrap: break-word ">
+                        <div *ngFor="let i of dataSource.items ">
+                            <app-post [id]="i.id " [status]="i.status " [feeling]="i.feeling " [createdAt]="i.createdAt " [content]="i.content " [name]=" 'Testing user' " [service]="journalService " [userName]="i.name ">
+                            </app-post>
+                        </div>
+                    </div>
+                    <app-waiting *ngIf="isLoaded==false "></app-waiting>
+                </div>
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="profile-tab">
+                    <div infinite-scroll (scrolled)="onScrollDownReview()" style="width: 100%; word-wrap: break-word ">
+                        <div *ngFor="let i of dataSourceReview.items">
+                            <app-review [id]="i.id " [status]="i.status " [rating]="i.rating " [createdAt]="i.createdAt " [content]="i.content " [name]=" 'Testing user' " [service]="reviewService " [userName]="i.userName">
+                            </app-review>
+                        </div>
+                    </div>
+                    <app-waiting *ngIf="isLoaded==false "></app-waiting>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 "></div>
+    </div>
+</div>

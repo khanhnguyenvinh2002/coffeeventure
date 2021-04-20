@@ -1,3 +1,4 @@
+import { AuthorComponent } from './view/home/author/author.component';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { NgModule } from '@angular/core';
@@ -15,14 +16,15 @@ const routes: Routes = [
       {
         path: 'home', component: BaseScreenComponent
       },
+      {
+        path: 'author', component: AuthorComponent
+      },
       { path: 'secret', loadChildren: () => import('./view/secret/secret.module').then(m => m.HomeModule), canActivate: [AuthGuard] },
       {
-        path: 'user', loadChildren: () => import('./view/user/user.module').then(m => m.UserModule),
-        canActivate: [AuthGuard],
+        path: 'reviewer', loadChildren: () => import('./view/reviewer/reviewer.module').then(m => m.ReviewerModule)
       },
       {
-        path: 'reviewer', loadChildren: () => import('./view/reviewer/reviewer.module').then(m => m.ReviewerModule),
-        canActivate: [AuthGuard],
+        path: 'user', loadChildren: () => import('./view/user/user.module').then(m => m.UserModule)
       },
       { path: 'shop', loadChildren: () => import('./view/shop/shop.module').then(m => m.ShopModule) },
       { path: 'authen', loadChildren: () => import('./view/authen/authen.module').then(m => m.AuthenModule) },

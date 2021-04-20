@@ -1,4 +1,4 @@
-<crud-dialog [dialogRef]="dialogRef" [form]="form" (save)="onBtnSaveFormClick()" (delete)="onBtnDeleteClick()" (show)="onShowDialog()">
+<util-dialog [dialogRef]="dialogRef" [form]="form" (save)="onBtnSaveFormClick()" (delete)="onBtnDeleteClick()" (show)="onShowDialog()">
     <form autocomplete="off" #form="ngForm" id="role-edit">
         <div class="form-row">
             <div class="col-md-12">
@@ -12,42 +12,42 @@
         <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group ">
-                    <label class=" lbl-required">{{ 'COMMON.NAME' }}</label>
-                    <validate-message [form]="form" controlName="name"></validate-message>
-                    <input type="text" class=" form-control " name="name" [(ngModel)]="dialogRef.input.name" placeholder="{{ 'COMMON.NAME'  }}" required autofocus>
+                    <label class=" form-required">{{ 'NAME' }}</label>
+                    <validate-form [form]="form" controlName="name"></validate-form>
+                    <input type="text" class=" form-control " name="name" [(ngModel)]="dialogRef.input.name" placeholder="{{ 'NAME'  }}" required autofocus>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group ">
-                    <label class=" lbl-required">{{ 'COMMON.LINK' }}</label>
-                    <validate-message [form]="form" controlName="link"></validate-message>
-                    <input type="text" class="form-control" name="link" [(ngModel)]="dialogRef.input.link" placeholder="{{ 'COMMON.LINK'  }}" required>
+                    <label class=" form-required">{{ 'LINK' }}</label>
+                    <validate-form [form]="form" controlName="link"></validate-form>
+                    <input type="text" class="form-control" name="link" [(ngModel)]="dialogRef.input.link" placeholder="{{ 'LINK'  }}" required>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 form-group">
-                <label>{{'COMMON.TYPE' }}</label>
+                <label>{{'TYPE' }}</label>
                 <div *ngFor="let t of type" class="p-field-checkbox">
-                    <validate-message [form]="form" controlName="type"></validate-message>
+                    <validate-form [form]="form" controlName="type"></validate-form>
                     <p-radioButton name="t" class="p-field-checkbox" [inputId]="t.value" [value]="t.value" [(ngModel)]="dialogRef.input.type" (onClick)="onChangeSelectType()" required>
                     </p-radioButton>
                     <label [for]="t.value" style="margin: 10px 0px 0px 5px">{{ t.label }}</label>
                 </div>
             </div>
             <div class="col-md-6 form-group" *ngIf="dialogRef.input.type === 0">
-                <label>{{'COMMON.METHOD' }}</label>
+                <label>{{'METHOD' }}</label>
                 <div *ngFor="let m of beMethod" class="p-field-checkbox">
-                    <validate-message [form]="form" controlName="type"></validate-message>
+                    <validate-form [form]="form" controlName="type"></validate-form>
                     <p-radioButton name="m" class="p-field-checkbox" [inputId]="m.value" [value]="m.value" [(ngModel)]="dialogRef.input.method" (onClick)="onChangeMethod()" required>
                     </p-radioButton>
                     <label [for]="m.value" style="margin: 10px 0px 0px 5px">{{ m.label }}</label>
                 </div>
             </div>
             <div class="col-md-6 form-group" *ngIf="dialogRef.input.type === 1">
-                <label>{{'COMMON.METHOD' }}</label>
+                <label>{{'METHOD' }}</label>
                 <div *ngFor="let m of feMethod" class="p-field-checkbox">
-                    <validate-message [form]="form" controlName="type"></validate-message>
+                    <validate-form [form]="form" controlName="type"></validate-form>
                     <p-radioButton name="m" class="p-field-checkbox" [inputId]="m.value" [value]="m.value" [(ngModel)]="dialogRef.input.method" (onClick)="onChangeMethod()" required>
                     </p-radioButton>
                     <label [for]="m.value" style="margin: 10px 0px 0px 5px">{{ m.label }}</label>
@@ -57,16 +57,16 @@
         <div class="form-row" *ngIf="dialogRef.input.method == 'MENU'">
             <div class="col-md-6">
                 <div class="form-group ">
-                    <label class=" lbl-required">{{ 'COMMON.INDEX' }}</label>
-                    <validate-message [form]="form" controlName="menuOrder"></validate-message>
-                    <input type="number" class="form-control " name="menuOrder" required [(ngModel)]="dialogRef.input.menuOrder" placeholder="{{ 'COMMON.INDEX'  }}">
+                    <label class=" form-required">{{ 'INDEX' }}</label>
+                    <validate-form [form]="form" controlName="menuOrder"></validate-form>
+                    <input type="number" class="form-control " name="menuOrder" required [(ngModel)]="dialogRef.input.menuOrder" placeholder="{{ 'INDEX'  }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>{{ 'COMMON.ICON' }}</label>
-                    <validate-message [form]="form" controlName="menuIcon"></validate-message>
-                    <input type="text" class="form-control" name="menuIcon" [(ngModel)]="dialogRef.input.menuIcon" placeholder="{{ 'COMMON.ICON'  }}">
+                    <label>{{ 'ICON' }}</label>
+                    <validate-form [form]="form" controlName="menuIcon"></validate-form>
+                    <input type="text" class="form-control" name="menuIcon" [(ngModel)]="dialogRef.input.menuIcon" placeholder="{{ 'ICON'  }}">
                 </div>
             </div>
         </div>
@@ -75,11 +75,11 @@
         <i class="fal fa-sort"></i> {{"OPERATION.REORDER_REQUEST" }}</button>
 
 
-</crud-dialog>
+</util-dialog>
 
 <p-dialog [(visible)]="isDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%'} " [draggable]="true" [maximizable]="true" [closable]="false">
     <p-header>
-        <i class="fal fa-sort-amount-up-alt"></i> {{"OPERATION.REORDER" }}{{ parentName }}
+        <i class="fal fa-sort-amount-up-alt"></i> {{"Reorder" }}{{ parentName }}
     </p-header>
     <form>
         <div class="mat-table__wrapper">
@@ -87,12 +87,12 @@
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th style="width:3rem"></th>
-                        <th>{{"OPERATION.INDEX" }}</th>
-                        <th>{{"OPERATION.PREV_INDEX" }}</th>
-                        <th>{{"EXCHANGE_RATE_CURRENCY.NAME" }}</th>
+                        <th>{{"Index" }}</th>
+                        <th>{{"Prv index" }}</th>
+                        <th>{{"Name" }}</th>
                         <th *ngFor="let col of columns" pReorderableColumn>{{ col.title }}</th>
-                        <th>{{"OPERATION.PREVIEW" }}</th>
-                        <th>{{"OPERATION.TYPE" }}</th>
+                        <th>{{"Preview" }}</th>
+                        <th>{{"Type" }}</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
@@ -117,10 +117,10 @@
     </form>
 
     <ng-template pTemplate="footer">
-        <button class="btn btn-primary" title="{{ ('COMMON.SAVE')  }}(Enter)" (click)="onReorderBtnSaveClick()">
-            {{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE') }}
+        <button class="btn btn-primary" title="{{ ('Save')  }}(Enter)" (click)="onReorderBtnSaveClick()">
+            {{ 'Save' }}
         </button>
-        <button class="btn btn-secondary" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onReorderBtnCancelClick()">{{
-            'COMMON.CANCEL' }}</button>
+        <button class="btn btn-secondary" title="{{ 'Cancel'  }}(Esc)" (click)="onReorderBtnCancelClick()">{{
+            'Cancel' }}</button>
     </ng-template>
 </p-dialog>

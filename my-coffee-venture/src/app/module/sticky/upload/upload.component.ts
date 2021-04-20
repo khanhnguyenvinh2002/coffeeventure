@@ -1,5 +1,5 @@
 import { NotificationService } from '../common/notification/notification.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpEventType, HttpClient } from '@angular/common/http';
 import { ImageService } from 'src/app/module/sticky/modules/image/image.service';
 
@@ -11,10 +11,16 @@ import { ImageService } from 'src/app/module/sticky/modules/image/image.service'
 export class UploadComponent implements OnInit {
   public progress: number;
   public message: string;
-  public imageUrl = 'assets/img/cf_bg1.jpg';
+  public formData = new FormData();
+  public imageUrl: string = '';
+  @Input() preview = false;
+  @Output() public onFileLoad = new EventEmitter<FormData>();
+  @Output() public onReadImage = new EventEmitter<string>();
   @Output() public onUploadFinished = new EventEmitter();
 
-  constructor(private http: HttpClient, private imageService: ImageService, private noti: NotificationService) { }
+  constructor(private http: HttpClient, private noti: NotificationService) {
+    // this.formData = new FormData();
+  }
 
   ngOnInit() {
   }
@@ -24,31 +30,30 @@ export class UploadComponent implements OnInit {
       return;
     }
     let filesToUpload: File[] = files;
-    const formData = new FormData();
 
     Array.from(filesToUpload).map((file, index) => {
-      return formData.append('file' + index, file, file.name);
+      return this.formData.append('file' + index, file, file.name);
     });
-    this.imageService.upload(formData)
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress)
-          this.noti.showMessage("Loading");
-        // this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
-          this.noti.showSuccess();
-          // this.message = 'Upload success.';
-          // this.imageUrl = event.path ? event.path : this.imageUrl;
-          // this.onUploadFinished.emit(event.body);
-        }
-      });
+    this.onFileLoad.emit(this.formData);
+    this.imageUrl = "";
   }
   handleFileInput(event) {
-    if (event.target.files) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event: any) => {
-        this.imageUrl = event.target.result;
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event: any) => {
+          this.imageUrl = event.target.result;
+          this.onReadImage.emit(this.imageUrl);
+          this.noti.showMessage("Images have been loaded");
+        }
+
+        reader.readAsDataURL(event.target.files[i]);
       }
+      setTimeout(() => {
+        this.uploadFile(event.target.files)
+      }, 0);
     }
   }
 }

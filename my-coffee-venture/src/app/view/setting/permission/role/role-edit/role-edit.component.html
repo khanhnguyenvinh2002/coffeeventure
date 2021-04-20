@@ -1,25 +1,25 @@
-<crud-dialog [dialogRef]="dialogRef" [form]="form" (save)="onBtnSaveClick()" (delete)="onBtnDeleteClick()">
+<util-dialog [dialogRef]="dialogRef" [form]="form" (save)="onBtnSaveClick()" (delete)="onBtnDeleteClick()">
     <form autocomplete="off" #form="ngForm" id="role-edit">
         <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="lbl-required">{{ 'COMMON.CODE' }}</label>
-                    <validate-message [form]="form" controlName="code"></validate-message>
-                    <input type="text" class="form-control" name="code" [(ngModel)]="dialogRef.input.code" placeholder="{{ 'COMMON.CODE'  }}" required autofocus>
+                    <label class="form-required">{{ 'CODE' }}</label>
+                    <validate-form [form]="form" controlName="code"></validate-form>
+                    <input type="text" class="form-control" name="code" [(ngModel)]="dialogRef.input.code" placeholder="{{ 'CODE'  }}" required autofocus>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="lbl-required">{{ 'COMMON.NAME' }}</label>
-                    <validate-message [form]="form" controlName="name"></validate-message>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="dialogRef.input.name" placeholder="{{ 'COMMON.NAME'  }}" required>
+                    <label class="form-required">{{ 'NAME' }}</label>
+                    <validate-form [form]="form" controlName="name"></validate-form>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="dialogRef.input.name" placeholder="{{ 'NAME'  }}" required>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label class="lbl-required">{{ 'ROLE.MODULES' }}</label>
+                    <label class="form-required">{{ 'ROLE.MODULES' }}</label>
                     <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <td>{{ rowData.email }}</td>
                     <td>{{ rowData.userName }}</td>
                     <td>{{ rowData.fullName }}</td>
-                    <td><button class="btn btn-sm btn-link" (click)="onBtnDelUserClick(rowData)">{{"COMMON.DELETE"
+                    <td><button class="btn btn-sm btn-link" (click)="onBtnDelUserClick(rowData)">{{"DELETE"
                             }}</button></td>
                 </tr>
             </tbody>
@@ -64,7 +64,7 @@
     <button class="btn btn-sm btn-link" (click)="onBtnAddUserClick()">
         Add user
     </button>
-</crud-dialog>
+</util-dialog>
 <p-dialog [(visible)]="isShowAddUser" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '40%'} " [draggable]="true" [maximizable]="true" [closable]="false">
     <p-header>
         <i class="fal fa-user-edit"></i> {{"MENU.SETTING.USER" }}
@@ -79,10 +79,10 @@
     </form>
     <br><br><br><br><br><br><br><br>
     <ng-template pTemplate="footer">
-        <button class="btn btn-primary" title="{{ ('COMMON.SAVE')  }}(Enter)" (click)="onBtnSaveUsers()">
-            {{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE') }}
+        <button class="btn btn-primary" title="{{ ('SAVE')  }}(Enter)" (click)="onBtnSaveUsers()">
+            {{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'SAVE') }}
         </button>
-        <button class="btn btn-secondary" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancelUsers()">{{
-            'COMMON.CANCEL' }}</button>
+        <button class="btn btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancelUsers()">{{
+            'CANCEL' }}</button>
     </ng-template>
 </p-dialog>

@@ -7,23 +7,23 @@
         <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="lbl-required">{{ 'COMMON.CODE' }}</label>
-                    <validate-message [form]="form" controlName="code"></validate-message>
-                    <input type="text" class="form-control" name="code" [(ngModel)]="dialogRef.input.code" placeholder="{{ 'COMMON.CODE'  }}" required autofocus>
+                    <label class="form-required">{{ 'CODE' }}</label>
+                    <validate-form [form]="form" controlName="code"></validate-form>
+                    <input type="text" class="form-control" name="code" [(ngModel)]="dialogRef.input.code" placeholder="{{ 'CODE'  }}" required autofocus>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="lbl-required">{{ 'COMMON.NAME' }}</label>
-                    <validate-message [form]="form" controlName="name"></validate-message>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="dialogRef.input.name" placeholder="{{ 'COMMON.NAME'  }}" required>
+                    <label class="form-required">{{ 'NAME' }}</label>
+                    <validate-form [form]="form" controlName="name"></validate-form>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="dialogRef.input.name" placeholder="{{ 'NAME'  }}" required>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label class="lbl-required">{{ 'ROLE.MODULES' }}</label>
+                    <label class="form-required">{{ 'ROLE.MODULES' }}</label>
                     <div>
                         <a [ngClass]="operationDialogRef.input.styleClass" (click)="onBtnOperationShow()">{{
                             operationDialogRef.input.text }}</a>
@@ -63,7 +63,7 @@
                     <td>{{ rowData.email }}</td>
                     <td>{{ rowData.userName }}</td>
                     <td>{{ rowData.fullName }}</td>
-                    <td><button class="btn btn-sm btn-link" (click)="onBtnDelUserClick(rowData)">{{"COMMON.DELETE"
+                    <td><button class="btn btn-sm btn-link" (click)="onBtnDelUserClick(rowData)">{{"DELETE"
                             }}</button></td>
                 </tr>
             </tbody>
@@ -74,13 +74,13 @@
             Add user
         </button>
     </div>
-    <button class="btn btn-sm btn-warning float-left " style="margin-top:0.5rem; margin-bottom: 0.5rem;" title="{{ 'COMMON.DELETE'  }}(Delete)" *ngIf="dialogRef.input.id && dialogRef.input.isShowDelete" (click)="onBtnDeleteClick()">{{ 'COMMON.DELETE' }}</button>
-    <button class="btn btn-sm btn-secondary float-right" style="margin:0.5rem;" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancelClick()">{{ 'COMMON.CANCEL'
+    <button class="btn btn-sm btn-warning float-left " style="margin-top:0.5rem; margin-bottom: 0.5rem;" title="{{ 'DELETE'  }}(Delete)" *ngIf="dialogRef.input.id && dialogRef.input.isShowDelete" (click)="onBtnDeleteClick()">{{ 'DELETE' }}</button>
+    <button class="btn btn-sm btn-secondary float-right" style="margin:0.5rem;" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancelClick()">{{ 'CANCEL'
         }}</button>
-    <button class="btn btn-sm btn-success float-right" style="margin:0.5rem;" title="{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE')  }}(Enter)" (click)="onBtnSaveClick()">{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE')
+    <button class="btn btn-sm btn-success float-right" style="margin:0.5rem;" title="{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'SAVE')  }}(Enter)" (click)="onBtnSaveClick()">{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'SAVE')
         }}</button>
 </div>
-<crud-dialog></crud-dialog>
+<util-dialog></util-dialog>
 <p-dialog [(visible)]="isShowAddUser" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '40%'} " [draggable]="true" [maximizable]="true" [closable]="false">
     <p-header>
         <i class="fal fa-user-edit"></i> {{"MENU.SETTING.USER" }}
@@ -95,10 +95,10 @@
     </form>
     <br><br><br><br><br><br><br><br>
     <ng-template pTemplate="footer">
-        <button class="btn btn-primary" title="{{ ('COMMON.SAVE')  }}(Enter)" (click)="onBtnSaveUsers()">
-            {{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE') }}
+        <button class="btn btn-primary" title="{{ ('SAVE')  }}(Enter)" (click)="onBtnSaveUsers()">
+            {{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'SAVE') }}
         </button>
-        <button class="btn btn-secondary" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancelUsers()">{{
-            'COMMON.CANCEL' }}</button>
+        <button class="btn btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancelUsers()">{{
+            'CANCEL' }}</button>
     </ng-template>
 </p-dialog>

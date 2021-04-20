@@ -1,3 +1,6 @@
+import { InputTimeModule } from 'src/app/module/sticky/control/input-time/input-time.module';
+import { MessagesModule } from 'primeng/messages';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatCardModule } from '@angular/material/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -12,18 +15,18 @@ import { ShopComponent } from './shop.component';
 import { ShopItemComponent } from './shop-item/shop-item.component';
 import { ShopItemAddComponent } from './shop-item-add/shop-item-add.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { NgSelectAsyncListModule } from 'src/app/module/sticky/control/ng-select-async-list/ng-select-async-list.component';
-import { NgSelectAsyncModule } from 'src/app/module/sticky/control/ng-select-async/ng-select-async.component';
+import { NgSelectAsyncModule } from 'src/app/module/sticky/control/async-select/async-select.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria'; import { CarouselModule } from 'primeng/carousel'; import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ReviewModule } from 'src/app/module/sticky/review/review.module';
 
 @NgModule({
   declarations: [ShopComponent, ShopItemComponent, ShopItemAddComponent],
   exports: [ShopItemComponent],
   imports: [
-    CommonModule,
-    FormsModule, ButtonModule, MatCardModule,
+    CommonModule, MessagesModule, InputTimeModule, ReviewModule,
+    FormsModule, ButtonModule, MatCardModule, OverlayPanelModule,
     ReactiveFormsModule, CarouselModule, InputTextModule, InfiniteScrollModule,
     ShopRoutingModule, NgSelectModule, NgSelectAsyncModule, PartialsModule, ToggleButtonModule, MatPaginatorModule, MultiSelectModule, GalleriaModule
   ]

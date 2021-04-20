@@ -1,77 +1,51 @@
-<div class="first">
-
-</div>
 <div class="container-fluid" style="margin-top:30px;width:100%;">
-    <div class="d-flex align-items-center justify-content-center" style="flex-direction: column;
-">
-        <h2>About Me</h2>
-        <h5>Photo of me:</h5>
-        <!-- <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Address</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let user of users">
-                            <td><img [src]="createImgPath(user.imgPath)" alt="profile picture" style="width:60px; height:60px;"></td>
-                            <td>{{user.name}}</td>
-                            <td>{{user.address}}</td>
-                        </tr>
-                    </tbody>
-                </table> -->
-        <div style="flex-direction: row;">
-            <app-upload></app-upload>
-            <!-- <div class="row">
-                        <div class="offset-md-5 col-md-2">
-                            <button type="button" class="btn btn-primary" (click)="onCreate()">Create </button>
-                        </div>
-                    </div> -->
-            <!-- <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover;">
-                    <button type="button" (click)="image.click()">Pick File</button>
-                    <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image>
-                    <button type='button' (click)="onUpload()">Submit</button> -->
-        </div>
-        <div class=" fakeimg ">Fake Image</div>
-        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    <div class="d-flex align-items-center justify-content-center" style="flex-direction: column; margin-bottom: 4rem;
+    ">
+        <h2>Welcome to your review page {{userName}}</h2>
+
     </div>
     <div class="row">
-        <div class="col-xl-4">
-
-            <h3>Some Links</h3>
-            <p>Lorem ipsum dolor sit ame.</p>
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-            <hr class="d-sm-none">
+        <div class=" col-md-1">{{daysSelected | json}}
         </div>
-        <div class="col-xl-8">
-            <h2>TITLE HEADING</h2>
-            <h5>Title description, Dec 7, 2017</h5>
-            <div class="fakeimg">Fake Image</div>
-            <p>Some text..</p>
-            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
-            <br>
-            <h2>TITLE HEADING</h2>
-            <h5>Title description, Sep 2, 2017</h5>
-            <div class="fakeimg">Fake Image</div>
-            <p>Some text..</p>
-            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
+
+        <div class="col-md-10">
+            <div class="row">
+                <div class=" col-md-4 ">
+                    <div class="sticky-top" style="top: 5rem;">
+                        <mat-card>
+                            <mat-card-title>
+                                My coffee review
+                                <button id="all" class="btn  float-right" style="background-color: deeppink; color: white;" (click)="initData()">All</button>
+                            </mat-card-title>
+                            <mat-card-subtitle>Click highlighted date to view reviews</mat-card-subtitle>
+                            <div (click)="$event.stopPropagation()" style="">
+                                <mat-calendar #calendar (selectedChange)="select($event,calendar)" [dateClass]="isSelected">
+                                </mat-calendar>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div style="margin: 0.5rem;">
+                        <h2>Share your coffee review now</h2>
+                        <button class="btn btn-primary" (click)="editReview()">Add review</button>
+                    </div>
+
+                    <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
+                        <div *ngFor="let i of data">
+                            <app-review [id]="i.id" [service]="reviewService" [userName]="i.name " (event)="initData() ">
+                            </app-review>
+                        </div>
+                    </div>
+                    <app-waiting *ngIf="isLoaded==false "></app-waiting>
+                </div>
+            </div>
+            <div class="col-md-1 "></div>
+
+
+
         </div>
     </div>
 </div>
+<app-review-add [formDisplay]="formDisplay" [input]="input" (event)="onUploadEvent($event)">
+</app-review-add>

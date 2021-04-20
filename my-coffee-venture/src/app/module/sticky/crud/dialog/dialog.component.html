@@ -5,11 +5,11 @@
     </p-header>
     <ng-content></ng-content>
     <ng-template pTemplate="footer">
-        <button class="btn btn-sm btn-warning float-left" title="{{ 'COMMON.DELETE'  }}(Delete)" *ngIf="dialogRef.input.id && dialogRef.input.isShowDelete" (click)="onBtnDeleteClick()">{{ 'COMMON.DELETE'
-			}}</button>
-        <button *ngIf="!hideBtnSave" class="btn btn-sm btn-success" title="{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE')  }}(Enter)" (click)="onBtnSaveClick()">{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'COMMON.SAVE')
-			}}</button>
-        <button *ngIf="!dialogRef.config.hideBtnCancel" class="btn btn-sm btn-secondary" title="{{ 'COMMON.CANCEL'  }}(Esc)" (click)="onBtnCancelClick()">{{ 'COMMON.CANCEL' }}</button>
+        <button class="btn btn-sm btn-warning float-left" title="{{ 'DELETE'  }}(Delete)" *ngIf="dialogRef.input.id && dialogRef.input.isShowDelete" (click)="onBtnDeleteClick()">{{ 'DELETE'
+            }}</button>
+        <button *ngIf="!hideBtnSave" class="btn btn-sm btn-success" title="{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'SAVE')  }}(Enter)" (click)="onBtnSaveClick()">{{ (dialogRef.config.btnTitle ? dialogRef.config.btnTitle : 'SAVE')
+            }}</button>
+        <button *ngIf="!dialogRef.config.hideBtnCancel" class="btn btn-sm btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancelClick()">{{ 'CANCEL' }}</button>
     </ng-template>
 </p-dialog>
 

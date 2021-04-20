@@ -1,0 +1,53 @@
+<div style="margin: 0.5rem">
+    <app-waiting *ngIf="loaded == false"></app-waiting>
+    <mat-card class="container-fluid " *ngIf="loaded">
+        <mat-card-header class="justify-content-between" style=" text-align: center;">
+            <div style="    display: flex; width: 200px;word-wrap: break-word;
+    flex-direction: row;">
+                <div mat-card-avatar class="example-header-image" style="margin-bottom: 16px ;" [style.background-image]="'url(' + avatar  + ')'">
+
+                </div>
+                <div style="margin-left: 10px; text-align: left;">
+                    <mat-card-title style="margin-bottom: 0; word-wrap: break-word;" class="wrap-text">
+                        {{item.userName}}</mat-card-title>
+                    <mat-card-subtitle class="wrap-text" style="word-wrap: break-word;">
+                        <span *ngIf="item.status == 0"><i class="fad fa-globe-asia"></i></span>
+                        <span *ngIf="item.status != 0"><i class="far fa-lock-alt"></i></span>
+                    </mat-card-subtitle>
+                </div>
+            </div>
+
+            <div class="float-right" style="display:flex; flex-direction:row ;">
+                <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">{{
+                        calculateTime(item.createdAt)}}</small> <i class="fa fa-ellipsis-h"></i> </div><button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="More actions">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item title="{{'Delete'}}" (click)="onBtnDeleteClick(item.id)" *ngIf="authService.getUserId() == item.createdBy">
+                        <span>{{'Delete'}}</span>
+                    </button>
+                    <button mat-menu-item title="{{'Edit'}}" (click)="editReview()" *ngIf="authService.getUserId() == item.createdBy">
+                        <span>{{'Edit'}}</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{item.content}} <i>Created at {{item.createdAt | date}}</i>
+            </p>
+            <p>
+                {{item.shopName+" "}}
+                <p-rating [ngModel]="item.rating" readonly="true" stars="5" [cancel]="false">
+                </p-rating>
+            </p>
+            <img [src]="item.image" alt="Photo of review" *ngIf="item.image">
+        </mat-card-content>
+        <mat-card-actions>
+            Currently no action available
+            <!-- <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button> -->
+        </mat-card-actions>
+    </mat-card>
+</div>
+<app-review-add [input]="input" [formDisplay]="formDisplay" [viewMode]="true" [title]="'Edit review'" (event)="formDisplay = false"></app-review-add>

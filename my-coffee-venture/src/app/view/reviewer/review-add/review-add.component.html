@@ -1,0 +1,60 @@
+<p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false" (onShow)="ngOnInit()">
+    <p-header>
+        <i class="fal fa-user-edit "></i> {{title }}
+    </p-header>
+    <form autocomplete="off" #form="ngForm" id="review-edit">
+        <div class="col-md-12 ">
+            <div class="form-row ">
+                <div class="col-md-6" *ngIf="viewMode == false">
+                    <label *ngIf="viewMode == false">{{ 'Select shop' }}</label>
+                    <validate-form [form]="form " controlName="name" *ngIf="viewMode == false"></validate-form>
+                    <async-select *ngIf="viewMode == false" name="name" bindLabel="name" (change)="input.shopId = data?.id" placeholder="{{ 'Shop' }}" [multiple]="false" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="data" [actionGet]="'viewShop'" required>
+                    </async-select>
+                </div>
+
+                <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>{{ 'Public/private' }}</label>
+                        <div>
+                            <p-toggleButton onLabel="show " offLabel="hide " offIcon="pi pi-times " onIcon="pi pi-check " iconPos="right " [(ngModel)]="reviewStatus" name="toggleButton">
+                            </p-toggleButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>{{ 'What do you want to share?' }}</label>
+                        <validate-form [form]="form" controlName="content"></validate-form>
+                        <textarea placeholder="{{ 'Your review goes here' }} " class="form-control" rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content " required autofocus name="content" [autoResize]="true"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6 ">
+                    <div class="form-group "><label>{{ 'Do you have any photo you want to share?' }}</label>
+                        <app-upload [preview]="true " (onFileLoad)="upload($event) ">
+                        </app-upload>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row ">
+
+                <div class="col-md-6 ">
+                    <label>{{ 'Rating' }}</label> {{rating}}
+                    <validate-form [form]="form " controlName="rating"></validate-form>
+                    <p-rating [(ngModel)]="rating" [cancel]="false" name="rating" required></p-rating>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <br><br><br><br>
+    <ng-template pTemplate="footer ">
+        <button class="btn btn-primary " title="{{ ( 'SAVE') }}(Enter) " (click)="onBtnAddReview() ">
+            {{ 'Save' }}
+        </button>
+        <button class="btn btn-secondary " title="{{ 'CANCEL' }}(Esc) " (click)="onBtnCancelReview() ">{{
+            'Cancel' }}</button>
+    </ng-template>
+</p-dialog>

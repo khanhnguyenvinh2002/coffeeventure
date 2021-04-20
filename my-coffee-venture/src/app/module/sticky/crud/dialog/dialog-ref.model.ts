@@ -52,8 +52,8 @@ export const DEFAULT_CONFIG: DialogConfig = {
     baseZIndex: 10000,
     draggable: true,
     maximizable: true,
-    title: 'COMMON.CRUD.DETAIL',
-    btnTitle: 'COMMON.SAVE',
+    title: 'Detail',
+    btnTitle: 'Save',
     hideBtnCancel: false
 };
 

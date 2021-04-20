@@ -21,8 +21,8 @@
         <ng-template pTemplate="end">
             <div>
                 <div class="form-inline my-2 my-lg-0" *ngIf="!authService.isAuthenticated()">
-                    <button class="btn btn-primary my-2 my-sm-0" (click)="onBtnRegister()">Register</button>
-                    <button class="btn btn-secondary my-2 my-sm-0" (click)="onBtnLogin()">Login</button>
+                    <button class="btn btn-primary my-2 my-sm-0" (click)="onBtnRegister()">Login/Register</button>
+                    <!-- <button class="btn btn-secondary my-2 my-sm-0" (click)="onBtnLogin()">Login</button> -->
                 </div>
                 <div class="form-inline my-2 my-lg-0" *ngIf="authService.isAuthenticated()">
                     <button type="button" pButton label="Logout" icon="pi pi-power-off" (click)="onBtnLogout()" style="margin-left:.25em"></button>
@@ -75,7 +75,7 @@
         </form>
     </div> -->
 </div>
-<div style="   height: 50vh;
+<div style="   height: 20vh;
     min-height: 200px;
     background-size: cover;
     background-image: linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef), linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef);

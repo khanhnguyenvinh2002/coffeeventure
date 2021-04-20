@@ -19,7 +19,7 @@ import { BaseFormComponent } from '../../component';
 
 @Component({
     // tslint:disable-next-line: component-selector
-    selector: 'crud-dialog',
+    selector: 'util-dialog',
     templateUrl: './dialog.component.html',
 })
 export class DialogComponent extends BaseFormComponent implements OnInit {

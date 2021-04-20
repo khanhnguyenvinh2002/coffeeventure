@@ -1,0 +1,40 @@
+p-inputMask {
+    position: relative;
+    display: block;
+    z-index: 1;
+}
+
+.date-picker {
+    position: relative;
+    color: transparent;
+    padding: 0.65rem 0.5rem !important;
+}
+
+// Input date
+input-date {
+    display: block;
+}
+
+input-date p-inputmask input.p-inputmask {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    height: calc(1.5em + 1.3rem + 2px);
+    border-radius: 4px 0px 0px 4px;
+}
+
+input-date p-inputmask input.p-inputtext {
+    border-color: #e2e5ec;
+}
+
+input-date p-inputmask input.p-inputtext:enabled:hover {
+    border-color: #e2e5ec;
+}
+
+input-date p-inputmask input.p-inputtext:enabled:focus {
+    box-shadow: none;
+    border-color: #0c4da2;
+}
+
+input-date input.form-control:focus {
+    border-color: #e2e5ec;
+}

@@ -1,20 +1,3 @@
-<!-- <div class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <span>This is a span</span>
-            </div>
-            <div class="col-md-4"><span>This is a span</span>
-                <div></div>
-                <span>This is a span</span>
-            </div>
-            <div class="col-md-4"><span>This is a span</span>
-                <div></div>
-                <span>This is a span</span>
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="bg_footer">
     <div class="bg_text">
         <div class="bg_text-deco">
@@ -23,22 +6,21 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div>
-                                <a routerLink="/shop">Go to our list of shops <i class="pi pi-arrow-right transform"
-                                        style="font-size: 0.5rem"></i></a>
+                                <a [routerLink]="['/app/shop']">Go to our list of shops </a>
                             </div>
                             <div>
                                 <!-- (click)="returnTop()" -->
-                                <a routerLink="/reviewer">Go to our list of reviewers <i
-                                        class="pi pi-arrow-right transform" style="font-size: 0.5rem"></i></a>
+                                <a [routerLink]="['/app/reviewer']">Go to our list of reviewers</a>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div><a routerLink="">View our home page <i class="pi pi-arrow-right transform"
-                                        style="font-size: 0.5rem"></i></a></div>
+                            <div><a [routerLink]="['/app/home']">View our home page</a></div>
                         </div>
-                        <div class="col-md-4"><span>This is a span</span>
-                            <div></div>
-                            <span>This is a span</span>
+                        <div class="col-md-4">
+                            <div>
+                                <a [routerLink]="['/app/user/forum']">View our journal forum</a>
+                            </div>
+                            <div><a [routerLink]="['/app/author']">About the author</a></div>
                         </div>
                     </div>
                 </div>

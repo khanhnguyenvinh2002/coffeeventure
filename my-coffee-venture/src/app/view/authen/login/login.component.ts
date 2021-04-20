@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
     let request = new UserRequestPayload();
     request.userName = this.registerForm.value.username1;
     this.userService.count(request).subscribe(res => {
-      console.log(res);
       if (res == 0) {
         this.toastrService.success("Username available");
 
@@ -59,7 +58,6 @@ export class LoginComponent implements OnInit {
   }
   login() {
     let credentials = this.loginForm.value;
-    console.log(credentials);
     this.authService.login(credentials.username, credentials.password).subscribe(res => {
       if (res.canAccess && res.accessToken != null) {
         this.authService.setCookie("AccessToken", res.accessToken, 7);
@@ -92,10 +90,9 @@ export class LoginComponent implements OnInit {
       this.toastrService.error("Error", 'Password does not match');
       return;
     }
-    console.log(credentials);
     this.userService.count(request).subscribe(res => {
       if (res == 0) {
-        this.authService.register(credentials.username, credentials.password1).subscribe(res => {
+        this.authService.register(credentials.username1, credentials.password1).subscribe(res => {
           if (res.canAccess && res.accessToken != null) {
             this.authService.setCookie("AccessToken", res.accessToken, 7);
             localStorage.setItem('loggedUser', JSON.stringify({ accessToken: res.accessToken, userName: res.userInfo.userName, roles: res.userInfo.roles }));
@@ -115,7 +112,9 @@ export class LoginComponent implements OnInit {
 
 
   }
-
+  returnHome() {
+    this.router.navigate(['/app/home']);
+  }
 
 
   // .subscribe(res => {

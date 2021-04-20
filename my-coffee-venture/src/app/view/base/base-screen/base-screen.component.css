@@ -26,6 +26,15 @@
     width: 100%;
 }
 
+:host>>>.p-dropdown {
+    width: 100%;
+    max-width: 100%;
+}
+
+:host>>>.p-dropdown-panel {
+    width: 100%;
+}
+
 .text-deco-small {
     font-size: 2rem;
     line-height: 3rem;
@@ -46,6 +55,9 @@
     .text-deco {
         font-size: 2.4rem;
         line-height: 4rem;
+    }
+    .justify-content-between {
+        justify-content: center !important;
     }
 }
 

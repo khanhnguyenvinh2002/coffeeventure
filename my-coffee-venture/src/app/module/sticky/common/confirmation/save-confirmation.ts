@@ -8,8 +8,8 @@ export class SaveConfirmation implements Confirmation {
     reject?: () => void;
 
     constructor() {
-        const msg = 'COMMON_MSG.CONFIRM_SAVE';
-        const title = 'COMMON_MSG.CONFIRM_TITLE';
+        const msg = 'Save';
+        const title = 'Save confirmation';
         this.message = msg;
         this.header = title;
         this.icon = 'pi pi-exclamation-triangle';

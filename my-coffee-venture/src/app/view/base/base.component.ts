@@ -16,7 +16,7 @@ export class BaseHeaderComponent implements OnInit {
   items: MenuItem[];
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window: Window,
+    @Inject(WINDOW) private window: Window, private cdr: ChangeDetectorRef,
     public authService: AuthService, private router: Router,
     private operationService: OperationService
   ) {
@@ -48,6 +48,10 @@ export class BaseHeaderComponent implements OnInit {
   }
   onBtnLogout() {
     this.authService.logout();
+    this.operationService.getNavBarViewMenu(true).subscribe(res => {
+      this.items = res;
+      this.cdr.detectChanges();
+    })
   }
 }
   // scroll = (event) => {

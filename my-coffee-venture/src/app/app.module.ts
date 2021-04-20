@@ -1,3 +1,4 @@
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PartialsModule } from './module/sticky/partials.module';
@@ -38,21 +39,24 @@ import { MenubarModule } from 'primeng/menubar'; import { PanelMenuModule } from
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MenuItem } from 'primeng/api';
 import { FormDynamicComponent } from './module/sticky/crud/component/form-dynamic.component';
-import { ValidateMessageComponent } from './module/sticky/crud/validate-message/validate-message.component';
+import { ValidateMessageComponent } from './module/sticky/crud/validate-form/validate-form.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { AuthorComponent } from './view/home/author/author.component';
 @NgModule({
   declarations: [
     AppComponent,
     BaseHeaderComponent,
     BaseScreenComponent,
     BaseFooterComponent,
-    HomeComponent
+    HomeComponent,
+    AuthorComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule, BrowserAnimationsModule, FormsModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
-    StickyModule, MultiSelectModule,
+    StickyModule, MultiSelectModule, OverlayPanelModule, DropdownModule,
     CardModule, DialogModule, InputTextModule,
     ConfirmDialogModule, MenubarModule, PartialsModule, PanelMenuModule,
     ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule, ToastrModule.forRoot(), NgSelectModule, SettingModule, MatPaginatorModule

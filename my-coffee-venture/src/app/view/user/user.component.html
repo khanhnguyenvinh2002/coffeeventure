@@ -1,141 +1,105 @@
-<div style="   height: 50vh;
-    min-height: 200px;
-    background-size: cover;
-    background-image: linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef), linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef);
-    background-position: center;">
-
-</div>
 <div class="container-fluid" style="margin-top:30px;width:100%;">
     <div class="d-flex align-items-center justify-content-center" style="flex-direction: column;
     ">
-        <h2>About Me</h2>
-        <h5>Photo of me:</h5>
+        <h2>Welcome to your journey page {{userName}}</h2>
+        <app-waiting *ngIf="pageLoaded == false"></app-waiting>
+        <img *ngIf="pageLoaded == true" [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover; border-radius: 50%;">
         <div style="flex-direction: row;">
-            <app-upload></app-upload>
+            <app-upload (onReadImage)="loadAvatarImage($event)" (onFileLoad)="loadAvatar($event)"></app-upload>
         </div>
-        <div class=" fakeimg ">Fake Image</div>
-        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+        <button class="btn btn-primary" (click)="uploadAvatar()" *ngIf="avatarLoaded == true">Update
+            avatar</button>
     </div>
     <div class="row">
-        <div class="col-xl-4 col-md-4">
-
-            <div class=" fakeimg ">Fake Image</div>
-            <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-            <h3>Some Links</h3>
-            <p>Lorem ipsum dolor sit ame.</p>
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-            <hr class="d-sm-none">
+        <div class=" col-md-1">{{daysSelected | json}}
         </div>
 
-        <div class="col-xl-4 col-md-8">
-            <h2>Share your coffee journal now</h2>
-            <div class="card">
-                <h5>Advanced</h5>
-                <div class="p-fluid p-formgrid p-grid">
-                    <div class="p-field p-col-12 p-md-6">
-                        <label for="firstname6">Firstname</label>
-                        <input id="firstname6" type="text" pInputText>
-                    </div>
-                    <div class="p-field p-col-12 p-md-6">
-                        <label for="lastname6">Lastname</label>
-                        <input id="lastname6" type="text" pInputText>
-                    </div>
-                    <div class="p-field p-col-12">
-                        <label for="address">Address</label>
-                        <textarea id="address" type="text" rows="4" pInputTextarea></textarea>
-                    </div>
-                    <div class="p-field p-col-12 p-md-6">
-                        <label for="city">City</label>
-                        <input id="city" type="text" pInputText>
-                    </div>
-                    <div class="p-field p-col-12 p-md-3">
-                        <label for="state">State</label>
-                    </div>
-                    <div class="p-field p-col-12 p-md-3">
-                        <label for="zip">Zip</label>
-                        <input id="zip" type="text" pInputText>
+        <div class="col-md-10">
+            <div class="row">
+                <div class=" col-md-4 ">
+                    <div class="sticky-top" style="top: 4rem;">
+                        <mat-card>
+                            <mat-card-title>
+                                My coffee journey
+                                <button id="all" class="btn  float-right" style="background-color: deeppink; color: white;" (click)="initData()">All</button>
+                            </mat-card-title>
+                            <mat-card-subtitle>Click highlighted date to view journals</mat-card-subtitle>
+                            <div (click)="$event.stopPropagation()" style="">
+                                <mat-calendar #calendar (selectedChange)="select($event,calendar)" [dateClass]="isSelected">
+                                </mat-calendar>
+                            </div>
+                        </mat-card>
                     </div>
                 </div>
-            </div>
-            <h5>Title description, Dec 7, 2017</h5>
-            <div class="fakeimg">Fake Image</div>
-            <h5>AutoResize</h5>
-            <div>
-                <button class="btn btn-primary" (click)="onBtnSaveJournal()">Add Journal</button>
-            </div>
-            {{journalContent | json}}
-            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="journalContent"></textarea>
-            <div>
-                <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="journalStatus"></p-toggleButton>
-            </div>
-            <app-upload-multiple (onFileLoad)="upload($event)">
-            </app-upload-multiple>
-            <br>
+                <div class="col-md-8">
+                    <div style="margin: 0.5rem;">
+                        <h2>Share your coffee journal now</h2>
+                        <button class="btn btn-primary" (click)="editJournal()">Add Journal</button>
+                    </div>
 
-            <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
-                <div *ngFor="let i of dataSource.items">
-                    <app-post [id]="i.id" [status]="i.status" [feeling]="i.feeling" [createdAt]="i.createdAt" [content]="i.content" [name]="'Testing user'" [image]="imageUrl" [service]="journalService" [userName]="i.name">
-                    </app-post>
+                    <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
+                        <div *ngFor="let i of data">
+                            <app-post [id]="i.id" [status]="i.status" [feeling]="i.feeling" [createdAt]="i.createdAt" [content]="i.content" [name]="'Testing user'" [avatar]="postAvatar" [service]=" journalService " [userName]="i.name " (event)="initData() ">
+                            </app-post>
+                        </div>
+                    </div>
+                    <app-waiting *ngIf="isLoaded==false "></app-waiting>
                 </div>
             </div>
-            <app-waiting *ngIf="isLoaded == false"></app-waiting>
+            <div class="col-md-1 "></div>
 
-        </div>
-        <div class="col-xl-4 col-md-12">
-            <!-- <button mat-icon-button [matMenuTriggerFor]="appMenu">
-                <mat-icon>calendar_today</mat-icon>
-            </button> -->
-            <!-- <mat-menu #appMenu="matMenu"> -->
-            <mat-card>
-                <mat-card-title>
-                    My coffee journal
-                </mat-card-title>
-                <div (click)="$event.stopPropagation()" style="">
-                    <mat-calendar #calendar (selectedChange)="select($event,calendar)" [dateClass]="isSelected">
-                    </mat-calendar>
-                </div>
-            </mat-card>
-            <!-- </mat-menu> -->
-            {{daysSelected | json}}
-            <!-- <div class="p-field p-col-12 p-md-4">
-                <label for="multiple">Multiple</label>
-                <p-calendar [inline]="true" (onSelect)="update($event)" [(ngModel)]="dates" selectionMode="multiple" [readonlyInput]="true" inputId="multiple">
-                    <ng-template pTemplate="date" let-date>
-                        <span ngbTooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">{{date.day}}</span>
-                    </ng-template>
-                </p-calendar>
-            </div> -->
-            <!-- [(selectedDate)]
-This will emit your selected date change as well as take
-an input of a date like a 2-way data bind.
 
-[showWeek]
-Simply highlights the selected week instead of the day.
-Value "selectedDate" will still return date picked not the whole week.
-
-[mainColor]
-Set default color for calendar. Defaults to #03a9f4.
-
-[secondaryColor]
-Set default color for selected dates color. Defaults to #ff5. -->
 
         </div>
     </div>
 </div>
-<!-- [minDate]="pickerMinDate" [maxDate]="pickerMaxDate" [dayTemplate]="customDay"-->
-<!-- <p-dialog [(visible)]="display" [breakpoint]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
-    Content
-</p-dialog> -->
+<p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false ">
+    <p-header>
+        <i class="fal fa-user-edit "></i> {{"Add journal " }}
+    </p-header>
+    <form #form="ngForm">
+        <div class="col-md-12 ">
+            <div class="form-row ">
+                <div class="col-md-6 ">
+                    <label>{{ 'How are you feeling today?' }}</label>
+                    <input type="text " class="form-control " [(ngModel)]="input.feeling " name="feeling" placeholder="{{ 'Tell people how you feel' }} ">
+                </div>
+                <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>{{ 'Public/private' }}</label>
+                        <div>
+                            <p-toggleButton onLabel="show " offLabel="hide " offIcon="pi pi-times " onIcon="pi pi-check " iconPos="right " [(ngModel)]="journalStatus" name="toggleButton">
+                            </p-toggleButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>{{ 'What do you want to share?' }}</label>
+                        <validate-form [form]="form " controlName="name "></validate-form>
+                        <textarea placeholder="{{ 'Your journal goes here' }} " class=" form-control" rows="5 " cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content " required name="content"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 ">
+                    <div class="form-group "><label>{{ 'Do you have any photo you want to share?' }}</label>
+                        <app-upload [preview]="true " (onFileLoad)="upload($event) ">
+                        </app-upload>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <br><br><br><br>
+    <ng-template pTemplate="footer ">
+        <button class="btn btn-primary " title="{{ ( 'SAVE') }}(Enter) " (click)="onBtnAddJournal() ">
+            {{ 'Save' }}
+        </button>
+        <button class="btn btn-secondary " style="float:right;" title="{{ 'CANCEL' }}(Esc) " (click)="onBtnCancelJournal() ">{{
+            'Cancel' }}</button>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,2 @@
+<p-inputMask #control mask="99:99" [(ngModel)]="viewValue" (onFocus)="focus.emit($event); onTouched();" (onBlur)="onBlurInputMask(); blur.emit($event);" (onComplete)="onCompleteInputMask()" (onInput)="onInput(control)" placeholder="hh:mm" [disabled]="disabled"
+    [style]="{width: '100%'}" slotChar="hh:mm"></p-inputMask>

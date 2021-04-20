@@ -38,46 +38,55 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { DialogComponent } from 'src/app/module/sticky/crud/dialog/dialog.component';
-import { NgSelectAsyncModule } from 'src/app/module/sticky/control/ng-select-async/ng-select-async.component';
-import { NgSelectAsyncListModule } from 'src/app/module/sticky/control/ng-select-async-list/ng-select-async-list.component';
+import { NgSelectAsyncModule } from 'src/app/module/sticky/control/async-select/async-select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormDynamicComponent } from 'src/app/module/sticky/crud/component/form-dynamic.component';
-import { ValidateMessageComponent } from 'src/app/module/sticky/crud/validate-message/validate-message.component';
+import { ValidateMessageComponent } from 'src/app/module/sticky/crud/validate-form/validate-form.component';
 import { MatInputModule } from '@angular/material/input';
+import { FunctionalComponent } from './functional/functional.component';
+import { ShopCategoryComponent } from './functional/shop-category/shop-category.component';
+import { MessagesModule } from 'primeng/messages';
 const routes: Routes = [
     {
         path: 'system/permission',
         component: PermissionComponent,
         canActivate: [AuthGuard], data: {
-            expectedRole: 'admin'
+            expectedRole: 'SYSTEM'
+        }
+    },
+    {
+        path: 'functional',
+        component: FunctionalComponent,
+        canActivate: [AuthGuard], data: {
+            expectedRole: 'ADMIN'
         }
     },
     {
         path: 'permission/operation-and-data',
         component: OperationAndDataComponent,
         canActivate: [AuthGuard], data: {
-            expectedRole: 'admin'
+            expectedRole: 'SYSTEM'
         }
     },
     {
         path: 'system/users',
         component: UsersListComponent,
         canActivate: [AuthGuard], data: {
-            expectedRole: 'admin'
+            expectedRole: 'SYSTEM'
         }
     },
     {
         path: 'system/users/add',
         component: UserEditComponent,
         canActivate: [AuthGuard], data: {
-            expectedRole: 'admin'
+            expectedRole: 'SYSTEM'
         }
     },
     {
         path: 'system/users/edit/:id',
         component: UserEditComponent,
         canActivate: [AuthGuard], data: {
-            expectedRole: 'admin'
+            expectedRole: 'SYSTEM'
         }
     },
 ];
@@ -98,7 +107,9 @@ const routes: Routes = [
         OperationActionAddComponent,
         RoleOperationComponent, RoleComponent,
         ActionViewComponent,
-        RoleDetailsComponent
+        RoleDetailsComponent,
+        FunctionalComponent,
+        ShopCategoryComponent
     ],
     exports: [],
     imports: [
@@ -129,7 +140,7 @@ const routes: Routes = [
         NgSelectAsyncModule,
         MatProgressSpinnerModule,
         NgSelectModule,
-        NgSelectAsyncListModule
+        MessagesModule
     ],
     providers: [],
 })

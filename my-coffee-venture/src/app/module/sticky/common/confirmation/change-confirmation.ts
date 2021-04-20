@@ -8,8 +8,8 @@ export class ChangeConfirmation implements Confirmation {
     reject?: () => void;
 
     constructor() {
-        this.message = 'COMMON_MSG.CONFIRM_CHANGE';
-        this.header = 'COMMON_MSG.CONFIRM_TITLE';
+        this.message = 'Confirm change';
+        this.header = 'Do you want to change?';
         this.icon = 'pi pi-exclamation-triangle';
     }
 }

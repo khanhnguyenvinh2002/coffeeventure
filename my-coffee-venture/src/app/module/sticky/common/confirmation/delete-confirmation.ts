@@ -8,8 +8,8 @@ export class DeleteConfirmation implements Confirmation {
     reject?: () => void;
 
     constructor() {
-        const msg = 'COMMON_MSG.CONFIRM_DELETE';
-        const title = 'COMMON_MSG.CONFIRM_TITLE';
+        const msg = 'Delete';
+        const title = 'Delete confirmation';
         this.message = msg;
         this.header = title;
         this.icon = 'pi pi-exclamation-triangle';

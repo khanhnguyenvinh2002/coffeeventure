@@ -8,8 +8,8 @@ export class RejectConfirmation implements Confirmation {
     reject?: () => void;
 
     constructor() {
-        const msg = 'COMMON_MSG.CONFIRM_REJECT';
-        const title = 'COMMON_MSG.CONFIRM_TITLE';
+        const msg = 'Reject';
+        const title = 'Reject confirmation';
         this.message = msg;
         this.header = title;
         this.icon = 'pi pi-exclamation-triangle';

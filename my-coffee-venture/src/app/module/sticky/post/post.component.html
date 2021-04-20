@@ -1,71 +1,99 @@
-<!-- <div class="row d-flex align-items-center justify-content-center">
-    <div class="card">
-        <div class="d-flex justify-content-between p-2 px-3">
-            <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/UXdKE3o.jpg" width="50" class="rounded-circle">
-                <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">Jeanette Sun</span> <small class="text-primary">Collegues</small> </div>
-            </div>
-            <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">{{
-                    calculateTime("Jan 01 2007 11:00:00")}}</small> <i class="fa fa-ellipsis-h"></i> </div>
-
-        </div>
-        <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-        </p>
-        <img src="https://i.imgur.com/xhzhaGA.jpg" class="img-fluid img-profile">
-        <div class=" p-2 ">
-            <hr>
-            <div class="d-flex justify-content-between align-items-center ">
-                <div class="d-flex flex-row icons d-flex align-items-center "> <i class="fa fa-heart "></i> <i class="fa fa-smile-o ml-2 "></i> </div>
-                <div class="d-flex flex-row muted-color "> <span>2 comments</span> <span class="ml-2 ">Share</span>
-                </div>
-            </div>
-            <hr>
-            <div class="comments ">
-                <div class="d-flex flex-row mb-2 "> <img src="https://i.imgur.com/9AZ2QX1.jpg " width="40 " class="rounded-image ">
-                    <div class="d-flex flex-column ml-2 "> <span class="name ">Daniel Frozer</span> <small class="comment-text ">I like this alot! thanks alot</small>
-                        <div class="d-flex flex-row align-items-center status "> <small>Like</small>
-                            <small>Reply</small> <small>Translate</small> <small>18 mins</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex flex-row mb-2 "> <img src="https://i.imgur.com/1YrCKa1.jpg " width="40 " class="rounded-image ">
-                    <div class="d-flex flex-column ml-2 "> <span class="name ">Elizabeth goodmen</span> <small class="comment-text ">Thanks for sharing!</small>
-                        <div class="d-flex flex-row align-items-center status "> <small>Like</small>
-                            <small>Reply</small> <small>Translate</small> <small>8 mins</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-input "> <input type="text " class="form-control ">
-                    <div class="fonts "> <i class="fa fa-camera "></i> </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 <div style="margin: 0.5rem">
-    <mat-card class="container-fluid ">
+    <app-waiting *ngIf="loaded == false"></app-waiting>
+    <mat-card class="container-fluid " *ngIf="loaded">
         <mat-card-header class="justify-content-between" style=" text-align: center;">
-            <div style="    display: flex;
+            <div style="    display: flex; width: 200px;word-wrap: break-word;
     flex-direction: row;">
-                <div mat-card-avatar class="example-header-image" style="margin-bottom: 16px ;" [style.background-image]="'url(' + image  + ')'">
+                <div mat-card-avatar class="example-header-image" style="margin-bottom: 16px ;" [style.background-image]="'url(' + avatar  + ')'">
 
                 </div>
                 <div style="margin-left: 10px; text-align: left;">
-                    <mat-card-title style="margin-bottom: 0;">{{item.createdBy}}</mat-card-title>
-                    <mat-card-subtitle>{{item.feeling}} {{item.id}}</mat-card-subtitle>
+                    <mat-card-title style="margin-bottom: 0; word-wrap: break-word;" class="wrap-text">
+                        {{item.userName}}</mat-card-title>
+                    <mat-card-subtitle class="wrap-text" style="word-wrap: break-word;">
+                        <span *ngIf="item.status == 0"><i class="fad fa-globe-asia"></i></span>
+                        <span *ngIf="item.status != 0"><i class="far fa-lock-alt"></i></span>{{item.feeling}}
+                    </mat-card-subtitle>
                 </div>
             </div>
-            <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">{{
-                    calculateTime(item.createdAt)}}</small> <i class="fa fa-ellipsis-h"></i> </div>
+
+            <div class="float-right" style="display:flex; flex-direction:row ;">
+                <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">{{
+                        calculateTime(item.createdAt)}}</small> <i class="fa fa-ellipsis-h"></i> </div><button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="More actions">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item title="{{'Delete'}}" (click)="onBtnDeleteClick(item.id)" *ngIf="authService.getUserId() == item.createdBy">
+                        <span>{{'Delete'}}</span>
+                    </button>
+                    <button mat-menu-item title="{{'Delete'}}" (click)="editJournal()" *ngIf="authService.getUserId() == item.createdBy">
+                        <span>{{'Edit'}}</span>
+                    </button>
+                </mat-menu>
+            </div>
         </mat-card-header>
-        <img mat-card-image [src]="item.image" alt="Photo of journal" *ngIf="item.image">
         <mat-card-content>
             <p>
-                {{item.content}} {{item.createdAt | date}}
+                {{item.content+" "}} <i>Created at {{item.createdAt | date}}</i>
             </p>
+            <img [src]="item.image" alt="Photo of journal" *ngIf="item.image">
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
+            Currently no action available
+            <!-- <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button> -->
         </mat-card-actions>
     </mat-card>
 </div>
+
+<p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false ">
+    <p-header>
+        <i class="fal fa-user-edit "></i> {{"Edit journal" }}
+    </p-header>
+    <form #form="ngForm">
+        <div class="col-md-12 ">
+            <div class="form-row ">
+                <div class="col-md-6 ">
+                    <label>{{ 'How are you feeling today?' }}</label>
+                    <input type="text" class="form-control" [(ngModel)]="itemAdd.feeling" name="feeling" placeholder="{{ 'Tell people how you feel' }} ">
+                </div>
+                <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>{{ 'Public/private' }}</label>
+                        <div>
+                            <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="journalStatus" name="toggleButton">
+                            </p-toggleButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>{{ 'What do you want to share?' }}</label>
+                        <validate-form [form]="form " controlName="name "></validate-form>
+                        <textarea placeholder="{{ 'Your journal goes here' }} " class=" form-control" rows="5 " cols="30" pitemTextarea autoResize="autoResize" [(ngModel)]="itemAdd.content " required name="content"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>{{ 'We have not developed retrieving images, please reupload' }}</label>
+                        <app-upload [preview]="true" (onFileLoad)="upload($event) ">
+                        </app-upload>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <br><br><br><br>
+    <ng-template pTemplate="footer ">
+        <button class="btn btn-primary " title="{{ ( 'SAVE') }}(Enter) " (click)="onBtnAddJournal() ">
+            {{ 'Save' }}
+        </button>
+        <button class="btn btn-secondary " style="float:right;" title="{{ 'CANCEL' }}(Esc) " (click)="onBtnCancelJournal() ">{{
+            'Cancel' }}</button>
+    </ng-template>
+</p-dialog>

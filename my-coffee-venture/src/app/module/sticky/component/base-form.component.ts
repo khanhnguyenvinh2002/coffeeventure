@@ -1,7 +1,6 @@
 import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import * as globalConfig from './../_config/main.config';
 import { Component } from '@angular/core';
 
 @Component({
@@ -12,7 +11,6 @@ import { Component } from '@angular/core';
 export class BaseFormComponent implements OnDestroy {
     public formTitle: string;
     public subscriptions: Subscription[] = [];
-    public globalConfig = globalConfig.MAIN_CONFIG;
 
     ngOnDestroy() {
         this.subscriptions.forEach(el => el.unsubscribe());
@@ -28,7 +26,7 @@ export class BaseFormComponent implements OnDestroy {
             });
             let firstErrorIndex = null;
             const inputDOMs = document.getElementById(formId)
-                .querySelectorAll('input,textarea,ng-select,ng-select-async,p-inputnumber,input-date,select-sync-source');
+                .querySelectorAll('input,textarea,ng-select,async-select,p-inputnumber,input-time');
             for (let i = 0; i < inputDOMs.length; i++) {
                 if (inputDOMs[i].className.split(' ').indexOf('ng-invalid') !== - 1) {
                     firstErrorIndex = i;

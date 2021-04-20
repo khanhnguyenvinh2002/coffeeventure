@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/module/sticky/modules/auth/auth.guard';
 import { ReviewerComponent } from './reviewer.component';
 
 const routes: Routes = [{
-  path: '', component: ReviewerComponent, redirectTo: '',
-  pathMatch: 'full',
-  // children: [
-  //   {
-  //     path: '',
-  //     pathMatch: 'full'
-  //   }]
-}
-];
+  path: '', component: ReviewerComponent,
+  canActivate: [AuthGuard], data: {
+    expectedRole: 'ADMIN'
+  }
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

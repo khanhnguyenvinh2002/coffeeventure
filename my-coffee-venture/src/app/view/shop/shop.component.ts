@@ -63,49 +63,54 @@ export class ShopComponent extends BaseListComponent implements OnInit {
     this.router.navigate(['/app/shop/shop-item', id]);
   }
   onScrollDown() {
-    if (this.stopScrolling == false) {
-      this.shopRequest.pageIndex++;
-      this.loaded = false;
-      this.shopService.select(this.shopRequest).subscribe(
-        (response: any) => {
-          console.log(response);
-          if (response.length == 0) {
-            this.stopScrolling = true;
-            return;
-          }
-          response.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
-            e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
-          });
-          this.loaded = true;
-          this.dataSource.items = this.dataSource.items.concat(response);
-        });
+    if (this.stopScrolling == true) {
+      this.loaded = true;
+      return
     }
-  }
-  public initShop(): void {
     this.loaded = false;
-    const $selectAndCount = [
-      this.shopService.select(this.shopRequest),
-      this.shopService.count(this.shopRequest),
-
-    ];
-
-    const sub = forkJoin($selectAndCount).subscribe(
-      (response: any[]) => {
-        this.dataSource.items = response[0];
-        // const reader = new FileReader();
-        // reader.onload = (e) => this.dataSource.items.image = e.target.result;
-        this.dataSource.items.forEach(e => {
+    this.shopRequest.pageIndex++;
+    this.loaded = false;
+    this.shopService.select(this.shopRequest).subscribe(
+      (response: any) => {
+        if (!response || response == [] || response.length == 0) {
+          this.stopScrolling = true;
+          return;
+        }
+        response.forEach(e => {
           let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
           e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
-          // reader.readAsDataURL(new Blob(e.imagePath]));
         });
-        this.dataSource.paginatorTotal = response[1];
         this.loaded = true;
-        if (this.cd && !this.cd['destroyed']) {
-          this.cdr.detectChanges();
-        }
+        this.dataSource.items = this.dataSource.items ? this.dataSource.items.concat(response) : response;
       });
+
+  }
+  public initShop(): void {
+    this.shopRequest.pageIndex = 0;
+    this.shopRequest.pageSize = 12;
+    this.loaded = false;
+    // const $selectAndCount = [,
+    //   this.shopService.count(this.shopRequest),
+
+    // ];
+
+    const sub =
+      this.shopService.select(this.shopRequest).subscribe(
+        (response: any) => {
+          this.dataSource.items = response;
+          // const reader = new FileReader();
+          // reader.onload = (e) => this.dataSource.items.image = e.target.result;
+          this.dataSource.items.forEach(e => {
+            let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
+            e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
+            // reader.readAsDataURL(new Blob(e.imagePath]));
+          });
+          // this.dataSource.paginatorTotal = response[1];
+          this.loaded = true;
+          if (this.cd && !this.cd['destroyed']) {
+            this.cdr.detectChanges();
+          }
+        });
 
     this.cdr.detectChanges();
     this.subscriptions.push(sub);

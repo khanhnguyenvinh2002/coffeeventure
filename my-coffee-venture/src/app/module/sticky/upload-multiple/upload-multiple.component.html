@@ -1,8 +1,8 @@
-<div class="row" style="margin-bottom:15px;">
+<div class="row" style="margin-bottom:15px; width:100%">
     <div class="col-md-12">
         <!-- <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;"> -->
         <input accept="image/*" type="file" #file placeholder="Choose file" (change)="handleFileInput($event)" style="display:none;" multiple>
-        <button type="button" class="btn btn-success" (click)="file.click()">Upload Images</button>
+        <button type="button" class="btn btn-success" (click)="file.click()">Choose Images</button>
         <div class="row">
             <div *ngFor="let imageUrl of imageUrls" class="col-md-3">
                 <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover; ">

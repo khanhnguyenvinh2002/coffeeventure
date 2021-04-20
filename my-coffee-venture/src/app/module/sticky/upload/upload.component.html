@@ -1,19 +1,13 @@
 <div class="row">
-    <img [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover; border-radius: 50%;">
-    <input style="max-width: 90vw;" type="file" id="image" #image accept="image/*" (change)="handleFileInput($event)" #image style="display:none;">
+    <input style="max-width: 90vw;" type="file" id="image" #file accept="image/*" (change)="handleFileInput($event)" style="display:none;">
+
 </div>
 
 
-<div class="row" style="margin-bottom:15px;">
-    <div class="col-md-12">
-        <!-- <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;"> -->
-
-        <button type="button" class="btn btn-submit" (click)="image.click()">Pick File</button>
-        <button type='button' class="btn btn-success" [disabled]="image.value==''" (click)="uploadFile(image.files)">Submit</button>
-        <!-- <span class="upload" *ngIf="progress > 0">
-            {{progress}}%
-        </span> -->
-    </div>
+<div class="row" style="margin-bottom:15px;margin-top:15px; align-items: center; flex-direction: column;">
+    <button type="button" class="btn btn-success" style="max-width: 200px;" (click)="file.click()">Choose
+        Images</button>
+    <img *ngIf="preview == true" [src]="imageUrl" alt="Image appears here" style="width: 250px; height:250px; object-fit: cover; ">
     <!-- <div class="col-md-12">
         <span class="upload" *ngIf="message">
             {{message}}

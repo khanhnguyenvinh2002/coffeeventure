@@ -7,11 +7,10 @@ import { map, catchError } from 'rxjs/operators';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, throwError } from 'rxjs';
-import { BaseModel } from '../../crud';
 
 const jwtHelper = new JwtHelperService();
 
-export class Role extends BaseModel {
+export class Role {
   id: number;
   title: string;
   name?: string;
@@ -52,6 +51,7 @@ export class AuthService extends HttpService {
   private logoutUrl: string;
   constructor(private route: Router) {
     super();
+
     this.url = this.origin + 'account';
     this.loginUrl = this.url + "/login";
     this.logoutUrl = this.url + "/logout";
@@ -108,13 +108,13 @@ export class AuthService extends HttpService {
   // }
 
   logout(): void {
+    localStorage.removeItem('loggedUser');
+    localStorage.clear();
     // clear token remove user from local storage to log user out
     // this.setCookie("AccessToken", "", 0);
     this.httpClient.post<string>(this.logoutUrl, "", { headers: this.getHeaders(), observe: 'response' }).subscribe(res => {
 
-      localStorage.removeItem('loggedUser');
-      localStorage.clear();
-      this.route.navigate(['login']);
+      this.route.navigate(['app/home']);
     });
   }
 
@@ -128,6 +128,17 @@ export class AuthService extends HttpService {
     let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
     if (this.isAuthenticated()) {
       return loggedUser.userName;
+    }
+    else {
+      this.logout();
+      return '';
+    }
+
+  }
+  getUserId() {
+    if (this.isAuthenticated()) {
+      let loggedUser = jwtHelper.decodeToken(JSON.parse(localStorage.getItem('loggedUser'))?.accessToken);
+      return loggedUser.jti;
     }
     else {
       this.logout();

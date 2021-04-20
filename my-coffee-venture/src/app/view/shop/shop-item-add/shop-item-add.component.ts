@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TreeNode } from 'primeng/api';
 import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
+import { BaseFormComponent } from 'src/app/module/sticky/component';
 import { BaseComponent } from 'src/app/module/sticky/component/base-component';
 import { FormDynamicData } from 'src/app/module/sticky/crud/component/form-dynamic-data.model';
 import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
@@ -21,7 +22,7 @@ export const TITLE = [
   templateUrl: './shop-item-add.component.html',
   styleUrls: ['./shop-item-add.component.css']
 })
-export class ShopItemAddComponent extends BaseComponent implements OnInit {
+export class ShopItemAddComponent extends BaseFormComponent implements OnInit {
   @ViewChild('form', { static: true }) form: NgForm;
   public status = false;
   public formData: FormDynamicData = new FormDynamicData();
@@ -43,7 +44,7 @@ export class ShopItemAddComponent extends BaseComponent implements OnInit {
     super();
     this.formData = {
       formId: 'shop-edit',
-      title: 'shop.HEADER_DETAIL',
+      title: 'Detail',
       isCancel: true,
       service: this.shopService,
     };
@@ -81,38 +82,28 @@ export class ShopItemAddComponent extends BaseComponent implements OnInit {
     this.formDataAdd = event;
   }
   public onBtnSaveClick(): void {
-    // const query = {
-    //     orgIds: this.shopOrg.selectedOrgs
-    //         .map((x) => x.data)
-    //         .map((x) => x.id),
-    //     isUpdshopOrg: !this.shopOrg.isPristine,
-    // };
-    // this.formDataAdd.append("minPrice", this.shopData.minPrice);
-    // this.formDataAdd.append("maxPrice", this.shopData.maxPrice);
-    // this.formDataAdd.append("description", this.shopData.description);
-    // this.formDataAdd.append("name", this.shopData.name);
-    // this.formDataAdd.append("telephone", this.shopData.telephone);
-    // this.formDataAdd.append("alternativeTelephone", this.shopData.alternativeTelephone);
-    // this.formDataAdd.append("address", this.shopData.address);
-    // this.formDataAdd.append("district", this.shopData.district);
-    // this.formDataAdd.append("city", this.shopData.city);
-    // this.formDataAdd.append("street", this.shopData.street);
-    // this.formDataAdd.append("shopCategory", this.shopData.shopCategory);
-    // this.formDataAdd.append("status", this.shopData.status);
-    if (this.status == false) {
-      this.shopData.status = 0;
-    }
-    else {
-      this.shopData.status = 1;
-    }
-    this.shopService.merge(this.shopData).subscribe(event => {
-      this.shopService.uploadShopImages(event.id, this.formDataAdd).subscribe(
-        res => {
-          this.notice.showSuccess();
-          this.onBtnCancelClick();
+
+    if (this.form) {
+      if (!this.validateForm(this.form, 'shop-edit')) {
+        return;
+      }
+      if (this.form.form.dirty) {
+        if (this.status == false) {
+          this.shopData.status = 0;
         }
-      )
-    });
+        else {
+          this.shopData.status = 1;
+        }
+        this.shopService.merge(this.shopData).subscribe(event => {
+          this.shopService.uploadShopImages(event.id, this.formDataAdd).subscribe(
+            res => {
+              this.notice.showSuccess();
+              this.onBtnCancelClick();
+            }
+          )
+        });
+      }
+    }
   }
 
 
