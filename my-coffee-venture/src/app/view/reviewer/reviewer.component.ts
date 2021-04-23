@@ -48,11 +48,12 @@ export class ReviewerComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, private http: HttpClient, public reviewService: ReviewService, private noti: NotificationService, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.formDisplay = false;
     this.userName = this.authService.getUser();
     this.userService.selectById(this.authService.getUserId()).subscribe(element => {
       if (element.avatarPath) {
-        this.postAvatar = 'data:image/jpeg;base64,' + element.avatarPath;
-        this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.postAvatar);
+        this.postAvatar = element.avatarPath;
+        this.imageUrl = this.postAvatar;
       }
       this.pageLoaded = true;
     })
@@ -71,10 +72,9 @@ export class ReviewerComponent implements OnInit {
           return;
         }
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
@@ -110,10 +110,9 @@ export class ReviewerComponent implements OnInit {
       });
       res.forEach(element => {
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
@@ -163,13 +162,9 @@ export class ReviewerComponent implements OnInit {
     calendar.updateTodaysDate();
   }
 
-  editReview(rowData?) {
+  editReview() {
     this.input = {};
     this.input.content = "";
-    if (rowData) {
-      this.input.name = rowData.name;
-      this.input.id = rowData.id;
-    }
     this.formDisplay = true;
   }
   format(event: Date) {
@@ -194,6 +189,7 @@ export class ReviewerComponent implements OnInit {
   }
 
   onUploadEvent(event) {
+    this.formDisplay = false;
     if (event) {
       this.resetCalendar();
       this.initData();

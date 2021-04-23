@@ -12,13 +12,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-between"><a [routerLink]="['/app/shop']"><button
-                                class="btn btn-primary"> See
-                                shops</button> </a><a [routerLink]="['/login']"><button class="btn btn-primary">Login
-                                now to
-                                start a journal </button></a><a [routerLink]="['/app/review']"><button
-                                class="btn btn-primary">See what
-                                reviewers are reviewing </button></a>
+                    <div class="row justify-content-between">
+                        < <a [routerLink]="['/app/shop']"><button class="btn btn-primary"> See shops</button> </a>
+                            <a [routerLink]="['/login']"><button class="btn btn-primary">Login now to start a journal
+                                </button></a>
+                            <a [routerLink]="['/app/review']"><button class="btn btn-primary">See what reviewers are
+                                    reviewing </button></a>
                     </div>
                 </div>
                 <div *ngIf="checkAuth() == true">
@@ -32,12 +31,13 @@
                         </div>
 
                     </div>
-                    <div class="row justify-content-between"><a [routerLink]="[ '/app/shop'] "><button
-                                class="btn btn-primary "> See
-                                shops</button> </a><a [routerLink]="[ '/login'] "><button class="btn btn-primary ">Start
-                                a journal </button></a><a [routerLink]="[ '/login'] "><button
-                                class="btn btn-primary ">Start reviewing </button></a><a [routerLink]="[ '/app/review'] "><button class="btn btn-primary ">See what
-                                reviewers are reviewing </button></a>
+                    <div class="row justify-content-between">
+                        <a [routerLink]="[ '/app/shop'] "><button class="btn btn-primary "> See shops</button> </a>
+                        <a [routerLink]="[ '/app/user'] "><button class="btn btn-primary ">Start a journal </button></a>
+                        <a [routerLink]="[ '/app/reviewer'] "><button class="btn btn-primary ">Start reviewing
+                            </button></a>
+                        <a [routerLink]="[ '/app/forum'] "><button class="btn btn-primary ">See what people are
+                                reviewing </button></a>
                     </div>
                 </div>
             </div>
@@ -150,49 +150,49 @@
 
             <p-overlayPanel appendTo="body" [baseZIndex]="9999" #op [showCloseIcon]="true" [style]="{width: '90%'}">
                 <ng-template pTemplate>
-                    <div class="row ">
-                        <div class="col-md-3 ">
+                    <div class="row">
+                        <div class="col-md-3">
                             <h5>Search by name</h5>
-                            <span class="p-float-label ">
-                                <input id="float-input " type="text " pInputText [(ngModel)]="shopRequest.name "
-                                    style="width: 100%;max-width: 100%; ">
-                                <label for="float-input ">Shop name</label>
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText [(ngModel)]="shopRequest.name"
+                                    style="width: 100%;max-width: 100%;">
+                                <label for="float-input">Shop name</label>
                             </span>
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-2">
                             <h5>Cities</h5>
-                            <p-multiSelect [options]="cities " optionLabel="name " optionValue="city " [(ngModel)]="shopRequest.cities " defaultLabel="Select a city " selectedItemsLabel="{0} items selected " [selectionLimit]="1 " (onChange)="changeCities() " [style]="{width: '100%'} ">
+                            <p-multiSelect [options]="cities" optionLabel="name" optionValue="city" [(ngModel)]="shopRequest.cities" defaultLabel="Select a city" selectedItemsLabel="{0} items selected" [selectionLimit]="1" (onChange)="changeCities()" [style]="{width:'100%'}">
                             </p-multiSelect><br>
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-2">
                             <h5>Districts</h5>
-                            <p-multiSelect [options]="filteredDistricts " [(ngModel)]="shopRequest.districts " optionLabel="name " [selectionLimit]="1 " optionValue="district " defaultLabel="Select districts " [selectedItemsLabel]=" '{0} items selected' " [style]="{width: '100%'} ">
+                            <p-multiSelect [options]="filteredDistricts" [(ngModel)]="shopRequest.districts" optionLabel="name" [selectionLimit]="1" optionValue="district" defaultLabel="Select districts" [selectedItemsLabel]="'{0} items selected'" [style]="{width:'100%'}">
                             </p-multiSelect>
                             <br>
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-2">
                             <h5>Streets</h5>
-                            <p-multiSelect [options]="filteredStreets " [(ngModel)]="shopRequest.streets " optionLabel="name " optionValue="street " defaultLabel="Select streets " [selectedItemsLabel]=" '{0} items selected' " [style]="{width: '100%'} ">
+                            <p-multiSelect [options]="filteredStreets" [(ngModel)]="shopRequest.streets" optionLabel="name" optionValue="street" defaultLabel="Select streets" [selectedItemsLabel]="'{0} items selected'" [style]="{width:'100%'}">
                             </p-multiSelect>
                             <br>
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-2">
                             <h5>Categories</h5>
-                            <p-multiSelect [options]="categories " [(ngModel)]="shopRequest.categoryIds " defaultLabel="Select categories " optionLabel="name " optionValue="categoryId " selectedItemsLabel="{0} items selected " [style]="{width: '100%'} ">
+                            <p-multiSelect [options]="categories" [(ngModel)]="shopRequest.categoryIds" defaultLabel="Select categories" optionLabel="name" optionValue="categoryId" selectedItemsLabel="{0} items selected" [style]="{width:'100%'}">
                             </p-multiSelect><br>
                         </div>
-                        <div class="col-md-1 ">
-                            <button type="button " pButton label=" " icon="pi pi-search " (click)="initShop(); " style="margin-left:.25em "></button>
+                        <div class="col-md-1">
+                            <button type="button" pButton label="" icon="pi pi-search" (click)="initShop();" style="margin-left:.25em"></button>
                         </div>
                         <!-- <h5>Grouped</h5> -->
-                        <!-- <p-multiSelect [maxSelectedLabels]="1 " [options]="groupedCities " [group]="true " [style]="{ 'width': '100%'} " [(ngModel)]="selectedCities4 " defaultLabel="Select a City " scrollHeight="250px " display="chip ">
-                                                                <ng-template let-group pTemplate="group ">
-                                                                    <div class="p-d-flex p-ai-center ">
-                                        
-                                                                        <span>{{group.label}}</span>
-                                                                    </div>
-                                                                </ng-template>
-                                                            </p-multiSelect> -->
+                        <!-- <p-multiSelect [maxSelectedLabels]="1" [options]="groupedCities" [group]="true" [style]="{'width':'100%'}" [(ngModel)]="selectedCities4" defaultLabel="Select a City" scrollHeight="250px" display="chip">
+                                                                                    <ng-template let-group pTemplate="group">
+                                                                                        <div class="p-d-flex p-ai-center">
+                                                            
+                                                                                            <span>{{group.label}}</span>
+                                                                                        </div>
+                                                                                    </ng-template>
+                                                                                </p-multiSelect> -->
                     </div>
                 </ng-template>
             </p-overlayPanel>

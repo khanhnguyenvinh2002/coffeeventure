@@ -31,11 +31,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
+import { ReviewModule } from 'src/app/module/sticky/review/review.module';
 @NgModule({
   declarations: [UserComponent, ShopSavedComponent, ForumComponent],
   imports: [
     CommonModule,
-    UserRoutingModule,
+    UserRoutingModule, ReviewModule,
     HttpClientModule, InputTimeModule, ReviewerModule,
     FormsModule, ReactiveFormsModule, NgbModule, DialogModule, InputTextareaModule, ToggleButtonModule, MatIconModule, MatMenuModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, CalendarModule, InfiniteScrollModule, PartialsModule, TableModule, MessagesModule, MatButtonModule,
 

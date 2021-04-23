@@ -14,8 +14,10 @@ export class HttpService<T = any> {
     protected notification = ServiceLocator.injector.get(NotificationService);
     protected httpClient = ServiceLocator.injector.get(HttpClient);
     // protected configuration = ServiceLocator.injector.get(Configuration).configuration;
+    //https://coffeeventure.azurewebsites.net/
 
-    public origin = 'https://localhost:44341/';
+    public origin = 'https://coffeeventure.azurewebsites.net/';
+    // public origin = 'https://localhost:44341/';
     public url = '';
 
     public isLoading = false;
@@ -146,7 +148,6 @@ export class HttpService<T = any> {
     }
 
     private throwException(error: HttpErrorResponse): void {
-        console.log(error);
         switch (error.status) {
             case 0:
                 // window.location.href = origin + '/error/error-v1';

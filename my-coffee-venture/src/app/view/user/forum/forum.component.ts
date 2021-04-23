@@ -51,10 +51,9 @@ export class ForumComponent implements OnInit {
       this.dataSourceReview.items = res;
       this.dataSourceReview.items.forEach(element => {
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
@@ -73,10 +72,9 @@ export class ForumComponent implements OnInit {
       this.dataSource.items = res;
       this.dataSource.items.forEach(element => {
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
@@ -102,10 +100,9 @@ export class ForumComponent implements OnInit {
       }
       res.forEach(element => {
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
@@ -132,10 +129,9 @@ export class ForumComponent implements OnInit {
       }
       res.forEach(element => {
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
