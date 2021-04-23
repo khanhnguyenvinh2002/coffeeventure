@@ -27,6 +27,7 @@ import { TableModule } from "primeng/table";
 import { ToggleButtonModule } from "primeng/togglebutton";
 import { TooltipModule } from "primeng/tooltip";
 import { ReviewAddComponent } from "src/app/view/reviewer/review-add/review-add.component";
+import { NgSelectAsyncModule } from "../control/async-select/async-select.component";
 import { InputTimeModule } from "../control/input-time/input-time.module";
 import { PartialsModule } from "../partials.module";
 import { ReviewItemComponent } from "./review.component";
@@ -48,7 +49,7 @@ import { ReviewItemComponent } from "./review.component";
         MatProgressSpinnerModule,
         MatTooltipModule,
         MatDialogModule,
-
+        NgSelectAsyncModule,
         // ng-bootstrap modules
         NgbDropdownModule,
         NgbTooltipModule,

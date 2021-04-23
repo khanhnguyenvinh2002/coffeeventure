@@ -42,15 +42,16 @@ export class PostComponent implements OnInit {
     this.service.selectById(this.id).subscribe(res => {
       this.item = res;
       let temp = [];
-      if (this.item.imagePaths && this.item.imagePaths.length > 0) {
-        this.item.imagePaths.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e;
-          temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+      if (this.item.imageDirectories && this.item.imageDirectories.length > 0) {
+        this.item.imageDirectories.forEach(e => {
+          temp.push(e);
+          // let objectURL = 'data:image/jpeg;base64,' + e;
+          // temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
           // reader.readAsDataURL(new Blob(e.imagePath]));
         });
       }
       if (this.item && this.item.avatarPath) {
-        this.avatar = 'data:image/jpeg;base64,' + this.item.avatarPath;
+        this.avatar = this.item.avatarPath;
       }
       this.item.images = temp;
       if (this.item.images) {
@@ -83,6 +84,8 @@ export class PostComponent implements OnInit {
   calculateTime(createdAt: string) {
     let startDate = new Date(createdAt);
     let endDate = new Date();
+    var startsec = startDate.getSeconds();
+    var endsec = endDate.getSeconds();
     var starthour = startDate.getHours();
     var endhour = endDate.getHours();
     var startmonth = startDate.getMonth();
@@ -124,6 +127,12 @@ export class PostComponent implements OnInit {
     }
     else if (endminute - startminute > 0) {
       return (endminute - startminute) + " minute ago";
+    }
+    else if (endsec - startsec > 1) {
+      return (endsec - startsec) + " secs ago";
+    }
+    else if (endsec - startsec > 0) {
+      return (endsec - startsec) + " sec ago";
     }
   }
 

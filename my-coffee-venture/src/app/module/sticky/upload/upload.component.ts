@@ -35,7 +35,11 @@ export class UploadComponent implements OnInit {
       return this.formData.append('file' + index, file, file.name);
     });
     this.onFileLoad.emit(this.formData);
+  }
+  public reset() {
+    this.formData = new FormData();
     this.imageUrl = "";
+    this.preview = false;
   }
   handleFileInput(event) {
     if (event.target.files && event.target.files[0]) {

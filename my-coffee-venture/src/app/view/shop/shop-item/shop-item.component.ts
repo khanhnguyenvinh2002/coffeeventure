@@ -83,11 +83,11 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
         this.shopItem = res;
         // const reader = new FileReader();
         // reader.onload = (e) => this.dataSource.items.image = e.target.result;
-        res.imagePaths.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e;
-          this.images.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
-          // reader.readAsDataURL(new Blob(e.imagePath]));
-        });
+        if (res && res.imageDirectories && res.imageDirectories.length > 0) {
+          res.imageDirectories.forEach(e => {
+            this.images.push(e);
+          });
+        }
         this.profileImage = this.images ? this.images[0] : "";
         if (this.shopItem && this.shopItem.shopCategory && this.shopItem.shopCategory.length > 0) {
           let temp = this.shopItem.shopCategory[0].id;
@@ -116,25 +116,26 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
     this.reviewRequest.shopId = this.id;
     this.reviewService.selectReviewsByShop(this.reviewRequest).subscribe(res => {
       this.data = res;
-      this.data.forEach(element => {
-        if (element.length == 0) {
-          this.allItems = true;
-          return;
-        }
-        let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
-            // reader.readAsDataURL(new Blob(e.imagePath]));
-          });
-          element.images = temp;
-          if (element.images) {
-            element.image = element.images[0];
+      if (this.data) {
+        this.data.forEach(element => {
+          if (element.length == 0) {
+            this.allItems = true;
+            return;
           }
-        }
-        this.cdr.detectChanges();
-      });
+          let temp = [];
+          if (element.imageDirectories && element.imageDirectories.length > 0) {
+            element.imageDirectories.forEach(e => {
+              temp.push(e);
+            });
+            element.images = temp;
+            if (element.images) {
+              element.image = element.images[0];
+            }
+          }
+          this.cdr.detectChanges();
+        });
+
+      }
       this.stopScroll = false;
       this.allItems = false;
     });
@@ -156,10 +157,9 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
       }
       res.forEach(element => {
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
@@ -183,13 +183,12 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
     this.shopService.select(this.shopRequest).subscribe(
       (response: any) => {
         this.similarDistrict = response;
-        // const reader = new FileReader();
-        // reader.onload = (e) => this.dataSource.items.image = e.target.result;
-        this.similarDistrict.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
-          e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
-          // reader.readAsDataURL(new Blob(e.imagePath]));
-        });
+        if (this.similarDistrict && this.similarDistrict.length > 0) {
+          this.similarDistrict.forEach(e => {
+            e.image = e.imagePath;
+          });
+
+        }
         this.loadedDistrict = true;
         if (this.cd && !this.cd['destroyed']) {
           this.cdr.detectChanges();
@@ -205,25 +204,26 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
     this.loadedCategory = false;
     this.shopService.select(this.shopRequest).subscribe(
       (response: any) => {
+
         this.similarCategory = response;
-        // const reader = new FileReader();
-        // reader.onload = (e) => this.dataSource.items.image = e.target.result;
-        this.similarCategory.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
-          e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
-          // reader.readAsDataURL(new Blob(e.imagePath]));
-        });
+        if (this.similarCategory && this.similarCategory.length > 0) {
+          this.similarCategory.forEach(e => {
+            e.image = e.imagePath;
+          });
+        }
         this.loadedCategory = true;
         if (this.cd && !this.cd['destroyed']) {
           this.cdr.detectChanges();
         }
       });
+
   }
 
   onReviewAdd() {
     this.input = {};
     this.input.content = "";
     this.input.shopId = this.id;
+    this.input.shopName = this.shopItem.name;
     this.formDisplay = true;
   }
   saveShop(event: boolean) {
@@ -243,10 +243,12 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
   }
 
   onUploadEvent(event) {
+    this.formDisplay = false;
     if (event) {
       this.initData();
     }
   }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

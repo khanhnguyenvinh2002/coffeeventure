@@ -39,7 +39,7 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
   ngOnInit(): void {
     this.userName = this.authService.getUser();
     this.shopRequest.pageIndex = 0;
-    this.shopRequest.pageSize = 12;
+    this.shopRequest.pageSize = 6;
     this.initShop();
     this.shopService.selectShopSearch().subscribe(res => {
       this.cities = res.cities;
@@ -62,28 +62,23 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
     return false
   }
   public initShop(): void {
+    this.shopRequest.pageIndex = 0;
+    this.shopRequest.pageSize = 12;
     this.loaded = false;
-    const $selectAndCount = [
-      this.shopService.select(this.shopRequest),
-      this.shopService.count(this.shopRequest),
-
-    ];
-    const sub = forkJoin($selectAndCount).subscribe(
-      (response: any[]) => {
-        this.dataSource.items = response[0];
-        // const reader = new FileReader();
-        // reader.onload = (e) => this.dataSource.items.image = e.target.result;
-        this.dataSource.items.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
-          e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
-          // reader.readAsDataURL(new Blob(e.imagePath]));
+    const sub =
+      this.shopService.select(this.shopRequest).subscribe(
+        (response: any) => {
+          this.dataSource.items = response;
+          if (this.dataSource.items && this.dataSource.items.length > 0) {
+            this.dataSource.items.forEach(e => {
+              e.image = e.imagePath;
+            });
+          }
+          this.loaded = true;
+          if (this.cd && !this.cd['destroyed']) {
+            this.cdr.detectChanges();
+          }
         });
-        this.dataSource.paginatorTotal = response[1];
-        this.loaded = true;
-        if (this.cd && !this.cd['destroyed']) {
-          this.cdr.detectChanges();
-        }
-      });
 
     this.cdr.detectChanges();
     this.subscriptions.push(sub);
