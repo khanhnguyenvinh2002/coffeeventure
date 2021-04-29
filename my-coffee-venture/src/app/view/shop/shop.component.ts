@@ -92,7 +92,7 @@ export class ShopComponent extends BaseListComponent implements OnInit {
           this.dataSource.items = response;
           if (this.dataSource.items && this.dataSource.items.length > 0) {
             this.dataSource.items.forEach(e => {
-              e.image = e.imagePath;
+              e.image = e.imagePath ? e.imagePath : 'assets/img/cf_bg1.jpg';
             });
           }
           this.loaded = true;

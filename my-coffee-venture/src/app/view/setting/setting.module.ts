@@ -46,6 +46,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FunctionalComponent } from './functional/functional.component';
 import { ShopCategoryComponent } from './functional/shop-category/shop-category.component';
 import { MessagesModule } from 'primeng/messages';
+import { ShopEditComponent } from './functional/shop-edit/shop-edit.component';
 const routes: Routes = [
     {
         path: 'system/permission',
@@ -109,7 +110,8 @@ const routes: Routes = [
         ActionViewComponent,
         RoleDetailsComponent,
         FunctionalComponent,
-        ShopCategoryComponent
+        ShopCategoryComponent,
+        ShopEditComponent
     ],
     exports: [],
     imports: [

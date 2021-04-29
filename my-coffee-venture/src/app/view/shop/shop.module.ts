@@ -23,7 +23,7 @@ import { ReviewModule } from 'src/app/module/sticky/review/review.module';
 
 @NgModule({
   declarations: [ShopComponent, ShopItemComponent, ShopItemAddComponent],
-  exports: [ShopItemComponent],
+  exports: [ShopItemComponent, ShopItemAddComponent, ShopComponent],
   imports: [
     CommonModule, MessagesModule, InputTimeModule, ReviewModule,
     FormsModule, ButtonModule, MatCardModule, OverlayPanelModule,

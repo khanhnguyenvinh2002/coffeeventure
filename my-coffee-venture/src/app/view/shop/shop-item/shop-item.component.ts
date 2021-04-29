@@ -72,6 +72,7 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
   public stopScroll = false;
   public isLoaded = false;
   public data: any;
+  public status = false;
   constructor(private route: ActivatedRoute, private router: Router, private noti: NotificationService, private userShopService: UserShopService, private shopService: ShopService, private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, public authService: AuthService, public reviewService: ReviewService) { super(); }
 
   ngOnInit(): void {
@@ -79,16 +80,29 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
       this.loaded = false;
       // this.id = +params['id']; // (+) converts string 'id' to a number
       this.id = params['id'];
+      if (this.authService.isAuthenticated()) {
+        this.userShopService.getAll().subscribe(res => {
+          if (res && res.length > 0) {
+            let ids = res.map(x => x.id);
+            let index = ids.indexOf(this.id);
+            if (index > -1) {
+              this.status = true;
+            }
+            else {
+              this.status = false;
+            }
+          }
+        })
+      }
       this.shopService.selectById(this.id).subscribe(res => {
         this.shopItem = res;
-        // const reader = new FileReader();
-        // reader.onload = (e) => this.dataSource.items.image = e.target.result;
-        if (res && res.imageDirectories && res.imageDirectories.length > 0) {
-          res.imageDirectories.forEach(e => {
-            this.images.push(e);
-          });
-        }
-        this.profileImage = this.images ? this.images[0] : "";
+        if (res.status)
+          if (res && res.imageDirectories && res.imageDirectories.length > 0) {
+            res.imageDirectories.forEach(e => {
+              this.images.push(e);
+            });
+          }
+        this.profileImage = (this.images && this.images.length > 0) ? this.images[0] : 'assets/img/cf_bg1.jpg';
         if (this.shopItem && this.shopItem.shopCategory && this.shopItem.shopCategory.length > 0) {
           let temp = this.shopItem.shopCategory[0].id;
           this.category = this.shopItem.shopCategory[0].name;
@@ -185,7 +199,7 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
         this.similarDistrict = response;
         if (this.similarDistrict && this.similarDistrict.length > 0) {
           this.similarDistrict.forEach(e => {
-            e.image = e.imagePath;
+            e.image = e.imagePath ? e.imagePath : 'assets/img/cf_bg1.jpg';
           });
 
         }
@@ -208,7 +222,7 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
         this.similarCategory = response;
         if (this.similarCategory && this.similarCategory.length > 0) {
           this.similarCategory.forEach(e => {
-            e.image = e.imagePath;
+            e.image = e.imagePath ? e.imagePath : 'assets/img/cf_bg1.jpg';
           });
         }
         this.loadedCategory = true;
@@ -231,12 +245,15 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
       this.userShop = {};
       this.userShop.id = this.id;
       this.userShopService.insert(this.userShop).subscribe(res => {
+        this.userShop = {};
         this.noti.showSuccess();
       })
     }
     else {
+      this.userShopRequest = new UserShopRequestPayload();
       this.userShopRequest.shopId = this.id;
       this.userShopService.deleteShopFromUser(this.userShopRequest).subscribe(res => {
+        this.userShopRequest.shopId = undefined;
         this.noti.showSuccess();
       })
     }

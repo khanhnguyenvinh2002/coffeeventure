@@ -228,6 +228,11 @@ export class UserComponent extends BaseListComponent implements OnInit {
       this.stopScroll = true;
       this.cdr.detectChanges();
     }
+    else {
+      this.data = this.dataSource.items.filter(x => this.format(new Date(x.createdAt)) == date);
+      this.stopScroll = true;
+      this.cdr.detectChanges();
+    }
     // if (index < 0) this.daysSelected.push(date);
     // else this.daysSelected.splice(index, 1);
     calendar.updateTodaysDate();

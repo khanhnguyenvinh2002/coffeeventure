@@ -33,7 +33,7 @@ export class BaseHeaderComponent implements OnInit {
   @HostListener("window:scroll", [])
   onWindowScroll() {
     const offset = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
-    if (offset > 200) {
+    if (offset > 85) {
       this.id = 1;
     }
     else {

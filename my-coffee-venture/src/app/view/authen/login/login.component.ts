@@ -61,12 +61,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(credentials.username, credentials.password).subscribe(res => {
       if (res.canAccess && res.accessToken != null) {
         this.authService.setCookie("AccessToken", res.accessToken, 7);
-        localStorage.setItem('loggedUser', JSON.stringify({ accessToken: res.accessToken, userName: res.userInfo.userName, roles: res.userInfo.roles }));
+        localStorage.setItem('loggedUser', JSON.stringify({ accessToken: res.accessToken, userName: res.userInfo.userName }));
         // this.authService.setCookie("UserInfo", JSON.stringify(res.userInfo), 7);
         let path = this.route.snapshot.queryParams.returnUrl ? this.route.snapshot.queryParams.returnUrl : '/app/home';
         this.router.navigate([path]);
       } else {
-        this.toastrService.error("Error", 'User does not exist, please register!');
+        this.toastrService.error('No data matches provided information', "Error");
       }
 
     })
@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
     let request = new UserRequestPayload();
     request.userName = this.registerForm.value.username1;
     if (credentials.password1 != credentials.retypePassword) {
-      this.toastrService.error("Error", 'Password does not match');
+      this.toastrService.error('Password does not match', "Error");
       return;
     }
     this.userService.count(request).subscribe(res => {
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
         this.authService.register(credentials.username1, credentials.password1).subscribe(res => {
           if (res.canAccess && res.accessToken != null) {
             this.authService.setCookie("AccessToken", res.accessToken, 7);
-            localStorage.setItem('loggedUser', JSON.stringify({ accessToken: res.accessToken, userName: res.userInfo.userName, roles: res.userInfo.roles }));
+            localStorage.setItem('loggedUser', JSON.stringify({ accessToken: res.accessToken, userName: res.userInfo.userName }));
             // this.authService.setCookie("UserInfo", JSON.stringify(res.userInfo), 7);
             let path = this.route.snapshot.queryParams.returnUrl ? this.route.snapshot.queryParams.returnUrl : '/app/home';
             this.router.navigate([path]);
@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
 
         })
       } else {
-        this.toastrService.error('User already exists', "Error");
+        this.toastrService.error('No data matches provided information', "Error");
       }
     }
     )

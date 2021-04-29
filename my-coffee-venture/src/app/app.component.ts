@@ -11,7 +11,8 @@ export class AppComponent {
   title = 'my-coffee-venture';
   constructor(private primengConfig: PrimeNGConfig, private elementRef: ElementRef) { }
   ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'rgba(168,186,169, 0.3)';
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#cee8f0';
+    // this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'rgb(193,221,232)';
   }
   ngOnInit() {
     this.primengConfig.ripple = true;

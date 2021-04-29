@@ -1,10 +1,10 @@
 <section>
     <div class="container-fluid">
-        <h2 style="text-align: center; margin-top:2rem">Welcome to out list of available cafes!</h2>
+        <h2 style="text-align: center; margin-top:2rem">Welcome to our list of available cafes!</h2>
         <p style="text-align: center; margin-bottom: 2rem;">Click on an item to view detail</p>
         <p style="text-align: center; margin-bottom: 2rem;">If you want to view items by page, please visit our <a [routerLink]="['/app/home']">home page</a></p>
         <div class="nav flex-row " style="top: 4rem; width:100%">
-            <button pButton class="float-right" label="filter" icon="pi pi-search" (click)="op.toggle($event)"></button>
+            <button pButton class="float-right" label="Filter" icon="pi pi-search" (click)="op.toggle($event)"></button>
 
             <p-overlayPanel appendTo="body" [baseZIndex]="9999" #op [showCloseIcon]="true" [style]="{width: '90%'}">
                 <ng-template pTemplate>

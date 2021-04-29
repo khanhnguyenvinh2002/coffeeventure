@@ -65,20 +65,24 @@ export class BaseScreenComponent extends BaseListComponent implements OnInit {
     this.shopRequest.pageIndex = 0;
     this.shopRequest.pageSize = 12;
     this.loaded = false;
-    const sub =
-      this.shopService.select(this.shopRequest).subscribe(
-        (response: any) => {
-          this.dataSource.items = response;
-          if (this.dataSource.items && this.dataSource.items.length > 0) {
-            this.dataSource.items.forEach(e => {
-              e.image = e.imagePath;
-            });
-          }
-          this.loaded = true;
-          if (this.cd && !this.cd['destroyed']) {
-            this.cdr.detectChanges();
-          }
-        });
+    const $selectAndCount = [
+      this.shopService.select(this.shopRequest),
+      this.shopService.count(this.shopRequest)];
+
+    const sub = forkJoin($selectAndCount).subscribe(
+      (response: any[]) => {
+        this.dataSource.items = response[0];
+        this.dataSource.paginatorTotal = response[1];
+        if (this.dataSource.items && this.dataSource.items.length > 0) {
+          this.dataSource.items.forEach(e => {
+            e.image = e.imagePath ? e.imagePath : 'assets/img/cf_bg1.jpg';
+          });
+        }
+        this.loaded = true;
+        if (this.cd && !this.cd['destroyed']) {
+          this.cdr.detectChanges();
+        }
+      });
 
     this.cdr.detectChanges();
     this.subscriptions.push(sub);

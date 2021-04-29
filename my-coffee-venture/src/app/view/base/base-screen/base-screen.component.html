@@ -1,3 +1,6 @@
+<head>
+    <meta name="google-site-verification" content="-qIUmbbsmwb8w9kntnMcKCDNBcLH2hvqAHgKsbmGCLc" />
+</head>
 <div class="bg">
     <div class="bg_text">
         <div class="bg_text-deco">
@@ -13,11 +16,11 @@
                         </div>
                     </div>
                     <div class="row justify-content-between">
-                        < <a [routerLink]="['/app/shop']"><button class="btn btn-primary"> See shops</button> </a>
-                            <a [routerLink]="['/login']"><button class="btn btn-primary">Login now to start a journal
-                                </button></a>
-                            <a [routerLink]="['/app/review']"><button class="btn btn-primary">See what reviewers are
-                                    reviewing </button></a>
+                        <a [routerLink]="['/app/shop']"><button class="btn btn-primary"> See shops</button> </a>
+                        <a [routerLink]="['/login']"><button class="btn btn-primary">Login now to start a journal
+                            </button></a>
+                        <a [routerLink]="['/app/user/forum']"><button class="btn btn-primary">See what people are
+                                reviewing </button></a>
                     </div>
                 </div>
                 <div *ngIf="checkAuth() == true">
@@ -36,7 +39,7 @@
                         <a [routerLink]="[ '/app/user'] "><button class="btn btn-primary ">Start a journal </button></a>
                         <a [routerLink]="[ '/app/reviewer'] "><button class="btn btn-primary ">Start reviewing
                             </button></a>
-                        <a [routerLink]="[ '/app/forum'] "><button class="btn btn-primary ">See what people are
+                        <a [routerLink]="[ '/app/user/forum'] "><button class="btn btn-primary ">See what people are
                                 reviewing </button></a>
                     </div>
                 </div>
@@ -56,51 +59,43 @@
             <div class="col-md-4 " style="padding: 20px; ">
                 <div class="hi ">
                     <p-card header="Every shop is unique, have you tried them all? " subheader=" " styleClass="p-card-shadow ">
-                        <ng-template pTemplate="header ">
-                            <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                        </ng-template>
-                        <p style="height: 20vh ">See our list of shops now!
-                        </p>
-                        <ng-template pTemplate="footer ">
-                            <div>
-                                <a [routerLink]="[ '/app/shop'] ">See shops <i class="pi pi-arrow-right transform "
-                                        style="font-size: 0.5rem "></i></a>
+                        <ng-template pTemplate="header">
+                            <div style="text-align: center;">
+                                <i class="pi pi-star-o" style="font-size: 5rem"></i>
                             </div>
+
                         </ng-template>
+                        <p style="height: 5vh;text-align: center; "><a [routerLink]="[ '/app/shop'] ">See our list of
+                                shops now!</a>
+                        </p>
                     </p-card>
                 </div>
             </div>
             <div class="col-md-4 " style="padding: 20px; ">
                 <div class="hi ">
-                    <p-card header="Good coffee houses have good reviews " subheader=" " styleClass="p-card-shadow ">
-                        <ng-template pTemplate="header ">
-                            <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                        </ng-template>
-                        <p style="height: 20vh ">See our list of reviews now!
-                        </p>
-                        <ng-template pTemplate="footer ">
-                            <div>
-                                <a [routerLink]="[ '/app/reviewer'] ">See reviews <i
-                                        class="pi pi-arrow-right transform " style="font-size: 0.5rem "></i></a>
+                    <p-card header="Good coffee houses have good reviews" subheader="" styleClass="p-card-shadow ">
+                        <ng-template pTemplate="header">
+                            <div style="text-align: center;">
+                                <i class="pi pi-users" style="font-size: 5rem"></i>
                             </div>
                         </ng-template>
+                        <p style="text-align: center;height: 5vh ">
+                            <a [routerLink]="[ '/app/user/forum'] ">See what people are reviewing now!</a>
+                        </p>
                     </p-card>
                 </div>
             </div>
             <div class="col-md-4 " style="padding: 20px; ">
                 <div class="hi ">
-                    <p-card header="Journals make coffee venture memorable " subheader=" " styleClass="p-card-shadow ">
-                        <ng-template pTemplate="header ">
-                            <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                        </ng-template>
-                        <p style="height: 20vh ">Write some journals now!
-                        </p>
-                        <ng-template pTemplate="footer ">
-                            <div>
-                                <a [routerLink]="[ '/app/reviewer'] ">Start writing <i
-                                        class="pi pi-arrow-right transform " style="font-size: 0.5rem "></i></a>
+                    <p-card header="Journals make coffee venture memorable" subheader=" " styleClass="p-card-shadow">
+                        <ng-template pTemplate="header">
+                            <div style="text-align: center;">
+                                <i class="pi pi-pencil" style="font-size: 5rem"></i>
                             </div>
                         </ng-template>
+                        <p style="text-align: center;height: 5vh "><a [routerLink]="[ '/app/user'] ">Write some journals
+                                now!</a>
+                        </p>
                     </p-card>
                 </div>
             </div>
@@ -125,14 +120,14 @@
                             <div class="p-md-6 " style="padding: 1rem; ">
                                 <h4 style="color: white; ">{{product.date | date:'yyyy-MM-dd'}}</h4>
                                 <span style="color: white; ">{{product.content}}</span>
-                                <div class="car-buttons ">
+                                <!-- <div class="car-buttons ">
                                     <p-button type="button " styleClass="p-button p-button-rounded p-mr-2 " icon="pi pi-search ">
                                     </p-button>
                                     <p-button type="button " styleClass="p-button-success p-button-rounded p-mr-2 " icon="pi pi-star ">
                                     </p-button>
                                     <p-button type="button " styleClass="p-button-help p-button-rounded " icon="pi pi-cog ">
                                     </p-button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -161,6 +156,8 @@
                         </div>
                         <div class="col-md-2">
                             <h5>Cities</h5>
+                            <!-- <ng-select [items]="cities" bindLabel="name" bindValue="city" name="city" (change)="changeCities()" placeholder="{{'Choost a city'}}" [style]="{width:'100%'}" [(ngModel)]="shopRequest.cities" validateTooltip appendTo="body" [addTag]="false">
+                            </ng-select> -->
                             <p-multiSelect [options]="cities" optionLabel="name" optionValue="city" [(ngModel)]="shopRequest.cities" defaultLabel="Select a city" selectedItemsLabel="{0} items selected" [selectionLimit]="1" (onChange)="changeCities()" [style]="{width:'100%'}">
                             </p-multiSelect><br>
                         </div>

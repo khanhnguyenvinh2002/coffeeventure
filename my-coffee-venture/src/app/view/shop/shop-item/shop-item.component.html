@@ -16,7 +16,7 @@
 
             <div class="profile-head" *ngIf="loaded == true">
                 <div *ngIf="authService.isAuthenticated()">
-                    <p-toggleButton onLabel="Unsave" offLabel="Save" offIcon="pi pi-check" onIcon="pi pi-times" iconPos="right" (onChange)="saveShop($event.checked)"></p-toggleButton>
+                    <p-toggleButton [(ngModel)]="status" onLabel="Unsave" offLabel="Save" offIcon="pi pi-check" onIcon="pi pi-times" iconPos="right" (onChange)="saveShop($event.checked)"></p-toggleButton>
                 </div>
                 <p-messages severity="info" *ngIf="!authService.isAuthenticated()">
                     <ng-template pTemplate>

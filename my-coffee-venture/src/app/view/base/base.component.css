@@ -17,16 +17,6 @@
         opacity: 0.7;
     }
     
-    .p-menuitem.p-menuitem-link {
-        background-color: #A80000 !important;
-        background: red;
-    }
-    
-    .p-menuitem:hover {
-        background-color: #A80000 !important;
-        background: red;
-    }
-    
     .bg_text {
         display: flex;
         position: absolute;
@@ -98,8 +88,8 @@
     .affix {
         margin-top: 0;
         padding-top: 0.5rem;
-        background: linear-gradient(to bottom right, rgb(255, 245, 207) 0%, rgb(219, 205, 173) 100%) 100% no-repeat;
-        /* background-color: rgb(219, 205, 173); */
+        background-color: rgb(249, 203, 179);
+        /* background-color: rgb(180, 93, 47); */
         ;
     }
     

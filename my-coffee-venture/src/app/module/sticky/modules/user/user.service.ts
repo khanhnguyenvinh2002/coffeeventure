@@ -16,6 +16,11 @@ export class UserService extends HttpService {
         this.url = this.origin + 'user';
     }
 
+    public viewUserById(id: string, isSpinner?: boolean): Observable<any> {
+        return this.intercept(this.httpClient.get<any>(`${this.url}/view-user/${id}`,
+            { observe: 'response', headers: this.getHeaders() }), isSpinner)
+            .pipe(map(r => r.body));
+    }
     public uploadAvatar(formData: FormData, isSpinner?: boolean, params?: any): Observable<any> {
         return this.intercept(this.httpClient.post<any>(`${this.url}/upload-avatar`, formData, {
             observe: 'response', headers: new HttpHeaders({

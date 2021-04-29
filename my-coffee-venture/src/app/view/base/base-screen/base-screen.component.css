@@ -8,6 +8,10 @@
     margin-right: 12px;
 }
 
+:host>>>.p-card .p-card-title {
+    text-align: center;
+}
+
 .ui-multiselect-label {
     max-width: 150px;
     white-space: nowrap;
@@ -41,6 +45,7 @@
     color: whitesmoke;
     font-weight: 600;
     overflow-wrap: anywhere;
+    font-family: 'Caveat', cursive;
 }
 
 .text-deco {
@@ -48,6 +53,7 @@
     font-size: 3.2rem;
     line-height: 4.6rem;
     overflow-wrap: anywhere;
+    font-family: 'Caveat', cursive;
     font-weight: 700;
 }
 

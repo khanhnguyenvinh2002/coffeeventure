@@ -83,13 +83,13 @@
                                 <validate-form [form]="form" controlName="category"></validate-form>
                                 <async-select [actionGet]="'selectCategory'" [actionCount]="'countCategory'" name="category" bindLabel="name" placeholder="{{ 'Shop Category'  }}" [multiple]="true" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="shopData.shopCategory" required>
                                 </async-select>
-                                <!-- <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation> -->
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <!-- <div class="col-md-6 mb-3">
                                 <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="status">
                                 </p-toggleButton>
-                            </div>
+                            </div> -->
                         </div>
+                        <label *ngIf="currentshopId">{{ 'Reselect images' }}</label>
                         <app-upload-multiple (onFileLoad)="upload($event)">
                         </app-upload-multiple>
 

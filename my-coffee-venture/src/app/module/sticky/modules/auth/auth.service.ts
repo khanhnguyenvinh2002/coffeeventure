@@ -110,6 +110,7 @@ export class AuthService extends HttpService {
   logout(): void {
     localStorage.removeItem('loggedUser');
     localStorage.clear();
+    this.deleteAllCookies();
     // clear token remove user from local storage to log user out
     // this.setCookie("AccessToken", "", 0);
     this.httpClient.post<string>(this.logoutUrl, "", { headers: this.getHeaders(), observe: 'response' }).subscribe(res => {
@@ -141,7 +142,9 @@ export class AuthService extends HttpService {
       return loggedUser.jti;
     }
     else {
-      this.logout();
+
+      localStorage.removeItem('loggedUser');
+      localStorage.clear();
       return '';
     }
 

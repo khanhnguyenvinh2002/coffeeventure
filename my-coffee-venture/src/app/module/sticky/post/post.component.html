@@ -13,10 +13,12 @@
                 </div>
                 <div style="margin-left: 10px; text-align: left;">
                     <mat-card-title style="margin-bottom: 0; word-wrap: break-word;" class="wrap-text">
-                        {{item.userName}}</mat-card-title>
+                        <a (click)="goToUser(item.createdBy)" style="cursor: pointer;">{{item.userName}}</a>
+                    </mat-card-title>
                     <mat-card-subtitle class="wrap-text" style="word-wrap: break-word;">
-                        <span *ngIf="item.status == 0">Public</span>
-                        <span *ngIf="item.status != 0">Private</span> -- {{item.feeling}}
+                        <span *ngIf="item.status != 0">Public</span>
+                        <span *ngIf="item.status == 0">Private</span> <span *ngIf="item.feeling">--
+                            {{item.feeling}}</span>
                     </mat-card-subtitle>
                 </div>
             </div>
@@ -30,7 +32,7 @@
                     <button mat-menu-item title="{{'Delete'}}" (click)="onBtnDeleteClick(item.id)" *ngIf="authService.getUserId() == item.createdBy">
                         <span>{{'Delete'}}</span>
                     </button>
-                    <button mat-menu-item title="{{'Delete'}}" (click)="editJournal()" *ngIf="authService.getUserId() == item.createdBy">
+                    <button mat-menu-item title="{{'Edit'}}" (click)="editJournal()" *ngIf="authService.getUserId() == item.createdBy">
                         <span>{{'Edit'}}</span>
                     </button>
                 </mat-menu>
@@ -43,8 +45,16 @@
             <img [src]="item.image" alt="Photo of journal" *ngIf="item.image">
         </mat-card-content>
         <mat-card-actions>
-            Currently no action available
-            <!-- <button mat-button>LIKE</button>
+            <!-- Currently no action available -->
+            <div style="    font-size: 0.5rem;
+    font-weight: 100;
+    line-height: 0.5;
+    color: deeppink;padding-left: 9px;" *ngIf="likes >0"><i class="pi pi-thumbs-up" style="font-size: 0.75rem"> </i> Liked by {{likes}} people
+            </div>
+            <div *ngIf="authService.isAuthenticated()"><button mat-button *ngIf="!liked" (click)="onBtnLikeClick()">LIKE</button>
+                <button style="color: deeppink;" mat-button *ngIf="liked" (click)="onBtnUnLikeClick()">LIKED</button>
+            </div>
+            <!--
             <button mat-button>SHARE</button> -->
         </mat-card-actions>
     </mat-card>

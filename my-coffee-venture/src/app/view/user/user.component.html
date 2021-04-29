@@ -36,13 +36,19 @@
                         <h2>Share your coffee journal now</h2>
                         <button class="btn btn-primary" (click)="editJournal()">Add Journal</button>
                     </div>
-
+                    <p-messages severity="info" *ngIf="!data || data.length == 0">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">No data to display
+                            </div>
+                        </ng-template>
+                    </p-messages>
                     <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
                         <div *ngFor="let i of data">
                             <app-post [id]="i.id" [status]="i.status" [feeling]="i.feeling" [createdAt]="i.createdAt" [content]="i.content" [name]="'Testing user'" [avatar]="postAvatar" [service]=" journalService " [userName]="i.name " (event)="initData() ">
                             </app-post>
                         </div>
                     </div>
+
                     <app-waiting *ngIf="isLoaded==false "></app-waiting>
                 </div>
             </div>

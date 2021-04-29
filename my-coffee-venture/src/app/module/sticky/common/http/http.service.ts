@@ -134,7 +134,7 @@ export class HttpService<T = any> {
         if (isSpinner) { this.showSpinner(); }
         return observable
             .pipe(tap(() => {
-                if (window.window.name === 'epo-windowlogin') {
+                if (window.window.name === 'coffeeventure-login') {
                     window.close();
                 }
             }, (err: HttpErrorResponse) => {
@@ -155,10 +155,10 @@ export class HttpService<T = any> {
             case 401:
                 // Unauthorized access
                 this.confirmToRelogin();
-                // this.notification.showError(error.error);
+                this.notification.showError(error.error);
                 break;
             default:
-                // this.notification.showError(error.error);
+                this.notification.showError(error.error);
                 break;
         }
     }
@@ -179,18 +179,18 @@ export class HttpService<T = any> {
 
     protected showSpinner() {
         HttpService._pendingRequest++;
-        if (!document.body.classList.contains('m-page--loading-non-block')) {
-            document.body.classList.add('m-page--loading-non-block');
-        }
+        // if (!document.body.classList.contains('m-page--loading-non-block')) {
+        //     document.body.classList.add('m-page--loading-non-block');
+        // }
         this.isLoading = true;
         this.isLoadingSubject.next(true);
     }
 
     protected hideSpinner() {
         HttpService._pendingRequest--;
-        if (HttpService._pendingRequest === 0 && document.body.classList.contains('m-page--loading-non-block')) {
-            document.body.classList.remove('m-page--loading-non-block');
-        }
+        // if (HttpService._pendingRequest === 0 && document.body.classList.contains('m-page--loading-non-block')) {
+        //     document.body.classList.remove('m-page--loading-non-block');
+        // }
         this.isLoading = false;
         this.isLoadingSubject.next(false);
     }
@@ -274,9 +274,9 @@ export class HttpService<T = any> {
 
     private confirmToRelogin(): void {
         if (!this._loginTab || this._loginTab.closed) {
-            const result = confirm('Phiên đăng nhập hết hạn. Màn hình làm việc sẽ được giữ lại. Bạn có muốn mở tab mới để đăng nhập lại.');
+            const result = confirm('Your sessions has timed out. Do you want to open new tab to relogin?');
             if (result) {
-                this._loginTab = window.open(window.location.origin + '/auth/login', 'epo-windowlogin');
+                this._loginTab = window.open(window.location.origin + '/login', 'coffeeventure-login');
             }
         }
     }

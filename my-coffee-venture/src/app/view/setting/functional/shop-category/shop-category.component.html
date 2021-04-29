@@ -40,36 +40,37 @@
             <div class="p-ml-2">No data to display</div>
         </ng-template>
     </p-messages>
-    <p-dialog [(visible)]="isShowAddUser" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '40%'} " [draggable]="true" [maximizable]="true" [closable]="false">
-        <p-header>
-            <i class="fal fa-user-edit"></i> {{"Add category" }}
-        </p-header>
-        <form #form="ngForm">
-            <div class="col-md-12">
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <div class="form-group ">
-                            <label>{{ 'Name' }}</label>
-                            <validate-form [form]="form" controlName="name"></validate-form>
-                            <input type="text" class=" form-control " name="name" [(ngModel)]="input.name" placeholder="{{ 'Name'  }}" required>
-                        </div>
+</div>
+<p-dialog [(visible)]="isShowAddUser" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '40%'} " [draggable]="true" [maximizable]="true" [closable]="false">
+    <p-header>
+        <i class="fal fa-user-edit"></i> {{"Add category" }}
+    </p-header>
+    <form #form="ngForm">
+        <div class="col-md-12">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label>{{ 'Name' }}</label>
+                        <validate-form [form]="form" controlName="name"></validate-form>
+                        <input type="text" class=" form-control " name="name" [(ngModel)]="input.name" placeholder="{{ 'Name'  }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group ">
-                            <label>{{ 'Code' }}</label>
-                            <validate-form [form]="form" controlName="code"></validate-form>
-                            <input type="text" class="form-control" name="code" [(ngModel)]="input.code" placeholder="{{ 'Code'  }}" required>
-                        </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label>{{ 'Code' }}</label>
+                        <validate-form [form]="form" controlName="code"></validate-form>
+                        <input type="text" class="form-control" name="code" [(ngModel)]="input.code" placeholder="{{ 'Code'  }}" required>
                     </div>
                 </div>
             </div>
-        </form>
-        <br><br><br><br><br><br><br><br>
-        <ng-template pTemplate="footer">
-            <button class="btn btn-primary" title="{{ ('SAVE')  }}(Enter)" (click)="onBtnSaveUsers()">
-                {{ 'Save' }}
-            </button>
-            <button class="btn btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancelUsers()">{{
-                'Cancel' }}</button>
-        </ng-template>
-    </p-dialog>
+        </div>
+    </form>
+    <br><br><br><br><br><br><br><br>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-primary" title="{{ ('SAVE')  }}(Enter)" (click)="onBtnSaveUsers()">
+            {{ 'Save' }}
+        </button>
+        <button class="btn btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancelUsers()">{{
+            'Cancel' }}</button>
+    </ng-template>
+</p-dialog>

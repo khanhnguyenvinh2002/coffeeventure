@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseResponse } from '../../common/http/base-response.model';
 import { HttpService } from '../../common/http/http.service';
+import { RequestPayload } from '../../common/http/request-payload.model';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,18 @@ export class JournalService extends HttpService {
     constructor() {
         super();
         this.url = this.origin + 'journal';
+    }
+
+    public selectUsersById(id: string, isSpinner?: boolean): Observable<any> {
+        return this.intercept(this.httpClient.get<any>(`${this.url}/journal-like/${id}`,
+            { observe: 'response', headers: this.getHeaders() }), isSpinner)
+            .pipe(map(r => r.body));
+    }
+
+    public like(body: BaseResponse, isSpinner?: boolean, params?: any): Observable<any> {
+        return this.intercept(this.httpClient.post<any>(`${this.url}/like`,
+            JSON.stringify(body), { observe: 'response', headers: this.getHeaders(), params: this.toParams(params) }), isSpinner)
+            .pipe(map(r => r.body));
     }
 
     public uploadJournalImages(id: string, formData: FormData, isSpinner?: boolean, params?: any): Observable<any> {
