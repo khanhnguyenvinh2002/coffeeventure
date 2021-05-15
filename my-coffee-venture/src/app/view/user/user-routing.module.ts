@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
 import { AuthGuard } from 'src/app/module/sticky/modules/auth/auth.guard';
+import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [{
   path: '', component: UserComponent,
@@ -13,7 +14,9 @@ const routes: Routes = [{
   canActivate: [AuthGuard]
 }, {
   path: 'forum', component: ForumComponent,
-},];
+},
+{ path: 'user-view/:id', component: UserViewComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

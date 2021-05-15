@@ -4,15 +4,20 @@
         <mat-card-header class="justify-content-between" style=" text-align: center;">
             <div style="    display: flex; width: 200px;word-wrap: break-word;
     flex-direction: row;">
-                <div mat-card-avatar class="example-header-image" style="margin-bottom: 16px ;" [style.background-image]="'url(' + avatar  + ')'">
-
+                <div mat-card-avatar class="example-header-image" style="margin-bottom: 16px;">
+                    <img [src]="avatar" style="height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;">
                 </div>
                 <div style="margin-left: 10px; text-align: left;">
                     <mat-card-title style="margin-bottom: 0; word-wrap: break-word;" class="wrap-text">
-                        {{item.userName}}</mat-card-title>
+                        <a (click)="goToUser(item.createdBy)" style="cursor: pointer;">{{item.userName}}</a>
+                    </mat-card-title>
                     <mat-card-subtitle class="wrap-text" style="word-wrap: break-word;">
-                        <span *ngIf="item.status == 0"><i class="fad fa-globe-asia"></i></span>
-                        <span *ngIf="item.status != 0"><i class="far fa-lock-alt"></i></span>
+                        <span *ngIf="item.status != 0">Public</span>
+                        <span *ngIf="item.status == 0">Private</span>
                     </mat-card-subtitle>
                 </div>
             </div>
@@ -37,17 +42,25 @@
                 {{item.content}} <i>Created at {{item.createdAt | date}}</i>
             </p>
             <p>
-                {{item.shopName+" "}}
+                <a (click)="goToShopItem(item.shopId)" style="cursor: pointer; color: deeppink;" data-toggle="tooltip " data-placement="bottom " title="Go to shop" trigger="hover focus">{{item.shopName}}</a>
                 <p-rating [ngModel]="item.rating" readonly="true" stars="5" [cancel]="false">
                 </p-rating>
             </p>
             <img [src]="item.image" alt="Photo of review" *ngIf="item.image">
         </mat-card-content>
         <mat-card-actions>
-            Currently no action available
-            <!-- <button mat-button>LIKE</button>
+            <!-- Currently no action available -->
+            <div style="    font-size: 0.5rem;
+                font-weight: 100;
+                line-height: 0.5;
+                color: deeppink;padding-left: 9px;" *ngIf="likes >0"><i class="pi pi-thumbs-up" style="font-size: 0.75rem"> </i> Liked by {{likes}} people
+            </div>
+            <div *ngIf="authService.isAuthenticated()"><button mat-button *ngIf="!liked" (click)="onBtnLikeClick()">LIKE</button>
+                <button style="color: deeppink;" mat-button *ngIf="liked" (click)="onBtnUnLikeClick()">LIKED</button>
+            </div>
+            <!--
             <button mat-button>SHARE</button> -->
         </mat-card-actions>
     </mat-card>
 </div>
-<app-review-add [input]="input" [formDisplay]="formDisplay" [viewMode]="true" [title]="'Edit review'" (event)="formDisplay = false"></app-review-add>
+<app-review-edit [input]="input" [formDisplay]="formDisplay" [viewMode]="true" [title]="'Edit review'" (event)="formDisplay = false"></app-review-edit>

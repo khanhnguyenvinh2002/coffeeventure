@@ -1,3 +1,5 @@
+import { JournalRequestPayload } from 'src/app/module/sticky/modules/journal/journal-request.payload';
+import { Router } from '@angular/router';
 import { JournalService } from './../modules/journal/journal.service';
 import { AuthService } from './../modules/auth/auth.service';
 import { NotificationService } from './../common/notification/notification.service';
@@ -23,9 +25,10 @@ export class PostComponent implements OnInit {
   @Input() content: string;
   @Input() feeling: string;
   @Input() status: string;
-  @Input() avatar: any;
+  @Input() avatar: any = 'assets/img/cf_bg1.jpg';
   @Input() service: HttpService;
   @Input() userName: string;
+  public liked = false;
   public itemAdd: any;
   public formDisplay = false;
   public loaded = false;
@@ -33,24 +36,33 @@ export class PostComponent implements OnInit {
   public journalStatus: boolean;
   public journalAdd: any = {};
   public dataSource: any = {};
+  public likedUsers = [];
+  public likes = 0;
   @Output() event = new EventEmitter<boolean>();
   public item: any = {};
-  constructor(private sanitizer: DomSanitizer, private noti: NotificationService, private cdr: ChangeDetectorRef, public authService: AuthService, private journalService: JournalService) { }
+  constructor(private sanitizer: DomSanitizer, private noti: NotificationService, private router: Router, private cdr: ChangeDetectorRef, public authService: AuthService, private journalService: JournalService) { }
 
   ngOnInit(): void {
     this.loaded = false;
     this.service.selectById(this.id).subscribe(res => {
       this.item = res;
+      this.likes = res.likes;
+      this.likedUsers = res.likedUsers;
+      if (this.likedUsers.findIndex(x => x == this.authService.getUserId()) > -1) {
+        this.liked = true;
+      }
       let temp = [];
-      if (this.item.imagePaths && this.item.imagePaths.length > 0) {
-        this.item.imagePaths.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e;
-          temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+      if (this.item.imageDirectories && this.item.imageDirectories.length > 0) {
+        this.item.imageDirectories.forEach(e => {
+          temp.push(e);
+          // let objectURL = 'data:image/jpeg;base64,' + e;
+          // temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
           // reader.readAsDataURL(new Blob(e.imagePath]));
         });
       }
+      this.avatar = 'assets/img/cf_bg1.jpg';
       if (this.item && this.item.avatarPath) {
-        this.avatar = 'data:image/jpeg;base64,' + this.item.avatarPath;
+        this.avatar = this.item.avatarPath;
       }
       this.item.images = temp;
       if (this.item.images) {
@@ -73,6 +85,40 @@ export class PostComponent implements OnInit {
 
 
   }
+  onBtnUnLikeClick() {
+    if (this.item.id) {
+      this.journalService.like(this.item).subscribe(res => {
+        this.liked = false;
+        this.likedUsers = res.likedUsers;
+        this.likes--;
+        this.cdr.detectChanges();
+      }
+      )
+
+    }
+  }
+  onBtnLikeClick() {
+    if (this.item.id) {
+      this.journalService.like(this.item).subscribe(res => {
+        this.liked = true;
+        this.likedUsers = res.likedUsers;
+        this.likes++;
+        this.cdr.detectChanges();
+      }
+      )
+
+    }
+  }
+  goToUser(id: string) {
+    if (id == this.authService.getUserId()) {
+      this.router.navigate(['/app/user']);
+
+    }
+    else {
+      this.router.navigate(['/app/user/user-view', id]);
+
+    }
+  }
   onBtnDeleteClick(id) {
     this.service.delete(id).subscribe(res => {
       this.noti.showSuccess();
@@ -83,6 +129,8 @@ export class PostComponent implements OnInit {
   calculateTime(createdAt: string) {
     let startDate = new Date(createdAt);
     let endDate = new Date();
+    var startsec = startDate.getSeconds();
+    var endsec = endDate.getSeconds();
     var starthour = startDate.getHours();
     var endhour = endDate.getHours();
     var startmonth = startDate.getMonth();
@@ -124,6 +172,12 @@ export class PostComponent implements OnInit {
     }
     else if (endminute - startminute > 0) {
       return (endminute - startminute) + " minute ago";
+    }
+    else if (endsec - startsec > 1) {
+      return (endsec - startsec) + " secs ago";
+    }
+    else if (endsec - startsec > 0) {
+      return (endsec - startsec) + " sec ago";
     }
   }
 

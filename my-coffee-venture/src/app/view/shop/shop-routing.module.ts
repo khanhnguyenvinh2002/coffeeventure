@@ -12,6 +12,12 @@ const routes: Routes = [{ path: '', component: ShopComponent },
   canActivate: [AuthGuard], data: {
     expectedRole: 'ADMIN'
   }
+},
+{
+  path: 'shop-item-edit/:id', component: ShopItemAddComponent,
+  canActivate: [AuthGuard], data: {
+    expectedRole: 'ADMIN'
+  }
 }
   // {
   //   path: 'heroes',

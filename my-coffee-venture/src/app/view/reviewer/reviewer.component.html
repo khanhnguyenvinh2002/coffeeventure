@@ -5,7 +5,7 @@
 
     </div>
     <div class="row">
-        <div class=" col-md-1">{{daysSelected | json}}
+        <div class=" col-md-1">
         </div>
 
         <div class="col-md-10">
@@ -30,7 +30,12 @@
                         <h2>Share your coffee review now</h2>
                         <button class="btn btn-primary" (click)="editReview()">Add review</button>
                     </div>
-
+                    <p-messages severity="info" *ngIf="!data || data.length == 0">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">No data to display
+                            </div>
+                        </ng-template>
+                    </p-messages>
                     <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
                         <div *ngFor="let i of data">
                             <app-review [id]="i.id" [service]="reviewService" [userName]="i.name " (event)="initData() ">

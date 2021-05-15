@@ -16,7 +16,7 @@
 
             <div class="profile-head" *ngIf="loaded == true">
                 <div *ngIf="authService.isAuthenticated()">
-                    <p-toggleButton onLabel="Unsave" offLabel="Save" offIcon="pi pi-check" onIcon="pi pi-times" iconPos="right" (onChange)="saveShop($event.checked)"></p-toggleButton>
+                    <p-toggleButton [(ngModel)]="status" onLabel="Unsave" offLabel="Save" offIcon="pi pi-check" onIcon="pi pi-times" iconPos="right" (onChange)="saveShop($event.checked)"></p-toggleButton>
                 </div>
                 <p-messages severity="info" *ngIf="!authService.isAuthenticated()">
                     <ng-template pTemplate>
@@ -124,9 +124,15 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="profile-tab">
-                    <p-messages severity="info">
+                    <p-messages severity="info" *ngIf="!authService.isAuthenticated()">
                         <ng-template pTemplate>
-                            <div class="p-ml-2">Start a <a [routerLink]="['/app/reviewer']">review </a>now!
+                            <div class="p-ml-2"><a [routerLink]="['/login']">Log in</a> to start a review
+                            </div>
+                        </ng-template>
+                    </p-messages>
+                    <p-messages severity="info" *ngIf="authService.isAuthenticated()">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">Start a <a style="cursor: pointer; text-decoration: underline; color: deeppink;" (click)="onReviewAdd()">review </a>now!
                             </div>
                         </ng-template>
                     </p-messages>
@@ -157,16 +163,19 @@
                 </ng-template>
                 <ng-template let-shop pTemplate="item">
                     <div class="card-deck" style="
-        margin: .3rem;
-        padding: 2rem 0;">
+                                margin: .3rem;
+                                padding: 2rem 0;">
                         <div class="card">
-                            <img class=" img-shop" [src]="shop.image" alt="Card image cap">
-                            <!-- <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap"> -->
                             <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
+                                <img class=" img-shop" [src]="shop.image" alt="Card image cap">
+
                                 <div class="card-body">
-                                    <h5 class="card-title">{{shop.header}}</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                    </p>
+                                    <h5 class="card-title">{{shop.name}}</h5>
+                                    <h6 class="card-text">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
+                                    </h6>
+                                    <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
+                                    <p>Telephone: {{shop.telephone}}</p>
+                                    <p>{{shop.description}}</p>
                                 </div>
                             </a>
                             <div class="card-footer">
@@ -194,13 +203,16 @@
             margin: .3rem;
             padding: 2rem 0;">
                         <div class="card">
-                            <img class=" img-shop" [src]="shop.image" alt="Card image cap">
-                            <!-- <img class="card-img-top img-shop" src="assets/img/{{shop.image}}" alt="Card image cap"> -->
                             <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
+                                <img class=" img-shop" [src]="shop.image" alt="Card image cap">
+
                                 <div class="card-body">
-                                    <h5 class="card-title">{{shop.header}}</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                    </p>
+                                    <h5 class="card-title">{{shop.name}}</h5>
+                                    <h6 class="card-text">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
+                                    </h6>
+                                    <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
+                                    <p>Telephone: {{shop.telephone}}</p>
+                                    <p>{{shop.description}}</p>
                                 </div>
                             </a>
                             <div class="card-footer">

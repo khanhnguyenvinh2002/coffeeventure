@@ -71,7 +71,7 @@
                             <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label>{{ 'USER.ACTIVE' }}</label>
+                            <label>{{ 'Active status' }}</label>
                             <div>
                                 <p-inputSwitch name="status" [ngModel]="userData.status" (ngModelChange)="userData.status = $event ? 1 : 0"></p-inputSwitch>
                             </div>

@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false" (onShow)="ngOnInit()">
+<p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false" (onShow)="ngOnInit()" (onHide)="reset()">
     <p-header>
         <i class="fal fa-user-edit "></i> {{title }}
     </p-header>
@@ -10,6 +10,10 @@
                     <validate-form [form]="form " controlName="name" *ngIf="viewMode == false"></validate-form>
                     <async-select *ngIf="viewMode == false" name="name" bindLabel="name" (change)="input.shopId = data?.id" placeholder="{{ 'Shop' }}" [multiple]="false" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="data" [actionGet]="'viewShop'" required>
                     </async-select>
+                </div>
+                <div class="col-md-6" *ngIf="viewMode == true">
+                    <label *ngIf="viewMode == true">{{ "Writing review for "+ data?.name }}</label>
+
                 </div>
 
                 <div class="col-md-6 ">

@@ -35,6 +35,7 @@ export class ReviewAddComponent extends BaseFormComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, public shopService: ShopService, public reviewService: ReviewService, private noti: NotificationService, private authService: AuthService, private userService: UserService) { super(); }
   ngOnInit(): void {
     this.data.id = this.input.shopId;
+    this.data.name = this.input.shopName;
     this.rating = this.input.rating ? this.input.rating : 3;
     this.input.content = this.input.content ? this.input.content : "";
 
@@ -87,7 +88,7 @@ export class ReviewAddComponent extends BaseFormComponent implements OnInit {
         this.noti.confirm(save);
       } else {
         this.formDisplay = false;
-        this.event.emit(true);
+        this.event.emit();
         setTimeout(() => {
           this.form.form.markAsPristine();
         }, 0);
@@ -95,6 +96,16 @@ export class ReviewAddComponent extends BaseFormComponent implements OnInit {
       }
     }
     this.cdr.detectChanges();
+  }
+  public reset() {
+    this.formDataAdd = new FormData();
+    this.input = {};
+    this.reviewStatus = false;
+    this.reviewContent = "";
+    this.formDisplay = false;
+    setTimeout(() => {
+      this.form.form.markAsPristine();
+    }, 0);
   }
 
   upload(event: any) {
@@ -108,6 +119,8 @@ export class ReviewAddComponent extends BaseFormComponent implements OnInit {
       const cancelConfirmation = new CancelConfirmation();
       cancelConfirmation.accept = () => {
         this.formDisplay = false;
+        this.event.emit();
+        this.formDataAdd = new FormData();
         setTimeout(() => {
           this.form.form.markAsPristine();
         }, 0);
@@ -116,13 +129,12 @@ export class ReviewAddComponent extends BaseFormComponent implements OnInit {
       this.noti.confirm(cancelConfirmation);
     } else {
       this.formDisplay = false;
+      this.event.emit();
       setTimeout(() => {
         this.form.form.markAsPristine();
       }, 0);
       this.cdr.detectChanges();
     }
-    this.event.emit(true);
-    this.formDataAdd = new FormData();
   }
 
 }

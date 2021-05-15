@@ -11,7 +11,7 @@
             avatar</button>
     </div>
     <div class="row">
-        <div class=" col-md-1">{{daysSelected | json}}
+        <div class=" col-md-1">
         </div>
 
         <div class="col-md-10">
@@ -36,13 +36,19 @@
                         <h2>Share your coffee journal now</h2>
                         <button class="btn btn-primary" (click)="editJournal()">Add Journal</button>
                     </div>
-
+                    <p-messages severity="info" *ngIf="!data || data.length == 0">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">No data to display
+                            </div>
+                        </ng-template>
+                    </p-messages>
                     <div infinite-scroll (scrolled)="onScrollDown()" style="width: 100%;word-wrap: break-word">
                         <div *ngFor="let i of data">
                             <app-post [id]="i.id" [status]="i.status" [feeling]="i.feeling" [createdAt]="i.createdAt" [content]="i.content" [name]="'Testing user'" [avatar]="postAvatar" [service]=" journalService " [userName]="i.name " (event)="initData() ">
                             </app-post>
                         </div>
                     </div>
+
                     <app-waiting *ngIf="isLoaded==false "></app-waiting>
                 </div>
             </div>
@@ -53,11 +59,11 @@
         </div>
     </div>
 </div>
-<p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false ">
+<p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false " (onHide)="reset()">
     <p-header>
         <i class="fal fa-user-edit "></i> {{"Add journal " }}
     </p-header>
-    <form #form="ngForm">
+    <form autocomplete="off" #form="ngForm" id="journal-edit">
         <div class="col-md-12 ">
             <div class="form-row ">
                 <div class="col-md-6 ">
@@ -78,8 +84,8 @@
                 <div class="col-md-6 ">
                     <div class="form-group ">
                         <label>{{ 'What do you want to share?' }}</label>
-                        <validate-form [form]="form " controlName="name "></validate-form>
-                        <textarea placeholder="{{ 'Your journal goes here' }} " class=" form-control" rows="5 " cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content " required name="content"></textarea>
+                        <validate-form [form]="form " controlName="content"></validate-form>
+                        <textarea placeholder="{{ 'Your journal goes here' }} " class=" form-control" rows="5 " cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content" required name="content"></textarea>
                     </div>
                 </div>
 

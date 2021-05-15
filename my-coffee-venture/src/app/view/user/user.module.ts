@@ -1,3 +1,4 @@
+import { UserViewComponent } from './user-view/user-view.component';
 import { ReviewerModule } from './../reviewer/reviewer.module';
 import { InputTimeModule } from 'src/app/module/sticky/control/input-time/input-time.module';
 import { ForumComponent } from './forum/forum.component';
@@ -31,12 +32,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
+import { ReviewModule } from 'src/app/module/sticky/review/review.module';
 @NgModule({
-  declarations: [UserComponent, ShopSavedComponent, ForumComponent],
+  declarations: [UserComponent, ShopSavedComponent, ForumComponent, UserViewComponent],
   imports: [
     CommonModule,
-    UserRoutingModule,
-    HttpClientModule, InputTimeModule, ReviewerModule,
+    UserRoutingModule, ReviewModule,
+    HttpClientModule, InputTimeModule,
     FormsModule, ReactiveFormsModule, NgbModule, DialogModule, InputTextareaModule, ToggleButtonModule, MatIconModule, MatMenuModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, CalendarModule, InfiniteScrollModule, PartialsModule, TableModule, MessagesModule, MatButtonModule,
 
     MatSelectModule,

@@ -18,8 +18,6 @@ import { ShopService } from 'src/app/module/sticky/modules/shop/shop.service';
 export class ShopComponent extends BaseListComponent implements OnInit {
   public shopRequest = new ShopRequestPayload();
   public dataSource: any = {};
-  // public items: MenuItem[];
-  public selectedCities1: any[];
   public districts: any;
   public cities: any;
   public categories: any;
@@ -77,8 +75,7 @@ export class ShopComponent extends BaseListComponent implements OnInit {
           return;
         }
         response.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
-          e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
+          e.image = e.imagePath;
         });
         this.loaded = true;
         this.dataSource.items = this.dataSource.items ? this.dataSource.items.concat(response) : response;
@@ -89,23 +86,15 @@ export class ShopComponent extends BaseListComponent implements OnInit {
     this.shopRequest.pageIndex = 0;
     this.shopRequest.pageSize = 12;
     this.loaded = false;
-    // const $selectAndCount = [,
-    //   this.shopService.count(this.shopRequest),
-
-    // ];
-
     const sub =
       this.shopService.select(this.shopRequest).subscribe(
         (response: any) => {
           this.dataSource.items = response;
-          // const reader = new FileReader();
-          // reader.onload = (e) => this.dataSource.items.image = e.target.result;
-          this.dataSource.items.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e.imagePath;
-            e.image = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
-            // reader.readAsDataURL(new Blob(e.imagePath]));
-          });
-          // this.dataSource.paginatorTotal = response[1];
+          if (this.dataSource.items && this.dataSource.items.length > 0) {
+            this.dataSource.items.forEach(e => {
+              e.image = e.imagePath ? e.imagePath : 'assets/img/cf_bg1.jpg';
+            });
+          }
           this.loaded = true;
           if (this.cd && !this.cd['destroyed']) {
             this.cdr.detectChanges();

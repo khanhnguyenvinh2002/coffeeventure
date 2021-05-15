@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form autocomplete="off" #form="ngForm" id="shop-edit">
-                        <h5>{{ 'shop.shop_INFO' }}</h5>
+                        <h5>{{ 'Shop add' }}</h5>
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
                                 <label>{{ 'Min Price'}}</label>
@@ -17,26 +17,27 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
+                                <label class="form-required">{{ 'Name' }}</label>
+                                <validate-form [form]="form" controlName="name"></validate-form>
+                                <input type="text" class="form-control" name="name" placeholder="{{ 'name'  }}" [(ngModel)]="shopData.name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <label class="form-required">{{ 'Description' }}</label>
                                 <validate-form [form]="form" controlName="description"></validate-form>
                                 <input type="text" class="form-control" name="description" placeholder="{{ 'Description'  }}" [(ngModel)]="shopData.description" required>
                             </div>
                             <!--To Do add category-->
-                            <div class="col-md-6 mb-3">
-                                <label class="form-required">{{ 'Name' }}</label>
-                                <validate-form [form]="form" controlName="name"></validate-form>
-                                <input type="text" class="form-control" name="name" placeholder="{{ 'name'  }}" [(ngModel)]="shopData.name" required>
-                            </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
                                 <label>{{ 'Telephone' }}</label>
+                                <validate-form [form]="form" controlName="telephone"></validate-form>
                                 <input type="text" class="form-control" name="telephone" placeholder="{{ 'Telephone'  }}" [(ngModel)]="shopData.telephone" required>
                             </div>
                             <!--To Do add category-->
                             <div class="col-md-6 mb-3">
                                 <label>{{ 'Alternative Telephone' }}</label>
-                                <input type="text" class="form-control" name="alternativeTelephone" placeholder="{{ 'Alternative Telephone'  }}" [(ngModel)]="shopData.alternativeTelephone" required>
+                                <input type="text" class="form-control" name="alternativeTelephone" placeholder="{{ 'Alternative Telephone'  }}" [(ngModel)]="shopData.alternativeTelephone">
                             </div>
                         </div>
                         <div class="form-row">
@@ -46,9 +47,9 @@
                                 <input type="text" class="form-control" name="address" placeholder="{{ 'Address'  }}" [(ngModel)]="shopData.address" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-required">{{ 'District' }}</label>
-                                <validate-form [form]="form" controlName="district"></validate-form>
-                                <input type="text" class="form-control" name="district" placeholder="{{ 'District'  }}" [(ngModel)]="shopData.district" required>
+                                <label class="form-required">{{ 'Street' }}</label>
+                                <validate-form [form]="form" controlName="name"></validate-form>
+                                <input type="street" class="form-control" name="street" placeholder="{{ 'street'  }}" [(ngModel)]="shopData.street" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -58,9 +59,9 @@
                                 <input type="text" class="form-control" name="city" placeholder="{{ 'City'  }}" [(ngModel)]="shopData.city" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-required">{{ 'Street' }}</label>
-                                <validate-form [form]="form" controlName="name"></validate-form>
-                                <input type="street" class="form-control" name="street" placeholder="{{ 'street'  }}" [(ngModel)]="shopData.street" required>
+                                <label class="form-required">{{ 'District' }}</label>
+                                <validate-form [form]="form" controlName="district"></validate-form>
+                                <input type="text" class="form-control" name="district" placeholder="{{ 'District'  }}" [(ngModel)]="shopData.district" required>
                             </div>
                         </div>
                         <div class="form-row ">
@@ -82,13 +83,13 @@
                                 <validate-form [form]="form" controlName="category"></validate-form>
                                 <async-select [actionGet]="'selectCategory'" [actionCount]="'countCategory'" name="category" bindLabel="name" placeholder="{{ 'Shop Category'  }}" [multiple]="true" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="shopData.shopCategory" required>
                                 </async-select>
-                                <!-- <app-role-operation [dialogRef]="operationDialogRef"></app-role-operation> -->
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <!-- <div class="col-md-6 mb-3">
                                 <p-toggleButton onLabel="show" offLabel="hide" offIcon="pi pi-times" onIcon="pi pi-check" iconPos="right" [(ngModel)]="status">
                                 </p-toggleButton>
-                            </div>
+                            </div> -->
                         </div>
+                        <label *ngIf="currentshopId">{{ 'Reselect images' }}</label>
                         <app-upload-multiple (onFileLoad)="upload($event)">
                         </app-upload-multiple>
 

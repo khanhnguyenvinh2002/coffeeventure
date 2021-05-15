@@ -29,8 +29,7 @@ export class ShopItemAddComponent extends BaseFormComponent implements OnInit {
   public shopData: any = {};
   public titles = TITLE;
   // public mainConfig: any = mainConfig.MAIN_CONFIG;
-  public formTitle = 'shop.HEADER_DETAIL';
-  public operationDialogRef = new DialogRef();
+  public formTitle = 'Shop detail';
   public currentshopId: string;
   public formDataAdd = new FormData();
   constructor(
@@ -55,6 +54,7 @@ export class ShopItemAddComponent extends BaseFormComponent implements OnInit {
       if (params.id) {
         this.currentshopId = params.id;
         this.shopService.selectById(params.id).subscribe((res) => {
+          this.shopData = res;
           this.cd.detectChanges();
           setTimeout(() => {
             this.form.form.markAsPristine();
@@ -62,14 +62,7 @@ export class ShopItemAddComponent extends BaseFormComponent implements OnInit {
         });
 
         // Set role id for operation dialog ref
-        this.operationDialogRef.visibility$.subscribe(res => {
-          if (res) {
-            this.operationDialogRef.input.roleId = params.id;
-          }
-        });
 
-        this.operationDialogRef.input.styleClass = 'action-sm action-link';
-        this.operationDialogRef.input.text = 'ROLE.CUSTOMIZE_RESOURCE';
       } else {
         this.shopData = {};
       }

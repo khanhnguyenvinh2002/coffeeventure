@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ReviewService } from '../modules/review/review.service';
 import { AuthService } from '../modules/auth/auth.service';
 import { NotificationService } from '../common/notification/notification.service';
@@ -7,6 +8,7 @@ import { Component, Input, NgModule, OnInit, ChangeDetectorRef, EventEmitter, Ou
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { SaveConfirmation, CancelConfirmation } from '../common/confirmation';
+import { ReviewRequestPayload } from '../modules/review/review-request.payload';
 
 @Component({
   selector: 'app-review',
@@ -22,7 +24,7 @@ export class ReviewItemComponent implements OnInit {
   @Input() content: string;
   @Input() rating: string;
   @Input() status: string;
-  @Input() avatar: any;
+  @Input() avatar: any = 'assets/img/cf_bg1.jpg';
   @Input() service: HttpService;
   @Input() userName: string;
   public formDisplay = false;
@@ -31,26 +33,34 @@ export class ReviewItemComponent implements OnInit {
   public reviewStatus: boolean;
   public reviewAdd: any = {};
   public dataSource: any = {};
+  public likedUsers = [];
+  public liked = false;
+  public likes = 0;
   input: any = {};
   @Output() event = new EventEmitter<boolean>();
   @Input() item: any = {};
-  constructor(private sanitizer: DomSanitizer, private noti: NotificationService, private cdr: ChangeDetectorRef, public authService: AuthService, private reviewService: ReviewService) { }
+  constructor(private sanitizer: DomSanitizer, private router: Router, private noti: NotificationService, private cdr: ChangeDetectorRef, public authService: AuthService, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
     this.loaded = false;
     this.service.selectById(this.id).subscribe(res => {
       this.input = res;
       this.item = res;
+      this.likes = res.likes;
+      this.likedUsers = res.likedUsers;
+      if (this.likedUsers.findIndex(x => x == this.authService.getUserId()) > -1) {
+        this.liked = true;
+      }
       let temp = [];
-      if (this.item.imagePaths && this.item.imagePaths.length > 0) {
-        this.item.imagePaths.forEach(e => {
-          let objectURL = 'data:image/jpeg;base64,' + e;
-          temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+      if (this.item.imageDirectories && this.item.imageDirectories.length > 0) {
+        this.item.imageDirectories.forEach(e => {
+
+          temp.push(e);
           // reader.readAsDataURL(new Blob(e.imagePath]));
         });
       }
       if (this.item && this.item.avatarPath) {
-        this.avatar = 'data:image/jpeg;base64,' + this.item.avatarPath;
+        this.avatar = this.item.avatarPath;
       }
       this.item.images = temp;
       if (this.item.images) {
@@ -60,6 +70,43 @@ export class ReviewItemComponent implements OnInit {
     });
 
 
+  }
+  onBtnUnLikeClick() {
+    if (this.item.id) {
+      this.reviewService.like(this.item).subscribe(res => {
+        this.liked = false;
+        this.likes--;
+        this.likedUsers = res.likedUsers;
+        this.cdr.detectChanges();
+      }
+      )
+
+    }
+  }
+  onBtnLikeClick() {
+    if (this.item.id) {
+      this.reviewService.like(this.item).subscribe(res => {
+        this.liked = true;
+        this.likes++;
+        this.likedUsers = res.likedUsers;
+        this.cdr.detectChanges();
+      }
+      )
+
+    }
+  }
+  goToUser(id: string) {
+    if (id == this.authService.getUserId()) {
+      this.router.navigate(['/app/user']);
+
+    }
+    else {
+      this.router.navigate(['/app/user/user-view', id]);
+
+    }
+  }
+  goToShopItem(id: string) {
+    this.router.navigate(['/app/shop/shop-item', id]);
   }
   onBtnDeleteClick(id) {
     this.service.delete(id).subscribe(res => {
@@ -71,6 +118,8 @@ export class ReviewItemComponent implements OnInit {
   calculateTime(createdAt: string) {
     let startDate = new Date(createdAt);
     let endDate = new Date();
+    var startsec = startDate.getSeconds();
+    var endsec = endDate.getSeconds();
     var starthour = startDate.getHours();
     var endhour = endDate.getHours();
     var startmonth = startDate.getMonth();
@@ -112,6 +161,12 @@ export class ReviewItemComponent implements OnInit {
     }
     else if (endminute - startminute > 0) {
       return (endminute - startminute) + " minute ago";
+    }
+    else if (endsec - startsec > 1) {
+      return (endsec - startsec) + " secs ago";
+    }
+    else if (endsec - startsec > 0) {
+      return (endsec - startsec) + " sec ago";
     }
   }
   editReview() {

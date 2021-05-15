@@ -61,8 +61,8 @@ export class UserComponent extends BaseListComponent implements OnInit {
     this.userName = this.authService.getUser();
     this.userService.selectById(this.authService.getUserId()).subscribe(element => {
       if (element.avatarPath) {
-        this.postAvatar = 'data:image/jpeg;base64,' + element.avatarPath;
-        this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.postAvatar);
+        this.postAvatar = element.avatarPath;
+        this.imageUrl = this.postAvatar;
       }
       this.pageLoaded = true;
     })
@@ -70,30 +70,32 @@ export class UserComponent extends BaseListComponent implements OnInit {
     this.initData();
 
   }
+
   initData() {
     this.request.pageIndex = 0;
     this.request.pageSize = 3;
     this.journalService.select(this.request).subscribe(res => {
       this.dataSource.items = res;
-      this.dataSource.items.forEach(element => {
-        if (element.length == 0) {
-          this.allItems = true;
-          return;
-        }
-        let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
-            // reader.readAsDataURL(new Blob(e.imagePath]));
-          });
-          element.images = temp;
-          if (element.images) {
-            element.image = element.images[0];
+      if (this.dataSource.items && this.dataSource.items.length > 0) {
+        this.dataSource.items.forEach(element => {
+          if (element.length == 0) {
+            this.allItems = true;
+            return;
           }
-        }
-        this.cdr.detectChanges();
-      });
+          let temp = [];
+          if (element.imageDirectories && element.imageDirectories.length > 0) {
+            element.imageDirectories.forEach(e => {
+              temp.push(e);
+              // reader.readAsDataURL(new Blob(e.imagePath]));
+            });
+            element.images = temp;
+            if (element.images) {
+              element.image = element.images[0];
+            }
+          }
+          this.cdr.detectChanges();
+        });
+      }
       this.data = this.dataSource.items;
       this.stopScroll = false;
       this.allItems = false;
@@ -112,14 +114,28 @@ export class UserComponent extends BaseListComponent implements OnInit {
     this.imageUrl = event;
     this.cdr.detectChanges();
   }
+  public renewPage() {
+    this.resetCalendar();
+    this.initData();
+  }
+  public reset() {
+    this.formDataAdd = new FormData();
+    this.input = {};
+    this.journalStatus = false;
+    this.journalContent = "";
+    this.formDisplay = false;
+    setTimeout(() => {
+      this.form.form.markAsPristine();
+    }, 0);
+  }
   uploadAvatar() {
     this.userService.uploadAvatar(this.formDataAvatar).subscribe(res => {
       this.noti.showSuccess();
       this.avatarLoaded = false;
       this.userService.selectById(this.authService.getUserId()).subscribe(element => {
         if (element.avatarPath) {
-          let objectURL = 'data:image/jpeg;base64,' + element.avatarPath;
-          this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
+
+          this.imageUrl = element.avatarPath;
           this.cdr.detectChanges();
           // reader.readAsDataURL(new Blob(e.imagePath]));
         }
@@ -146,10 +162,9 @@ export class UserComponent extends BaseListComponent implements OnInit {
       });
       res.forEach(element => {
         let temp = [];
-        if (element.imagePaths && element.imagePaths.length > 0) {
-          element.imagePaths.forEach(e => {
-            let objectURL = 'data:image/jpeg;base64,' + e;
-            temp.push(this.sanitizer.bypassSecurityTrustResourceUrl(objectURL));
+        if (element.imageDirectories && element.imageDirectories.length > 0) {
+          element.imageDirectories.forEach(e => {
+            temp.push(e);
             // reader.readAsDataURL(new Blob(e.imagePath]));
           });
           element.images = temp;
@@ -213,6 +228,11 @@ export class UserComponent extends BaseListComponent implements OnInit {
       this.stopScroll = true;
       this.cdr.detectChanges();
     }
+    else {
+      this.data = this.dataSource.items.filter(x => this.format(new Date(x.createdAt)) == date);
+      this.stopScroll = true;
+      this.cdr.detectChanges();
+    }
     // if (index < 0) this.daysSelected.push(date);
     // else this.daysSelected.splice(index, 1);
     calendar.updateTodaysDate();
@@ -267,44 +287,51 @@ export class UserComponent extends BaseListComponent implements OnInit {
     });
   }
   public onBtnAddJournal(): void {
-    if (this.form.form.dirty) {
-      const save = new SaveConfirmation();
-      save.accept = () => {
-        if (this.journalStatus == true) {
-          this.input.status = 1;
-        }
-        if (this.journalStatus == false) {
-          this.input.status = 0;
-        }
-        this.journalService.insert(this.input).subscribe(event => {
-          this.journalService.uploadJournalImages(event.id, this.formDataAdd).subscribe(
-            res => {
-              this.noti.showSuccess();
-              this.journalContent = "";
-              this.journalStatus = false;
-              this.input = {};
-              this.formDisplay = false;
-              setTimeout(() => {
-                this.form.form.markAsPristine();
-              }, 0);
-              this.initData();
-              this.resetCalendar();
-              this.cdr.detectChanges();
-            }
-          )
-        });
+    if (this.form) {
+      if (!this.validateForm(this.form, 'journal-edit')) {
+        return;
+      }
+      if (this.form.form.dirty) {
+        const save = new SaveConfirmation();
+        save.accept = () => {
+          if (this.journalStatus == true) {
+            this.input.status = 1;
+          }
+          if (this.journalStatus == false) {
+            this.input.status = 0;
+          }
+          this.journalService.insert(this.input).subscribe(event => {
+            this.journalService.uploadJournalImages(event.id, this.formDataAdd).subscribe(
+              res => {
+                this.noti.showSuccess();
+                this.journalContent = "";
+                this.journalStatus = false;
+                this.input = {};
+                this.formDisplay = false;
+                setTimeout(() => {
+                  this.form.form.markAsPristine();
+                }, 0);
+                this.initData();
+                this.resetCalendar();
+                this.cdr.detectChanges();
+              }
+            )
+          });
 
-      };
-      this.noti.confirm(save);
-    } else {
-      this.formDisplay = false;
-      this.journalStatus = false;
-      this.input = {};
-      setTimeout(() => {
-        this.form.form.markAsPristine();
-      }, 0);
-      this.cdr.detectChanges();
+        };
+        this.noti.confirm(save);
+      } else {
+        this.formDisplay = false;
+        this.journalStatus = false;
+        this.input = {};
+        setTimeout(() => {
+          this.form.form.markAsPristine();
+        }, 0);
+        this.cdr.detectChanges();
+      }
+
     }
+
     this.cdr.detectChanges();
   }
 
@@ -316,7 +343,9 @@ export class UserComponent extends BaseListComponent implements OnInit {
       const cancelConfirmation = new CancelConfirmation();
       cancelConfirmation.accept = () => {
         this.formDisplay = false;
+        this.journalContent = "";
         this.journalStatus = false;
+        this.formDataAdd = new FormData();
         this.input = {};
         setTimeout(() => {
           this.form.form.markAsPristine();
@@ -326,11 +355,11 @@ export class UserComponent extends BaseListComponent implements OnInit {
       this.noti.confirm(cancelConfirmation);
     } else {
       this.formDisplay = false;
+      this.formDataAdd = new FormData();
       setTimeout(() => {
         this.form.form.markAsPristine();
       }, 0);
       this.cdr.detectChanges();
     }
-    this.formDataAdd = new FormData();
   }
 }

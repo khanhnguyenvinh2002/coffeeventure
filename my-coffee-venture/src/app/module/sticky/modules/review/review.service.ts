@@ -16,6 +16,17 @@ export class ReviewService extends HttpService {
         super();
         this.url = this.origin + 'review';
     }
+    public selectUsersById(id: string, isSpinner?: boolean): Observable<any> {
+        return this.intercept(this.httpClient.get<any>(`${this.url}/review-like/${id}`,
+            { observe: 'response', headers: this.getHeaders() }), isSpinner)
+            .pipe(map(r => r.body));
+    }
+
+    public like(body: BaseResponse, isSpinner?: boolean, params?: any): Observable<any> {
+        return this.intercept(this.httpClient.post<any>(`${this.url}/like`,
+            JSON.stringify(body), { observe: 'response', headers: this.getHeaders(), params: this.toParams(params) }), isSpinner)
+            .pipe(map(r => r.body));
+    }
 
 
     public selectReviewsByShop(requestPayload?: RequestPayload, isSpinner?: boolean): Observable<any[]> {
