@@ -15,6 +15,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { NgbModule, NgbDropdownModule, NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { TranslateModule } from "@ngx-translate/core";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { CalendarModule } from "primeng/calendar";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -41,8 +42,25 @@ import { ReviewItemComponent } from "./review.component";
     imports: [
         CommonModule,
         RatingModule,
-        HttpClientModule, InputTimeModule, MatMenuModule,
-        FormsModule, ReactiveFormsModule, NgbModule, DialogModule, InputTextareaModule, ToggleButtonModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, CalendarModule, InfiniteScrollModule, PartialsModule, TableModule, MessagesModule, MatButtonModule,
+        HttpClientModule, 
+        InputTimeModule, 
+        MatMenuModule,
+        FormsModule, 
+        ReactiveFormsModule, 
+        NgbModule,
+        DialogModule, 
+        InputTextareaModule, 
+        ToggleButtonModule, 
+        MatIconModule, 
+        MatDatepickerModule, 
+        MatNativeDateModule, 
+        MatCardModule, 
+        CalendarModule, 
+        InfiniteScrollModule, 
+        PartialsModule, 
+        TableModule, 
+        MessagesModule, 
+        MatButtonModule,
         MatMenuModule,
         MatSelectModule,
         MatInputModule,
@@ -56,6 +74,8 @@ import { ReviewItemComponent } from "./review.component";
         NgbTooltipModule,
         // TranslateModule,
         ConfirmDialogModule,
+
+        TranslateModule.forChild(),
         InputTextModule,
         TooltipModule
     ]

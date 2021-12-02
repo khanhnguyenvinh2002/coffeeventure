@@ -6,7 +6,7 @@ import { DialogModule } from 'primeng/dialog';
 import { SettingModule } from './view/setting/setting.module';
 import { ConfirmationService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NotificationModule } from './module/sticky/common/notification/notification.module';
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,6 +42,13 @@ import { FormDynamicComponent } from './module/sticky/crud/component/form-dynami
 import { ValidateMessageComponent } from './module/sticky/crud/validate-form/validate-form.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { AuthorComponent } from './view/home/author/author.component';
+import {DividerModule} from 'primeng/divider';
+import { TagModule } from 'primeng/tag';
+
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,13 +60,40 @@ import { AuthorComponent } from './view/home/author/author.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule, BrowserAnimationsModule, FormsModule,
+    ReactiveFormsModule, 
+    BrowserAnimationsModule, 
+    FormsModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
-    StickyModule, MultiSelectModule, OverlayPanelModule, DropdownModule,
-    CardModule, DialogModule, InputTextModule,
-    ConfirmDialogModule, MenubarModule, PartialsModule, PanelMenuModule,
-    ButtonModule, CarouselModule, NgbModule, NotificationModule, HttpClientModule, ToastrModule.forRoot(), NgSelectModule, SettingModule, MatPaginatorModule
+    StickyModule, 
+    MultiSelectModule, 
+    OverlayPanelModule, 
+    DropdownModule,
+    CardModule, 
+    DialogModule, 
+    InputTextModule,
+    TagModule,
+    ConfirmDialogModule, 
+    MenubarModule, 
+    PartialsModule, 
+    PanelMenuModule,
+    ButtonModule, 
+    CarouselModule, 
+    NgbModule, 
+    NotificationModule, 
+    HttpClientModule, 
+    ToastrModule.forRoot(), 
+    NgSelectModule, 
+    SettingModule, 
+    MatPaginatorModule,
+    DividerModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   providers: [WINDOW_PROVIDERS, HttpClientModule, httpInterceptorProviders, ConfirmationService, ToastrService,
     Configuration, AuthService, AuthGuard, NotificationService],
@@ -69,4 +103,8 @@ export class AppModule {
   constructor(private injector: Injector) {    // Create global Service Injector.
     ServiceLocator.injector = this.injector;
   }
+}
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
 }

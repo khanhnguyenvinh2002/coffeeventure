@@ -37,14 +37,35 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeTableModule } from 'primeng/treetable';
 import { ReviewModule } from 'src/app/module/sticky/review/review.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ReviewerComponent],
   imports: [
     CommonModule,
-    ReviewerRoutingModule, RatingModule, ReviewModule,
-    HttpClientModule, InputTimeModule, MatMenuModule,
-    FormsModule, ReactiveFormsModule, NgbModule, DialogModule, InputTextareaModule, ToggleButtonModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, CalendarModule, InfiniteScrollModule, PartialsModule, TableModule, MessagesModule, NgSelectAsyncModule, MatButtonModule,
+    ReviewerRoutingModule, 
+    RatingModule, 
+    ReviewModule,
+    HttpClientModule, 
+    InputTimeModule, 
+    MatMenuModule,
+    FormsModule, 
+    ReactiveFormsModule, 
+    NgbModule, 
+    DialogModule, 
+    InputTextareaModule, 
+    ToggleButtonModule, 
+    MatIconModule, 
+    MatDatepickerModule, 
+    MatNativeDateModule, 
+    MatCardModule, 
+    CalendarModule, 
+    InfiniteScrollModule, 
+    PartialsModule, 
+    TableModule, 
+    MessagesModule, 
+    NgSelectAsyncModule, 
+    MatButtonModule,
     MatMenuModule,
     MatSelectModule,
     MatInputModule,
@@ -52,10 +73,9 @@ import { ReviewModule } from 'src/app/module/sticky/review/review.module';
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatDialogModule,
-
-    // ng-bootstrap modules
     NgbDropdownModule,
     NgbTooltipModule,
+    TranslateModule.forChild(),
     // TranslateModule,
     ConfirmDialogModule,
     InputTextModule,

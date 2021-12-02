@@ -15,7 +15,7 @@ import { UserService } from 'src/app/module/sticky/modules/user/user.service';
 @Component({
     selector: 'app-user-edit',
     templateUrl: './user-edit.component.html',
-    styleUrls: ['./user-edit.component.scss'],
+    styleUrls: ['./user-edit.component.css'],
 })
 export class UserEditComponent extends BaseComponent implements OnInit {
     @ViewChild('form', { static: true }) form: NgForm;

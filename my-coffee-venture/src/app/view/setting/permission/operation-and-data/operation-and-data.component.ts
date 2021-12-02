@@ -19,7 +19,7 @@ import { FormDynamicData } from 'src/app/module/sticky/crud/component/form-dynam
 @Component({
   selector: 'app-operation-and-data',
   templateUrl: './operation-and-data.component.html',
-  styleUrls: ['./operation-and-data.component.scss'],
+  styleUrls: ['./operation-and-data.component.css'],
   providers: [TreeDragDropService]
 })
 export class OperationAndDataComponent extends BaseFormComponent implements OnInit {
@@ -350,7 +350,10 @@ export class OperationAndDataComponent extends BaseFormComponent implements OnIn
     this.notification.confirm(deleteConfirmation);
   }
 
-
+  /**
+   * 
+   * handle event when success
+   */
   public onSuccess(event: boolean) {
     if (event) {
       this.reloadOperationData();
@@ -360,6 +363,10 @@ export class OperationAndDataComponent extends BaseFormComponent implements OnIn
       this.onNodeUnselect();
     }
   }
+
+  /**
+   *  handle event when add action success
+   */
   public onAddActionSuccess(event: boolean) {
     if (event) {
       this.initActionData();;

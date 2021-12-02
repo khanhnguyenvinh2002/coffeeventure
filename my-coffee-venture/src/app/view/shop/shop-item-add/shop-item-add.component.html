@@ -79,8 +79,21 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
+                                <label class="form-required">{{ 'Latitude' }}</label>
+                                <validate-form [form]="form" controlName="latitude"></validate-form>
+                                <input type="number" class="form-control" name="latitude" step="any"  placeholder="{{ 'Latitude'  }}" [(ngModel)]="shopData.latitude" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-required">{{ 'Longitude' }}</label>
+                                <validate-form [form]="form" controlName="longitude"></validate-form>
+                                <input type="number" class="form-control" name="longtitude" step="any" placeholder="{{ 'Longitude'  }}" [(ngModel)]="shopData.longitude" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
                                 <label class="form-required">{{ 'Category' }}</label>
                                 <validate-form [form]="form" controlName="category"></validate-form>
+                                {{shopData.shopCategory | json}}
                                 <async-select [actionGet]="'selectCategory'" [actionCount]="'countCategory'" name="category" bindLabel="name" placeholder="{{ 'Shop Category'  }}" [multiple]="true" [closeOnSelect]="true" [service]="shopService" [(ngModel)]="shopData.shopCategory" required>
                                 </async-select>
                             </div>

@@ -38,13 +38,13 @@ export class ForumComponent implements OnInit {
   request = new JournalRequestPayload();
   reviewRequest = new ReviewRequestPayload();
   public imageUrl = 'assets/img/cf_bg1.jpg';
-  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, private http: HttpClient, public journalService: JournalService, public reviewService: ReviewService, private noti: NotificationService) { }
+  constructor( public journalService: JournalService, public reviewService: ReviewService) { }
 
   ngOnInit(): void {
     this.initJournal();
     this.initReview();
   }
-  initReview() {
+  public initReview() {
     this.reviewRequest.pageIndex = 0;
     this.reviewRequest.pageSize = 3;
     this.reviewService.getAll(this.reviewRequest).subscribe(res => {
@@ -65,7 +65,7 @@ export class ForumComponent implements OnInit {
     })
 
   }
-  initJournal() {
+  public initJournal() {
     this.request.pageIndex = 0;
     this.request.pageSize = 3;
     this.journalService.getAll(this.request).subscribe(res => {
@@ -85,7 +85,7 @@ export class ForumComponent implements OnInit {
       });
     })
   }
-  onScrollDownReview() {
+  public onScrollDownReview() {
     if (this.stopScrollingReview == true) {
       this.isLoadedReview = true;
       return;
@@ -114,7 +114,7 @@ export class ForumComponent implements OnInit {
     });
   }
 
-  onScrollDown() {
+  public onScrollDown() {
     if (this.stopScrolling == true) {
       this.isLoaded = true;
       return;

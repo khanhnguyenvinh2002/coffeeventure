@@ -16,11 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { WINDOW_PROVIDERS } from 'src/app/module/sticky/services/window.service';
 import { Configuration } from 'src/app/module/sticky/common/utility/app-configuration.service';
 import { LoginComponent } from './login/login.component';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [AuthenComponent, LoginComponent],
   imports: [
-    AuthenRoutingModule, BrowserModule,
+    AuthenRoutingModule, 
+    BrowserModule,
     CommonModule,
+    TranslateModule.forChild(),
     ReactiveFormsModule
   ],
   providers: [WINDOW_PROVIDERS, HttpClientModule, httpInterceptorProviders, ToastrService,

@@ -12,13 +12,13 @@
                     </async-select>
                 </div>
                 <div class="col-md-6" *ngIf="viewMode == true">
-                    <label *ngIf="viewMode == true">{{ "Writing review for "+ data?.name }}</label>
+                    <label *ngIf="viewMode == true">{{ "WRITING REVIEW FOR" | translate }}{{ data?.name }}</label>
 
                 </div>
 
                 <div class="col-md-6 ">
                     <div class="form-group ">
-                        <label>{{ 'Public/private' }}</label>
+                        <label>{{ 'PUBLIC_PRIVATE' | translate }}</label>
                         <div>
                             <p-toggleButton onLabel="show " offLabel="hide " offIcon="pi pi-times " onIcon="pi pi-check " iconPos="right " [(ngModel)]="reviewStatus" name="toggleButton">
                             </p-toggleButton>
@@ -29,14 +29,14 @@
             <div class="form-row ">
                 <div class="col-md-6 ">
                     <div class="form-group ">
-                        <label>{{ 'What do you want to share?' }}</label>
+                        <label>{{ 'REVIEW.PAGE.WHAT_DO_YOU_WANT_TO_SHARE' | translate }}</label>
                         <validate-form [form]="form" controlName="content"></validate-form>
-                        <textarea placeholder="{{ 'Your review goes here' }} " class="form-control" rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content " required autofocus name="content" [autoResize]="true"></textarea>
+                        <textarea placeholder="{{ 'YOUR_REVIEW_GOES_HERE'| translate }} " class="form-control" rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content " required autofocus name="content" [autoResize]="true"></textarea>
                     </div>
                 </div>
 
                 <div class="col-md-6 ">
-                    <div class="form-group "><label>{{ 'Do you have any photo you want to share?' }}</label>
+                    <div class="form-group "><label>{{ 'REVIEW.PAGE.ANY_PHOTO'|translate }}</label>
                         <app-upload [preview]="true " (onFileLoad)="upload($event) ">
                         </app-upload>
                     </div>
@@ -45,7 +45,7 @@
             <div class="form-row ">
 
                 <div class="col-md-6 ">
-                    <label>{{ 'Rating' }}</label> {{rating}}
+                    <label>{{ 'REVIEW.PAGE.rATING' }}</label> {{rating}}
                     <validate-form [form]="form " controlName="rating"></validate-form>
                     <p-rating [(ngModel)]="rating" [cancel]="false" name="rating" required></p-rating>
 

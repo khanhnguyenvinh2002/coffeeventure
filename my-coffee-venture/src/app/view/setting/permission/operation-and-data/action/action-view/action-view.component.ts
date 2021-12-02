@@ -9,7 +9,7 @@ import { OperationService } from 'src/app/module/sticky/modules/operation/operat
 @Component({
   selector: 'app-action-view',
   templateUrl: './action-view.component.html',
-  styleUrls: ['./action-view.component.scss']
+  styleUrls: ['./action-view.component.css']
 })
 export class ActionViewComponent extends BaseComponent implements OnInit {
   public dataSource: any = {};

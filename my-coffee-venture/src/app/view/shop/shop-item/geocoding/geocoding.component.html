@@ -1,0 +1,26 @@
+<!-- <div class="address-lookup">
+    <input type="text" placeholder="Search..."
+           (keyup)="addressLookup($event.target.value)" (click)="$event.stopPropagation()"/>
+  </div> -->
+  <!-- <div class="address-lookup">
+    <input type="number" placeholder="Lat..." [(ngModel)]="lat"
+           (click)="$event.stopPropagation()"/>
+
+    <input type="number" placeholder="Lon..." [(ngModel)]="lon"
+    (click)="$event.stopPropagation()"/>
+  </div> -->
+  <form autocomplete="off" #form="ngForm" id="map">
+    <h5>{{ 'Shop add' }}</h5>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label>{{ 'Lat'}}</label>
+            <input  (click)="$event.stopPropagation()" type="number" class="form-control" name="lat" placeholder="{{ 'lat' }}" [(ngModel)]="lat" required autofocus>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>{{ 'Lon' }}</label>
+            <input  (click)="$event.stopPropagation()" type="number" class="form-control" name="lon" placeholder="{{ 'lon' }}" [(ngModel)]="lon" required>
+        </div>
+    </div>
+
+</form>
+<button (click)="addressLookupCoordinates()" class="btn btn-primary">Find</button>

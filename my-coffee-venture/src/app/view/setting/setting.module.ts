@@ -47,6 +47,7 @@ import { FunctionalComponent } from './functional/functional.component';
 import { ShopCategoryComponent } from './functional/shop-category/shop-category.component';
 import { MessagesModule } from 'primeng/messages';
 import { ShopEditComponent } from './functional/shop-edit/shop-edit.component';
+import { TranslateModule } from '@ngx-translate/core';
 const routes: Routes = [
     {
         path: 'system/permission',
@@ -139,6 +140,7 @@ const routes: Routes = [
         MatInputModule,
         InputTextModule,
         PartialsModule,
+        TranslateModule.forChild(),
         NgSelectAsyncModule,
         MatProgressSpinnerModule,
         NgSelectModule,

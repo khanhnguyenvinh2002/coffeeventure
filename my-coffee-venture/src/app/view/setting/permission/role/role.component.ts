@@ -13,7 +13,7 @@ import { UserService } from 'src/app/module/sticky/modules/user/user.service';
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.scss']
+  styleUrls: ['./role.component.css']
 })
 export class RoleComponent extends BaseComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

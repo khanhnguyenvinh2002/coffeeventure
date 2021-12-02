@@ -26,6 +26,7 @@
                 <h3>General information</h3>
                 <h5>
                     {{"Name: "+shopItem.name}}
+                    <em style="font-size: 1rem;font-weight: 300;">saved {{shopItem.numSaved}} times</em>
                 </h5>
                 <h6>
                     {{"Description: "+shopItem.description}}
@@ -33,17 +34,18 @@
                 <p class="proile-rating">
                     {{"Categories:"}} <span *ngFor="let item of shopItem.shopCategory">{{item.name+" " }} </span>
                 </p>
-                <p>{{shopItem.address}}{{shopItem.street}}{{shopItem.district}}{{shopItem.city}}</p>
+                <p>{{shopItem.address}}, {{shopItem.street}}, {{shopItem.district}}, {{shopItem.city}}</p>
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" style="padding: 15px;">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#image" role="tab" aria-controls="profile" aria-selected="false">Images</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#image" role="tab" aria-controls="profile" aria-selected="false" style="padding: 15px;">Images</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile" aria-selected="false">Reviews  <p-tag styleClass="p-mr-2" severity="success" value="{{shopItem.rating.toFixed(2)}}" [rounded]="true">
+                        </p-tag></a>
                     </li>
                 </ul>
             </div>
@@ -169,12 +171,17 @@
                             <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
                                 <img class=" img-shop" [src]="shop.image" alt="Card image cap">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">{{shop.name}}</h5>
-                                    <h6 class="card-text">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
+                               
+                                <div class="card-body ">
+                                    <h5 class="card-title ">{{shop.name}} 
+                                        <p-tag styleClass="p-mr-2" severity="success" value="{{shop.rating.toFixed(2)}}" [rounded]="true">
+                                        </p-tag>
+                                        <em style="font-size: 1rem;font-weight: 300;">{{ 'SHOP.SAVED' | translate }} {{shop.numSaved}} {{ 'SHOP.TIMES' | translate }}</em>
+                                    </h5>
+                                    <h6 class="card-text ">{{shop.address}}, {{shop.street}}, {{shop.district}}, {{shop.city}}
                                     </h6>
-                                    <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
-                                    <p>Telephone: {{shop.telephone}}</p>
+                                    <p><i class="pi pi-dollar"></i> {{shop.minPrice}}-{{shop.maxPrice}}</p>
+                                    <p><i class="pi pi-phone"></i> {{shop.telephone}}</p>
                                     <p>{{shop.description}}</p>
                                 </div>
                             </a>
@@ -206,12 +213,16 @@
                             <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
                                 <img class=" img-shop" [src]="shop.image" alt="Card image cap">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">{{shop.name}}</h5>
-                                    <h6 class="card-text">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
+                                <div class="card-body ">
+                                    <h5 class="card-title ">{{shop.name}} 
+                                        <p-tag styleClass="p-mr-2" severity="success" value="{{shop.rating.toFixed(2)}}" [rounded]="true">
+                                        </p-tag>
+                                        <em style="font-size: 1rem;font-weight: 300;">{{ 'SHOP.SAVED' | translate }} {{shop.numSaved}} {{ 'SHOP.TIMES' | translate }}</em>
+                                    </h5>
+                                    <h6 class="card-text ">{{shop.address}}, {{shop.street}}, {{shop.district}}, {{shop.city}}
                                     </h6>
-                                    <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
-                                    <p>Telephone: {{shop.telephone}}</p>
+                                    <p><i class="pi pi-dollar"></i> {{shop.minPrice}}-{{shop.maxPrice}}</p>
+                                    <p><i class="pi pi-phone"></i> {{shop.telephone}}</p>
                                     <p>{{shop.description}}</p>
                                 </div>
                             </a>

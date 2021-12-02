@@ -1,19 +1,10 @@
-<!-- <kt-portlet>
-	<kt-portlet-header *ngIf="!formData.hideHeader"
-	[class]="'kt-portlet__head--lg'"
-					   [icon]="formData.icon"
-					   [title]="formData.title "
-					   [viewLoading$]="viewLoading$">
-		<ng-container ktPortletTools> -->
+
 <header>
     <a (click)="cancel.emit()" class="btn btn-secondary kt-margin-r-10" mat-raised-button *ngIf="formData.isCancel">
         <i class="la la-arrow-left"></i>
         <span class="kt-hidden-mobile">{{ 'BACK' }}</span>
     </a>
 </header>
-<!-- </ng-container>
-	</kt-portlet-header>
-	<kt-portlet-body> -->
 <ng-content></ng-content>
 <div *ngIf="!formData.hideHeader && !formData.isHideFooter">
     <button class="btn btn-sm btn-warning float-left mr-2" title="{{ 'DELETE'  }}(Ctrl + Delete)" *ngIf="formData.isDelete" (click)="onBtnDeleteClick()">{{ 'DELETE' }}</button>
@@ -31,7 +22,5 @@
 		<span class="kt-hidden-mobile">{{ 'NEXT' }}</span>
 	</button>
 </div>
-<!-- </kt-portlet-body>
-</kt-portlet> -->
 
 <p-confirmDialog #dlgConfirm header="Confirmation" appendTo="body" [baseZIndex]="10001" [key]="key" position="top" icon="pi pi-exclamation-triangle"></p-confirmDialog>

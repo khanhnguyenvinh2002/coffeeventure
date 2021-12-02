@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, ElementRef } from '@angular/core';
 import { WINDOW } from './module/sticky/services/window.service';
 import { PrimeNGConfig } from 'primeng/api';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,8 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent {
   title = 'my-coffee-venture';
-  constructor(private primengConfig: PrimeNGConfig, private elementRef: ElementRef) { }
+  constructor(private primengConfig: PrimeNGConfig, private elementRef: ElementRef) {
+  }
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#cee8f0';
     // this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'rgb(193,221,232)';

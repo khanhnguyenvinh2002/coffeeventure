@@ -41,21 +41,6 @@ export class ShopComponent extends BaseListComponent implements OnInit {
       this.filteredDistricts = res.districts;
       this.categories = res.categories;
     })
-    // this.shopService.getShopCategory(true).pipe(map(response => {
-    //   const treeData = [];
-    //   for (const item of response) {
-    //     const parentNode: MenuItem = {
-    //       label: item.name,
-    //       id: item.id,
-    //       routerLink: item.link,
-    //       expanded: false
-    //     };
-    //     treeData.push(parentNode);
-
-    //   }
-    //   return treeData;
-    // })).subscribe(res =>
-    //   this.items[0].items = res)
   }
   goToShopItem(id: string) {
     this.router.navigate(['/app/shop/shop-item', id]);

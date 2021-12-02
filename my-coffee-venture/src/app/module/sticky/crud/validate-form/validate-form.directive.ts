@@ -73,22 +73,26 @@ export class ValidateTooltipDirective implements AfterContentInit, OnDestroy {
     ngOnDestroy() {
         document.removeEventListener('mousewheel', this.hideTooltip);
     }
-
+    /**
+     * hide tooltip
+     */
     private hideTooltip = () => {
         if (this.pTooltip) {
             this.pTooltip.hide();
         }
     }
-
+    /**
+     * reset value
+     */
     private resetValue() {
         this.pTooltip.disabled = !this._isError;
         if (this._isError) {
             let message = '';
             if (this.getShowError()[0]) {
-                const messKey = 'VALIDATION.' + this.getShowError()[0].toUpperCase();
+                const messKey = this.getShowError()[0].toLowerCase();
                 message = messKey;
             } else {
-                message = 'VALIDATION.ERROR_OCCURRED';
+                message = 'Error occurred';
             }
 
             this.pTooltip.text = message;
@@ -101,7 +105,10 @@ export class ValidateTooltipDirective implements AfterContentInit, OnDestroy {
             this.hideTooltip();
         }
     }
-
+    /**
+     * 
+     * @returns error
+     */
     private getShowError(): string[] {
         // tslint:disable-next-line:max-line-length
         if (!this.validateForm || !this.validateForm.form || !this.validateForm.form.controls[this._controlName] || !this.validateForm.form.controls[this._controlName].errors) {

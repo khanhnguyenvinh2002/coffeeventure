@@ -37,6 +37,7 @@ import { TreeTableModule } from 'primeng/treetable';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 import { UploadComponent } from './upload/upload.component';
 import { BaseWaitingComponent } from './base/base-waiting.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { BaseWaitingComponent } from './base/base-waiting.component';
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
+        TranslateModule.forChild(),
 
         // angular material modules
         MatButtonModule,

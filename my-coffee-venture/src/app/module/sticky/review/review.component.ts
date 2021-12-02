@@ -71,7 +71,10 @@ export class ReviewItemComponent implements OnInit {
 
 
   }
-  onBtnUnLikeClick() {
+  /**
+   * unlike event
+   */
+  public onBtnUnLikeClick() {
     if (this.item.id) {
       this.reviewService.like(this.item).subscribe(res => {
         this.liked = false;
@@ -83,7 +86,10 @@ export class ReviewItemComponent implements OnInit {
 
     }
   }
-  onBtnLikeClick() {
+  /**
+   * like event
+   */
+  public onBtnLikeClick() {
     if (this.item.id) {
       this.reviewService.like(this.item).subscribe(res => {
         this.liked = true;
@@ -95,7 +101,11 @@ export class ReviewItemComponent implements OnInit {
 
     }
   }
-  goToUser(id: string) {
+  /**
+   * go to user by id
+   * @param id user is
+   */
+  public goToUser(id: string) {
     if (id == this.authService.getUserId()) {
       this.router.navigate(['/app/user']);
 
@@ -105,17 +115,26 @@ export class ReviewItemComponent implements OnInit {
 
     }
   }
-  goToShopItem(id: string) {
+  /**
+   * go to shop item based on id
+   * @param id shop id
+   */
+  public goToShopItem(id: string) {
     this.router.navigate(['/app/shop/shop-item', id]);
   }
-  onBtnDeleteClick(id) {
+
+  /**
+   * delete review id
+   * @param id delete review by id
+   */
+  public onBtnDeleteClick(id) {
     this.service.delete(id).subscribe(res => {
       this.noti.showSuccess();
       this.event.emit(true);
     })
 
   }
-  calculateTime(createdAt: string) {
+  public calculateTime(createdAt: string) {
     let startDate = new Date(createdAt);
     let endDate = new Date();
     var startsec = startDate.getSeconds();
@@ -169,12 +188,15 @@ export class ReviewItemComponent implements OnInit {
       return (endsec - startsec) + " sec ago";
     }
   }
-  editReview() {
+
+  public editReview() {
     this.input = {};
     this.input = { ...this.item };
     this.input.image = null;
     this.formDisplay = true;
-  } upload(event: any) {
+  }
+  
+  public upload(event: any) {
     this.formDataAdd = event;
   }
 }

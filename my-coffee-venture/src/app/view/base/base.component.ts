@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
 import { WINDOW } from 'src/app/module/sticky/services/window.service';
 import { MenuItem } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
@@ -14,13 +15,17 @@ import { MenuItem } from 'primeng/api';
 export class BaseHeaderComponent implements OnInit {
   public id: number;
   items: MenuItem[];
+  language: string;
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window, private cdr: ChangeDetectorRef,
     public authService: AuthService, private router: Router,
-    private operationService: OperationService
+    private operationService: OperationService,
+    private translate: TranslateService
   ) {
     // window.addEventListener('scroll', this.scroll, true);
+    this.language = localStorage.getItem('language') ? localStorage.getItem('language'): "vn";
+    translate.setDefaultLang(this.language);
   }
   ngOnInit(): void {
     this.operationService.getNavBarViewMenu(true).subscribe(res => {
@@ -40,12 +45,15 @@ export class BaseHeaderComponent implements OnInit {
       this.id = 2;
     }
   }
+
   onBtnRegister() {
     this.router.navigate(['login']);
   }
+
   onBtnLogin() {
     this.router.navigate(['login']);
   }
+
   onBtnLogout() {
     this.authService.logout();
     this.operationService.getNavBarViewMenu(true).subscribe(res => {
@@ -53,13 +61,10 @@ export class BaseHeaderComponent implements OnInit {
       this.cdr.detectChanges();
     })
   }
+  
+  useLanguage(language: string): void {
+    this.language = language
+    this.translate.use(language);
+    localStorage.setItem('language', language)
+  }
 }
-  // scroll = (event) => {
-  //   if (this.myWindow.screenY > 200) {
-  //     this.id = 1;
-  //   }
-  //   else {
-  //     this.id = 2;
-  //   }
-  // }
-

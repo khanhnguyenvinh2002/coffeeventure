@@ -4,26 +4,37 @@
             <div class="container">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-4 col-xs-4" style="width: 33%;">
                             <div style=" text-align: center;">
-                                <a [routerLink]="['/app/shop']">Go to our list of shops </a>
+                                <a [routerLink]="['/app/shop']">{{ 'FOOTER.SHOP' | translate }}</a>
                             </div>
                             <div style=" text-align: center;">
                                 <!-- (click)="returnTop()" -->
-                                <a [routerLink]="['/app/reviewer']">Go to our list of reviewers</a>
+                                <a [routerLink]="['/app/reviewer']">{{ 'FOOTER.REVIEW' | translate }}</a>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div style=" text-align: center;"><a [routerLink]="['/app/home']">View our home page</a>
+                        <div class="col-md-4 col-sm-4 col-xs-4" style="width: 33%;">
+                            <div style=" text-align: center;"><a [routerLink]="['/app/home']">{{ 'FOOTER.HOME' | translate }}</a>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-4 col-xs-4" style="width: 33%;">
                             <div style=" text-align: center;">
-                                <a [routerLink]="['/app/user/forum']">View our journal forum</a>
+                                <a [routerLink]="['/app/user/forum']">{{ 'FOOTER.JOURNAL' | translate }}</a>
                             </div>
-                            <div style=" text-align: center;"><a [routerLink]="['/app/author']">About the author</a>
+                            <div style=" text-align: center;"><a [routerLink]="['/app/author']">{{ 'FOOTER.AUTHOR' | translate }}</a>
                             </div>
                         </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-md-12">
+                        <p-divider align="center" >
+                            <b class="copyright" style="color: black;">© Copyright 2021 Coffee Venture</b>
+                        </p-divider>
+                        </div>
+                       
                     </div>
                 </div>
             </div>

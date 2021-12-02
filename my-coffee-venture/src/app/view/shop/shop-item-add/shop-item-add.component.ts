@@ -71,9 +71,10 @@ export class ShopItemAddComponent extends BaseFormComponent implements OnInit {
   }
 
 
-  upload(event: any) {
+  public upload(event: any) {
     this.formDataAdd = event;
   }
+  
   public onBtnSaveClick(): void {
 
     if (this.form) {
@@ -104,10 +105,6 @@ export class ShopItemAddComponent extends BaseFormComponent implements OnInit {
     setTimeout(() => {
       this.form.form.markAsDirty();
     }, 0);
-  }
-
-  public onChangeBuyer(event: any): void {
-    this.shopData.shopId = event ? event.personId : null;
   }
 
   public onBtnCancelClick(): void {

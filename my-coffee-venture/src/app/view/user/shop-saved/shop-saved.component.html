@@ -1,7 +1,6 @@
 <div class="container-fluid" style="margin-top:30px">
-    <div class="d-flex align-items-center justify-content-center" style="flex-direction: column; margin-bottom: 4rem;
-    ">
-        <h2> Hi {{userName}}, this is your list of saved shops</h2>
+    <div class="d-flex align-items-center justify-content-center" style="flex-direction: column; margin-bottom: 4rem;">
+        <h2> {{ 'USER.SAVED.HEADER' | translate }}</h2>
 
     </div>
     <mat-paginator [pageSize]="12 " [pageSizeOptions]="[12, 24, 36] " [length]="dataSource.paginatorTotal " [showFirstLastButtons]="true " (page)="onPageChange($event) "></mat-paginator>
@@ -10,7 +9,7 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th *ngFor="let col of cols" [width]="col.width" class="table-no-wrap" [ngClass]="col.class">
-                        {{ col.header}}
+                        {{ col.header | translate}}
                     </th>
                 </tr>
             </ng-template>
@@ -34,16 +33,19 @@
                         </button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item title="{{'Xóa'}}" (click)="onBtnDeleteClick(rowData.id)">
-                                <span>{{'DELETE'}}</span>
+                                <span>{{'COMMON.BUTTON.DELETE' | translate}}</span>
                             </button>
                         </mat-menu>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
+
+        <mat-spinner *ngIf="userShopService.isLoading$ | async">
+        </mat-spinner>
         <p-messages severity="info" *ngIf="!dataSource.items  || dataSource.items.length == 0">
             <ng-template pTemplate>
-                <div class="p-ml-2">No data to display</div>
+                <div class="p-ml-2">{{'COMMON.ERROR.NO_DATA_TO_DISPLAY' | translate}}</div>
             </ng-template>
         </p-messages>
     </div>

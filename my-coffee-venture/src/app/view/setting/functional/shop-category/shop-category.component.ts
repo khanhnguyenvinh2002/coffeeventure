@@ -29,6 +29,9 @@ export class ShopCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.initData();
   }
+  /**
+   * initialize data
+   */
   public initData() {
     this.shopService.selectCategory(this.shopRequest).subscribe(res => {
       this.items = res;
@@ -36,8 +39,12 @@ export class ShopCategoryComponent implements OnInit {
       this.isShowAddUser = false;
       this.form.form.markAsPristine();
     })
-
   }
+  /**
+   * 
+   * @param id delete category based on id
+   * handle delete event
+   */
   public onBtnDeleteClick(id) {
     this.shopService.deleteCategory(id).subscribe(res => {
       this.initData();
@@ -45,7 +52,12 @@ export class ShopCategoryComponent implements OnInit {
       this.cd.detectChanges();
     })
   }
-  editCategory(rowData?) {
+
+  /**
+   * edit category data
+   * @param rowData row containing category data
+   */
+  public editCategory(rowData?) {
     this.input = {};
     if (rowData) {
       this.input.name = rowData.name;
@@ -57,6 +69,10 @@ export class ShopCategoryComponent implements OnInit {
     }, 0);
     this.isShowAddUser = true;
   }
+
+  /**
+   * handle save users
+   */
   public onBtnSaveUsers(): void {
     if (this.form.form.dirty) {
       const save = new SaveConfirmation();

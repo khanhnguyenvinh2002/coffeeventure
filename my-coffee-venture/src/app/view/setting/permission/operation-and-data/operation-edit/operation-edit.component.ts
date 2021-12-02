@@ -11,7 +11,7 @@ import * as config from './operation-edit.config';
 @Component({
   selector: 'app-operation-data-edit',
   templateUrl: './operation-edit.component.html',
-  styleUrls: ['./operation-edit.component.scss']
+  styleUrls: ['./operation-edit.component.css']
 })
 export class OperationDataEditComponent extends BaseFormComponent implements OnInit {
   @ViewChild('form', { static: true }) form: NgForm;

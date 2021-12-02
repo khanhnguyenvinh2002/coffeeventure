@@ -10,7 +10,7 @@ import { RoleRequestPayload } from 'src/app/module/sticky/modules/role/role.requ
 @Component({
   selector: 'app-operation',
   templateUrl: './operation.component.html',
-  styleUrls: ['./operation.component.scss']
+  styleUrls: ['./operation.component.css']
 })
 export class OperationComponent extends BaseComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
