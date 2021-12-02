@@ -12,7 +12,9 @@ export class BaseComponent implements OnDestroy {
     ngOnDestroy() {
         this.subscriptions.forEach(el => el.unsubscribe());
     }
-
+    /*
+     * 
+     */
     parseDate(dateString: string): any {
         if (dateString) {
             // return new Date(dateString);
@@ -20,7 +22,9 @@ export class BaseComponent implements OnDestroy {
         }
         return null;
     }
-
+    /*
+    * convert object to dto
+    */
     public toDto(property: string, value: string): any {
         if (value) {
             const obj = {};

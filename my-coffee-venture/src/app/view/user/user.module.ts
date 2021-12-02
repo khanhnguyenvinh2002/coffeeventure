@@ -33,22 +33,39 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReviewModule } from 'src/app/module/sticky/review/review.module';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [UserComponent, ShopSavedComponent, ForumComponent, UserViewComponent],
   imports: [
     CommonModule,
-    UserRoutingModule, ReviewModule,
-    HttpClientModule, InputTimeModule,
-    FormsModule, ReactiveFormsModule, NgbModule, DialogModule, InputTextareaModule, ToggleButtonModule, MatIconModule, MatMenuModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, CalendarModule, InfiniteScrollModule, PartialsModule, TableModule, MessagesModule, MatButtonModule,
-
+    UserRoutingModule, 
+    ReviewModule,
+    HttpClientModule, 
+    InputTimeModule,
+    FormsModule, 
+    ReactiveFormsModule, 
+    NgbModule, 
+    DialogModule, 
+    InputTextareaModule, 
+    ToggleButtonModule, 
+    MatIconModule, 
+    MatMenuModule, 
+    MatDatepickerModule, 
+    MatNativeDateModule, 
+    MatCardModule, 
+    CalendarModule, 
+    InfiniteScrollModule, 
+    PartialsModule, 
+    TableModule, 
+    MessagesModule, 
+    MatButtonModule,
+    TranslateModule.forChild(),
     MatSelectModule,
     MatInputModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatDialogModule,
-
-    // ng-bootstrap modules
     NgbDropdownModule,
     NgbTooltipModule,
     // TranslateModule,

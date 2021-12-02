@@ -24,7 +24,11 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  /**
+   * 
+   * @param files upload
+   * @returns 
+   */
   public uploadFile = (files) => {
     if (files.length === 0) {
       return;
@@ -36,12 +40,19 @@ export class UploadComponent implements OnInit {
     });
     this.onFileLoad.emit(this.formData);
   }
+  /**
+   * reset data
+   */
   public reset() {
     this.formData = new FormData();
     this.imageUrl = "";
     this.preview = false;
   }
-  handleFileInput(event) {
+  /**
+   * 
+   * @param event handle file
+   */
+  public handleFileInput(event) {
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
       for (let i = 0; i < filesAmount; i++) {

@@ -1,0 +1,53 @@
+<!-- <div class="address-lookup">
+    <input type="text" placeholder="Search..."
+           (keyup)="addressLookup($event.target.value)" (click)="$event.stopPropagation()"/>
+  </div> -->
+  <!-- <div class="address-lookup">
+    <input type="number" placeholder="Lat..." [(ngModel)]="lat"
+           (click)="$event.stopPropagation()"/>
+
+    <input type="number" placeholder="Lon..." [(ngModel)]="lon"
+    (click)="$event.stopPropagation()"/>
+  </div> -->
+
+  <button class="btn btn-primary" type="button" (click)="addPerson()">
+    Add Person
+  </button>
+  <div > 
+  <form id="map" autocomplete="off"  #form="ngForm" [formGroup]="personsForm" (submit)="onFormSubmit()">
+    <div formArrayName="persons">
+        <div *ngFor="let person of persons; let i = index;" [formGroupName]="i">
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label>{{ 'Lat'}}</label>
+                <validate-form [form]="form" controlName="lat"></validate-form>
+                <input  (click)="$event.stopPropagation()" validateTooltip [validateForm]="form" name="lat" type="number" class="form-control" formControlName="lat" placeholder="{{ 'lat' }}"  required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>{{ 'Lon' }}</label>
+                <validate-form [form]="form" controlName="lon"></validate-form>
+                <input  (click)="$event.stopPropagation()" validateTooltip [validateForm]="form" name="lon" type="number" class="form-control" formControlName="lon" placeholder="{{ 'lon' }}"required>
+            </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-secondary">
+      Submit
+    </button>
+  </form>
+  </div>
+  <!-- <form autocomplete="off" #form="ngForm" id="map">
+    <h5>{{ 'Shop add' }}</h5>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label>{{ 'Lat'}}</label>
+            <input  (click)="$event.stopPropagation()" type="number" class="form-control" name="lat" placeholder="{{ 'lat' }}" [(ngModel)]="lat" required autofocus>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>{{ 'Lon' }}</label>
+            <input  (click)="$event.stopPropagation()" type="number" class="form-control" name="lon" placeholder="{{ 'lon' }}" [(ngModel)]="lon" required>
+        </div>
+    </div>
+
+</form> -->
+<button (click)="addressLookupCoordinates()" class="btn btn-link">Find</button>

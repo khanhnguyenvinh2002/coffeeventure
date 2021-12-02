@@ -17,31 +17,43 @@ export class DialogRef {
         this.output = {};
         if (config) { this.config = config; } else { this.config = DEFAULT_CONFIG; }
     }
-
+    /**
+     * show dialog
+     */
     public show(): void {
         this.isDisplay = true;
         this.visibilitySubject.next(true);
     }
-
+    /**
+     * hide dialog
+     */
     public hide(): void {
         this.isDisplay = false;
         this.visibilitySubject.next(false);
     }
-
+    /**
+     * hide mask for dialog
+     */
     public hideMask(): void {
         const parentNode = document.getElementsByClassName('dialog-hide')[0].parentNode as any;
         parentNode.hidden = true;
     }
-
+    /**
+     * show mask for dialog
+     */
     public showMask(): void {
         const parentNode = document.getElementsByClassName('dialog-hide')[0].parentNode as any;
         parentNode.hidden = false;
     }
-
+    /** 
+     * make dialog visible
+     */
     public visible(): void {
         this.isVisible = true;
     }
-
+    /**
+     * make dialog invisible
+     */
     public invisible(): void {
         this.isVisible = false;
     }

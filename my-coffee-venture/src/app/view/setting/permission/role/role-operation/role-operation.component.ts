@@ -10,7 +10,7 @@ import { RoleService } from 'src/app/module/sticky/modules/role/role.service';
 @Component({
   selector: 'app-role-operation',
   templateUrl: './role-operation.component.html',
-  styleUrls: ['./role-operation.component.scss']
+  styleUrls: ['./role-operation.component.css']
 })
 export class RoleOperationComponent implements OnInit {
   @Input() dialogRef: DialogRef;

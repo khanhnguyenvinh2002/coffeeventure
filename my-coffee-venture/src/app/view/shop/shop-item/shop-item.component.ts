@@ -96,7 +96,6 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
       }
       this.shopService.selectById(this.id).subscribe(res => {
         this.shopItem = res;
-        if (res.status)
           if (res && res.imageDirectories && res.imageDirectories.length > 0) {
             res.imageDirectories.forEach(e => {
               this.images.push(e);
@@ -156,7 +155,7 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
 
   }
 
-  onScrollDown() {
+  public onScrollDown() {
     if (this.stopScroll == true || this.allItems == true) {
       this.isLoaded = true;
       return
@@ -184,9 +183,11 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
         this.data = this.data ? this.data.concat(res) : res;
     });
   }
-  goToShopItem(id: string) {
+  
+  public goToShopItem(id: string) {
     this.router.navigate(['/app/shop/shop-item', id]);
   }
+
   public initShopByDistrict(district: string): void {
     this.shopRequest = new ShopRequestPayload();
     this.shopRequest.excludeIds = [];
@@ -209,6 +210,7 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
         }
       });
   }
+
   public initShopByCategory(id: string): void {
     this.shopRequest = new ShopRequestPayload();
     this.shopRequest.excludeIds = [];
@@ -233,14 +235,15 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
 
   }
 
-  onReviewAdd() {
+  public onReviewAdd() {
     this.input = {};
     this.input.content = "";
     this.input.shopId = this.id;
     this.input.shopName = this.shopItem.name;
     this.formDisplay = true;
   }
-  saveShop(event: boolean) {
+
+  public saveShop(event: boolean) {
     if (event) {
       this.userShop = {};
       this.userShop.id = this.id;
@@ -259,7 +262,7 @@ export class ShopItemComponent extends BaseListComponent implements OnInit {
     }
   }
 
-  onUploadEvent(event) {
+  public onUploadEvent(event) {
     this.formDisplay = false;
     if (event) {
       this.initData();

@@ -1,15 +1,11 @@
 import { BaseFormComponent } from 'src/app/module/sticky/component';
 import { ShopService } from './../../../module/sticky/modules/shop/shop.service';
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { SaveConfirmation, CancelConfirmation } from 'src/app/module/sticky/common/confirmation';
 import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
 import { ReviewService } from 'src/app/module/sticky/modules/review/review.service';
 import { ReviewRequestPayload } from 'src/app/module/sticky/modules/review/review-request.payload';
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
 
 @Component({
   selector: 'app-review-add',
@@ -32,7 +28,15 @@ export class ReviewAddComponent extends BaseFormComponent implements OnInit {
   public data: any = {};
 
 
-  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, public shopService: ShopService, public reviewService: ReviewService, private noti: NotificationService, private authService: AuthService, private userService: UserService) { super(); }
+  constructor(
+    private cdr: ChangeDetectorRef, 
+    public shopService: ShopService, 
+    public reviewService: ReviewService, 
+    private noti: NotificationService) 
+    { 
+      super(); 
+    }
+
   ngOnInit(): void {
     this.data.id = this.input.shopId;
     this.data.name = this.input.shopName;
@@ -108,7 +112,7 @@ export class ReviewAddComponent extends BaseFormComponent implements OnInit {
     }, 0);
   }
 
-  upload(event: any) {
+  public upload(event: any) {
     this.formDataAdd = event;
   }
   /**

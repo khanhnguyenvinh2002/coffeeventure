@@ -17,6 +17,7 @@ import { newArray } from '@angular/compiler/src/util';
 import { NgForm } from '@angular/forms';
 import { SaveConfirmation } from 'src/app/module/sticky/common/confirmation/save-confirmation';
 import { CancelConfirmation } from 'src/app/module/sticky/common/confirmation';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user',
@@ -55,7 +56,7 @@ export class UserComponent extends BaseListComponent implements OnInit {
   public pageLoaded = false;
   public postAvatar: any;
   public imageUrl: any = 'assets/img/cf_bg1.jpg';
-  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, private http: HttpClient, public journalService: JournalService, private noti: NotificationService, private authService: AuthService, private userService: UserService) { super(); }
+  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, private http: HttpClient, public journalService: JournalService, private noti: NotificationService, private authService: AuthService, private userService: UserService,private translate: TranslateService) { super(); }
 
   ngOnInit(): void {
     this.userName = this.authService.getUser();
@@ -102,22 +103,37 @@ export class UserComponent extends BaseListComponent implements OnInit {
     });
 
   }
-  upload(event: any) {
+  /**
+   * upload form data
+   */
+  public upload(event: any) {
     this.formDataAdd = event;
   }
 
-  loadAvatar(event: any) {
+  /**
+   * load avatar event
+   */
+   public loadAvatar(event: any) {
     this.formDataAvatar = event;
     this.avatarLoaded = true;
   }
-  loadAvatarImage(event: string) {
+
+  /**
+   * 
+   * @load avatar image
+   */
+   public loadAvatarImage(event: string) {
     this.imageUrl = event;
     this.cdr.detectChanges();
   }
+  /**
+   * event renew page
+   */
   public renewPage() {
     this.resetCalendar();
     this.initData();
   }
+
   public reset() {
     this.formDataAdd = new FormData();
     this.input = {};
@@ -128,7 +144,11 @@ export class UserComponent extends BaseListComponent implements OnInit {
       this.form.form.markAsPristine();
     }, 0);
   }
-  uploadAvatar() {
+
+  /**
+   * upload avatar event
+   */
+   public uploadAvatar() {
     this.userService.uploadAvatar(this.formDataAvatar).subscribe(res => {
       this.noti.showSuccess();
       this.avatarLoaded = false;
@@ -143,7 +163,8 @@ export class UserComponent extends BaseListComponent implements OnInit {
       )
     })
   }
-  onScrollDown() {
+
+  public onScrollDown() {
     if (this.stopScroll == true || this.allItems == true) {
       this.isLoaded = true;
       return
@@ -177,7 +198,8 @@ export class UserComponent extends BaseListComponent implements OnInit {
 
     });
   }
-  resetCalendar() {
+
+  public resetCalendar() {
     this.journalService.getAllById().subscribe(res => {
       res.forEach(element => {
         let x = new Date(element.createdAt)
@@ -188,10 +210,11 @@ export class UserComponent extends BaseListComponent implements OnInit {
     })
   }
   event: any;
-  update(value) {
+
+  public update(value) {
     this.dates = this.dateJournal;
   }
-  isSelected = (event: any) => {
+  public isSelected = (event: any) => {
     const date =
       event.getFullYear() +
       "-" +
@@ -201,7 +224,7 @@ export class UserComponent extends BaseListComponent implements OnInit {
     return this.daysSelected.find(x => x == date) ? "selected" : null;
   };
 
-  selectNew(event: any, calendar: any) {
+  public selectNew(event: any, calendar: any) {
     const date =
       event.getFullYear() +
       "-" +
@@ -213,14 +236,14 @@ export class UserComponent extends BaseListComponent implements OnInit {
 
     calendar.updateTodaysDate();
   }
-  format(event: Date) {
+  public format(event: Date) {
     return event.getFullYear() +
       "-" +
       ("00" + (event.getMonth() + 1)).slice(-2) +
       "-" +
       ("00" + event.getDate()).slice(-2);
   }
-  select(event: any, calendar: any) {
+  public select(event: any, calendar: any) {
     const date = this.format(event);
     const index = this.daysSelected.findIndex(x => x == date);
     if (index >= 0) {
@@ -238,7 +261,7 @@ export class UserComponent extends BaseListComponent implements OnInit {
     calendar.updateTodaysDate();
   }
 
-  handleFileInput(event) {
+  public handleFileInput(event) {
     if (event.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -247,11 +270,11 @@ export class UserComponent extends BaseListComponent implements OnInit {
       }
     }
   }
-  onFileSelected(event) {
+  public onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
   }
 
-  editJournal(rowData?) {
+  public editJournal(rowData?) {
     this.input = {};
     this.input.content = "";
     if (rowData) {
@@ -264,6 +287,7 @@ export class UserComponent extends BaseListComponent implements OnInit {
     }, 0);
     this.formDisplay = true;
   }
+  
   public onBtnSaveJournal() {
     this.journalAdd.content = this.journalContent;
     if (this.journalStatus == true) {

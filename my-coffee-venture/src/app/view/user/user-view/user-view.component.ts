@@ -58,7 +58,7 @@ export class UserViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  initReview() {
+  public initReview() {
     this.reviewRequest.pageIndex = 0;
     this.reviewRequest.pageSize = 3;
     this.reviewService.getAll(this.reviewRequest).subscribe(res => {
@@ -79,7 +79,8 @@ export class UserViewComponent implements OnInit, OnDestroy {
     })
 
   }
-  initJournal() {
+
+  public initJournal() {
     this.request.pageIndex = 0;
     this.request.pageSize = 3;
     this.journalService.getAll(this.request).subscribe(res => {
@@ -99,7 +100,8 @@ export class UserViewComponent implements OnInit, OnDestroy {
       });
     })
   }
-  onScrollDownReview() {
+
+  public onScrollDownReview() {
     if (this.stopScrollingReview == true) {
       this.isLoadedReview = true;
       return;
@@ -128,7 +130,7 @@ export class UserViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  onScrollDown() {
+  public onScrollDown() {
     if (this.stopScrolling == true) {
       this.isLoaded = true;
       return;

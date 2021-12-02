@@ -17,10 +17,5 @@ export const PICTURES = [
     { id: "Dec20", image: "Dec_30_2020.jpeg", header: "Dec 30 2020", class: "img-ver", content: "Đưa em hâm đi ma di ót ăn bằng tiền mẹ em" },
     { id: "Jan21", image: "Jan_16_2021.jpeg", header: "Jan 16 2021", class: "img-ver", content: "Đưa em hâm đi ngắm mũ" },
     { id: "Feb21", image: "Feb_9_2021.jpeg", header: "Feb 9 2021", class: "img-ver", content: "Đưa em hâm đi làm cứt" },
-    { id: "Mar21", image: "Mar_6_2021.jpeg", header: "Mar 6 2021", class: "img-ver", content: "Đưa bữa tối đi ăn bữa trưa" },
-    // { id: "section2", image: "christ_mas.jpeg", header: " 2019", class: "img-ver" },
-    // { id: "section3", image: "ki_yeu.jpeg", header: "June 14, 2020", class: "img-ver" },
-    // { id: "section4", image: "san_bong.jpeg", header: "July 10, 2020", class: "img-ver" },
-    // { id: "section5", image: "giang_birthday.jpeg", header: " 2019", class: "img-hor" },
-    // { id: "section6", image: "khanh_birthday.jpeg", header: " 2019", class: "img-hor" },
+    { id: "Mar21", image: "Mar_6_2021.jpeg", header: "Mar 6 2021", class: "img-ver", content: "Đưa bữa tối đi ăn bữa trưa" }
 ]

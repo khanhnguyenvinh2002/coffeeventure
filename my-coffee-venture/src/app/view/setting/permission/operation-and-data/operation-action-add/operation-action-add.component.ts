@@ -14,7 +14,7 @@ import { OperationService } from 'src/app/module/sticky/modules/operation/operat
 @Component({
     selector: 'app-operation-action',
     templateUrl: './operation-action-add.component.html',
-    styleUrls: ['./operation-action-add.component.scss']
+    styleUrls: ['./operation-action-add.component.css']
 })
 export class OperationActionAddComponent extends BaseComponent implements OnInit {
     @ViewChild('form', { static: true }) form: NgForm;
@@ -117,26 +117,7 @@ export class OperationActionAddComponent extends BaseComponent implements OnInit
                 this.cd.detectChanges();
             }
             this.resetVariables();
-
-
         }
-        // if (this.form) {
-        //     if (this.form.form.touched) {
-        //         const cancel = new SaveConfirmation();
-        //         cancel.accept = () => {
-        //             this.selectedActions = null; 
-        //             this.dialogRef.hide();
-        //             this.cd.detectChanges();
-        //         };
-        //         this.notification.confirm(cancel);
-        //     } else {
-        //         this.dialogRef.hide();
-        //         this.cd.detectChanges();
-        //     }
-        // } else {
-        //     this.dialogRef.hide();
-        //     this.cd.detectChanges();
-        // }
     }
 
     public onShow() {

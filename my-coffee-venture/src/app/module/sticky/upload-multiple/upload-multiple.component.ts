@@ -21,7 +21,11 @@ export class UploadMultipleComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  /**
+   * 
+   * @param files 
+   * @returns emit to the parent the file
+   */
   public uploadFile = (files) => {
     if (files.length === 0) {
       return;
@@ -33,7 +37,11 @@ export class UploadMultipleComponent implements OnInit {
     });
     this.onFileLoad.emit(this.formData);
   }
-  handleFileInput(event) {
+  /**
+   * 
+   * @param event handle image
+   */
+  public handleFileInput(event) {
     if (event.target.files && event.target.files[0]) {
       this.imageUrls = [];
       var filesAmount = event.target.files.length;
@@ -52,16 +60,4 @@ export class UploadMultipleComponent implements OnInit {
       }, 0);
     }
   }
-  // handleFileInput(event) {
-  //   if (event.target.files) {
-  //     var reader = new FileReader();
-  //     event.target.files.forEach(element => {
-  //       reader.readAsDataURL(element);
-
-  //     });
-  //     reader.onload = (event: any) => {
-  //       this.imageUrls = event.target.result;
-  //     }
-  //   }
-  // }
 }

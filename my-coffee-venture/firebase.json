@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist\\my-coffee-venture",
+    "public": "dist/my-coffee-venture",
     "ignore": [
       "firebase.json",
       "**/.*",

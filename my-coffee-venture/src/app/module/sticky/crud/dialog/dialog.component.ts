@@ -94,7 +94,9 @@ export class DialogComponent extends BaseFormComponent implements OnInit {
     }
 
     ngOnInit() { }
-
+    /**
+     * handle save event
+     */
     public onBtnSaveClick(): void {
         if (this.form) {
             if (!this.validateForm(this.form, 'role-edit')) {
@@ -120,7 +122,9 @@ export class DialogComponent extends BaseFormComponent implements OnInit {
             this.cd.detectChanges();
         }
     }
-
+    /**
+     * handle delete event
+     */
     public onBtnDeleteClick(): void {
         const deleteConfirmation = new DeleteConfirmation();
         deleteConfirmation.accept = () => {
@@ -129,20 +133,26 @@ export class DialogComponent extends BaseFormComponent implements OnInit {
         };
         this.notification.confirm(deleteConfirmation);
     }
-
+    /**
+     * reset form
+     */
     public resetForm(): void {
         if (this.form) {
             this.form.resetForm();
         }
     }
-
+    /**
+     * mark the form as pristine
+     */
     public markAsPristine(): void {
         if (this.form) {
             this.form.form.markAsPristine();
         }
     }
-
-    onBtnCancelClick(): void {
+    /**
+     * handle cancel event
+     */
+    public onBtnCancelClick(): void {
         if (this.form) {
             if (this.form.form.dirty) {
                 const cancelConfirmation = new CancelConfirmation();

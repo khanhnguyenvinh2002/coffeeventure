@@ -1,49 +1,49 @@
-                        .first {
-                            height: 50vh;
-                            min-height: 200px;
-                            background-size: cover;
-                            background-image: linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef), linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef);
-                            background-position: center;
-                        }
-                        
-                        #all:hover {
-                            opacity: 0.5;
-                        }
-                        
-                        .mat-calendar-body-cell-content {
-                            color: inherit;
-                        }
-                        
-                        .mat-calendar-body-cell.selected {
-                            background-color: deeppink!important;
-                            color: white;
-                            border-radius: 50%
-                        }
-                        
-                        .drop-calendar {
-                            width: 100%;
-                        }
-                        
-                        .p-datepicker table td.p-datepicker-today>span {
-                            background: var(--hue-color-2);
-                            color: #495057;
-                            border-color: transparent;
-                        }
-                        
-                        .p-datepicker table td>span {
-                            width: 2.5rem;
-                            height: 2.5rem;
-                            border-radius: 50%;
-                            transition: box-shadow 0.2s;
-                            border: 1px solid transparent;
-                        }
-                        
-                        .p-datepicker table td.p-datepicker-today>span.p-highlight {
-                            color: #495057;
-                            background: red;
-                        }
-                        
-                        .p-datepicker table td>span.p-highlight {
-                            color: whitesmoke;
-                            background: deeppink;
-                        }
+.first {
+    height: 50vh;
+    min-height: 200px;
+    background-size: cover;
+    background-image: linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef), linear-gradient( 45deg, #efefef 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, #efefef 75%, #efefef);
+    background-position: center;
+}
+
+#all:hover {
+    opacity: 0.5;
+}
+
+.mat-calendar-body-cell-content {
+    color: inherit;
+}
+
+.mat-calendar-body-cell.selected {
+    background-color: deeppink!important;
+    color: white;
+    border-radius: 50%
+}
+
+.drop-calendar {
+    width: 100%;
+}
+
+.p-datepicker table td.p-datepicker-today>span {
+    background: var(--hue-color-2);
+    color: #495057;
+    border-color: transparent;
+}
+
+.p-datepicker table td>span {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: box-shadow 0.2s;
+    border: 1px solid transparent;
+}
+
+.p-datepicker table td.p-datepicker-today>span.p-highlight {
+    color: #495057;
+    background: red;
+}
+
+.p-datepicker table td>span.p-highlight {
+    color: whitesmoke;
+    background: deeppink;
+}

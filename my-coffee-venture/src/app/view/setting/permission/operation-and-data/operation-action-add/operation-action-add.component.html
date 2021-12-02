@@ -1,17 +1,3 @@
-<!-- <p-dialog [(visible)]="isDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%'} "
-    [draggable]="true" [maximizable]="true" [closable]="false">
-    <p-header>
-        <i class="fal fa-sort-amount-up-alt"></i> {{"Add action"}}
-    </p-header>
-    
-    <ng-template pTemplate="footer">
-        <button class="btn btn-primary" title="{{ ('SAVE')  }}(Enter)" (click)="onBtnSave()">
-            {{ 'SAVE'  }}
-        </button>
-        <button class="btn btn-secondary" title="{{ 'CANCEL'  }}(Esc)" (click)="onBtnCancel()">{{
-            'CANCEL'  }}</button>
-    </ng-template>
-</p-dialog> -->
 <p-dialog [(visible)]="dialogRef.isDisplay" (onShow)="onShow()" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '60%'} " [draggable]="true" [maximizable]="true" [closable]="false">
     <form autocomplete="off" #form="ngForm" id="role-edit">
         <p-table [value]="dataSource.items" selectionMode="multiple" [(selection)]="selectedActions" [metaKeySelection]="true" dataKey="id" [autoLayout]="true">

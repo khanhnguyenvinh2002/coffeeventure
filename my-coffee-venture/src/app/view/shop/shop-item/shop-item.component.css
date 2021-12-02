@@ -18,6 +18,14 @@ img {
     object-fit: cover;
 }
 
+:host>>>.p-tag.p-tag-success{
+    background-color: #f9cbb2
+}
+:host>>>.p-tag-value{
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 5px
+}
 .img-profile {
     display: block;
     height: 300px;

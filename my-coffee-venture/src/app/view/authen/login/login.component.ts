@@ -29,20 +29,23 @@ export class LoginComponent implements OnInit {
 
   }
 
-  createLoginForm() {
+  public createLoginForm() {
     this.loginForm = this.fb.group({
       'username': ['', Validators.required],
       'password': ['', Validators.required]
     })
   }
-  createRegisterForm() {
+  public createRegisterForm() {
     this.registerForm = this.fb.group({
       'username1': ['', Validators.required],
       'password1': ['', Validators.required],
       'retypePassword': ['', Validators.required]
     })
   }
-  checkUser() {
+  /**
+   * check user exist
+   */
+  public checkUser() {
     let request = new UserRequestPayload();
     request.userName = this.registerForm.value.username1;
     this.userService.count(request).subscribe(res => {
@@ -56,7 +59,10 @@ export class LoginComponent implements OnInit {
       }
     })
   }
-  login() {
+  /**
+   * login method
+   */
+  public login() {
     let credentials = this.loginForm.value;
     this.authService.login(credentials.username, credentials.password).subscribe(res => {
       if (res.canAccess && res.accessToken != null) {
@@ -72,7 +78,7 @@ export class LoginComponent implements OnInit {
     })
 
   }
-  changeLogin() {
+  public changeLogin() {
     this.isLogIn = !this.isLogIn;
     this.registerForm.controls['username1'].setValue('');
     this.registerForm.controls['password1'].setValue('');
@@ -82,7 +88,10 @@ export class LoginComponent implements OnInit {
     this.registerForm.markAsPristine();
     this.loginForm.markAsPristine();
   }
-  register() {
+  /**
+   * register
+   */
+  public register() {
     let credentials = this.registerForm.value;
     let request = new UserRequestPayload();
     request.userName = this.registerForm.value.username1;
@@ -116,13 +125,5 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/app/home']);
   }
 
-
-  // .subscribe(res => {
-  //   if (res == true) {
-  //     console.log("in");
-  //     this.router.navigate(['/app/secret']);
-  //   }
-  // },
-  //   err => console.log("Error while Authenticating"));
 
 }

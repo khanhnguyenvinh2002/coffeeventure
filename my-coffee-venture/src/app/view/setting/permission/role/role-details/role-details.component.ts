@@ -16,7 +16,7 @@ import { UserService } from 'src/app/module/sticky/modules/user/user.service';
 @Component({
   selector: 'app-role-details',
   templateUrl: './role-details.component.html',
-  styleUrls: ['./role-details.component.scss']
+  styleUrls: ['./role-details.component.css']
 })
 export class RoleDetailsComponent extends BaseFormComponent implements OnInit {
   @ViewChild('popupForm', { static: true }) popupForm: NgForm;

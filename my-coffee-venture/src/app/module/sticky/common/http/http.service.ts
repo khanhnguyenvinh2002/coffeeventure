@@ -17,7 +17,7 @@ export class HttpService<T = any> {
     //https://coffeeventure.azurewebsites.net/
 
     public origin = 'https://coffeeventure.azurewebsites.net/';
-    // public origin = 'https://localhost:44341/';
+    // public origin = 'https://localhost:5001/';
     public url = '';
 
     public isLoading = false;

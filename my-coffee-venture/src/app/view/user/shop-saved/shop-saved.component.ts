@@ -20,14 +20,14 @@ export class ShopSavedComponent implements OnInit, OnDestroy {
   public userName: string;
   public dataSource: any = {};
   public cols = [
-    { width: '50px', header: 'No' },
-    { width: '100px', header: 'Name' },
-    { width: '300px', header: 'Address' },
-    { width: '200px', header: 'Category' },
+    { width: '50px', header: 'USER.SAVED.NO' },
+    { width: '100px', header: 'USER.SAVED.NAME' },
+    { width: '300px', header: 'USER.SAVED.ADDRESS' },
+    { width: '200px', header: 'USER.SAVED.CATEGORY' },
     { width: '70px', header: '', maxWidth: '50px', class: 'action' },
   ];
 
-  constructor(private userShopService: UserShopService, private authService: AuthService, private cd: ChangeDetectorRef, private router: Router, private noti: NotificationService) { }
+  constructor(public userShopService: UserShopService, private authService: AuthService, private cd: ChangeDetectorRef, private router: Router, private noti: NotificationService) { }
 
   ngOnInit(): void {
     this.initData();

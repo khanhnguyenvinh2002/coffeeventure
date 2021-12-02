@@ -10,17 +10,16 @@
                         <div style="width: 100%;
                         max-width: 1224px;
                         margin: 0 auto; text-align: center;">
-                            <div class="text-deco-small">Welcome to Coffee Venture</div>
-                            <div class="text-deco" style="margin-bottom: 4rem;">Are you ready for your next coffee?
+                            <div class="text-deco-small">{{ 'HOME.WELCOME' | translate }}</div>
+                            <div class="text-deco" style="margin-bottom: 4rem;">{{ 'HOME.UNSIGNED_IN_SUBHEADER' | translate }}
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-between">
-                        <a [routerLink]="['/app/shop']"><button class="btn btn-primary"> See shops</button> </a>
-                        <a [routerLink]="['/login']"><button class="btn btn-primary">Login now to start a journal
+                        <a [routerLink]="['/app/shop']"><button class="btn btn-primary"> {{ 'HOME.SEE_SHOPS' | translate }}</button> </a>
+                        <a [routerLink]="['/login']"><button class="btn btn-primary">{{ 'HOME.LOGIN_NOW_TO_START_A_JOURNAL' | translate }}
                             </button></a>
-                        <a [routerLink]="['/app/user/forum']"><button class="btn btn-primary">See what people are
-                                reviewing </button></a>
+                        <a [routerLink]="['/app/user/forum']"><button class="btn btn-primary">{{ 'HOME.SEE_WHAT_PEOPLE_ARE_REVIEWING' | translate }}</button></a>
                     </div>
                 </div>
                 <div *ngIf="checkAuth() == true">
@@ -28,19 +27,18 @@
                         <div style="width: 100%;
                                                 max-width: 1224px;
                                                 margin: 0 auto; text-align: center;">
-                            <div class="text-deco">Welcome {{userName}}
+                            <div class="text-deco">{{ 'HOME.WELCOME' | translate }} {{userName}}
                             </div>
-                            <div class="text-deco" style="margin-bottom: 4rem;">What are you up today?</div>
+                            <div class="text-deco" style="margin-bottom: 4rem;">{{ 'HOME.SIGNED_IN_SUBHEADER' | translate }}</div>
                         </div>
 
                     </div>
                     <div class="row justify-content-between">
-                        <a [routerLink]="[ '/app/shop'] "><button class="btn btn-primary "> See shops</button> </a>
-                        <a [routerLink]="[ '/app/user'] "><button class="btn btn-primary ">Start a journal </button></a>
-                        <a [routerLink]="[ '/app/reviewer'] "><button class="btn btn-primary ">Start reviewing
+                        <a [routerLink]="[ '/app/shop'] "><button class="btn btn-primary ">{{ 'HOME.SEE_SHOPS' | translate }}</button> </a>
+                        <a [routerLink]="[ '/app/user'] "><button class="btn btn-primary ">{{ 'HOME.START_A_JOURNAL' | translate }}</button></a>
+                        <a [routerLink]="[ '/app/reviewer'] "><button class="btn btn-primary ">{{ 'HOME.START_REVIEWING' | translate }}
                             </button></a>
-                        <a [routerLink]="[ '/app/user/forum'] "><button class="btn btn-primary ">See what people are
-                                reviewing </button></a>
+                        <a [routerLink]="[ '/app/user/forum'] "><button class="btn btn-primary ">{{ 'HOME.SEE_WHAT_PEOPLE_ARE_REVIEWING' | translate }} </button></a>
                     </div>
                 </div>
             </div>
@@ -53,48 +51,46 @@
 <section id="services ">
     <div class="container ">
         <header>
-            <h2 style="text-align: center; margin-top:0.5rem; ">Start you search now!</h2>
+            <h2 style="text-align: center; margin-top:0.5rem; ">{{ 'HOME.START_YOUR_SEARCH_NOW.HEADER' | translate }}</h2>
         </header>
         <div class="row ">
             <div class="col-md-4 " style="padding: 20px; ">
                 <div class="hi ">
-                    <p-card header="Every shop is unique, have you tried them all? " subheader=" " styleClass="p-card-shadow ">
+                    <p-card header="{{ 'HOME.START_YOUR_SEARCH_NOW.SHOP' | translate }}" subheader=" " styleClass="p-card-shadow ">
                         <ng-template pTemplate="header">
                             <div style="text-align: center;">
                                 <i class="pi pi-star-o" style="font-size: 5rem"></i>
                             </div>
 
                         </ng-template>
-                        <p style="height: 5vh;text-align: center; "><a [routerLink]="[ '/app/shop'] ">See our list of
-                                shops now!</a>
+                        <p style="height: 5vh;text-align: center; "><a [routerLink]="[ '/app/shop'] ">{{ 'HOME.START_YOUR_SEARCH_NOW.SHOP_LINK' | translate }}</a>
                         </p>
                     </p-card>
                 </div>
             </div>
             <div class="col-md-4 " style="padding: 20px; ">
                 <div class="hi ">
-                    <p-card header="Good coffee houses have good reviews" subheader="" styleClass="p-card-shadow ">
+                    <p-card header="{{ 'HOME.START_YOUR_SEARCH_NOW.REVIEW' | translate }}" subheader="" styleClass="p-card-shadow ">
                         <ng-template pTemplate="header">
                             <div style="text-align: center;">
                                 <i class="pi pi-users" style="font-size: 5rem"></i>
                             </div>
                         </ng-template>
                         <p style="text-align: center;height: 5vh ">
-                            <a [routerLink]="[ '/app/user/forum'] ">See what people are reviewing now!</a>
+                            <a [routerLink]="[ '/app/user/forum'] ">{{ 'HOME.START_YOUR_SEARCH_NOW.REVIEW_LINK' | translate }}</a>
                         </p>
                     </p-card>
                 </div>
             </div>
             <div class="col-md-4 " style="padding: 20px; ">
                 <div class="hi ">
-                    <p-card header="Journals make coffee venture memorable" subheader=" " styleClass="p-card-shadow">
+                    <p-card header="{{ 'HOME.START_YOUR_SEARCH_NOW.JOURNAL' | translate }}" subheader=" " styleClass="p-card-shadow">
                         <ng-template pTemplate="header">
                             <div style="text-align: center;">
                                 <i class="pi pi-pencil" style="font-size: 5rem"></i>
                             </div>
                         </ng-template>
-                        <p style="text-align: center;height: 5vh "><a [routerLink]="[ '/app/user'] ">Write some journals
-                                now!</a>
+                        <p style="text-align: center;height: 5vh "><a [routerLink]="[ '/app/user'] ">{{ 'HOME.START_YOUR_SEARCH_NOW.JOURNAL_LINK' | translate }}</a>
                         </p>
                     </p-card>
                 </div>
@@ -138,8 +134,8 @@
 </section>
 <section #shop>
     <div class="container-fluid ">
-        <h2 style="text-align: center; margin-top:2rem ">See our list of shops</h2>
-        <p style="text-align: center; margin-bottom: 2rem; ">For viewing all shops, please visit our lists of <a [routerLink]="[ '/app/shop'] ">available shops</a></p>
+        <h2 style="text-align: center; margin-top:2rem ">{{ 'HOME.SHOP_SEARCH_HEADER' | translate }}</h2>
+        <p style="text-align: center; margin-bottom: 2rem; ">{{ 'HOME.SHOP_SEARCH_SUBHEADER' | translate }} <a [routerLink]="[ '/app/shop'] ">{{ 'HOME.SHOP_SEARCH_SUBHEADER_LINK' | translate }} </a></p>
         <div class="nav flex-row " style="top: 4rem; width:100% ">
             <button pButton class="float-right " label="filter " icon="pi pi-search " (click)="op.toggle($event) "></button>
 
@@ -210,11 +206,15 @@
                                     <a [routerLink]="[ '/app/shop/shop-item', shop.id] " class="shop-item " data-toggle="tooltip " data-placement="bottom " title="Go to shop " trigger="hover focus ">
                                         <img class=" img-shop " [src]="shop.image " alt="Card image cap ">
                                         <div class="card-body ">
-                                            <h5 class="card-title ">{{shop.name}}</h5>
-                                            <h6 class="card-text ">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
+                                            <h5 class="card-title ">{{shop.name}} 
+                                                <p-tag styleClass="p-mr-2" severity="success" value="{{shop.rating.toFixed(2)}}" [rounded]="true">
+                                                </p-tag>
+                                                <em style="font-size: 1rem;font-weight: 300;">{{ 'SHOP.SAVED' | translate }} {{shop.numSaved}} {{ 'SHOP.TIMES' | translate }}</em>
+                                            </h5>
+                                            <h6 class="card-text ">{{shop.address}}, {{shop.street}}, {{shop.district}}, {{shop.city}}
                                             </h6>
-                                            <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
-                                            <p>Telephone: {{shop.telephone}}</p>
+                                            <p><i class="pi pi-dollar"></i> {{shop.minPrice}}-{{shop.maxPrice}}</p>
+                                            <p><i class="pi pi-phone"></i> {{shop.telephone}}</p>
                                             <p>{{shop.description}}</p>
                                         </div>
                                     </a>
@@ -225,56 +225,8 @@
                                             shop has no opening hours data</small>
                                     </div>
                                 </div>
-                                <!-- <p-card header="{{shop.header}} " subheader=" " styleClass="p-card-shadow ">
-                                <ng-template pTemplate="header ">
-                                    <img src="assets/img/{{shop.image}} " [alt]="shop.header " class="{{shop.class}} " />
-                                </ng-template>
-                                <p style="height: 20vh ">Categories: </p>
-                                <p style="height: 20vh ">See our list of reviews now!
-                                </p>
-                                <ng-template pTemplate="footer ">
-                                    <div>
-                                        <a routerLink="/reviewer ">See reviews <i class="pi pi-arrow-right transform "
-                                                style="font-size: 0.5rem "></i></a>
-                                    </div>
-                                </ng-template>
-                            </p-card> -->
                             </div>
                         </div>
-                        <!-- <div class="col-md-4 " style="padding: 20px; ">
-                        <div class="hi ">
-                            <p-card header="Every good coffee house have good reviews " subheader=" " styleClass="p-card-shadow ">
-                                <ng-template pTemplate="header ">
-                                    <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                                </ng-template>
-                                <p style="height: 20vh ">See our list of reviews now!
-                                </p>
-                                <ng-template pTemplate="footer ">
-                                    <div>
-                                        <a routerLink="/reviewer ">See reviews <i class="pi pi-arrow-right transform "
-                                                style="font-size: 0.5rem "></i></a>
-                                    </div>
-                                </ng-template>
-                            </p-card>
-                        </div>
-                    </div>
-                    <div class="col-md-4 " style="padding: 20px; ">
-                        <div class="hi ">
-                            <p-card header="Every good coffee house have good reviews " subheader=" " styleClass="p-card-shadow ">
-                                <ng-template pTemplate="header ">
-                                    <img alt="Card " src="https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb ">
-                                </ng-template>
-                                <p style="height: 20vh ">See our list of reviews now!
-                                </p>
-                                <ng-template pTemplate="footer ">
-                                    <div>
-                                        <a routerLink="/reviewer ">See reviews <i class="pi pi-arrow-right transform "
-                                                style="font-size: 0.5rem "></i></a>
-                                    </div>
-                                </ng-template>
-                            </p-card>
-                        </div>
-                    </div> -->
                     </div>
                 </div>
 

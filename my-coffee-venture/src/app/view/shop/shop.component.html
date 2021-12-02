@@ -1,42 +1,42 @@
 <section>
     <div class="container-fluid">
-        <h2 style="text-align: center; margin-top:2rem">Welcome to our list of available cafes!</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">Click on an item to view detail</p>
-        <p style="text-align: center; margin-bottom: 2rem;">If you want to view items by page, please visit our <a [routerLink]="['/app/home']">home page</a></p>
+        <h2 style="text-align: center; margin-top:2rem">{{ 'SHOP.HEADER' | translate }}</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">{{ 'SHOP.SUBHEADER' | translate }}</p>
+        <p style="text-align: center; margin-bottom: 2rem;">{{ 'SHOP.SUGGESTION_HEADER' | translate }} <a [routerLink]="['/app/home']">{{ 'SHOP.SUGGESTION_LINK' | translate }}</a></p>
         <div class="nav flex-row " style="top: 4rem; width:100%">
-            <button pButton class="float-right" label="Filter" icon="pi pi-search" (click)="op.toggle($event)"></button>
+            <button pButton class="float-right" label="{{ 'SHOP.FILTER' | translate }}" icon="pi pi-search" (click)="op.toggle($event)"></button>
 
             <p-overlayPanel appendTo="body" [baseZIndex]="9999" #op [showCloseIcon]="true" [style]="{width: '90%'}">
                 <ng-template pTemplate>
                     <div class="row">
                         <div class="col-md-3">
-                            <h5>Search by name</h5>
+                            <h5>{{ 'SHOP.SEARCH.NAME' | translate }}</h5>
                             <span class="p-float-label">
                                 <input id="float-input" type="text" pInputText [(ngModel)]="shopRequest.name"
                                     style="width: 100%;max-width: 100%;">
-                                <label for="float-input">Shop name</label>
+                                <label for="float-input">{{ 'SHOP.SEARCH.NAME_LABEL' | translate }}</label>
                             </span>
                         </div>
                         <div class="col-md-2">
-                            <h5>Cities</h5>
-                            <p-multiSelect [options]="cities" optionLabel="name" optionValue="city" [(ngModel)]="shopRequest.cities" defaultLabel="Select a city" selectedItemsLabel="{0} items selected" [selectionLimit]="1" (onChange)="changeCities()" [style]="{width:'100%'}">
+                            <h5>{{ 'SHOP.SEARCH.CITY' | translate }}</h5>
+                            <p-multiSelect [options]="cities" optionLabel="name" optionValue="city" [(ngModel)]="shopRequest.cities" defaultLabel="{{ 'SHOP.SEARCH.CITY_LABEL' | translate }}" selectedItemsLabel="{0} items selected" [selectionLimit]="1" (onChange)="changeCities()" [style]="{width:'100%'}">
                             </p-multiSelect><br>
                         </div>
                         <div class="col-md-2">
-                            <h5>Districts</h5>
-                            <p-multiSelect [options]="filteredDistricts" [(ngModel)]="shopRequest.districts" optionLabel="name" [selectionLimit]="1" optionValue="district" defaultLabel="Select districts" [selectedItemsLabel]="'{0} items selected'" [style]="{width:'100%'}">
+                            <h5>{{ 'SHOP.SEARCH.DISTRICT' | translate }}</h5>
+                            <p-multiSelect [options]="filteredDistricts" [(ngModel)]="shopRequest.districts" optionLabel="name" [selectionLimit]="1" optionValue="district" defaultLabel="{{ 'SHOP.SEARCH.DISTRICT_LABEL' | translate }}" [selectedItemsLabel]="'{0} items selected'" [style]="{width:'100%'}">
                             </p-multiSelect>
                             <br>
                         </div>
                         <div class="col-md-2">
-                            <h5>Streets</h5>
-                            <p-multiSelect [options]="filteredStreets" [(ngModel)]="shopRequest.streets" optionLabel="name" optionValue="street" defaultLabel="Select streets" [selectedItemsLabel]="'{0} items selected'" [style]="{width:'100%'}">
+                            <h5>{{ 'SHOP.SEARCH.STREET' | translate }}</h5>
+                            <p-multiSelect [options]="filteredStreets" [(ngModel)]="shopRequest.streets" optionLabel="name" optionValue="street" defaultLabel="{{ 'SHOP.SEARCH.STREET_LABEL' | translate }}" [selectedItemsLabel]="'{0} items selected'" [style]="{width:'100%'}">
                             </p-multiSelect>
                             <br>
                         </div>
                         <div class="col-md-2">
-                            <h5>Categories</h5>
-                            <p-multiSelect [options]="categories" [(ngModel)]="shopRequest.categoryIds" defaultLabel="Select categories" optionLabel="name" optionValue="categoryId" selectedItemsLabel="{0} items selected" [style]="{width:'100%'}">
+                            <h5>{{ 'SHOP.SEARCH.CATEGORY' | translate }}</h5>
+                            <p-multiSelect [options]="categories" [(ngModel)]="shopRequest.categoryIds" defaultLabel="{{ 'SHOP.SEARCH.CATEGORY_LABEL' | translate }}" optionLabel="name" optionValue="categoryId" selectedItemsLabel="{0} items selected" [style]="{width:'100%'}">
                             </p-multiSelect><br>
                         </div>
                         <div class="col-md-1">
@@ -69,12 +69,16 @@
                                     <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
                                         <img class=" img-shop" [src]="shop.image" alt="Card image cap">
 
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{shop.name}}</h5>
-                                            <h6 class="card-text">{{shop.address}} {{shop.street}} {{shop.district}} {{shop.city}}
+                                        <div class="card-body ">
+                                            <h5 class="card-title ">{{shop.name}} 
+                                                <p-tag styleClass="p-mr-2" severity="success" value="{{shop.rating.toFixed(2)}}" [rounded]="true">
+                                                </p-tag>
+                                                <em style="font-size: 1rem;font-weight: 300;">{{ 'SHOP.SAVED' | translate }} {{shop.numSaved}} {{ 'SHOP.TIMES' | translate }}</em>
+                                            </h5>
+                                            <h6 class="card-text ">{{shop.address}}, {{shop.street}}, {{shop.district}}, {{shop.city}}
                                             </h6>
-                                            <p>Price range: {{shop.minPrice}}-{{shop.maxPrice}}</p>
-                                            <p>Telephone: {{shop.telephone}}</p>
+                                            <p><i class="pi pi-dollar"></i> {{shop.minPrice}}-{{shop.maxPrice}}</p>
+                                            <p><i class="pi pi-phone"></i> {{shop.telephone}}</p>
                                             <p>{{shop.description}}</p>
                                         </div>
                                     </a>
@@ -97,37 +101,3 @@
         </div>
     </div>
 </section>
-<!-- 
-<div class="nav flex-column sticky-top" style="top: 4rem; width:100%">
-    <h5>Search by name</h5>
-    <br>
-    <span class="p-float-label">
-        <input id="float-input" type="text" pInputText [(ngModel)]="shopRequest.name"
-            style="width: 100%;max-width: 100%;">
-        <label for="float-input">Shop name</label>
-    </span>
-    <br>
-    <h5>Cities</h5>
-    <p-multiSelect [options]="cities" optionLabel="name" optionValue="city" [(ngModel)]="shopRequest.cities"
-        defaultLabel="Select a city" selectedItemsLabel="{0} items selected" [selectionLimit]="1"
-        (onChange)="changeCities()">
-    </p-multiSelect><br>
-
-    <h5>Districts</h5>
-    <p-multiSelect [options]="filteredDistricts" [(ngModel)]="shopRequest.districts" optionLabel="name"
-        [selectionLimit]="1" optionValue="a district" defaultLabel="Select districts"
-        [selectedItemsLabel]="'{0} items selected'">
-    </p-multiSelect>
-    <br>
-    <h5>Streets</h5>
-    <p-multiSelect [options]="filteredStreets" [(ngModel)]="shopRequest.streets" optionLabel="name" optionValue="street"
-        defaultLabel="Select streets" [selectedItemsLabel]="'{0} items selected'">
-    </p-multiSelect>
-    <br>
-    <h5>Categories</h5>
-    <p-multiSelect [options]="categories" [(ngModel)]="shopRequest.categoryIds" defaultLabel="Select categories"
-        optionLabel="name" optionValue="categoryId" selectedItemsLabel="{0} items selected">
-    </p-multiSelect><br>
-    <button type="button" pButton label="Filter" icon="pi pi-power-off" (click)="initShop()"
-        style="margin-left:.25em"></button>
-</div> -->

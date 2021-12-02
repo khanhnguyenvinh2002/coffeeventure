@@ -11,12 +11,18 @@
 :host>>>.p-card .p-card-title {
     text-align: center;
 }
-
 .ui-multiselect-label {
     max-width: 150px;
     white-space: nowrap;
 }
-
+:host>>>.p-tag.p-tag-success{
+    background-color: #f9cbb2
+}
+:host>>>.p-tag-value{
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 5px
+}
 :host ::ng-deep {
     @media screen and (max-width: 640px) {
         .p-multiselect {

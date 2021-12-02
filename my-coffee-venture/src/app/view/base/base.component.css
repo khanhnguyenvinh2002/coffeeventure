@@ -1,127 +1,127 @@
-    .bg_text-deco {
-        flex: 1 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top: 2rem;
+.bg_text-deco {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.bg_overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .6);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.bg_text {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.bg {
+    position: relative;
+    /* The image used */
+    background-image: url("src\assets\img\cf_bg1.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 100vh;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.first {
+    height: 100vh;
+    min-height: 400px;
+    background-size: cover;
+    background-image: url('https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb');
+    background-position: top center;
+}
+
+.bg-dark {
+    background: transparent !important;
+    transition: 0.75s ease;
+}
+
+.nav-item {
+    color: whitesmoke;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.bg-dark.scrolled {
+    background: black !important;
+}
+
+nav {
+    font-size: 15px;
+    color: black;
+    background: transparent;
+    padding: 8px 16px;
+}
+
+.pad {
+    margin-top: 2rem;
+    animation: fadeIn ease-in 1s;
+    --hue-color-1: rgb(168, 186, 169);
+    --hue-color-2: rgb(255, 245, 207);
+    --hue-color-3: rgb(219, 205, 173);
+    --hue-color-4: rgb(179, 156, 125);
+    --hue-color-5: ;
+}
+
+.affix {
+    margin-top: 0;
+    padding-top: 0.5rem;
+    background-color: rgb(249, 203, 179);
+    /* background-color: rgb(180, 93, 47); */
+    ;
+}
+
+@keyframes fadeIn {}
+
+@media (min-width:768px) {
+    .affix-top {
+        /* navbar style at top */
+        background-color: transparent;
+        border-color: transparent;
+        padding: 15px;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
     }
-    
-    .bg_overlay {
-        position: absolute;
-        background-color: rgba(0, 0, 0, .6);
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 1;
-        opacity: 0.7;
-    }
-    
-    .bg_text {
-        display: flex;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 2;
-    }
-    
-    .bg {
-        position: relative;
-        /* The image used */
-        background-image: url("src\assets\img\cf_bg1.jpg");
-        /* Full height */
-        height: 100%;
-        /* Center and scale the image nicely */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding-top: 100vh;
-    }
-    
-    html,
-    body {
-        height: 100%;
-    }
-    
-    .first {
-        height: 100vh;
-        min-height: 400px;
-        background-size: cover;
-        background-image: url('https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb');
-        background-position: top center;
-    }
-    
-    .bg-dark {
-        background: transparent !important;
-        transition: 0.75s ease;
-    }
-    
-    .nav-item {
-        color: whitesmoke;
-        font-size: 1rem;
-        font-weight: 500;
-    }
-    
-    .bg-dark.scrolled {
-        background: black !important;
-    }
-    
-    nav {
-        font-size: 15px;
-        color: black;
-        background: transparent;
-        padding: 8px 16px;
-    }
-    
-    .pad {
-        margin-top: 2rem;
-        animation: fadeIn ease-in 1s;
-        --hue-color-1: rgb(168, 186, 169);
-        --hue-color-2: rgb(255, 245, 207);
-        --hue-color-3: rgb(219, 205, 173);
-        --hue-color-4: rgb(179, 156, 125);
-        --hue-color-5: ;
-    }
-    
-    .affix {
-        margin-top: 0;
-        padding-top: 0.5rem;
-        background-color: rgb(249, 203, 179);
-        /* background-color: rgb(180, 93, 47); */
-        ;
-    }
-    
-    @keyframes fadeIn {}
-    
-    @media (min-width:768px) {
-        .affix-top {
-            /* navbar style at top */
-            background-color: transparent;
-            border-color: transparent;
-            padding: 15px;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-        }
-    }
-    
-    nav .navbar-nav .nav-link,
-    nav .navbar-brand {
-        color: #000;
-    }
-    
-    section {
-        height: calc(90% - 50px);
-        height: 90vh;
-    }
-    
-    p-menubar {
-        padding: 0.5rem;
-        background: transparent;
-        color: #495057;
-        border: 1px solid transparent;
-        width: 100%;
-    }
+}
+
+nav .navbar-nav .nav-link,
+nav .navbar-brand {
+    color: #000;
+}
+
+section {
+    height: calc(90% - 50px);
+    height: 90vh;
+}
+
+p-menubar {
+    padding: 0.5rem;
+    background: transparent;
+    color: #495057;
+    border: 1px solid transparent;
+    width: 100%;
+}

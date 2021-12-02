@@ -71,7 +71,9 @@ export class FormDynamicComponent extends BaseFormComponent implements OnInit {
   ngOnInit() {
     this.viewLoading$ = this.formData.service.isLoading$;
   }
-
+  /**
+   * handle save event
+   */
   public onBtnSaveClick(): void {
     if (this.form) {
       if (!this.validateForm(this.form, this.formData.formId)) {
@@ -98,6 +100,9 @@ export class FormDynamicComponent extends BaseFormComponent implements OnInit {
     }
   }
 
+  /**
+   * handle delete event
+   */
   public onBtnDeleteClick(): void {
     const deleteConfirmation = new DeleteConfirmation();
     deleteConfirmation.accept = () => {
@@ -105,20 +110,28 @@ export class FormDynamicComponent extends BaseFormComponent implements OnInit {
     };
     this.notification.confirm(deleteConfirmation);
   }
-
+  /**
+   * reset form
+   */
   public resetForm(): void {
     if (this.form) {
       this.form.resetForm();
     }
   }
 
+  /**
+   * mark the form as pristine
+   */
   public markAsPristine(): void {
     if (this.form) {
       this.form.form.markAsPristine();
     }
   }
 
-  onBtnCancelClick(): void {
+  /**
+   * handle cancel event
+   */
+  public onBtnCancelClick(): void {
     if (this.form) {
       if (this.form.dirty) {
         const cancelConfirmation = new CancelConfirmation();

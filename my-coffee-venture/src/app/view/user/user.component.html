@@ -1,14 +1,13 @@
 <div class="container-fluid" style="margin-top:30px;width:100%;">
     <div class="d-flex align-items-center justify-content-center" style="flex-direction: column;
     ">
-        <h2>Welcome to your journey page {{userName}}</h2>
+        <h2>{{"USER.PAGE.HEADER" | translate}} {{userName}}</h2>
         <app-waiting *ngIf="pageLoaded == false"></app-waiting>
         <img *ngIf="pageLoaded == true" [src]="imageUrl" style="width: 250px; height:250px; object-fit: cover; border-radius: 50%;">
         <div style="flex-direction: row;">
             <app-upload (onReadImage)="loadAvatarImage($event)" (onFileLoad)="loadAvatar($event)"></app-upload>
         </div>
-        <button class="btn btn-primary" (click)="uploadAvatar()" *ngIf="avatarLoaded == true">Update
-            avatar</button>
+        <button class="btn btn-primary" (click)="uploadAvatar()" *ngIf="avatarLoaded == true">{{"USER.PAGE.UPDATE_AVATAR" | translate}}</button>
     </div>
     <div class="row">
         <div class=" col-md-1">
@@ -20,10 +19,10 @@
                     <div class="sticky-top" style="top: 4rem;">
                         <mat-card>
                             <mat-card-title>
-                                My coffee journey
-                                <button id="all" class="btn  float-right" style="background-color: deeppink; color: white;" (click)="initData()">All</button>
+                                {{"USER.PAGE.MY_COFFEE_JOURNEY" | translate}}
+                                <button id="all" class="btn  float-right" style="background-color: deeppink; color: white;" (click)="initData()">{{"USER.PAGE.ALL" | translate}}</button>
                             </mat-card-title>
-                            <mat-card-subtitle>Click highlighted date to view journals</mat-card-subtitle>
+                            <mat-card-subtitle>{{"USER.PAGE.HIGHLIGHTED" | translate}}</mat-card-subtitle>
                             <div (click)="$event.stopPropagation()" style="">
                                 <mat-calendar #calendar (selectedChange)="select($event,calendar)" [dateClass]="isSelected">
                                 </mat-calendar>
@@ -33,12 +32,12 @@
                 </div>
                 <div class="col-md-8">
                     <div style="margin: 0.5rem;">
-                        <h2>Share your coffee journal now</h2>
-                        <button class="btn btn-primary" (click)="editJournal()">Add Journal</button>
+                        <h2>{{"USER.PAGE.SHARE_NOW" | translate}}</h2>
+                        <button class="btn btn-primary" (click)="editJournal()">{{"USER.PAGE.ADD_JOURNAL" | translate}}</button>
                     </div>
                     <p-messages severity="info" *ngIf="!data || data.length == 0">
                         <ng-template pTemplate>
-                            <div class="p-ml-2">No data to display
+                            <div class="p-ml-2">{{"COMMON.ERROR.NO_DATA_TO_DISPLAY" | translate}}
                             </div>
                         </ng-template>
                     </p-messages>
@@ -61,18 +60,18 @@
 </div>
 <p-dialog [(visible)]="formDisplay" [modal]="true" [baseZIndex]="10000" appendTo="body" [style]=" {width: '70%%'} " [draggable]="true" [maximizable]="true " [closable]="false " (onHide)="reset()">
     <p-header>
-        <i class="fal fa-user-edit "></i> {{"Add journal " }}
+        <i class="fal fa-user-edit "></i> {{"ADD_JOURNAL" | translate }}
     </p-header>
     <form autocomplete="off" #form="ngForm" id="journal-edit">
         <div class="col-md-12 ">
             <div class="form-row ">
                 <div class="col-md-6 ">
-                    <label>{{ 'How are you feeling today?' }}</label>
+                    <label>{{ 'HOW_ARE_YOU_FEELING_TODAY'|translate }}</label>
                     <input type="text " class="form-control " [(ngModel)]="input.feeling " name="feeling" placeholder="{{ 'Tell people how you feel' }} ">
                 </div>
                 <div class="col-md-6 ">
                     <div class="form-group ">
-                        <label>{{ 'Public/private' }}</label>
+                        <label>{{ 'PUBLIC_PRIVATE' | translate}}</label>
                         <div>
                             <p-toggleButton onLabel="show " offLabel="hide " offIcon="pi pi-times " onIcon="pi pi-check " iconPos="right " [(ngModel)]="journalStatus" name="toggleButton">
                             </p-toggleButton>
@@ -83,15 +82,15 @@
             <div class="form-row ">
                 <div class="col-md-6 ">
                     <div class="form-group ">
-                        <label>{{ 'What do you want to share?' }}</label>
+                        <label>{{ 'WHAT_DO_YOU_WANT_TO_SHARE' |translate }}</label>
                         <validate-form [form]="form " controlName="content"></validate-form>
-                        <textarea placeholder="{{ 'Your journal goes here' }} " class=" form-control" rows="5 " cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content" required name="content"></textarea>
+                        <textarea placeholder="{{ 'YOUR_JOURNAL_GOES_HERE' | translate }} " class=" form-control" rows="5 " cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="input.content" required name="content"></textarea>
                     </div>
                 </div>
 
 
                 <div class="col-md-6 ">
-                    <div class="form-group "><label>{{ 'Do you have any photo you want to share?' }}</label>
+                    <div class="form-group "><label>{{ 'ANY_PHOTO' |translate }}</label>
                         <app-upload [preview]="true " (onFileLoad)="upload($event) ">
                         </app-upload>
                     </div>
