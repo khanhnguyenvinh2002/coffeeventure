@@ -2,14 +2,14 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, View
 import { NgForm } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { forkJoin } from 'rxjs';
-import { SaveConfirmation, CancelConfirmation } from 'src/app/module/sticky/common/confirmation';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { BaseComponent } from 'src/app/module/sticky/component/base-component';
-import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
-import { ActionRequestPayload } from 'src/app/module/sticky/modules/action/action.request.payload';
-import { ActionService } from 'src/app/module/sticky/modules/action/action.service';
-import { OperationRequestPayload } from 'src/app/module/sticky/modules/operation/operation-request.payload';
-import { OperationService } from 'src/app/module/sticky/modules/operation/operation.service';
+import { SaveConfirmation, CancelConfirmation } from 'src/app/core/base/common/confirmation';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { BaseComponent } from 'src/app/core/base/component/base-component';
+import { DialogRef } from 'src/app/core/crud/dialog/dialog-ref.model';
+import { ActionRequestPayload } from 'src/app/core/module/partial/modules/action/action.request.payload';
+import { ActionService } from 'src/app/core/module/partial/modules/action/action.service';
+import { OperationRequestPayload } from 'src/app/core/module/partial/modules/operation/operation-request.payload';
+import { OperationService } from 'src/app/core/module/partial/modules/operation/operation.service';
 
 @Component({
     selector: 'app-operation-action',

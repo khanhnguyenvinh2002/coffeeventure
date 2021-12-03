@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as config from './user-edit.config';
 import { NgForm } from '@angular/forms';
 import { TreeNode } from 'primeng/api';
-import { BaseComponent } from 'src/app/module/sticky/component/base-component';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { FormDynamicData } from 'src/app/module/sticky/crud/component/form-dynamic-data.model';
-import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
-import { OrgChartDto } from 'src/app/module/sticky/modules/org-chart/org-chart.model';
-import { OrgChartService } from 'src/app/module/sticky/modules/org-chart/org-chart.service';
-import { RoleService } from 'src/app/module/sticky/modules/role/role.service';
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
+import { BaseComponent } from 'src/app/core/base/component/base-component';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { FormDynamicData } from 'src/app/core/crud/component/form-dynamic-data.model';
+import { DialogRef } from 'src/app/core/crud/dialog/dialog-ref.model';
+import { OrgChartDto } from 'src/app/core/module/partial/modules/org-chart/org-chart.model';
+import { OrgChartService } from 'src/app/core/module/partial/modules/org-chart/org-chart.service';
+import { RoleService } from 'src/app/core/module/partial/modules/role/role.service';
+import { UserService } from 'src/app/core/module/partial/modules/user/user.service';
 
 @Component({
     selector: 'app-user-edit',

@@ -1,11 +1,11 @@
-import { UserRequestPayload } from 'src/app/module/sticky/modules/user/user-request.payload';
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
-import { BaseFormComponent } from 'src/app/module/sticky/component';
+import { UserRequestPayload } from 'src/app/core/module/partial/modules/user/user-request.payload';
+import { UserService } from 'src/app/core/module/partial/modules/user/user.service';
+import { BaseFormComponent } from 'src/app/core/base/component';
 import { ToastrService } from 'ngx-toastr';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
+import { AuthService } from 'src/app/core/module/partial/modules/auth/auth.service';
 
 @Component({
   selector: 'app-login',

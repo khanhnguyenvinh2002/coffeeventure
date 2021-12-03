@@ -1,11 +1,11 @@
-import { ShopService } from 'src/app/module/sticky/modules/shop/shop.service';
-import { ShopRequestPayload } from '../../../../module/sticky/modules/shop/shop-request.payload';
+import { ShopService } from 'src/app/core/module/partial/modules/shop/shop.service';
+import { ShopRequestPayload } from '../../../../core/module/partial/modules/shop/shop-request.payload';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
 import { NgForm } from '@angular/forms';
-import { CancelConfirmation, SaveConfirmation } from 'src/app/module/sticky/common/confirmation';
-import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
+import { CancelConfirmation, SaveConfirmation } from 'src/app/core/base/common/confirmation';
+import { AuthService } from 'src/app/core/module/partial/modules/auth/auth.service';
 import { forkJoin, Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -35,12 +35,19 @@ export class ShopEditComponent implements OnInit {
     this.shopRequest.pageSize = 12;
     this.initData();
   }
-
+  /**
+   * 
+   * @param event handle page change event
+   */
   public onPageChange(event: PageEvent) {
     this.shopRequest.pageIndex = event.pageIndex;
     this.shopRequest.pageSize = event.pageSize;
     this.initData();
   }
+  /**
+   * 
+   * init data
+   */
   public initData() {
     const $selectAndCount = [
       this.shopService.select(this.shopRequest),
@@ -62,9 +69,17 @@ export class ShopEditComponent implements OnInit {
     this.subscriptions.push(sub);
     this.cd.detectChanges();
   }
+
+  /**
+   *  view shop based on shop id
+   */
   public viewShop(id: any) {
     this.router.navigate([`apps/shop/shop-item/${id}`]);
   }
+  /**
+   * delete event
+   * @param id shop id
+   */
   public onBtnDeleteClick(id) {
     this.shopService.delete(id).subscribe(res => {
       this.noti.showSuccess();
@@ -72,9 +87,14 @@ export class ShopEditComponent implements OnInit {
       this.cd.detectChanges();
     })
   }
+  /**
+   * edit event
+   * @param id 
+   */
   public onBtnEditClick(id) {
     this.router.navigate([`app/shop/shop-item-edit/${id}`]);
   }
+  
   ngOnDestroy() {
     this.subscriptions.forEach(e => e.unsubscribe());
   }

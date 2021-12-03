@@ -1,4 +1,4 @@
-import { InputTimeModule } from 'src/app/module/sticky/control/input-time/input-time.module';
+import { InputTimeModule } from 'src/app/core/control/input-time/input-time.module';
 import { MessagesModule } from 'primeng/messages';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatCardModule } from '@angular/material/card';
@@ -6,7 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { PartialsModule } from './../../module/sticky/partials.module';
+import { PartialsModule } from '../../core/module/partial/partials.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,11 +15,11 @@ import { ShopComponent } from './shop.component';
 import { ShopItemComponent } from './shop-item/shop-item.component';
 import { ShopItemAddComponent } from './shop-item-add/shop-item-add.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { NgSelectAsyncModule } from 'src/app/module/sticky/control/async-select/async-select.component';
+import { NgSelectAsyncModule } from 'src/app/core/control/async-select/async-select.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria'; import { CarouselModule } from 'primeng/carousel'; import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { ReviewModule } from 'src/app/module/sticky/review/review.module';
+import { ReviewModule } from 'src/app/core/components/review/review.module';
 import { ShopGoogleApiComponent } from './shop-item/shop-google-api/shop-google-api.component';
 import { ShopOsmApiComponent } from './shop-item/shop-osm-api/shop-osm-api.component';
 import { GeocodingComponent } from './shop-item/geocoding/geocoding.component';

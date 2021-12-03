@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopService } from 'src/app/module/sticky/modules/shop/shop.service';
+import { ShopService } from 'src/app/core/module/partial/modules/shop/shop.service';
 
 @Component({
   selector: 'app-home',

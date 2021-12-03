@@ -1,7 +1,7 @@
 
-import { NgSelectAsyncModule } from '../../module/sticky/control/async-select/async-select.component';
-import { PartialsModule } from './../../module/sticky/partials.module';
-import { UploadComponent } from '../../module/sticky/upload/upload.component';
+import { NgSelectAsyncModule } from '../../core/control/async-select/async-select.component';
+import { PartialsModule } from '../../core/module/partial/partials.module';
+import { UploadComponent } from '../../core/components/upload/upload.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,7 +23,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton'; import { RatingModule } from 'primeng/rating';
-import { InputTimeModule } from 'src/app/module/sticky/control/input-time/input-time.module';
+import { InputTimeModule } from 'src/app/core/control/input-time/input-time.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -36,7 +36,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeTableModule } from 'primeng/treetable';
-import { ReviewModule } from 'src/app/module/sticky/review/review.module';
+import { ReviewModule } from 'src/app/core/components/review/review.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({

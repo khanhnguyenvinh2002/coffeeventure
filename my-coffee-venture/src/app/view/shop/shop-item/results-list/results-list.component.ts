@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NominatimResponse } from 'src/app/module/sticky/modules/maps/nominatim-response.model';
+import { NominatimResponse } from 'src/app/core/module/partial/modules/maps/nominatim-response.model';
 
 @Component({
   selector: 'app-results-list',

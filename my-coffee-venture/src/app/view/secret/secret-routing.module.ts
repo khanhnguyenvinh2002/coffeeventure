@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/module/sticky/modules/auth/auth.guard';
+import { AuthGuard } from 'src/app/core/module/partial/modules/auth/auth.guard';
 import { SecretComponent } from './secret.component';
 
 const routes: Routes = [{

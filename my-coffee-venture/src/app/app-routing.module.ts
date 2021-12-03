@@ -4,7 +4,7 @@ import { CardModule } from 'primeng/card';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseScreenComponent } from './view/base/base-screen/base-screen.component';
-import { AuthGuard } from './module/sticky/modules/auth/auth.guard';
+import { AuthGuard } from './core/module/partial/modules/auth/auth.guard';
 import { LoginComponent } from './view/authen/login/login.component';
 import { HomeComponent } from './view/home/home.component';
 const routes: Routes = [

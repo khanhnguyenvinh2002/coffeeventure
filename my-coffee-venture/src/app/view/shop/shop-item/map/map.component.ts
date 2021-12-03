@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MapPoint } from '../map-point-form/map-point.model';
 import {icon, latLng, LeafletMouseEvent, Map, MapOptions, marker, tileLayer} from 'leaflet';
-import { NominatimResponse } from 'src/app/module/sticky/modules/maps/nominatim-response.model';
-import {DEFAULT_LATITUDE, DEFAULT_LONGITUDE} from './../../../../module/sticky/modules/maps/constants.model';
+import { NominatimResponse } from 'src/app/core/module/partial/modules/maps/nominatim-response.model';
+import {DEFAULT_LATITUDE, DEFAULT_LONGITUDE} from '../../../../core/module/partial/modules/maps/constants.model';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',

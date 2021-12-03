@@ -1,10 +1,10 @@
-import { AuthService } from './../../../module/sticky/modules/auth/auth.service';
-import { NotificationService } from './../../../module/sticky/common/notification/notification.service';
-import { UserShopRequestPayload } from './../../../module/sticky/modules/user-shop/user-shop-request.payload';
-import { UserShopService } from './../../../module/sticky/modules/user-shop/user-shop.service';
+import { AuthService } from '../../../core/module/partial/modules/auth/auth.service';
+import { NotificationService } from '../../../core/base/common/notification/notification.service';
+import { UserShopRequestPayload } from '../../../core/module/partial/modules/user-shop/user-shop-request.payload';
+import { UserShopService } from '../../../core/module/partial/modules/user-shop/user-shop.service';
 import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseListComponent } from 'src/app/module/sticky/component';
+import { BaseListComponent } from 'src/app/core/base/component';
 import { forkJoin, Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 

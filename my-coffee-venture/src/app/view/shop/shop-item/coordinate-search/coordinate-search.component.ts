@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { BaseFormComponent } from 'src/app/module/sticky/component';
-import { NominatimService } from 'src/app/module/sticky/modules/maps/\bnominatim.service';
-import { NominatimResponse } from 'src/app/module/sticky/modules/maps/nominatim-response.model';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { BaseFormComponent } from 'src/app/core/base/component';
+import { NominatimService } from 'src/app/core/module/partial/modules/maps/nominatim.service';
+import { NominatimResponse } from 'src/app/core/module/partial/modules/maps/nominatim-response.model';
 
 @Component({
   selector: 'app-coordinate-search',

@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, ElementRef } from '@angular/core';
-import { WINDOW } from './module/sticky/services/window.service';
+import { WINDOW } from './core/module/partial/services/window.service';
 import { PrimeNGConfig } from 'primeng/api';
 import {TranslateService} from '@ngx-translate/core';
 @Component({

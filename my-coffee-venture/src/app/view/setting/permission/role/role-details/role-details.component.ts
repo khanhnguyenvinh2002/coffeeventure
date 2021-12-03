@@ -5,13 +5,13 @@ import { tap } from 'rxjs/operators';
 import * as config from './role-details.config';
 import { TreeNode } from 'primeng/api/treenode';
 import { MatPaginator } from '@angular/material/paginator';
-import { SaveConfirmation, CancelConfirmation, DeleteConfirmation } from 'src/app/module/sticky/common/confirmation';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { BaseFormComponent } from 'src/app/module/sticky/component';
-import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
-import { RoleService } from 'src/app/module/sticky/modules/role/role.service';
-import { UserRequestPayload } from 'src/app/module/sticky/modules/user/user-request.payload';
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
+import { SaveConfirmation, CancelConfirmation, DeleteConfirmation } from 'src/app/core/base/common/confirmation';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { BaseFormComponent } from 'src/app/core/base/component';
+import { DialogRef } from 'src/app/core/crud/dialog/dialog-ref.model';
+import { RoleService } from 'src/app/core/module/partial/modules/role/role.service';
+import { UserRequestPayload } from 'src/app/core/module/partial/modules/user/user-request.payload';
+import { UserService } from 'src/app/core/module/partial/modules/user/user.service';
 
 @Component({
   selector: 'app-role-details',

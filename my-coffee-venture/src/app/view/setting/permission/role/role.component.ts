@@ -3,12 +3,12 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { merge, BehaviorSubject, forkJoin } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { BaseComponent } from 'src/app/module/sticky/component/base-component';
-import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
-import { RoleRequestPayload } from 'src/app/module/sticky/modules/role/role.request.payload';
-import { RoleService } from 'src/app/module/sticky/modules/role/role.service';
-import { UserRequestPayload } from 'src/app/module/sticky/modules/user/user-request.payload';
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
+import { BaseComponent } from 'src/app/core/base/component/base-component';
+import { DialogRef } from 'src/app/core/crud/dialog/dialog-ref.model';
+import { RoleRequestPayload } from 'src/app/core/module/partial/modules/role/role.request.payload';
+import { RoleService } from 'src/app/core/module/partial/modules/role/role.service';
+import { UserRequestPayload } from 'src/app/core/module/partial/modules/user/user-request.payload';
+import { UserService } from 'src/app/core/module/partial/modules/user/user.service';
 
 @Component({
   selector: 'app-role',

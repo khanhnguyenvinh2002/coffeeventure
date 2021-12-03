@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShopItemComponent } from './shop-item/shop-item.component';
 import { ShopComponent } from './shop.component';
-import { AuthGuard } from 'src/app/module/sticky/modules/auth/auth.guard';
+import { AuthGuard } from 'src/app/core/module/partial/modules/auth/auth.guard';
 import { ShopGoogleApiComponent } from './shop-item/shop-google-api/shop-google-api.component';
 import { ShopOsmApiComponent } from './shop-item/shop-osm-api/shop-osm-api.component';
 import { MapComponent } from './shop-item/map/map.component';
