@@ -1,18 +1,18 @@
-import { ReviewRequestPayload } from './../../../module/sticky/modules/review/review-request.payload';
-import { ReviewService } from 'src/app/module/sticky/modules/review/review.service';
-import { UserRequestPayload } from './../../../module/sticky/modules/user/user-request.payload';
-import { AuthService } from './../../../module/sticky/modules/auth/auth.service';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
+import { ReviewRequestPayload } from '../../../core/module/partial/modules/review/review-request.payload';
+import { ReviewService } from 'src/app/core/module/partial/modules/review/review.service';
+import { UserRequestPayload } from '../../../core/module/partial/modules/user/user-request.payload';
+import { AuthService } from '../../../core/module/partial/modules/auth/auth.service';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
 import { ShopComponent } from './../shop.component';
-import { BaseListComponent } from 'src/app/module/sticky/component/base-list.component';
-import { ShopService } from 'src/app/module/sticky/modules/shop/shop.service';
+import { BaseListComponent } from 'src/app/core/base/component/base-list.component';
+import { ShopService } from 'src/app/core/module/partial/modules/shop/shop.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { ShopRequestPayload } from 'src/app/module/sticky/modules/shop/shop-request.payload';
+import { ShopRequestPayload } from 'src/app/core/module/partial/modules/shop/shop-request.payload';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UserShopService } from 'src/app/module/sticky/modules/user-shop/user-shop.service';
-import { UserShopRequestPayload } from 'src/app/module/sticky/modules/user-shop/user-shop-request.payload';
+import { UserShopService } from 'src/app/core/module/partial/modules/user-shop/user-shop.service';
+import { UserShopRequestPayload } from 'src/app/core/module/partial/modules/user-shop/user-shop-request.payload';
 @Component({
   selector: 'app-shop-item',
   templateUrl: './shop-item.component.html',

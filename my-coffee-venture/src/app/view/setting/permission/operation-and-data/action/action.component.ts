@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { forkJoin } from 'rxjs';
-import { BaseComponent } from 'src/app/module/sticky/component/base-component';
-import { ActionRequestPayload } from 'src/app/module/sticky/modules/action/action.request.payload';
-import { ActionService } from 'src/app/module/sticky/modules/action/action.service';
-import { OperationService } from 'src/app/module/sticky/modules/operation/operation.service';
+import { BaseComponent } from 'src/app/core/base/component/base-component';
+import { ActionRequestPayload } from 'src/app/core/module/partial/modules/action/action.request.payload';
+import { ActionService } from 'src/app/core/module/partial/modules/action/action.service';
+import { OperationService } from 'src/app/core/module/partial/modules/operation/operation.service';
 
 @Component({
   selector: 'app-action',

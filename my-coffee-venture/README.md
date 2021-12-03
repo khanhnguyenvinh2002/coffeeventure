@@ -33,6 +33,17 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## Understand the code
+
+### Go to my-coffee-venture -> src -> app 
+
+app-routing.module.ts is the main routing module for the project. Each module is lazy-loaded, meaning that you will only load specific module once you access the component within the module.
+
+app.component.html contains the router to allow the project to access modules.
+
+### module folder stores all general components for the app.  
+
+
 ## Elevator pitch
 
 This is the platform for coffee lovers - currently targeting Vietnamese enthusiasts - to write journals of their coffee experience, review cafes that they have been to, and choose a cafe that serves their need best based on our list of available cafes!

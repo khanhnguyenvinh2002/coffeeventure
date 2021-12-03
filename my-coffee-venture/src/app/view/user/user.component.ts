@@ -1,13 +1,13 @@
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
-import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
-import { JournalRequestPayload } from './../../module/sticky/modules/journal/journal-request.payload';
-import { ShopRequestPayload } from './../../module/sticky/modules/shop/shop-request.payload';
-import { BaseListComponent } from 'src/app/module/sticky/component/base-list.component';
-import { NotificationService } from './../../module/sticky/common/notification/notification.service';
+import { UserService } from 'src/app/core/module/partial/modules/user/user.service';
+import { AuthService } from 'src/app/core/module/partial/modules/auth/auth.service';
+import { JournalRequestPayload } from '../../core/module/partial/modules/journal/journal-request.payload';
+import { ShopRequestPayload } from '../../core/module/partial/modules/shop/shop-request.payload';
+import { BaseListComponent } from 'src/app/core/base/component/base-list.component';
+import { NotificationService } from '../../core/base/common/notification/notification.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { JournalService } from 'src/app/module/sticky/modules/journal/journal.service';
+import { JournalService } from 'src/app/core/module/partial/modules/journal/journal.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatCalendar } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
@@ -15,8 +15,8 @@ import { Moment } from 'moment';
 import * as moment from 'moment';
 import { newArray } from '@angular/compiler/src/util';
 import { NgForm } from '@angular/forms';
-import { SaveConfirmation } from 'src/app/module/sticky/common/confirmation/save-confirmation';
-import { CancelConfirmation } from 'src/app/module/sticky/common/confirmation';
+import { SaveConfirmation } from 'src/app/core/base/common/confirmation/save-confirmation';
+import { CancelConfirmation } from 'src/app/core/base/common/confirmation';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

@@ -1,11 +1,11 @@
-import { BaseFormComponent } from 'src/app/module/sticky/component';
-import { ShopService } from './../../../module/sticky/modules/shop/shop.service';
+import { BaseFormComponent } from 'src/app/core/base/component';
+import { ShopService } from '../../../core/module/partial/modules/shop/shop.service';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SaveConfirmation, CancelConfirmation } from 'src/app/module/sticky/common/confirmation';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { ReviewService } from 'src/app/module/sticky/modules/review/review.service';
-import { ReviewRequestPayload } from 'src/app/module/sticky/modules/review/review-request.payload';
+import { SaveConfirmation, CancelConfirmation } from 'src/app/core/base/common/confirmation';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { ReviewService } from 'src/app/core/module/partial/modules/review/review.service';
+import { ReviewRequestPayload } from 'src/app/core/module/partial/modules/review/review-request.payload';
 
 @Component({
   selector: 'app-review-add',

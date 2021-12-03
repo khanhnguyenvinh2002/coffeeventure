@@ -1,16 +1,16 @@
-import { BaseListComponent } from './../../module/sticky/component/base-list.component';
+import { BaseListComponent } from '../../core/base/component/base-list.component';
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatCalendar } from '@angular/material/datepicker';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SaveConfirmation, CancelConfirmation } from 'src/app/module/sticky/common/confirmation';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
-import { ReviewRequestPayload } from 'src/app/module/sticky/modules/review/review-request.payload';
-import { ReviewService } from 'src/app/module/sticky/modules/review/review.service';
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
+import { SaveConfirmation, CancelConfirmation } from 'src/app/core/base/common/confirmation';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { AuthService } from 'src/app/core/module/partial/modules/auth/auth.service';
+import { ReviewRequestPayload } from 'src/app/core/module/partial/modules/review/review-request.payload';
+import { ReviewService } from 'src/app/core/module/partial/modules/review/review.service';
+import { UserService } from 'src/app/core/module/partial/modules/user/user.service';
 import { Moment } from 'moment';
 
 @Component({

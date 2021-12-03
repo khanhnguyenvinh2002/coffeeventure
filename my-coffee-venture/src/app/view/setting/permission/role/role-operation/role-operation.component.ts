@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/api/treenode';
 import { forkJoin } from 'rxjs';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
-import { ActionService } from 'src/app/module/sticky/modules/action/action.service';
-import { OperationService } from 'src/app/module/sticky/modules/operation/operation.service';
-import { RoleService } from 'src/app/module/sticky/modules/role/role.service';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { DialogRef } from 'src/app/core/crud/dialog/dialog-ref.model';
+import { ActionService } from 'src/app/core/module/partial/modules/action/action.service';
+import { OperationService } from 'src/app/core/module/partial/modules/operation/operation.service';
+import { RoleService } from 'src/app/core/module/partial/modules/role/role.service';
 
 @Component({
   selector: 'app-role-operation',

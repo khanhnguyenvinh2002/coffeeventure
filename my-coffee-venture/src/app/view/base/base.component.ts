@@ -1,10 +1,10 @@
-import { OperationService } from './../../module/sticky/modules/operation/operation.service';
+import { OperationService } from '../../core/module/partial/modules/operation/operation.service';
 // import { BaseListComponent } from './../../module/sticky/component/base-list.component';
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/module/sticky/modules/auth/auth.service';
-import { WINDOW } from 'src/app/module/sticky/services/window.service';
+import { AuthService } from 'src/app/core/module/partial/modules/auth/auth.service';
+import { WINDOW } from 'src/app/core/module/partial/services/window.service';
 import { MenuItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 @Component({

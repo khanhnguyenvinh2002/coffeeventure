@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 // import { Loader } from '@googlemaps/js-api-loader';
 // import { google } from "google-maps";
 import tt from '@tomtom-international/web-sdk-maps';
-import { TomtomMapService } from 'src/app/module/sticky/modules/maps/tomtom-map.service';
+import { TomtomMapService } from 'src/app/core/module/partial/modules/maps/tomtom-map.service';
 import { User } from './user';
 // declare var google : google;
 @Component({

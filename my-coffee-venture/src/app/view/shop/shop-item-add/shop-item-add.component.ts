@@ -3,15 +3,15 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TreeNode } from 'primeng/api';
-import { NotificationService } from 'src/app/module/sticky/common/notification/notification.service';
-import { BaseFormComponent } from 'src/app/module/sticky/component';
-import { BaseComponent } from 'src/app/module/sticky/component/base-component';
-import { FormDynamicData } from 'src/app/module/sticky/crud/component/form-dynamic-data.model';
-import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
-import { OrgChartDto } from 'src/app/module/sticky/modules/org-chart/org-chart.model';
-import { OrgChartService } from 'src/app/module/sticky/modules/org-chart/org-chart.service';
-import { RoleService } from 'src/app/module/sticky/modules/role/role.service';
-import { ShopService } from 'src/app/module/sticky/modules/shop/shop.service';
+import { NotificationService } from 'src/app/core/base/common/notification/notification.service';
+import { BaseFormComponent } from 'src/app/core/base/component';
+import { BaseComponent } from 'src/app/core/base/component/base-component';
+import { FormDynamicData } from 'src/app/core/crud/component/form-dynamic-data.model';
+import { DialogRef } from 'src/app/core/crud/dialog/dialog-ref.model';
+import { OrgChartDto } from 'src/app/core/module/partial/modules/org-chart/org-chart.model';
+import { OrgChartService } from 'src/app/core/module/partial/modules/org-chart/org-chart.service';
+import { RoleService } from 'src/app/core/module/partial/modules/role/role.service';
+import { ShopService } from 'src/app/core/module/partial/modules/shop/shop.service';
 export const TITLE = [
   { id: 1, name: 'Mr.' },
   { id: 2, name: 'Mrs.' },

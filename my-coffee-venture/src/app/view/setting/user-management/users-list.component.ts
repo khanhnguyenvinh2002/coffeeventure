@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import * as config from './users-list.config';
 import { TreeNode } from 'primeng/api';
-import { BaseListComponent } from 'src/app/module/sticky/component/base-list.component';
-import { OrgChartService } from 'src/app/module/sticky/modules/org-chart/org-chart.service';
-import { UserRequestPayload } from 'src/app/module/sticky/modules/user/user-request.payload';
-import { UserService } from 'src/app/module/sticky/modules/user/user.service';
+import { BaseListComponent } from 'src/app/core/base/component/base-list.component';
+import { OrgChartService } from 'src/app/core/module/partial/modules/org-chart/org-chart.service';
+import { UserRequestPayload } from 'src/app/core/module/partial/modules/user/user-request.payload';
+import { UserService } from 'src/app/core/module/partial/modules/user/user.service';
 
 @Component({
   selector: 'app-users-list',

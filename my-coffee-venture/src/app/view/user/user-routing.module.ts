@@ -3,7 +3,7 @@ import { ShopSavedComponent } from './shop-saved/shop-saved.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
-import { AuthGuard } from 'src/app/module/sticky/modules/auth/auth.guard';
+import { AuthGuard } from 'src/app/core/module/partial/modules/auth/auth.guard';
 import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [{

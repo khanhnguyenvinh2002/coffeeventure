@@ -1,4 +1,4 @@
-import { BaseListComponent } from 'src/app/module/sticky/component/base-list.component';
+import { BaseListComponent } from 'src/app/core/base/component/base-list.component';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
@@ -6,9 +6,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MenuItem } from 'primeng/api';
 import { BehaviorSubject, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { JournalService } from 'src/app/module/sticky/modules/journal/journal.service';
-import { ShopRequestPayload } from 'src/app/module/sticky/modules/shop/shop-request.payload';
-import { ShopService } from 'src/app/module/sticky/modules/shop/shop.service';
+import { JournalService } from 'src/app/core/module/partial/modules/journal/journal.service';
+import { ShopRequestPayload } from 'src/app/core/module/partial/modules/shop/shop-request.payload';
+import { ShopService } from 'src/app/core/module/partial/modules/shop/shop.service';
 
 @Component({
   selector: 'app-shop',
@@ -42,9 +42,16 @@ export class ShopComponent extends BaseListComponent implements OnInit {
       this.categories = res.categories;
     })
   }
-  goToShopItem(id: string) {
+  /**
+   * go to shop item
+   * @param id shop id
+   */
+  public goToShopItem(id: string) {
     this.router.navigate(['/app/shop/shop-item', id]);
   }
+  /**
+   * scroll dơn event
+   */
   onScrollDown() {
     if (this.stopScrolling == true) {
       this.loaded = true;
@@ -67,6 +74,9 @@ export class ShopComponent extends BaseListComponent implements OnInit {
       });
 
   }
+  /**
+   * initialize shops
+   */
   public initShop(): void {
     this.shopRequest.pageIndex = 0;
     this.shopRequest.pageSize = 12;
@@ -90,7 +100,11 @@ export class ShopComponent extends BaseListComponent implements OnInit {
     this.subscriptions.push(sub);
     this.cdr.detectChanges();
   }
-  changeCities() {
+
+  /**
+   * event change city
+   */
+  public changeCities() {
     this.shopRequest.districts = null;
     this.shopRequest.streets = null;
     if (this.shopRequest.cities[0]) {
@@ -102,7 +116,10 @@ export class ShopComponent extends BaseListComponent implements OnInit {
       this.filteredStreets = this.streets;
     }
   }
-  changeStreets() {
+  /**
+   * event change streets
+   */
+  public changeStreets() {
     this.shopRequest.streets = null;
     if (this.shopRequest.districts[0]) {
       this.filteredStreets = this.streets.filter(x => x.city == this.shopRequest.districts[0]);

@@ -1,8 +1,8 @@
 import { UserViewComponent } from './user-view/user-view.component';
 import { ReviewerModule } from './../reviewer/reviewer.module';
-import { InputTimeModule } from 'src/app/module/sticky/control/input-time/input-time.module';
+import { InputTimeModule } from 'src/app/core/control/input-time/input-time.module';
 import { ForumComponent } from './forum/forum.component';
-import { PartialsModule } from './../../module/sticky/partials.module';
+import { PartialsModule } from '../../core/module/partial/partials.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -32,7 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
-import { ReviewModule } from 'src/app/module/sticky/review/review.module';
+import { ReviewModule } from 'src/app/core/components/review/review.module';
 import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [UserComponent, ShopSavedComponent, ForumComponent, UserViewComponent],

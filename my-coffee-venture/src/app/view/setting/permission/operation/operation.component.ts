@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { merge } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { BaseComponent } from 'src/app/module/sticky/component/base-component';
-import { DialogRef } from 'src/app/module/sticky/crud/dialog/dialog-ref.model';
-import { OperationService } from 'src/app/module/sticky/modules/operation/operation.service';
-import { RoleRequestPayload } from 'src/app/module/sticky/modules/role/role.request.payload';
+import { BaseComponent } from 'src/app/core/base/component/base-component';
+import { DialogRef } from 'src/app/core/crud/dialog/dialog-ref.model';
+import { OperationService } from 'src/app/core/module/partial/modules/operation/operation.service';
+import { RoleRequestPayload } from 'src/app/core/module/partial/modules/role/role.request.payload';
 
 @Component({
   selector: 'app-operation',

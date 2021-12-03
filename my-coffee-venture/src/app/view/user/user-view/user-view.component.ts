@@ -1,16 +1,16 @@
-import { UserService } from './../../../module/sticky/modules/user/user.service';
-import { ReviewService } from 'src/app/module/sticky/modules/review/review.service';
-import { NotificationService } from '../../../module/sticky/common/notification/notification.service';
-import { UserShopRequestPayload } from '../../../module/sticky/modules/user-shop/user-shop-request.payload';
-import { UserShopService } from '../../../module/sticky/modules/user-shop/user-shop.service';
+import { UserService } from '../../../core/module/partial/modules/user/user.service';
+import { ReviewService } from 'src/app/core/module/partial/modules/review/review.service';
+import { NotificationService } from '../../../core/base/common/notification/notification.service';
+import { UserShopRequestPayload } from '../../../core/module/partial/modules/user-shop/user-shop-request.payload';
+import { UserShopService } from '../../../core/module/partial/modules/user-shop/user-shop.service';
 import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseListComponent } from 'src/app/module/sticky/component';
-import { JournalRequestPayload } from 'src/app/module/sticky/modules/journal/journal-request.payload';
+import { BaseListComponent } from 'src/app/core/base/component';
+import { JournalRequestPayload } from 'src/app/core/module/partial/modules/journal/journal-request.payload';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
-import { JournalService } from 'src/app/module/sticky/modules/journal/journal.service';
-import { ReviewRequestPayload } from 'src/app/module/sticky/modules/review/review-request.payload';
+import { JournalService } from 'src/app/core/module/partial/modules/journal/journal.service';
+import { ReviewRequestPayload } from 'src/app/core/module/partial/modules/review/review-request.payload';
 
 @Component({
   selector: 'app-user-view',

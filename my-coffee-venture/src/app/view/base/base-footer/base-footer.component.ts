@@ -1,7 +1,7 @@
 
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { WINDOW } from 'src/app/module/sticky/services/window.service';
+import { WINDOW } from 'src/app/core/module/partial/services/window.service';
 
 @Component({
   selector: 'app-base-footer',
