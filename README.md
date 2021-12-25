@@ -40,6 +40,10 @@ This is the platform for coffee lovers - currently targeting Vietnamese enthusia
 
 ## Walk through!
 
+### Background: 
+
+Going to cafes to study or hang out with friends has always been a big part of Vietnamese culture. There has not been any platform where Vietnames coffee lovers can find good cafes and share stories of going to cafes.
+
 ### This is the sign in page with JWT authentication! 
 
 Don't worry, your password will be hashed and even us don't know the password!
