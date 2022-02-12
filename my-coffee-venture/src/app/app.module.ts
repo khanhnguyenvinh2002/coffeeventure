@@ -19,7 +19,6 @@ import { BaseHeaderComponent } from './view/base/base.component';
 import { BaseScreenComponent } from './view/base/base-screen/base-screen.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { Configuration } from './core/base/common/utility/app-configuration.service';
 import { CarouselModule } from 'primeng/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseFooterComponent } from './view/base/base-footer/base-footer.component';
@@ -96,7 +95,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     })
   ],
   providers: [WINDOW_PROVIDERS, HttpClientModule, httpInterceptorProviders, ConfirmationService, ToastrService,
-    Configuration, AuthService, AuthGuard, NotificationService],
+    AuthService, AuthGuard, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

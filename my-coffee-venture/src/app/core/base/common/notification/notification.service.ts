@@ -94,6 +94,13 @@ export class NotificationService {
     }
 
     /**
+     * componentFactoryResolver
+     * A simple registry that maps Components to generated ComponentFactory classes that can be used to create instances of components. Use to obtain the factory for a given component type, then use the factory's create() method to create a component of that type.
+     * resolveComponentFactory()
+Retrieves the factory object that creates a component of the given type.
+     */
+
+    /**
      * Append component to body
      */
     private appendComponentToBody(component: Type<ConfirmationDialogComponent>): ComponentRef<ConfirmationDialogComponent> {

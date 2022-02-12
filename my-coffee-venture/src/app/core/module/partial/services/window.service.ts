@@ -1,6 +1,8 @@
 import { isPlatformBrowser } from "@angular/common";
 import { ClassProvider, FactoryProvider, InjectionToken, PLATFORM_ID } from '@angular/core';
 
+//source: https://brianflove.com/2018-01-11/angular-window-provider/#:~:text=The%20windowProvider%20is%20a%20FactoryProvider,array%20of%20providers%20called%20WINDOW_PROVIDERS%20.
+
 /* Create a new injection token for injecting the window into a component. */
 export const WINDOW = new InjectionToken('WindowToken');
 
@@ -28,6 +30,7 @@ export class BrowserWindowRef extends WindowRef {
 
 /* Create an factory function that returns the native window object. */
 export function windowFactory(browserWindowRef: BrowserWindowRef, platformId: Object): Window | Object {
+    // determines if the application is executing within the context of the browser using the isPlatformBrowser()
     if (isPlatformBrowser(platformId)) {
         return browserWindowRef.nativeWindow;
     }

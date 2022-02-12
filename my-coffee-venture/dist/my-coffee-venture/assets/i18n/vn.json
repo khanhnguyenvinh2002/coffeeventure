@@ -1,0 +1,111 @@
+{
+    "demo": {
+        "title": "Translation demo",
+        "text": "This is a simple demonstration app for ngx-translate"
+    },
+    "COMMON": {
+        "BUTTON": {
+            "DELETE":"Xóa",
+            "CHOOSE_IMAGE": "Chọn ảnh",
+            "CHOOSE_IMAGES": "Chọn ảnh"
+        },
+        "ERROR": {
+            "NO_DATA_TO_DISPLAY": "Không có dữ liệu để hiển thị"
+        }
+
+    },
+    "HOME": {
+        "WELCOME": "Xin chào",
+        "UNSIGNED_IN_SUBHEADER":"Bạn đã sẵn sàng cho cốc cà phê tiếp theo chưa?",
+        "SIGNED_IN_SUBHEADER": "Hôm nay bạn muốn làm gì?",
+        "SEE_SHOPS":"Xem các quán",
+        "START_A_JOURNAL":"Viết một nhật kí",
+        "START_REVIEWING":"Viết một đánh giá",
+        "LOGIN_NOW_TO_START_A_JOURNAL": "Đăng nhập để bắt đầu viết nhật kí",
+        "SEE_WHAT_PEOPLE_ARE_REVIEWING":"Xem mọi người đang đánh giá gì",
+        "START_YOUR_SEARCH_NOW": {
+            "HEADER":"Bắt đầu tìm kiếm bây giờ!",
+            "SHOP": "Mọi quán cà phê đều đặc biệt, bạn đã thử hết chưa?",
+            "REVIEW": "Quán cà phê tốt luôn đi kèm đánh giá tốt",
+            "JOURNAL": "Nhật kí làm trải nghiệm cà phê trở nên quý giá",
+            "SHOP_LINK": "Xem danh sách các quán!",
+            "REVIEW_LINK": "Xem mọi người đang đánh giá gì!",
+            "JOURNAL_LINK": "Viết một nhật kí ngay bây giờ!"
+        },
+        "SHOP_SEARCH_HEADER":"Xem danh sách các quán bây giờ!",
+        "SHOP_SEARCH_SUBHEADER": "Để xem tất cả các quán, hãy tham quan danh sách",
+        "SHOP_SEARCH_SUBHEADER_LINK": "các quán khả dụng",
+        "FILTER": "lọc"
+    },
+    "FOOTER": {
+        "SHOP": "Xem danh sách các quán",
+        "REVIEW":"Xem danh sách các đánh giá",
+        "HOME": "Trang chủ",
+        "JOURNAL":"Xem danh sách các nhật kí",
+        "AUTHOR": "Về tác giả"
+    },
+    "SHOP": {
+        "HEADER": "Chào mừng đến danh sách các quán cà phê hiện có của chúng mình!",
+        "SUBHEADER": "Chọn một quán để xem chi tiết",
+        "SUGGESTION_HEADER": "Nếu bạn muốn xem các quán theo từng trang, hãy tham quan",
+        "SUGGESTION_LINK": "trang chủ",
+        "SEARCH": {
+            "NAME": "Tìm theo tên",
+            "NAME_LABEL": "Tên quán",
+            "CITY": "Thành phố",
+            "CITY_LABEL": "Chọn thành phố",
+            "DISTRICT": "Quận huyện",
+            "DISTRICT_LABEL": "Chọn quận huyện",
+            "STREET": "Đường",
+            "STREET_LABEL": "Chọn đường",
+            "CATEGORY": "Danh mục",
+            "CATEGORY_LABEL": "Chọn danh mục"
+        },
+        "SAVED": "đã lưu",
+        "TIMES": "lần",
+        "FILTER": "lọc"
+    },
+    "USER":{
+      "SAVED": {
+          "HEADER": "Đây là danh sách các quán bạn đã lưu",
+          "NO": "Thứ tự",
+          "NAME": "Tên",
+          "ADDRESS":"Địa chỉ",
+          "CATEGORY": "Danh mục"
+      }  ,
+      "PAGE": {
+          "HEADER": "Chào mừng đến với nhật kí hành trình của bạn,",
+          "UPDATE_AVATAR": "Cập nhật ảnh đại diện",
+          "MY_COFFEE_JOURNEY": "Hành trình cà phê của tôi",
+          "ALL": "Tất cả",
+          "HIGHLIGHTED": "Chọn ngày nổi bật để xem nhật kí",
+          "SHARE_NOW": "Chia sẻ trải nghiệm đi cà phê của bạn ngay bây giờ",
+          "ADD_JOURNAL": "Thêm nhật kí",
+          "HOW_ARE_YOU_FEELING_TODAY": "Bạn cảm thấy như nào hôm nay?",
+          "TELL_PEOPLE_HOW_YOU_FEEL": "Kể mọi người tâm trạng của bạn",
+          "PUBLIC_PRIVATE": "Công khai/riêng tư",
+          "WHAT_DO_YOU_WANT_TO_SHARE":"Bạn muốn chia sẻ gì?",
+          "YOUR_JOURNAL_GOES_HERE": "Nhật kí của bạn ở đây",
+          "ANY_PHOTO": "Bạn có ảnh nào muốn chia sẻ không?"
+      }  
+    },
+    "REVIEW":{
+      "PAGE": {
+          "HEADER": "Chào mừng đến với trang đánh giá của bạn,",
+          "UPDATE_AVATAR": "Cập nhật ảnh đại diện",
+          "MY_COFFEE_REVIEW": "Đánh giá cà phê của tôi",
+          "ALL": "Tất cả",
+          "HIGHLIGHTED": "Chọn ngày nổi bật để xem các đánh giá",
+          "SHARE_NOW": "Chia sẻ đánh giá cà phê của bạn",
+          "ADD_REVIEW": "Add review",
+          "HOW_ARE_YOU_FEELING_TODAY": "Hôm nay bạn thấy thế nào?",
+          "TELL_PEOPLE_HOW_YOU_FEEL": "Nói mọi người biết bạn cảm thấy thế nào",
+          "PUBLIC_PRIVATE": "Public/private",
+          "WHAT_DO_YOU_WANT_TO_SHARE":"Bạn muốn chia sẻ gì?",
+          "YOUR_REVIEW_GOES_HERE": "Viết đánh giá ở đây",
+          "ANY_PHOTO": "Bạn có ảnh nào muốn chia sẻ không?",
+          "WRITING_REVIEW_FOR": "Đang viết đánh giá cho quán",
+          "RATING": "Đánh giá"
+      }  
+    }
+}
