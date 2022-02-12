@@ -206,9 +206,7 @@
 
                 </ng-template>
                 <ng-template let-shop pTemplate="item">
-                    <div class="card-deck" style="
-            margin: .3rem;
-            padding: 2rem 0;">
+                    <div class="card-deck" style="margin: .3rem;padding: 2rem 0;">
                         <div class="card">
                             <a [routerLink]="['/app/shop/shop-item', shop.id]" class="shop-item" data-toggle="tooltip" data-placement="bottom" title="Go to shop    " trigger="hover focus">
                                 <img class=" img-shop" [src]="shop.image" alt="Card image cap">

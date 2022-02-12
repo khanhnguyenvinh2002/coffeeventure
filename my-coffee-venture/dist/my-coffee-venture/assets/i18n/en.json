@@ -1,0 +1,110 @@
+{
+    "demo": {
+        "title": "Translation demo",
+        "text": "This is a simple demonstration app for ngx-translate"
+    },
+    "COMMON": {
+        "BUTTON": {
+            "DELETE":"Delete",
+            "CHOOSE_IMAGE": "Choose an image",
+            "CHOOSE_IMAGES": "Choose images"
+        },
+        "ERROR": {
+            "NO_DATA_TO_DISPLAY": "No data to display"
+        }
+    },
+    "HOME": {
+        "WELCOME": "Welcome",
+        "UNSIGNED_IN_SUBHEADER":"Are you ready for your next coffee?",
+        "SIGNED_IN_SUBHEADER": "What are you up to today?",
+        "SEE_SHOPS":"See shops",
+        "START_A_JOURNAL":"Start a journal",
+        "START_REVIEWING":"Start reviewing",
+        "LOGIN_NOW_TO_START_A_JOURNAL": "Login now to start a journal",
+        "SEE_WHAT_PEOPLE_ARE_REVIEWING":"See what people are reviewing",
+        "START_YOUR_SEARCH_NOW": {
+            "HEADER":"Start your search now!",
+            "SHOP": "Every shop is unique, have you tried them all?",
+            "REVIEW": "Good coffee houses have good reviews",
+            "JOURNAL": "Journals make coffee venture memorable",
+            "SHOP_LINK": "See our list of shops now!",
+            "REVIEW_LINK": "See what people are reviewing now!",
+            "JOURNAL_LINK": "Write some journals now!"
+        },
+        "SHOP_SEARCH_HEADER":"See out list of shops",
+        "SHOP_SEARCH_SUBHEADER": "For viewing all shops, please visit our lists of",
+        "SHOP_SEARCH_SUBHEADER_LINK": "available shops",
+        "FILTER": "filter"
+    },
+    "FOOTER": {
+        "SHOP": "Go to our list of shops",
+        "REVIEW":"Go to our list of reviews",
+        "HOME": "Home page",
+        "JOURNAL":"View our journal forum",
+        "AUTHOR": "About the author"
+    },
+    "SHOP": {
+        "HEADER": "Welcome to our list of available cafes!",
+        "SUBHEADER": "Click on an item to view detail",
+        "SUGGESTION_HEADER": "If you want to view items by page, please visit our",
+        "SUGGESTION_LINK": "home page",
+        "SEARCH": {
+            "NAME": "Search by name",
+            "NAME_LABEL": "Shop name",
+            "CITY": "Cities",
+            "CITY_LABEL": "Select a city",
+            "DISTRICT": "Districts",
+            "DISTRICT_LABEL": "Select districts",
+            "STREET": "Streets",
+            "STREET_LABEL": "Select streets",
+            "CATEGORY": "Categories",
+            "CATEGORY_LABEL": "Select categories"
+        },
+        "SAVED": "saved",
+        "TIMES": "times",
+        "FILTER": "filter"
+    },
+    "USER":{
+      "SAVED": {
+          "HEADER": "This is your list of saved shops",
+          "NO": "No",
+          "NAME": "Name",
+          "ADDRESS":"Address",
+          "CATEGORY": "Category"
+      },
+      "PAGE": {
+          "HEADER": "Welcome to your journal page,",
+          "UPDATE_AVATAR": "Update avatar",
+          "MY_COFFEE_JOURNEY": "My coffee journey",
+          "ALL": "All",
+          "HIGHLIGHTED": "Click highlighted date to view journals",
+          "SHARE_NOW": "Share your coffee journal now",
+          "ADD_JOURNAL": "Add journal",
+          "HOW_ARE_YOU_FEELING_TODAY": "How are you feeling today?",
+          "TELL_PEOPLE_HOW_YOU_FEEL": "Tell people how you feel",
+          "PUBLIC_PRIVATE": "Public/private",
+          "WHAT_DO_YOU_WANT_TO_SHARE":"What do you want to share?",
+          "YOUR_JOURNAL_GOES_HERE": "Your journal goes here",
+          "ANY_PHOTO": "Do you have any photo you want to share?"
+      }  
+    },
+    "REVIEW":{
+      "PAGE": {
+          "HEADER": "Welcome to your review page,",
+          "UPDATE_AVATAR": "Update avatar",
+          "MY_COFFEE_REVIEW": "My coffee review",
+          "ALL": "All",
+          "HIGHLIGHTED": "Click highlighted date to view reviews",
+          "SHARE_NOW": "Share your coffee review now",
+          "ADD_REVIEW": "Add review",
+          "HOW_ARE_YOU_FEELING_TODAY": "How are you feeling today?",
+          "TELL_PEOPLE_HOW_YOU_FEEL": "Tell people how you feel",
+          "PUBLIC_PRIVATE": "Public/private",
+          "WHAT_DO_YOU_WANT_TO_SHARE":"What do you want to share?",
+          "YOUR_REVIEW_GOES_HERE": "Your review goes here",
+          "ANY_PHOTO": "Do you have any photo you want to share?",
+          "WRITING_REVIEW_FOR": "Writing review for",
+          "RATING": "Rating"
+      }  
+    }
+}

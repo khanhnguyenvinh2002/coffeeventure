@@ -14,7 +14,6 @@ import { NotificationService } from 'src/app/core/base/common/notification/notif
 import { httpInterceptorProviders } from 'src/app/core/base/common/utility';
 import { HttpClientModule } from '@angular/common/http';
 import { WINDOW_PROVIDERS } from 'src/app/core/module/partial/services/window.service';
-import { Configuration } from 'src/app/core/base/common/utility/app-configuration.service';
 import { LoginComponent } from './login/login.component';
 import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
@@ -27,6 +26,6 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule
   ],
   providers: [WINDOW_PROVIDERS, HttpClientModule, httpInterceptorProviders, ToastrService,
-    Configuration, AuthService, AuthGuard, NotificationService],
+     AuthService, AuthGuard, NotificationService],
 })
 export class AuthenModule { }

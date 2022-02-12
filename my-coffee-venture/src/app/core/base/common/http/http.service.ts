@@ -6,7 +6,6 @@ import { RequestPayload } from './request-payload.model';
 import { BaseResponse } from './base-response.model';
 import { NotificationService } from '../notification/notification.service';
 import { ServiceLocator } from '../utility/service-locator.service';
-import { Configuration } from '../utility/app-configuration.service';
 // import * as FileSaver from 'file-saver';
 
 @Injectable()
@@ -128,7 +127,11 @@ export class HttpService<T = any> {
     //             }
     //         }));
     // }
+/*
+    Pipe: Used to stitch together functional operators into a chain. Before we could just do observable.filter().map().scan(), but since every RxJS operator is a standalone function rather than an Observable's method, we need pipe() to make a chain of those operators (see example above).
 
+    Tap: Can perform side effects with observed data but does not modify the stream in any way. Formerly called do(). You can think of it as if observable was an array over time, then tap() would be an equivalent to Array.forEach().
+*/
     public intercept(observable: Observable<HttpResponse<any>>, isSpinner?: boolean): Observable<HttpResponse<any>> {
         if (isSpinner == null || isSpinner === undefined) { isSpinner = true; }
         if (isSpinner) { this.showSpinner(); }
